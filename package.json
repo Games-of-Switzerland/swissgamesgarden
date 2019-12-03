@@ -1,0 +1,17 @@
+{
+  "name": "gos-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@appbaseio/reactivesearch": "^3.1.1",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "9.1.4",
+    "react": "16.12.0",
+    "react-dom": "16.12.0"
+  }
+}
