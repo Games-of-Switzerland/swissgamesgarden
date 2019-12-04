@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import fetch from 'isomorphic-unfetch';
-import Games from './Games';
-import {ReactiveBase, CategorySearch, DataSearch, ReactiveList, ResultCard} from "@appbaseio/reactivesearch";
+import {ReactiveBase, DataSearch, ReactiveList} from "@appbaseio/reactivesearch";
+import GameTeaser from "./GameTeaser";
 
-const {ResultCardsWrapper} = ReactiveList;
-
-const SearchBar = () => {
+const Search = () => {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
@@ -45,6 +43,22 @@ const SearchBar = () => {
     const search_query = e.target.value;
     searchGames(search_query);
   };
+
+  const game = {
+    id: 123,
+    img: {
+      sm: '//placehold.it/160x90',
+      md: '//placehold.it/160x90',
+      lg: '//placehold.it/160x90',
+    },
+    studio: 'Kobold Games',
+    year: 2018,
+    title: 'uFin: The Challenge',
+    platforms: ['PC', 'PS4', 'Xbox One'],
+    genres: ['Puzzle', 'Reflexion'],
+    players: [1,2],
+  };
+
   return (
     <div>
       {/*<input type="text" onChange={handleChange}/>*/}
@@ -57,12 +71,12 @@ const SearchBar = () => {
         url="http://localhost:9200"
         credentials="null"
       >
-        <CategorySearch
-          componentId="categorysearch"
-          dataField={['name', 'title']}
-          categoryField="title.keyword"
-          placeholder="Search for games"
-        />
+        {/*<CategorySearch*/}
+        {/*  componentId="categorysearch"*/}
+        {/*  dataField={['name', 'title']}*/}
+        {/*  categoryField="title.keyword"*/}
+        {/*  placeholder="Search for games"*/}
+        {/*/>*/}
         <DataSearch
           componentId="datasearch"
           dataField={['name', 'title', 'title.keyword']}
@@ -78,21 +92,10 @@ const SearchBar = () => {
             and: ['categorysearch', 'datasearch'],
           }}
           render={({ data }) => (
-            <ResultCardsWrapper>
-              {data.map(item => (
-                <ResultCard key={item._id}>
-                  <ResultCard.Image src={item.image} />
-                  <ResultCard.Title
-                    dangerouslySetInnerHTML={{
-                      __html: item.title
-                    }}
-                  />
-                  <ResultCard.Description>
-                    {item.name}
-                  </ResultCard.Description>
-                </ResultCard>
-              ))}
-            </ResultCardsWrapper>
+            <>
+              {data.map(item => <GameTeaser key={item.id} game={game} />)}
+
+            </>
           )}
           loader="Loading Results.."
         />
@@ -101,4 +104,4 @@ const SearchBar = () => {
   )
 };
 
-export default SearchBar;
+export default Search;

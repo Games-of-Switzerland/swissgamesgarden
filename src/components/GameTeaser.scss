@@ -1,0 +1,33 @@
+.game-teaser {
+  background-color: var(--color-dark);
+  font-weight: 200;
+  font-size: 0.9375rem;
+  color: var(--color-light);
+  transition: background-color 0.1s ease-out;
+  text-decoration: none;
+
+  img {
+    width: 100%;
+  }
+
+  h2 {
+    min-height: 42px;
+    margin-top: 0.3em;
+    color: var(--white);
+  }
+
+  &:hover {
+    background-color: var(--color-dim);
+  }
+}
+
+.game-teaser-content {
+  display: grid;
+  grid-template:
+    "studio year" auto
+    "title title" auto
+    "platforms platforms" auto
+    "genres players" auto
+    / 1fr 1fr;
+  padding: var(--spacer);
+}

@@ -5,13 +5,32 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@appbaseio/reactivesearch": "^3.1.1",
+    "@zeit/next-sass": "^1.0.1",
     "isomorphic-unfetch": "^3.0.0",
     "next": "9.1.4",
+    "node-sass": "^4.13.0",
+    "prop-types": "^15.7.2",
     "react": "16.12.0",
     "react-dom": "16.12.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@storybook/addon-a11y": "^5.2.8",
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-links": "^5.2.8",
+    "@storybook/addon-storysource": "^5.2.8",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/react": "^5.2.8",
+    "@storybook/theming": "^5.2.8",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.1",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.1"
   }
 }

@@ -1,12 +1,12 @@
 import React from 'react'
 import Layout from '../containers/Layout';
 import fetch from "isomorphic-unfetch";
-import SearchBar from "../components/SearchBar";
+import Search from "../components/Search";
 
 const Home = ({games}) => {
   return (
     <Layout>
-      <SearchBar/>
+      <Search/>
       {/*{games.map(game => {*/}
       {/*  const {body, title, id} = game.attributes;*/}
       {/*  return (*/}

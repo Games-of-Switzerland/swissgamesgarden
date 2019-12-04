@@ -1,5 +1,7 @@
 import React from 'react';
-// import Head from "next/head";
+import Head from "next/head";
+
+import '../styles/base.scss';
 
 const Layout = props => (
   <div>

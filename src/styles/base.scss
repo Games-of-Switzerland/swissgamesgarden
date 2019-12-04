@@ -1,0 +1,98 @@
+:root {
+  --color-darkest: #121212;
+  --color-dark: #282828;
+  --color-dim: #3b3b3b;
+  --color-dimmer: #535353;
+  --color-dimmest: #6f6f6f;
+  --color-mostdim: #848484;
+  --color-light: #a1a1a1;
+  --color-lighter: #adadad;
+  --white: #fff;
+
+  --spacer: 15px;
+}
+
+body {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  background-color: var(--color-darkest);
+  color: var(--color-white);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 1.1875rem;
+}
+
+// Text styles
+.font-weight-semibold {
+  font-weight: 500;
+}
+
+// Badges
+.badges {
+  --badge-spacer: 2.5px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 calc(#{var(--badge-spacer)} * -1) 0.8rem;
+
+  .link-badge {
+    margin: 0 var(--badge-spacer);
+  }
+}
+
+// Link
+.link {
+  display: inline-block;
+  padding: 0;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  transition:
+    color 0.1s ease-out,
+    border-color 0.1s ease-out;
+
+  &:hover {
+    color: var(--white);
+  }
+}
+
+.link-underline {
+  margin-right: 0.6em;
+  padding: 0.2em 0;
+  border-bottom: 1px dotted var(--color-dimmest);
+
+  .game-teaser:hover & {
+    border-color: var(--color-mostdim);
+  }
+
+  &:hover {
+    border-color: var(--color-lighter) !important;
+  }
+}
+
+.link-badge {
+  border: 1px solid var(--color-dim);
+  margin-bottom: var(--badge-spacer);
+  padding: calc(#{var(--badge-spacer)} * 1.2) calc(#{var(--badge-spacer)} * 2);
+
+  .game-teaser:hover & {
+    border: 1px solid var(--color-dimmer);
+  }
+
+  &:hover {
+    border-color: var(--color-mostdim) !important;
+  }
+}
