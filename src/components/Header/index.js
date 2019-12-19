@@ -10,6 +10,7 @@ const Header = () => {
         Garden
       </h1>
       <HeaderSearch/>
+      <div style={{color: 'var(--white)'}}>menu here</div>
     </header>
   )
 };
