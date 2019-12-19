@@ -1,0 +1,140 @@
+.bg-grid {
+  --black: #121212;
+  --translucid: rgba(#fff, 0.3);
+  --cell-size: 60px;
+
+  position: relative;
+  min-height: 310px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60'><defs><clipPath id='plus'><rect x='29' y='26' width='1' height='7'/><rect x='26' y='29' width='7' height='1'/></clipPath></defs><rect fill='%23fff' fill-opacity='0.2' clip-path='url(%23plus)' width='100%' height='100%'/></svg>"),
+    repeating-linear-gradient(
+        transparent,
+        transparent 29px,
+        rgba(#fff, 0.1) 29px,
+        rgba(#fff, 0.1) 30px,
+        transparent 30px,
+        transparent 60px
+    ),
+    repeating-linear-gradient(
+        to right,
+        transparent,
+        transparent 29px,
+        rgba(#fff, 0.1) 29px,
+        rgba(#fff, 0.1) 30px,
+        transparent 30px,
+        transparent 60px
+    );
+
+  /*&:after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: radial-gradient(ellipse, rgba(#121212, 0) 0%, rgba(#121212, 0.9) 80%);
+    pointer-events: none;
+  }*/
+
+  svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  .square {
+    position: absolute;
+    width: calc(var(--cell-size) - 1px);
+    height: calc(var(--cell-size) - 1px);
+    background-size: 400% 400%;
+    background-image:
+      repeating-linear-gradient(
+          135deg,
+          transparent,
+          transparent 5px,
+          rgba(#fff, 0.1) 5px,
+          rgba(#fff, 0.1) 6px,
+      );
+    animation:
+      slideBackground 5s linear infinite,
+      scaleIn 50ms linear;
+    opacity: 1;
+    transition: all 100ms ease-out;
+
+    &.dying {
+      margin-top: calc(var(--cell-size) / 2);
+      background-color: var(--translucid);
+      height: 0;
+    }
+
+    &.drawing {
+      margin-top: -1px;
+      margin-left: -1px;
+      border: 1px solid #aaa;
+    }
+  }
+
+  @keyframes slideBackground {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 100% 0%;
+    }
+  }
+
+  @keyframes scaleIn {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(100%);
+    }
+  }
+
+  .container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    user-select: none;
+
+    .content {
+      z-index: 1;
+      pointer-events: none;
+    }
+  }
+
+  .text-display1 {
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    font-size: 3rem;
+  }
+
+  .header-canvas {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  .text-multicolor {
+    background: linear-gradient(to right, #f9005f, #f9a128);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone;
+  }
+}
