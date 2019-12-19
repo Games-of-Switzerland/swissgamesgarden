@@ -4,8 +4,6 @@
   font-size: 0.9375rem;
   color: var(--color-light);
   text-decoration: none;
-  border: 1px solid;
-  border-image: conic-gradient(red, yellow, lime, aqua, blue, magenta, red) 1;
   transition:
     background-color 0.1s ease-out,
     border 0.2s;
@@ -22,7 +20,6 @@
 
   &:hover {
     background-color: var(--color-dim);
-    border-image: conic-gradient(yellow, lime, aqua, blue, magenta, red, yellow) 1;
   }
 }
 

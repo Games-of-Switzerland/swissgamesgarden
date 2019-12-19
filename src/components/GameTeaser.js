@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import './GameTeaser.scss';
 import Link from "next/link";
 
-const GameTeaser = ({game}) => {
+const GameTeaser = game => {
   return (
-    <Link href="/games/[id]" as={`/games/${game.id}`}>
+    <Link href="/games/[id]" as={`/games/${game.nid}`}>
       <a className="game-teaser">
-        <picture>
+        {game.img && <picture>
           <source srcSet={game.img.sm} media="(max-width: 720px)" />
           <source srcSet={game.img.lg} media="(min-width: 1200px)" />
           <img src={game.img.md} alt={game.title} />
-        </picture>
+        </picture>}
         <div className="game-teaser-content">
           <div>{game.studio}</div>
           <div style={{justifySelf: 'end'}}>{game.year}</div>
@@ -36,20 +36,18 @@ const GameTeaser = ({game}) => {
 };
 
 GameTeaser.propTypes = {
-  game: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    img: PropTypes.shape({
-      sm: PropTypes.string.isRequired,
-      md: PropTypes.string.isRequired,
-      lg: PropTypes.string.isRequired,
-    }),
-    title: PropTypes.string.isRequired,
-    studio: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    platforms: PropTypes.arrayOf(PropTypes.string).isRequired,
-    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-    players: PropTypes.arrayOf(PropTypes.number).isRequired,
-  })
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  // img: PropTypes.shape({
+  //   sm: PropTypes.string.isRequired,
+  //   md: PropTypes.string.isRequired,
+  //   lg: PropTypes.string.isRequired,
+  // }).isRequired,
+  // studio: PropTypes.string.isRequired,
+  // year: PropTypes.number.isRequired,
+  // platforms: PropTypes.arrayOf(PropTypes.string).isRequired,
+  // genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  // players: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
 export default GameTeaser;
