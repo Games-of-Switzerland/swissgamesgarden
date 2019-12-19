@@ -1,3 +1,17 @@
-import HeaderTitle from "./HeaderTitle";
+import HeaderSearch from "./HeaderSearch";
 
-export default HeaderTitle;
+import './Header.scss';
+
+const Header = () => {
+  return (
+    <header className="header">
+      <h1 className="header-title">
+        Swiss Games <br/>
+        Garden
+      </h1>
+      <HeaderSearch/>
+    </header>
+  )
+};
+
+export default Header;

@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 18px 0;
+}
+
+.header-title {
+  flex: 0 0 auto;
+  margin: 0 3rem 0 0;
+  text-transform: uppercase;
+  color: var(--white);
+  font-size: var(--font-size-lg);
+  line-height: 0.8947368421;
+}

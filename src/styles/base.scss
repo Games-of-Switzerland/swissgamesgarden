@@ -1,5 +1,6 @@
 :root {
   --color-darkest: #121212;
+  --color-darker: #1d1d1d;
   --color-dark: #282828;
   --color-dim: #3b3b3b;
   --color-dimmer: #535353;
@@ -10,6 +11,12 @@
   --white: #fff;
 
   --spacer: 15px;
+
+  --font-size-lg: 1.1875rem;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
