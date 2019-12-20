@@ -16,6 +16,7 @@ const queryParams = {
 
 const Home = ({router: {query}}) => {
   const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getGames = async value => {
     const qq = {
@@ -26,11 +27,10 @@ const Home = ({router: {query}}) => {
 
     if (value) {
       qq.query = {
-        fuzzy: {
-          title: {
-            value,
-            fuzziness: 'AUTO',
-          }
+        multi_match: {
+          query: value,
+          type: 'phrase_prefix',
+          fields: ['title^3'],
         },
       };
     } else {
@@ -46,21 +46,22 @@ const Home = ({router: {query}}) => {
       });
       const results = await response.json();
       setResults(results.hits.hits);
+      setLoading(false);
     } catch (error) {
       console.trace(error.message)
     }
   };
 
-  // Load all games if no parameters
-  // add parameter to URL when submitting search in searhc header
+  // Load games from URL or all.
   useEffect(() => {
     getGames(query.s || '');
   }, [query]);
 
+  const ResultGrid = results.length ? <Results results={results}/> : <div style={{color: 'var(--white)'}}>No results</div>;
 
   return (
     <Layout>
-      {results ? <Results results={results}/> : 'Loading...'}
+      {loading ? <div style={{color: 'var(--white)'}}>Loading...</div> : ResultGrid}
     </Layout>
   );
 };

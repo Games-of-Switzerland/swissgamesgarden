@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import fetch from "isomorphic-unfetch";
 import {throttle, debounce} from 'throttle-debounce';
 import Autosuggest from 'react-autosuggest';
+import Router, {useRouter} from "next/router";
 
 import './HeaderSearch.scss';
 
@@ -19,6 +20,8 @@ const HeaderSearch = () => {
   const initialSuggestions = [];
   const [suggestions, setSuggestions] = useState(initialSuggestions);
   const [q, setQ] = useState('');
+  const router = useRouter();
+  const inputEl = useRef(null);
 
   const onSuggestionsFetchRequested = async ({value}) => {
     const qq = {
@@ -98,19 +101,35 @@ const HeaderSearch = () => {
     }
   };
 
+  const handleEnter = e => {
+    if (e.keyCode === 13) {
+      const href = {
+        pathname: router.pathname,
+        query: { s: q },
+      };
+      // Go to the new URL.
+      Router.push(href, href, { shallow: true });
+      // Close suggestions.
+      inputEl.current.input.blur()
+    }
+  };
+
   return (
     <Autosuggest
       suggestions={suggestions}
       onSuggestionsFetchRequested={debounce(200, onSuggestionsFetchRequested)}
       onSuggestionsClearRequested={onSuggestionsClearRequested}
+      on
       renderSuggestion={renderSuggestion}
       getSuggestionValue={getSuggestionValue}
       alwaysRenderSuggestions={true}
+      ref={inputEl}
       inputProps={{
         placeholder: 'Search!',
         value: q,
         onChange: e => setQ(e.target.value),
         type: 'search',
+        onKeyDown: handleEnter,
       }}
     />
   )
