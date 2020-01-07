@@ -9,7 +9,7 @@ const DropdownFilter = props => {
     if (e.target.checked) {
       setSelectedOptions(selectedOptions.add(e.target.value));
     } else {
-      setSelectedOptions(selectedOptions.);
+      // setSelectedOptions(selectedOptions.);
     }
       console.log(selectedOptions);
   };

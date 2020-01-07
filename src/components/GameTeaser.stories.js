@@ -9,8 +9,23 @@ export default {
 };
 
 export const gameData = {
-  title: "Don't Kill Her",
-  name: "Test",
+  id: '1',
+  nid: 1,
+  studio: 'Studio name',
+  year: 2019,
+  title: 'Game title',
+  platforms: [
+    'ps4',
+    'steam'
+  ],
+  genres: [
+    'rpg',
+    'adventure'
+  ],
+  players: [
+    1,
+    2,
+  ],
 };
 
-export const Standard = () => <GameTeaser game={gameData} />;
+export const Standard = () => <GameTeaser {...gameData} />;
