@@ -1,5 +1,5 @@
 import React from 'react';
-import GameTeaser from "../GameTeaser";
+import GameTeaser from "../GameTeaser/GameTeaser";
 
 import './Results.scss';
 import PropTypes from 'prop-types';

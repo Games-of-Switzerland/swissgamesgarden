@@ -1,6 +1,6 @@
 import React from 'react';
 import fetch from "isomorphic-unfetch";
-import GameTeaser from "./GameTeaser";
+import GameTeaser from "./GameTeaser/GameTeaser";
 
 const Games = ({games}) => {
   return (

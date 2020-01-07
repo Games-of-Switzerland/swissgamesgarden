@@ -125,7 +125,7 @@ const HeaderSearch = () => {
       alwaysRenderSuggestions={true}
       ref={inputEl}
       inputProps={{
-        placeholder: 'Search!',
+        placeholder: 'game, studio, person…',
         value: q,
         onChange: e => setQ(e.target.value),
         type: 'search',
