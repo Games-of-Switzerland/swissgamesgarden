@@ -45,7 +45,7 @@ const Home = ({router: {query}}) => {
         body: JSON.stringify(qq)
       });
       const results = await response.json();
-      setResults(results.hits.hits);
+      setResults(results);
       setLoading(false);
     } catch (error) {
       console.trace(error.message)
@@ -57,7 +57,7 @@ const Home = ({router: {query}}) => {
     getGames(query.s || '');
   }, [query]);
 
-  const ResultGrid = results.length ? <Results results={results}/> : <div style={{color: 'var(--white)'}}>No results</div>;
+  const ResultGrid = results.hits && results.hits.total ? <Results results={results}/> : <div style={{color: 'var(--white)'}}>No results</div>;
 
   return (
     <Layout>

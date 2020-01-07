@@ -3,17 +3,25 @@ import GameTeaser from "../GameTeaser";
 
 import './Results.scss';
 import PropTypes from 'prop-types';
+import ResultsFilters from "./ResultsFilters";
 
-const Results = ({results}) => (
-  <div className="grid-results">
-    {results && results.map(({_source: game}) => {
-      return <GameTeaser key={game.id} {...game} />;
-    })}
-  </div>
-);
+const Results = ({results}) => {
+  const {hits: {hits}} = results;
+
+  return (
+    <div>
+      <ResultsFilters/>
+      <div className="grid-results">
+        {hits && hits.map(({_source: game}) => {
+          return <GameTeaser key={game.id} {...game} />;
+        })}
+      </div>
+    </div>
+  );
+};
 
 Results.propTypes = {
-  results: PropTypes.arrayOf(PropTypes.object).isRequired,
+  results: PropTypes.object.isRequired,
 };
 
 export default Results;
