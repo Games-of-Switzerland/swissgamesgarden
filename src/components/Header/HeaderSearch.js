@@ -115,23 +115,25 @@ const HeaderSearch = () => {
   };
 
   return (
-    <Autosuggest
-      suggestions={suggestions}
-      onSuggestionsFetchRequested={debounce(200, onSuggestionsFetchRequested)}
-      onSuggestionsClearRequested={onSuggestionsClearRequested}
-      on
-      renderSuggestion={renderSuggestion}
-      getSuggestionValue={getSuggestionValue}
-      alwaysRenderSuggestions={true}
-      ref={inputEl}
-      inputProps={{
-        placeholder: 'game, studio, person…',
-        value: q,
-        onChange: e => setQ(e.target.value),
-        type: 'search',
-        onKeyDown: handleEnter,
-      }}
-    />
+    <div className="header-search">
+      <Autosuggest
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={debounce(200, onSuggestionsFetchRequested)}
+        onSuggestionsClearRequested={onSuggestionsClearRequested}
+        on
+        renderSuggestion={renderSuggestion}
+        getSuggestionValue={getSuggestionValue}
+        alwaysRenderSuggestions={true}
+        ref={inputEl}
+        inputProps={{
+          placeholder: 'game, studio, person…',
+          value: q,
+          onChange: e => setQ(e.target.value),
+          type: 'search',
+          onKeyDown: handleEnter,
+        }}
+      />
+    </div>
   )
 };
 

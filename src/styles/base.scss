@@ -29,15 +29,19 @@
   --color-mostdim: #848484;
   --color-light: #a1a1a1;
   --color-lighter: #adadad;
-  --white: #fff;
+  --color-white: #fff;
 
   --spacer: 15px;
 
-  --font-size-lg: 1.1875rem;
+  --font-size-lg: 1.2666666667rem;
 }
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  font-size: 15px;
 }
 
 body {
@@ -59,7 +63,7 @@ h6 {
 }
 
 h2 {
-  font-size: 1.1875rem;
+  font-size: 1.2666666667rem;
 }
 
 a {
@@ -105,7 +109,7 @@ a {
     border-color 0.1s ease-out;
 
   &:hover {
-    color: var(--white);
+    color: var(--color-white);
   }
 }
 
@@ -135,4 +139,17 @@ a {
   &:hover {
     border-color: var(--color-mostdim) !important;
   }
+}
+
+.btn {
+  display: inline-block;
+  text-transform: uppercase;
+  padding: 0.6em 1em;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-white {
+  background-color: var(--color-white);
+  color: var(--color-dark);
 }

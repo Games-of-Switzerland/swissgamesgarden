@@ -2,6 +2,7 @@ import HeaderSearch from "./HeaderSearch";
 
 import './Header.scss';
 import Link from "next/link";
+import Menu from "./Menu";
 
 const Header = () => {
   return (
@@ -13,7 +14,7 @@ const Header = () => {
         </Link>
       </h1>
       <HeaderSearch/>
-      <div style={{color: 'var(--white)'}}>menu here</div>
+      <Menu/>
     </header>
   )
 };

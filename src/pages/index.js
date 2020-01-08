@@ -57,11 +57,11 @@ const Home = ({router: {query}}) => {
     getGames(query.s || '');
   }, [query]);
 
-  const ResultGrid = results.hits && results.hits.total ? <Results results={results}/> : <div style={{color: 'var(--white)'}}>No results</div>;
+  const ResultGrid = results.hits && results.hits.total ? <Results results={results}/> : <div>No results</div>;
 
   return (
     <Layout>
-      {loading ? <div style={{color: 'var(--white)'}}>Loading...</div> : ResultGrid}
+      {loading ? <div>Loading...</div> : ResultGrid}
     </Layout>
   );
 };
