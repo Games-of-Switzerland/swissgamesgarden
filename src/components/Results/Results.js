@@ -10,6 +10,9 @@ const Results = ({results}) => {
 
   return (
     <div>
+      <p className="lead">
+        <strong>{results.hits.total} games</strong>
+      </p>
       <ResultsFilters/>
       <div className="grid-results">
         {hits && hits.map(({_source: game}) => {

@@ -9,12 +9,28 @@ export default {
 };
 
 export const dropdownData = {
-  title: 'Genre',
+  title: 'Platform',
   options: [
     {
-      value: 'rpg',
-      name: 'Role Playing Game (RPG)',
-    }
+      value: 'android',
+      name: 'Android',
+    },
+    {
+      value: 'ios',
+      name: 'iOS',
+    },
+    {
+      value: 'nintendo',
+      name: 'Nintendo',
+    },
+    {
+      value: 'pc',
+      name: 'PC',
+    },
+    {
+      value: 'ps3',
+      name: 'PS3',
+    },
   ],
 };
 
