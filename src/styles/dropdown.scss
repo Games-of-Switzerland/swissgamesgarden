@@ -73,7 +73,8 @@
   color: var(--color-light);
   -webkit-font-smoothing: antialiased;
 
-  &:hover {
+  &:hover,
+  &.highlighted {
     background-color: var(--color-darker);
     color: var(--color-white);
 

@@ -1,16 +1,50 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import shortid from 'shortid';
 import useComponentVisible from "../utilities/useComponentVisible";
 import useFocus from "../utilities/useFocus";
+import {useKeyPress} from "../utilities";
 
 const DropdownFilter = props => {
   const [selectedOptions, setSelectedOptions] = useState(new Set());
+  const [highlightedIndex, setHighlightedIndex] = useState(0);
   const [displayedOptions, setDisplayedOptions] = useState(props.options);
   const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(false);
   const [inputRef, setInputFocus] = useFocus();
 
+  const keyPressArrowDown = useKeyPress('ArrowDown');
+  const keyPressArrowUp = useKeyPress('ArrowUp');
+  const keyPressEnter = useKeyPress('Enter');
+
+  const toggleHighlightedOption = () => {
+    const value = displayedOptions[highlightedIndex].value;
+    if (!selectedOptions.has(value)) {
+      setSelectedOptions(new Set(selectedOptions).add(value));
+    } else {
+      const newSet = new Set(selectedOptions);
+      newSet.delete(value);
+      setSelectedOptions(newSet);
+    }
+  };
+
+  useEffect(() => {
+    if (isComponentVisible) {
+      if (keyPressArrowDown) {
+        const newIndex = highlightedIndex + 1;
+        setHighlightedIndex(newIndex < displayedOptions.length ? newIndex : highlightedIndex);
+      }
+      if (keyPressArrowUp) {
+        const newIndex = highlightedIndex - 1;
+        setHighlightedIndex(newIndex > 0 ? newIndex : 0);
+      }
+      if (keyPressEnter) {
+        toggleHighlightedOption();
+      }
+    }
+  }, [keyPressArrowDown, keyPressArrowUp, keyPressEnter]);
+
   // Unique id for this dropdown
+  // TODO this does not work. It changes on every render
   const uniqId = shortid.generate();
 
   const toggleDropdown = () => {
@@ -25,25 +59,18 @@ const DropdownFilter = props => {
     }
   };
 
-  const handleChangeOption = e => {
-    if (e.target.checked) {
-      // Add the selected option from Set.
-      setSelectedOptions(new Set(selectedOptions).add(e.target.value));
-    } else {
-      // Remove the selected option from Set.
-      const newSet = new Set(selectedOptions);
-      newSet.delete(e.target.value);
-      setSelectedOptions(newSet);
-    }
+  const handleMouseOver = e => {
+    setHighlightedIndex(parseInt(e.currentTarget.dataset.key));
   };
 
   const renderOptions = displayedOptions.map((option, i) => (
-    <div className="dropdown-option" key={i}>
+    <div className={`dropdown-option ${i === highlightedIndex ? 'highlighted' : ''}`} key={i} data-key={i} onMouseOver={handleMouseOver}>
       <input
         type="checkbox"
         value={option.value}
-        onChange={handleChangeOption}
+        onChange={toggleHighlightedOption}
         id={`${uniqId}-${i}`}
+        data-index={i}
         checked={selectedOptions.has(option.value)}
       />
       <label
