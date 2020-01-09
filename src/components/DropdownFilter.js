@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import shortid from 'shortid';
+import useComponentVisible from "../utilities/useComponentVisible";
 
 const DropdownFilter = props => {
-  const [isOpen, toggleDropdown] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState(new Set());
+  const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(false);
 
   // Unique id for this dropdown
   const uniqId = shortid.generate();
@@ -12,26 +13,43 @@ const DropdownFilter = props => {
   const handleChangeOption = e => {
     if (e.target.checked) {
       // Add the selected option from Set.
-      setSelectedOptions(selectedOptions.add(e.target.value));
+      setSelectedOptions(new Set(selectedOptions).add(e.target.value));
     } else {
       // Remove the selected option from Set.
-      selectedOptions.delete(e.target.value);
-      setSelectedOptions(selectedOptions);
+      const newSet = new Set(selectedOptions);
+      newSet.delete(e.target.value);
+      setSelectedOptions(newSet);
     }
   };
 
   const renderOptions = props.options.map((option, i) => (
-    <label key={i} className="dropdown-option">
-      <input type="checkbox" value={option.value} onChange={handleChangeOption} />
-      {option.name}
-    </label>
+    <div className="dropdown-option" key={i}>
+      <input
+        type="checkbox"
+        value={option.value}
+        onChange={handleChangeOption}
+        id={`${uniqId}-${i}`}
+        checked={selectedOptions.has(option.value)}
+      />
+      <label
+        className="dropdown-option-label"
+        htmlFor={`${uniqId}-${i}`}
+      >
+        {option.name}
+      </label>
+    </div>
   ));
 
+  // when you click reset, the selected options are set to the start again.
+  const handleReset = () => {
+    setSelectedOptions(new Set());
+  };
+
   return (
-    <div className={`dropdown ${isOpen ? 'open' : ''}`}>
+    <div className={`dropdown ${isComponentVisible ? 'open' : ''}`} ref={ref}>
       <button
         className="dropdown-toggle"
-        onClick={() => toggleDropdown(!isOpen)}
+        onClick={() => setIsComponentVisible(!isComponentVisible)}
         aria-haspopup="true"
         aria-expanded="false"
         id=""
@@ -41,6 +59,10 @@ const DropdownFilter = props => {
         aria-labelledby="dropdownMenuButton"
       >
         {renderOptions}
+        <div>
+          <button className="btn btn-dim" onClick={handleReset}>Reset</button>
+          {/*<button className="btn btn-primary" onClick={handleSubmit}>Save</button>*/}
+        </div>
       </div>
     </div>
   )

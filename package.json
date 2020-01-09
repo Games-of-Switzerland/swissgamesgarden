@@ -34,9 +34,15 @@
     "@storybook/addons": "^5.2.8",
     "@storybook/react": "^5.2.8",
     "@storybook/theming": "^5.2.8",
+    "autoprefixer": "^9.7.3",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.1",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.1"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie < 11"
+  ]
 }

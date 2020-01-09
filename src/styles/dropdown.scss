@@ -1,18 +1,27 @@
 .dropdown {
   position: relative;
+  pointer-events: none;
+
+  &.open {
+    z-index: 1000;
+  }
 }
 
 .dropdown-toggle {
+  position: relative;
   display: inline-flex;
   align-items: center;
   color: var(--color-white);
   background-color: var(--color-dark);
   border-color: var(--color-dark);
+  border-bottom: none;
   font-size: 1rem;
   padding: $padding-btn-y $padding-btn-x;
+  pointer-events: initial;
 
   &:active {
     border-style: solid;
+    border-bottom: none;
     box-shadow: none;
   }
 
@@ -32,7 +41,6 @@
 
   .dropdown.open & {
     background-color: var(--color-darkest);
-    border-bottom: none;
   }
 }
 
@@ -41,12 +49,65 @@
   position: absolute;
   z-index: -1;
   margin-top: -1px;
-  max-width: 320px;
+  width: 320px;
+  max-width: 100%;
   background-color: var(--color-darkest);
   border: 1px solid var(--color-dark);
   padding: $padding-btn-y $padding-btn-x;
+  pointer-events: initial;
 
   .dropdown.open & {
-    display: block;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.dropdown-options {
+  margin-bottom: 1rem;
+}
+
+.dropdown-option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-light);
+  -webkit-font-smoothing: antialiased;
+
+  &:hover {
+    background-color: var(--color-darker);
+    color: var(--color-white);
+
+    input {
+      background-image:  escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' width='20px' height='20px'><rect width='20' height='20' stroke-width='1' stroke='#fff' fill='transparent'/></svg>"));
+    }
+  }
+
+  input {
+    width: 20px;
+    height: 20px;
+    color: inherit;
+    margin: 0 0 0 (1rem * 2/3);
+    background-image:  escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' width='20px' height='20px'><rect width='20' height='20' stroke-width='1' stroke='#a1a1a1' fill='transparent'/></svg>"));
+    appearance: none;
+    vertical-align: top;
+    color-adjust: exact;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:checked {
+      background-image: escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' width='20px' height='20px'><rect width='20' height='20' stroke-width='1' stroke='#E05340' fill='transparent'/></svg>"));
+
+      + label {
+        color: var(--color-white);
+      }
+    }
+  }
+
+  label {
+    flex: 1 1 auto;
+    padding: (1rem * 2/3);
+    cursor: pointer;
   }
 }
