@@ -5,6 +5,7 @@ import useComponentVisible from "../utilities/useComponentVisible";
 
 const DropdownFilter = props => {
   const [selectedOptions, setSelectedOptions] = useState(new Set());
+  const [displayedOptions, setDisplayedOptions] = useState(props.options);
   const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(false);
 
   // Unique id for this dropdown
@@ -22,7 +23,7 @@ const DropdownFilter = props => {
     }
   };
 
-  const renderOptions = props.options.map((option, i) => (
+  const renderOptions = displayedOptions.map((option, i) => (
     <div className="dropdown-option" key={i}>
       <input
         type="checkbox"
@@ -45,6 +46,11 @@ const DropdownFilter = props => {
     setSelectedOptions(new Set());
   };
 
+  // Filter the options based on filter in filter
+  const handleSubfilterChange = e => {
+    setDisplayedOptions(props.options.filter(item => item.name.toLowerCase().includes(e.target.value.toLowerCase())));
+  };
+
   return (
     <div className={`dropdown ${isComponentVisible ? 'open' : ''}`} ref={ref}>
       <button
@@ -58,7 +64,10 @@ const DropdownFilter = props => {
         className="dropdown-content"
         aria-labelledby="dropdownMenuButton"
       >
+        <input type="text" placeholder="Search a platfom" onChange={handleSubfilterChange}/>
+
         {renderOptions}
+
         <div>
           <button className="btn btn-dim" onClick={handleReset}>Reset</button>
           {/*<button className="btn btn-primary" onClick={handleSubmit}>Save</button>*/}
