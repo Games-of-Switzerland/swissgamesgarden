@@ -7,27 +7,22 @@ const ResultsFilters = props => {
     {
       value: 'android',
       name: 'Android',
-      selected: false,
     },
     {
       value: 'ios',
       name: 'iOS',
-      selected: false,
     },
     {
       value: 'nintendo',
       name: 'Nintendo',
-      selected: false,
     },
     {
       value: 'pc',
       name: 'PC',
-      selected: false,
     },
     {
       value: 'ps3',
       name: 'PS3',
-      selected: false,
     },
   ];
   return (
