@@ -1,15 +1,29 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import PropTypes from "prop-types";
 import shortid from 'shortid';
 import useComponentVisible from "../utilities/useComponentVisible";
+import useFocus from "../utilities/useFocus";
 
 const DropdownFilter = props => {
   const [selectedOptions, setSelectedOptions] = useState(new Set());
   const [displayedOptions, setDisplayedOptions] = useState(props.options);
   const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(false);
+  const [inputRef, setInputFocus] = useFocus();
 
   // Unique id for this dropdown
   const uniqId = shortid.generate();
+
+  const toggleDropdown = () => {
+    const newState = !isComponentVisible;
+    setIsComponentVisible(newState);
+
+    // Autofocus search input when opening the dropdown
+    if (newState) {
+      setTimeout(() => {
+        setInputFocus();
+      }, 0);
+    }
+  };
 
   const handleChangeOption = e => {
     if (e.target.checked) {
@@ -55,7 +69,7 @@ const DropdownFilter = props => {
     <div className={`dropdown ${isComponentVisible ? 'open' : ''}`} ref={ref}>
       <button
         className="dropdown-toggle"
-        onClick={() => setIsComponentVisible(!isComponentVisible)}
+        onClick={toggleDropdown}
         aria-haspopup="true"
         aria-expanded="false"
         id=""
@@ -64,7 +78,12 @@ const DropdownFilter = props => {
         className="dropdown-content"
         aria-labelledby="dropdownMenuButton"
       >
-        <input type="text" placeholder="Search a platfom" onChange={handleSubfilterChange}/>
+        <input
+          type="text"
+          placeholder="Search a platfom"
+          onChange={handleSubfilterChange}
+          ref={inputRef}
+        />
 
         {renderOptions}
 
