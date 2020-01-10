@@ -2,7 +2,6 @@ import React from "react";
 import DropdownFilter from "../DropdownFilter";
 
 const ResultsFilters = props => {
-  // TODO maybe create a custom hook withSearch, to be able to pass the search filters and everything to the search.
   const options = [
     {
       value: 'android',

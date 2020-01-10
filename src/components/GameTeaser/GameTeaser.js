@@ -22,8 +22,8 @@ const GameTeaser = game => {
             )}
           </div>
           <div>
-            {game.genres && game.genres.map((genre, i) =>
-              <button key={i} className="link link-underline">{genre}</button>
+            {game.genres && game.genres.map((genre) =>
+              <button key={genre.id} className="link link-underline">{genre.name}</button>
             )}
           </div>
           <div className="font-weight-semibold" style={{justifySelf: 'end'}}>
@@ -37,16 +37,27 @@ const GameTeaser = game => {
 
 GameTeaser.propTypes = {
   id: PropTypes.string.isRequired,
+  nid: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
   // img: PropTypes.shape({
   //   sm: PropTypes.string.isRequired,
   //   md: PropTypes.string.isRequired,
   //   lg: PropTypes.string.isRequired,
   // }).isRequired,
-  // studio: PropTypes.string.isRequired,
-  // year: PropTypes.number.isRequired,
+  studios: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+  })),
+  releases: PropTypes.arrayOf(PropTypes.shape({
+    date: PropTypes.string.isRequired,
+    platform: PropTypes.string.isRequired,
+  })),
   // platforms: PropTypes.arrayOf(PropTypes.string).isRequired,
-  // genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  genres: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+  })),
   // players: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
