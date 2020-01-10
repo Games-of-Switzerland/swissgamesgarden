@@ -62,7 +62,7 @@ const ListFilters = props => {
         value={subfilter}
       />
 
-      <div className="mb-spacer">
+      <div className="dropdown-options">
         {displayedOptions.length ?
           displayedOptions.map((item, i) => (
             <CheckboxListItem
