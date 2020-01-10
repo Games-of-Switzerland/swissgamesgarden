@@ -52,6 +52,7 @@ const ListFilters = props => {
   return (
     <>
       <input
+        className="form-control form-control-search"
         type="text"
         placeholder="Filter"
         onChange={handleSubfilterChange}

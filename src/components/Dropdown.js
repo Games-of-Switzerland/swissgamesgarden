@@ -4,7 +4,7 @@ import useComponentVisible from "../utilities/useComponentVisible";
 const Dropdown = props => {
   const {title, children, disabled} = props;
 
-  const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(false);
+  const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
 
   const toggleDropdown = () => {
     const newState = !isComponentVisible;
