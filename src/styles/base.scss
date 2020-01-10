@@ -219,6 +219,20 @@ a {
   padding: $padding-btn-y $padding-btn-x;
   font-weight: 200;
   -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-dim {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+
+  &:hover {
+    background-color: var(--color-dim);
+  }
 }
 
 .btn-white {

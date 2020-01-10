@@ -126,3 +126,11 @@
     cursor: pointer;
   }
 }
+
+.dropdown-btns {
+  display: flex;
+
+  .btn {
+    flex: 1 1 auto;
+  }
+}

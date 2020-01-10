@@ -12,6 +12,8 @@ const ListFilters = props => {
   const [cursor, setCursor] = useKeyboardNavigation(displayedOptions.length - 1);
   const [inputRef, setInputFocus] = useFocus();
 
+  const [subfilter, setSubfilter] = useState('');
+
   // Filter the options based on filter in filter
   const filterOutOptions = value => {
     setDisplayedOptions(items.filter(item =>
@@ -33,6 +35,11 @@ const ListFilters = props => {
     filterOutOptions(inputRef.current.value)
   }, [items]);
 
+  // Update the list based on subfilter.
+  useEffect(() => {
+    filterOutOptions(subfilter);
+  }, [subfilter]);
+
   // when you click reset, the selected options are set to the start again.
   const handleReset = () => {
     items.forEach(item => {
@@ -41,12 +48,7 @@ const ListFilters = props => {
       }
     });
 
-    inputRef.current.value = '';
-    filterOutOptions('');
-  };
-
-  const handleSubfilterChange = e => {
-    filterOutOptions(e.target.value);
+    setSubfilter('');
   };
 
   return (
@@ -55,20 +57,27 @@ const ListFilters = props => {
         className="form-control form-control-search"
         type="text"
         placeholder="Filter"
-        onChange={handleSubfilterChange}
+        onChange={e => setSubfilter(e.target.value)}
         ref={inputRef}
+        value={subfilter}
       />
 
-      {displayedOptions.map((item, i) =>
-        <CheckboxListItem
-          key={item.key}
-          onMouseOver={() => setCursor(i)}
-          onChange={() => toggleItem(item.key)}
-          highlighted={i === cursor}
-          item={item}
-        />)}
+      <div className="mb-spacer">
+        {displayedOptions.length ?
+          displayedOptions.map((item, i) => (
+            <CheckboxListItem
+              key={item.key}
+              onMouseOver={() => setCursor(i)}
+              onChange={() => toggleItem(item.key)}
+              highlighted={i === cursor}
+              item={item}
+            />
+          )) :
+          <div>No results for "{subfilter}".</div>
+        }
+      </div>
 
-      <div>
+      <div className="dropdown-btns">
         <button className="btn btn-dim" onClick={handleReset}>Reset</button>
         {/*<button className="btn btn-primary" onClick={handleSubmit}>Save</button>*/}
       </div>
