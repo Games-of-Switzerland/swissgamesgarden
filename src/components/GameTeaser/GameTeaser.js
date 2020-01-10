@@ -4,6 +4,7 @@ import './GameTeaser.scss';
 import Link from "next/link";
 
 const GameTeaser = game => {
+  const lastRelease = game.releases && game.releases.slice(-1).pop();
   return (
     <Link href="/games/[id]" as={`/games/${game.nid}`}>
       <a className="game-teaser">
@@ -14,7 +15,7 @@ const GameTeaser = game => {
         </picture>}
         <div className="game-teaser-content">
           <div>{game.studio}</div>
-          <div style={{justifySelf: 'end'}}>{game.year}</div>
+          <div style={{justifySelf: 'end', gridColumn: 'year'}}>{lastRelease ? lastRelease.date.slice(0,4) : 'TBA'}</div>
           <h2 style={{gridColumn: 'title'}}>{game.title}</h2>
           <div className="badges" style={{gridColumn: 'platforms'}}>
             {game.platforms && game.platforms.map((platform, i) =>

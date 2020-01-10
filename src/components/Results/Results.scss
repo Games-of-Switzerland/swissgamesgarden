@@ -3,3 +3,13 @@
   grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   grid-gap: 15px;
 }
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+
+  .dropdown {
+    margin-right: var(--spacer-sm);
+  }
+}

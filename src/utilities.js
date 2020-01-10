@@ -1,29 +1,21 @@
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
+import {useKey} from "react-use";
 
-export const useKeyPress = targetKey => {
-  const [keyPressed, setKeyPressed] = useState(false);
+export const useKeyboardNavigation = (size, callback) => {
+  const [activeCursor, setActiveCursor] = useState(0);
 
-  const downHandler = ({key}) => {
-    if (key === targetKey) {
-      setKeyPressed(true);
-    }
-  };
+  useKey('ArrowDown',() => {
+    setActiveCursor(prev => prev < size ? prev + 1 : 0);
+  });
 
-  const upHandler = ({key}) => {
-    if (key === targetKey) {
-      setKeyPressed(false);
-    }
-  };
+  useKey('ArrowUp', () => {
+    setActiveCursor(prev => prev > 0 ? prev - 1 : size);
+  });
 
-  useEffect(() => {
-    window.addEventListener('keydown', downHandler);
-    window.addEventListener('keyup', upHandler);
+  useKey('Enter', callback);
 
-    return () => {
-      window.removeEventListener('keydown', downHandler);
-      window.removeEventListener('keyup', upHandler);
-    }
-  }, []);
+  // Reset when size changes
+  useEffect(() => setActiveCursor(0), [size]);
 
-  return keyPressed;
+  return [activeCursor, setActiveCursor];
 };

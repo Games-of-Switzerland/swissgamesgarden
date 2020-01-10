@@ -1,34 +1,30 @@
 import React from "react";
-import DropdownFilter from "../DropdownFilter";
+import ListFilters from "../ListFilters";
+import {RefinementListFilter} from "searchkit";
+import Dropdown from "../Dropdown";
 
-const ResultsFilters = props => {
-  const options = [
-    {
-      value: 'android',
-      name: 'Android',
-    },
-    {
-      value: 'ios',
-      name: 'iOS',
-    },
-    {
-      value: 'nintendo',
-      name: 'Nintendo',
-    },
-    {
-      value: 'pc',
-      name: 'PC',
-    },
-    {
-      value: 'ps3',
-      name: 'PS3',
-    },
-  ];
-  return (
-    <div className="mb-spacer">
-      <DropdownFilter options={options} title="Platform" />
-    </div>
-  )
-};
+const ResultsFilters = () => (
+  <div className="filters">
+    <RefinementListFilter
+      id="genres"
+      title="Genres"
+      field="genres.name.raw"
+      operator="AND"
+      containerComponent={Dropdown}
+      listComponent={ListFilters}
+      orderKey="_term"
+    />
+    <RefinementListFilter
+      id="studios"
+      title="Studios"
+      field="studios.name.raw"
+      fieldOptions={{type: 'nested', options: {path: 'studios'}}}
+      operator="AND"
+      containerComponent={Dropdown}
+      listComponent={ListFilters}
+      orderKey="_term"
+    />
+  </div>
+);
 
 export default ResultsFilters;

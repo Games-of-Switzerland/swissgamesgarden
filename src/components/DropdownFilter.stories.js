@@ -1,9 +1,9 @@
 import React from 'react';
-import DropdownFilter from "./DropdownFilter";
+import ListFilters from "./ListFilters";
 
 export default {
   title: 'Dropdown',
-  component: DropdownFilter,
+  component: ListFilters,
   decorators: [storyFn => <div style={{ maxWidth: 391 }}>{storyFn()}</div>],
   excludeStories: /.*Data$/,
 };
@@ -34,4 +34,4 @@ export const dropdownData = {
   ],
 };
 
-export const DropdownStandard = () => <DropdownFilter {...dropdownData} />;
+export const DropdownStandard = () => <ListFilters {...dropdownData} />;

@@ -3,65 +3,38 @@ import Layout from '../containers/Layout';
 import Results from "../components/Results";
 import fetch from "isomorphic-unfetch";
 import {withRouter} from "next/router";
+import {
+  Hits, HitsStats, SearchBox,
+  SearchkitManager,
+  SearchkitProvider
+} from "searchkit";
+import ResultsFilters from "../components/Results/ResultsFilters";
 
-const queryUrl = `http://localhost:9200/gos_node_game/_search`;
-const queryParams = {
-  mode: 'cors',
-  method: 'POST',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-  },
-};
+const queryUrl = `http://localhost:9200/gos_node_game`;
+
+const Stats = ({hitsCount}) => (
+  <p className="mb-spacer" data-qa="hits-stats">
+    <strong data-qa="info">{hitsCount} games</strong>
+  </p>
+);
 
 const Home = ({router: {query}}) => {
-  const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const getGames = async value => {
-    const qq = {
-      from: 0, // TODO Use this later for pagination.
-      size:30,
-      sort: ['_score'],
-    };
-
-    if (value) {
-      qq.query = {
-        multi_match: {
-          query: value,
-          type: 'phrase_prefix',
-          fields: ['title^3'],
-        },
-      };
-    } else {
-      qq.query = {
-        match_all: {},
-      };
-    }
-
-    try {
-      const response = await fetch(queryUrl, {
-        ...queryParams,
-        body: JSON.stringify(qq)
-      });
-      const results = await response.json();
-      setResults(results);
-      setLoading(false);
-    } catch (error) {
-      console.trace(error.message)
-    }
-  };
-
-  // Load games from URL or all.
-  useEffect(() => {
-    getGames(query.s || '');
-  }, [query]);
-
-  const ResultGrid = results.hits && results.hits.total ? <Results results={results}/> : <div>No results</div>;
+  const searchkit = new SearchkitManager(queryUrl);
 
   return (
     <Layout>
-      {loading ? <div>Loading...</div> : ResultGrid}
+      <SearchkitProvider searchkit={searchkit}>
+        <div>
+          <SearchBox
+            searchOnChange={true}
+            prefixQueryFields={['title^10', 'genres.name^1', 'studios.name^2']}
+            mod="d-none"
+          />
+          <HitsStats component={Stats}/>
+          <ResultsFilters/>
+          <Hits listComponent={Results}/>
+        </div>
+      </SearchkitProvider>
     </Layout>
   );
 };
