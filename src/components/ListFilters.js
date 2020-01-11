@@ -21,6 +21,7 @@ const ListFilters = props => {
     );
   };
 
+  // Select the option with Enter key.
   useKeyPressEvent('Enter', () => {
     if (displayedOptions.length) toggleItem(displayedOptions[cursor].key);
   });
@@ -40,12 +41,10 @@ const ListFilters = props => {
     filterOutOptions(subfilter);
   }, [subfilter]);
 
-  // when you click reset, the selected options are set to the start again.
+  // when you click reset, the selected options are reset and subfilter is emptied.
   const handleReset = () => {
     items.forEach(item => {
-      if (item.selected) {
-        toggleItem(item.key);
-      }
+      if (item.selected) toggleItem(item.key);
     });
 
     setSubfilter('');

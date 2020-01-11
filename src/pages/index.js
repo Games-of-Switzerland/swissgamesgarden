@@ -1,27 +1,34 @@
 import React, {useEffect, useState} from 'react'
 import Layout from '../containers/Layout';
 import Results from "../components/Results";
-import fetch from "isomorphic-unfetch";
-import {withRouter} from "next/router";
 import {
-  Hits, HitsStats, SearchBox,
+  Hits,
+  HitsStats,
+  InitialLoader,
+  NoHits,
+  PageSizeAccessor,
+  Pagination,
+  SearchBox,
   SearchkitManager,
-  SearchkitProvider
+  SearchkitProvider,
+  SelectedFilters,
+  SortingSelector
 } from "searchkit";
 import ResultsFilters from "../components/Results/ResultsFilters";
+import LoadMore from "../components/LoadMore";
 
 const queryUrl = `http://localhost:9200/gos_node_game`;
 
 const Stats = ({hitsCount}) => (
-  <p className="mb-spacer" data-qa="hits-stats">
+  <p className="mb-spacer lead" data-qa="hits-stats">
     <strong data-qa="info">{hitsCount} games</strong>
   </p>
 );
 
-const Home = ({router: {query}}) => {
-  const searchkit = new SearchkitManager(queryUrl);
+const pageSize = 1;
+const searchkit = new SearchkitManager(queryUrl);
 
-  return (
+const Home = () => (
     <Layout>
       <SearchkitProvider searchkit={searchkit}>
         <div>
@@ -30,13 +37,34 @@ const Home = ({router: {query}}) => {
             prefixQueryFields={['title^10', 'genres.name^1', 'studios.name^2']}
             mod="d-none"
           />
-          <HitsStats component={Stats}/>
+
+          <div>
+            <HitsStats component={Stats}/>
+
+            <SortingSelector options={[
+              {
+                label: 'Relevance',
+                field: '_score',
+                order: 'desc',
+                defaultOption: true
+              },
+              {label: 'Title', field: 'title.raw', order: 'asc'},
+            ]}/>
+          </div>
+
           <ResultsFilters/>
-          <Hits listComponent={Results}/>
+
+          <Hits
+            listComponent={Results}
+            hitsPerPage={pageSize}
+          />
+          <NoHits suggestionsField="title"/>
+
+          <LoadMore/>
+
         </div>
       </SearchkitProvider>
     </Layout>
   );
-};
 
-export default withRouter(Home);
+export default Home;

@@ -2,14 +2,9 @@ import React from "react";
 import useComponentVisible from "../utilities/useComponentVisible";
 
 const Dropdown = props => {
-  const {title, children, disabled} = props;
+  const {title, children, disabled, className} = props;
 
-  const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
-
-  const toggleDropdown = () => {
-    const newState = !isComponentVisible;
-    setIsComponentVisible(newState);
-  };
+  const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(false);
 
   if (disabled) return null;
 
@@ -17,9 +12,10 @@ const Dropdown = props => {
     <div className={`dropdown ${isComponentVisible ? 'open' : ''}`} ref={ref}>
       <button
         className="dropdown-toggle"
-        onClick={toggleDropdown}
+        onClick={() => setIsComponentVisible(prevState => !prevState)}
         aria-haspopup="true"
         aria-expanded={isComponentVisible}
+        id={className}
       >
         {title}
       </button>
@@ -27,7 +23,7 @@ const Dropdown = props => {
       {isComponentVisible &&
         <div
           className="dropdown-content"
-          aria-labelledby="dropdownMenuButton"
+          aria-labelledby={className}
         >
           {children}
         </div>

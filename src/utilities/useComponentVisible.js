@@ -1,4 +1,5 @@
 import {useEffect, useRef, useState} from "react";
+import {useKey} from "react-use";
 
 export default function useComponentVisible(initialIsVisible, hideWithEscape = true) {
   const [isComponentVisible, setIsComponentVisible] = useState(initialIsVisible);
@@ -10,23 +11,13 @@ export default function useComponentVisible(initialIsVisible, hideWithEscape = t
     }
   };
 
-  const handleHideComponent = e => {
-    if (e.key === 'Escape') {
-      setIsComponentVisible(false);
-    }
-  };
+  useKey('Escape', () => setIsComponentVisible(false));
 
   useEffect(()  => {
     document.addEventListener('click', handleClickOutside, true);
-    if (hideWithEscape) {
-      document.addEventListener('keydown', handleHideComponent, true);
-    }
 
     return () => {
       document.removeEventListener('click', handleClickOutside, true);
-      if (hideWithEscape) {
-        document.removeEventListener('keydown', handleHideComponent, true);
-      }
     };
   });
 
