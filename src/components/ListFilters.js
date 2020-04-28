@@ -1,23 +1,25 @@
-import React, {useEffect, useState} from "react";
-import useFocus from "../utilities/useFocus";
-import CheckboxListItem from "./CheckboxListItem";
-import {useKeyboardNavigation} from "../utilities";
-import {useKeyPressEvent} from "react-use";
+import React, {useEffect, useState} from 'react';
+import useFocus from '../utilities/useFocus';
+import CheckboxListItem from './CheckboxListItem';
+import {useKeyboardNavigation} from '../utilities/useKeyboardNavigation';
+import {useKeyPressEvent} from 'react-use';
 
 const ListFilters = props => {
   const {items, toggleItem} = props;
 
   const [displayedOptions, setDisplayedOptions] = useState(items);
 
-  const [cursor, setCursor] = useKeyboardNavigation(displayedOptions.length - 1);
+  const [cursor, setCursor] = useKeyboardNavigation(
+    displayedOptions.length - 1
+  );
   const [inputRef, setInputFocus] = useFocus();
 
   const [subfilter, setSubfilter] = useState('');
 
   // Filter the options based on filter in filter
   const filterOutOptions = value => {
-    setDisplayedOptions(items.filter(item =>
-      item.key.toLowerCase().includes(value.toLowerCase()))
+    setDisplayedOptions(
+      items.filter(item => item.key.toLowerCase().includes(value.toLowerCase()))
     );
   };
 
@@ -33,7 +35,7 @@ const ListFilters = props => {
 
   // Make sure that the displayed items are updated when the items change
   useEffect(() => {
-    filterOutOptions(inputRef.current.value)
+    filterOutOptions(inputRef.current.value);
   }, [items]);
 
   // Update the list based on subfilter.
@@ -62,7 +64,7 @@ const ListFilters = props => {
       />
 
       <div className="dropdown-options">
-        {displayedOptions.length ?
+        {displayedOptions.length ? (
           displayedOptions.map((item, i) => (
             <CheckboxListItem
               key={item.key}
@@ -71,17 +73,20 @@ const ListFilters = props => {
               highlighted={i === cursor}
               item={item}
             />
-          )) :
+          ))
+        ) : (
           <div>No results for "{subfilter}".</div>
-        }
+        )}
       </div>
 
       <div className="dropdown-btns">
-        <button className="btn btn-dim" onClick={handleReset}>Reset</button>
+        <button className="btn btn-dim" onClick={handleReset}>
+          Reset
+        </button>
         {/*<button className="btn btn-primary" onClick={handleSubmit}>Save</button>*/}
       </div>
     </>
-  )
+  );
 };
 
 export default ListFilters;

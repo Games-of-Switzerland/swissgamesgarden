@@ -1,15 +1,15 @@
 import React from 'react';
-import GameTeaser from "../GameTeaser/GameTeaser";
+import PropTypes from 'prop-types';
+
+import GameTeaser from '../GameTeaser/GameTeaser';
 
 import './Results.scss';
-import PropTypes from 'prop-types';
 
 const Results = ({hits}) => (
   <div>
     <div className="grid-results">
-      {hits && hits.map(({_source: game}) =>
-        <GameTeaser key={game.id} {...game} />
-      )}
+      {hits &&
+        hits.map(({_source: game}) => <GameTeaser key={game.id} {...game} />)}
     </div>
   </div>
 );

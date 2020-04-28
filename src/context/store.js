@@ -1,7 +1,7 @@
-import React, {createContext, useReducer} from "react";
+import React, {createContext, useReducer} from 'react';
 
 const initialState = {
-  filters: {}
+  filters: {},
 };
 const store = createContext(initialState);
 const {Provider} = store;
@@ -20,9 +20,7 @@ const StateProvider = ({children}) => {
     }
   }, initialState);
 
-  return <Provider value={{state, dispatch}}>
-    {children}
-  </Provider>;
+  return <Provider value={{state, dispatch}}>{children}</Provider>;
 };
 
 export {store, StateProvider};

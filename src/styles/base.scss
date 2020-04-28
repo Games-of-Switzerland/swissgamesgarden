@@ -1,3 +1,5 @@
+@import "reset";
+
 // Characters which are escaped by the escape-svg function
 $escaped-characters: (
     ("<","%3c"),
@@ -39,6 +41,10 @@ $escaped-characters: (
   @return $string;
 }
 
+@function svg-data-url($svg) {
+  @return escape-svg(url("data:image/svg+xml,#{$svg}"))
+}
+
 @font-face {
   font-family: 'Natural Without';
   src: url('/fonts/NaturalWithout-Bold.woff2') format('woff2');
@@ -67,22 +73,37 @@ $escaped-characters: (
   font-weight: 200;
 }
 
-$padding-btn-y: 0.6em;
+$padding-btn-y: 0.8em;
 $padding-btn-x: 0.6em;
 $font-family-base: 'Natural Without', -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 
+$darkest: #121212;
+$darker: #1d1d1d;
+$dark: #282828;
+$dim: #3b3b3b;
+$dimmer: #535353;
+$dimmest: #6f6f6f;
+$mostdim: #848484;
+$light: #a1a1a1;
+$lighter: #adadad;
+$white: #fff;
+$red: #e05340;
+
+$icon-search: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13.5 13.5' width='13'><circle cx='5.5' cy='5.5' r='5' fill='none' stroke='#{$light}'/><path d='M9.1 9.1L13 13' fill='none' stroke='#{$light}' stroke-linecap='round'/></svg>";
+$icon-triangle: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9.4 7.1' width='8'><path fill='#{$dimmest}' d='M0 0h9.4L4.7 7.1z'/></svg>";
+
 :root {
-  --color-darkest: #121212;
-  --color-darker: #1d1d1d;
-  --color-dark: #282828;
-  --color-dim: #3b3b3b;
-  --color-dimmer: #535353;
-  --color-dimmest: #6f6f6f;
-  --color-mostdim: #848484;
-  --color-light: #a1a1a1;
-  --color-lighter: #adadad;
-  --color-white: #fff;
-  --color-red: #e05340;
+  --color-darkest: #{$darkest};
+  --color-darker: #{$darker};
+  --color-dark: #{$dark};
+  --color-dim: #{$dim};
+  --color-dimmer: #{$dimmer};
+  --color-dimmest: #{$dimmest};
+  --color-mostdim: #{$mostdim};
+  --color-light: #{$light};
+  --color-lighter: #{$lighter};
+  --color-white: #{$white};
+  --color-red: #{$red};
 
   --spacer: 15px;
   --spacer-sm: 5px;
@@ -90,12 +111,10 @@ $font-family-base: 'Natural Without', -apple-system,BlinkMacSystemFont,"Segoe UI
   --font-size-lg: 1.2666666667rem;
 }
 
-* {
-  box-sizing: border-box;
-}
+@import "mixins";
 
 html {
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 body {
@@ -240,33 +259,6 @@ a {
   color: var(--color-dark);
 }
 
-.form-control {
-  display: block;
-  margin-bottom: var(--spacer);
-  flex: 1 1 auto;
-  max-width: 100%;
-  padding: 0.7rem 2rem 0.7rem 2.6rem;
-  background-color: var(--color-dark);
-  border: 1px solid transparent;
-  color: var(--color-white);
-  font-size: 1rem;
-  -webkit-font-smoothing: antialiased;
-  font-family: $font-family-base;
-
-  &::placeholder {
-    color: var(--color-light);
-  }
-
-  &:focus {
-    outline: none;
-    border-color: var(--color-dim);
-  }
-}
-
-.form-control-search {
-  background-image:  escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 13' width='13px' height='13px'><circle cx='5.54' cy='5.54' r='5.04' fill='none' stroke='#a1a1a1' stroke-alignment='inside' stroke-width='1'/><path d='M9.08,9.08L13,13' fill='none' stroke='#a1a1a1' stroke-linecap='round'/></svg>"));
-  background-position: 0.75rem 0.85rem;
-  background-repeat: no-repeat;
-}
-
+@import "layout";
+@import "form";
 @import 'dropdown';

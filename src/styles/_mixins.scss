@@ -1,0 +1,11 @@
+@mixin pseudo-triangle($color) {
+  &:after {
+    content: '';
+    display: inline-block;
+    margin-top: 0.2em;
+    margin-left: 0.5em;
+    border-top: 0.5em $color solid;
+    border-left: 0.33em transparent solid;
+    border-right: 0.33em transparent solid;
+  }
+}

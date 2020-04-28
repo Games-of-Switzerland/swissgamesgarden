@@ -17,7 +17,7 @@ const Header = () => {
         </Link>
       </h1>
       <HeaderSearch />
-      {/*<Menu/>*/}
+      <Menu />
     </header>
   );
 };

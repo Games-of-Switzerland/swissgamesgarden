@@ -1,16 +1,13 @@
-import React from "react";
-import {PageSizeAccessor, renderComponent, SearchkitComponent} from "searchkit";
-import fetch from "isomorphic-unfetch";
+import React from 'react';
+import {PageSizeAccessor, renderComponent, SearchkitComponent} from 'searchkit';
+import fetch from 'isomorphic-unfetch';
 import get from 'lodash/get';
 
-const LoadMoreDisplay = props => {
-  const {label, fn} = props;
-  return (
-    <button className="btn btn-outline" onClick={fn}>
-      {label}
-    </button>
-  )
-};
+const LoadMoreDisplay = ({label, fn}) => (
+  <button className="btn btn-outline" onClick={fn}>
+    {label}
+  </button>
+);
 
 class LoadMore extends SearchkitComponent {
   accessor;
@@ -23,7 +20,7 @@ class LoadMore extends SearchkitComponent {
       totalCount: 0,
     };
 
-    this.accessor = new PageSizeAccessor(1);
+    this.accessor = new PageSizeAccessor();
     this.increaseSize = this.increaseSize.bind(this);
   }
 
@@ -38,19 +35,17 @@ class LoadMore extends SearchkitComponent {
   }
 
   increaseSize() {
-    this.accessor.setSize(this.getCurrentSize() + 1);
+    this.accessor.setSize(this.getCurrentSize() * 2);
     this.searchkit.performSearch();
   }
 
   render() {
-    console.log(this.getCurrentSize());
-
     const props = {
       label: 'Load more',
       fn: () => this.increaseSize(),
     };
 
-    return renderComponent(LoadMoreDisplay, props)
+    return renderComponent(LoadMoreDisplay, props);
   }
 }
 
