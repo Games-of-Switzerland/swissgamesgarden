@@ -2,16 +2,19 @@ import React, {useEffect, useState} from 'react';
 import useFocus from '../utilities/useFocus';
 import CheckboxListItem from './CheckboxListItem';
 import {useKeyboardNavigation} from '../utilities/useKeyboardNavigation';
-import {useKeyPressEvent} from 'react-use';
 
 const ListFilters = props => {
   const {items, toggleItem} = props;
 
   const [displayedOptions, setDisplayedOptions] = useState(items);
 
-  const [cursor, setCursor] = useKeyboardNavigation(
-    displayedOptions.length - 1
+  const [cursor, setCursor, pressed] = useKeyboardNavigation(
+    displayedOptions.length,
+    () => {
+      if (displayedOptions.length) toggleItem(displayedOptions[cursor].key);
+    }
   );
+
   const [inputRef, setInputFocus] = useFocus();
 
   const [subfilter, setSubfilter] = useState('');
@@ -22,11 +25,6 @@ const ListFilters = props => {
       items.filter(item => item.key.toLowerCase().includes(value.toLowerCase()))
     );
   };
-
-  // Select the option with Enter key.
-  useKeyPressEvent('Enter', () => {
-    if (displayedOptions.length) toggleItem(displayedOptions[cursor].key);
-  });
 
   // Autofocus
   useEffect(() => {
@@ -70,7 +68,7 @@ const ListFilters = props => {
               key={item.key}
               onMouseOver={() => setCursor(i)}
               onChange={() => toggleItem(item.key)}
-              highlighted={i === cursor}
+              highlighted={pressed && i === cursor}
               item={item}
             />
           ))

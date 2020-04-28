@@ -1,21 +1,34 @@
 import {useEffect, useState} from 'react';
-import {useKey} from 'react-use';
+import {useKeyPressEvent} from 'react-use';
+
+Math.clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
 export const useKeyboardNavigation = (size, callback) => {
   const [activeCursor, setActiveCursor] = useState(0);
+  const [keyPressed, setKeyPressed] = useState(false);
 
-  useKey('ArrowDown', () => {
-    setActiveCursor(prev => (prev < size ? prev + 1 : 0));
+  const max = size - 1;
+  const min = 0;
+  const setValue = value => Math.clamp(value, min, max);
+
+  useKeyPressEvent('ArrowDown', () => {
+    setKeyPressed(true);
+    setActiveCursor(prev => setValue(prev + 1));
   });
-
-  useKey('ArrowUp', () => {
-    setActiveCursor(prev => (prev > 0 ? prev - 1 : size));
+  useKeyPressEvent('ArrowUp', () => {
+    setKeyPressed(true);
+    setActiveCursor(prev => setValue(prev - 1));
   });
-
-  useKey('Enter', callback);
+  useKeyPressEvent('Enter', () => {
+    console.log('enter', keyPressed);
+    if (keyPressed) callback();
+  });
 
   // Reset when size changes
-  useEffect(() => setActiveCursor(0), [size]);
+  useEffect(() => {
+    setActiveCursor(0);
+    setKeyPressed(false);
+  }, [size]);
 
-  return [activeCursor, setActiveCursor];
+  return [activeCursor, setActiveCursor, keyPressed];
 };
