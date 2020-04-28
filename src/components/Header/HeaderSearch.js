@@ -1,17 +1,19 @@
-import React, {useEffect, useRef, useState} from "react";
-import fetch from "isomorphic-unfetch";
-import {throttle, debounce} from 'throttle-debounce';
+import React, {useRef, useState} from 'react';
+import fetch from 'isomorphic-unfetch';
+import {debounce} from 'throttle-debounce';
 import Autosuggest from 'react-autosuggest';
-import Router, {useRouter} from "next/router";
+import Router, {useRouter} from 'next/router';
 
 import './HeaderSearch.scss';
+
+const ENTER_KEY = 'Enter';
 
 const queryUrl = `http://localhost:9200/_search`;
 const queryParams = {
   mode: 'cors',
   method: 'POST',
   headers: {
-    'Accept': 'application/json',
+    Accept: 'application/json',
     'Content-Type': 'application/json',
   },
 };
@@ -19,12 +21,12 @@ const queryParams = {
 const HeaderSearch = () => {
   const initialSuggestions = [];
   const [suggestions, setSuggestions] = useState(initialSuggestions);
-  const [q, setQ] = useState('');
+  const [value, setValue] = useState('');
   const router = useRouter();
   const inputEl = useRef(null);
 
   const onSuggestionsFetchRequested = async ({value}) => {
-    const qq = {
+    const query = {
       query: {
         multi_match: {
           query: value,
@@ -33,24 +35,24 @@ const HeaderSearch = () => {
         },
       },
       sort: ['_score'],
-      highlight : {
-        fields : {
-          title : {},
-          fullname : {},
-          name : {},
-        }
-      }
+      highlight: {
+        fields: {
+          title: {},
+          fullname: {},
+          name: {},
+        },
+      },
     };
 
     try {
       const response = await fetch(queryUrl, {
         ...queryParams,
-        body: JSON.stringify(qq)
+        body: JSON.stringify(query),
       });
       const results = await response.json();
       setSuggestions(results.hits.hits);
     } catch (error) {
-      console.trace(error.message)
+      console.trace(error.message);
     }
   };
 
@@ -84,7 +86,7 @@ const HeaderSearch = () => {
     return (
       <>
         <span>{emoji}</span>
-        <span dangerouslySetInnerHTML={{__html: name}}/>
+        <span dangerouslySetInnerHTML={{__html: name}} />
         <span style={{marginLeft: 'auto'}}>{kind}</span>
       </>
     );
@@ -101,17 +103,28 @@ const HeaderSearch = () => {
     }
   };
 
-  const handleEnter = e => {
-    if (e.keyCode === 13) {
-      const href = {
-        pathname: router.pathname,
-        query: { s: q },
-      };
-      // Go to the new URL.
-      Router.push(href, href, { shallow: true });
-      // Close suggestions.
-      inputEl.current.input.blur()
+  const handleEnter = ({key}) => {
+    if (key !== ENTER_KEY || !value) {
+      return;
     }
+
+    const href = {
+      pathname: router.pathname,
+      query: {s: value},
+    };
+
+    // Go to the new URL.
+    Router.push(href, href, {shallow: true});
+    // Close suggestions.
+    inputEl.current.input.blur();
+  };
+
+  const inputProps = {
+    placeholder: 'game, studio, person…',
+    value,
+    onChange: e => setValue(e.target.value),
+    type: 'search',
+    onKeyDown: handleEnter,
   };
 
   return (
@@ -120,21 +133,16 @@ const HeaderSearch = () => {
         suggestions={suggestions}
         onSuggestionsFetchRequested={debounce(200, onSuggestionsFetchRequested)}
         onSuggestionsClearRequested={onSuggestionsClearRequested}
-        on
         renderSuggestion={renderSuggestion}
         getSuggestionValue={getSuggestionValue}
-        alwaysRenderSuggestions={true}
         ref={inputEl}
-        inputProps={{
-          placeholder: 'game, studio, person…',
-          value: q,
-          onChange: e => setQ(e.target.value),
-          type: 'search',
-          onKeyDown: handleEnter,
-        }}
+        inputProps={inputProps}
+        // TODO remove this when fixed in react-autosuggestion https://github.com/moroshko/react-autosuggest/issues/738
+        renderSectionTitle={() => {}}
+        getSectionSuggestions={() => {}}
       />
     </div>
-  )
+  );
 };
 
 export default HeaderSearch;

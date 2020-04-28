@@ -40,6 +40,7 @@
     "autoprefixer": "^9.7.3",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.1",
+    "prettier": "^2.0.5",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.1"
   },
@@ -47,5 +48,12 @@
     "> 1%",
     "last 2 versions",
     "not ie < 11"
-  ]
+  ],
+  "prettier": {
+    "trailingComma": "es5",
+    "bracketSpacing": false,
+    "jsxBracketSameLine": false,
+    "singleQuote": true,
+    "arrowParens": "avoid"
+  }
 }
