@@ -1,15 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 import useComponentVisible from '../utilities/useComponentVisible';
 import classNames from 'classnames';
+import {usePopper} from 'react-popper';
 
 const Dropdown = props => {
   const {title, children, disabled, className, selectedItems} = props;
+
+  if (disabled) return null;
 
   const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(
     false
   );
 
-  if (disabled) return null;
+  const [referenceElement, setReferenceElement] = useState(null);
+  const [popperElement, setPopperElement] = useState(null);
+  const [arrowElement, setArrowElement] = useState(null);
+  const {styles, attributes} = usePopper(referenceElement, popperElement, {
+    placement: 'bottom-start',
+    modifiers: [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 5],
+        },
+      },
+    ],
+  });
 
   const classes = classNames(
     'dropdown',
@@ -25,12 +41,19 @@ const Dropdown = props => {
         aria-haspopup="true"
         aria-expanded={isComponentVisible}
         id={className}
+        ref={setReferenceElement}
+        {...attributes.popper}
       >
         {title}
       </button>
 
       {isComponentVisible && (
-        <div className="dropdown-content" aria-labelledby={className}>
+        <div
+          className="dropdown-content"
+          aria-labelledby={className}
+          ref={setPopperElement}
+          style={styles.popper}
+        >
           {children}
         </div>
       )}

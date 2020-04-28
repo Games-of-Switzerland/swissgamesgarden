@@ -1,6 +1,7 @@
 .dropdown {
   position: relative;
   pointer-events: none;
+  margin-bottom: var(--spacer-sm);
 
   &.open {
     z-index: 1000;
@@ -17,19 +18,12 @@
   align-items: center;
   color: var(--color-white);
   background-color: var(--color-dark);
-  border-color: var(--color-dark);
-  border-bottom: none;
+  border: 1px solid var(--color-dark);
   font-size: 1rem;
   padding: calc(var(--spacer-sm) * 2) var(--spacer);
   pointer-events: initial;
   cursor: pointer;
   font-weight: 200;
-
-  &:active {
-    border-style: solid;
-    border-bottom: none;
-    box-shadow: none;
-  }
 
   &:focus {
     outline: none;
@@ -44,14 +38,28 @@
       content: '';
       display: block;
       position: absolute;
+      left: 0;
       left: -1px;
       top: 100%;
       width: 100%;
       box-sizing: content-box;
-      height: calc(var(--spacer-sm) + 1px);
+      height: calc(var(--spacer-sm) + 2px);
       background-color: var(--color-darkest);
       border-left: 1px var(--color-dark) solid;
       border-right: 1px var(--color-dark) solid;
+    }
+
+    &[data-popper-placement^=top] {
+      border-top-color: transparent;
+
+      &:before {
+        top: auto;
+        bottom: 100%;
+      }
+    }
+
+    &[data-popper-placement^=bottom] {
+      border-bottom-color: transparent;
     }
   }
 }
@@ -60,8 +68,7 @@
   display: none;
   position: absolute;
   z-index: -1;
-  margin-top: var(--spacer-sm);
-  width: 320px;
+  width: 36ch;
   max-width: calc(100vw - var(--spacer) * 2);
   background-color: var(--color-darkest);
   border: 1px solid var(--color-dark);
