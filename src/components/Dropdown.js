@@ -1,15 +1,24 @@
-import React from "react";
-import useComponentVisible from "../utilities/useComponentVisible";
+import React from 'react';
+import useComponentVisible from '../utilities/useComponentVisible';
+import classNames from 'classnames';
 
 const Dropdown = props => {
-  const {title, children, disabled, className} = props;
+  const {title, children, disabled, className, selectedItems} = props;
 
-  const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(false);
+  const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(
+    false
+  );
 
   if (disabled) return null;
 
+  const classes = classNames(
+    'dropdown',
+    isComponentVisible && 'open',
+    selectedItems && selectedItems.length > 0 && 'border-nice'
+  );
+
   return (
-    <div className={`dropdown ${isComponentVisible ? 'open' : ''}`} ref={ref}>
+    <div className={classes} ref={ref}>
       <button
         className="dropdown-toggle"
         onClick={() => setIsComponentVisible(prevState => !prevState)}
@@ -20,15 +29,11 @@ const Dropdown = props => {
         {title}
       </button>
 
-      {isComponentVisible &&
-        <div
-          className="dropdown-content"
-          aria-labelledby={className}
-        >
+      {isComponentVisible && (
+        <div className="dropdown-content" aria-labelledby={className}>
           {children}
         </div>
-      }
-
+      )}
     </div>
   );
 };

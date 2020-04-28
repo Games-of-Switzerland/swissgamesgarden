@@ -1,10 +1,10 @@
 import React from 'react';
-import ListFilters from "./ListFilters";
+import SelectFilter from './SelectFilter';
 
 export default {
   title: 'Dropdown',
-  component: ListFilters,
-  decorators: [storyFn => <div style={{ maxWidth: 391 }}>{storyFn()}</div>],
+  component: SelectFilter,
+  decorators: [storyFn => <div style={{maxWidth: 391}}>{storyFn()}</div>],
   excludeStories: /.*Data$/,
 };
 
@@ -34,4 +34,4 @@ export const dropdownData = {
   ],
 };
 
-export const DropdownStandard = () => <ListFilters {...dropdownData} />;
+export const DropdownStandard = () => <SelectFilter {...dropdownData} />;

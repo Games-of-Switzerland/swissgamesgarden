@@ -1,0 +1,26 @@
+.tag {
+  display: inline-flex;
+  border: 1px solid var(--color-dim);
+  background-color: var(--color-darkest);
+  font-weight: 200;
+  color: var(--color-light);
+  margin-bottom: var(--spacer);
+
+  span {
+    display: inline-block;
+    padding: 0.2em 0 0.2em 0.4em;
+  }
+}
+
+.tag-close {
+  background: none;
+  border: none;
+  color: var(--color-light);
+  cursor: pointer;
+  transition: color 0.2s ease;
+  margin: -1px -1px -1px 0;
+
+  &:hover {
+    color: var(--color-white);
+  }
+}

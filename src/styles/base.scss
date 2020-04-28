@@ -89,6 +89,9 @@ $lighter: #adadad;
 $white: #fff;
 $red: #e05340;
 
+$orange: #FF9F29;
+$magenta: #EF015B;
+
 $icon-search: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13.5 13.5' width='13'><circle cx='5.5' cy='5.5' r='5' fill='none' stroke='#{$light}'/><path d='M9.1 9.1L13 13' fill='none' stroke='#{$light}' stroke-linecap='round'/></svg>";
 $icon-triangle: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9.4 7.1' width='8'><path fill='#{$dimmest}' d='M0 0h9.4L4.7 7.1z'/></svg>";
 
@@ -104,6 +107,8 @@ $icon-triangle: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9.4 7.1' w
   --color-lighter: #{$lighter};
   --color-white: #{$white};
   --color-red: #{$red};
+  --color-orange: #{$orange};
+  --color-magenta: #{$magenta};
 
   --spacer: 15px;
   --spacer-sm: 5px;
@@ -242,6 +247,13 @@ a {
   transition: background-color 0.2s ease;
 }
 
+.btn-link {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+}
+
 .btn-dim {
   background-color: var(--color-dark);
   color: var(--color-white);
@@ -259,6 +271,22 @@ a {
   color: var(--color-dark);
 }
 
+.border-nice {
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-image: linear-gradient(to right, var(--color-magenta) 0%, var(--color-orange) 100%);
+  }
+}
+
 @import "layout";
 @import "form";
 @import 'dropdown';
+@import "tag";

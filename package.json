@@ -12,8 +12,10 @@
   "dependencies": {
     "@appbaseio/reactivesearch": "^3.1.1",
     "@zeit/next-sass": "^1.0.1",
+    "classnames": "^2.2.6",
     "isomorphic-unfetch": "^3.0.0",
     "konva": "^5.0.2",
+    "lodash": "^4.17.15",
     "next": "^9.3.6",
     "node-sass": "^4.13.0",
     "prop-types": "^15.7.2",

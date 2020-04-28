@@ -3,7 +3,7 @@ import useFocus from '../utilities/useFocus';
 import CheckboxListItem from './CheckboxListItem';
 import {useKeyboardNavigation} from '../utilities/useKeyboardNavigation';
 
-const ListFilters = props => {
+const SelectFilter = props => {
   const {items, toggleItem} = props;
 
   const [displayedOptions, setDisplayedOptions] = useState(items);
@@ -87,4 +87,4 @@ const ListFilters = props => {
   );
 };
 
-export default ListFilters;
+export default SelectFilter;
