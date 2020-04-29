@@ -1,3 +1,5 @@
+@import "../../styles/functions";
+
 .react-autosuggest__container {
   position: relative;
   display: flex;
@@ -9,12 +11,12 @@
   display: block;
   flex: 1 1 auto;
   max-width: 100%;
-  padding: 0.7rem 2rem;
-  background: none;
+  padding: 0.7rem 2rem 0.7rem 3.6rem;
   border: 1px solid transparent;
   color: var(--color-white);
   font-size: var(--font-size-lg);
   font-weight: 100;
+  background: svg-data-url("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13.5 13.5' width='14'><circle cx='5.5' cy='5.5' r='5' fill='none' stroke='#a1a1a1'/><path d='M9.1 9.1L13 13' fill='none' stroke='#a1a1a1' stroke-linecap='round'/></svg>") transparent no-repeat left 1.33rem center;
 
   &::placeholder {
     color: var(--color-light);
@@ -52,7 +54,7 @@
 .react-autosuggest__suggestion {
   display: flex;
   align-items: baseline;
-  padding: 0.8em 2em;
+  padding: 0.8rem 1.33rem;
   cursor: pointer;
 
   em {
@@ -63,4 +65,8 @@
 
 .react-autosuggest__suggestion--highlighted {
   background-color: var(--color-darker);
+}
+
+.suggestion-icon {
+  width: 2.27rem;
 }

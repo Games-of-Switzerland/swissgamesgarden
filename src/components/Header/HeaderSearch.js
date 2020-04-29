@@ -2,13 +2,12 @@ import React, {useRef, useState} from 'react';
 import fetch from 'isomorphic-unfetch';
 import {debounce} from 'throttle-debounce';
 import Autosuggest from 'react-autosuggest';
-import Router, {useRouter} from 'next/router';
+import {useRouter} from 'next/router';
+import config from '../../config';
+import slugify from '../../utilities/slugify';
 
 import './HeaderSearch.scss';
 
-const ENTER_KEY = 'Enter';
-
-const queryUrl = `http://localhost:9200/_search`;
 const queryParams = {
   mode: 'cors',
   method: 'POST',
@@ -16,6 +15,37 @@ const queryParams = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
   },
+};
+
+const getSuggestionData = suggestion => {
+  switch (suggestion._index) {
+    case 'gos_node_game':
+      return {
+        emoji: '🎮',
+        highlight: suggestion.highlight.title,
+        name: suggestion._source.title,
+        kind: 'Game',
+        urlBase: '/games/',
+      };
+    case 'gos_node_people':
+      return {
+        emoji: '🤓',
+        highlight: suggestion.highlight.fullname,
+        name: suggestion._source.fullname,
+        kind: 'People',
+        urlBase: '/people/',
+      };
+    case 'gos_node_studio':
+      return {
+        emoji: '🏢',
+        highlight: suggestion.highlight.name,
+        name: suggestion._source.name,
+        kind: 'Studio',
+        urlBase: '/studios/',
+      };
+    default:
+      return {};
+  }
 };
 
 const HeaderSearch = () => {
@@ -45,7 +75,7 @@ const HeaderSearch = () => {
     };
 
     try {
-      const response = await fetch(queryUrl, {
+      const response = await fetch(config.QUERY_SEARCH, {
         ...queryParams,
         body: JSON.stringify(query),
       });
@@ -56,75 +86,34 @@ const HeaderSearch = () => {
     }
   };
 
-  const onSuggestionsClearRequested = () => {
-    setSuggestions(initialSuggestions);
-  };
+  const onSuggestionsClearRequested = () => setSuggestions(initialSuggestions);
 
   const renderSuggestion = suggestion => {
-    let name = '';
-    let emoji = '';
-    let kind = '';
-
-    switch (suggestion._index) {
-      case 'gos_node_game':
-        emoji = '🎮';
-        name = suggestion.highlight.title;
-        kind = 'Game';
-        break;
-      case 'gos_node_people':
-        emoji = '🤓';
-        name = suggestion.highlight.fullname;
-        kind = 'People';
-        break;
-      case 'gos_node_studio':
-        emoji = '🏢';
-        name = suggestion.highlight.name;
-        kind = 'Studio';
-        break;
-    }
-
+    const {highlight, emoji, kind} = getSuggestionData(suggestion);
     return (
       <>
-        <span>{emoji}</span>
-        <span dangerouslySetInnerHTML={{__html: name}} />
+        <span className="suggestion-icon">{emoji}</span>
+        <span dangerouslySetInnerHTML={{__html: highlight}} />
         <span style={{marginLeft: 'auto'}}>{kind}</span>
       </>
     );
   };
 
-  const getSuggestionValue = suggestion => {
-    switch (suggestion._index) {
-      case 'gos_node_game':
-        return suggestion._source.title;
-      case 'gos_node_people':
-        return suggestion._source.fullname;
-      case 'gos_node_studio':
-        return suggestion._source.name;
-    }
-  };
+  const getSuggestionValue = suggestion => getSuggestionData(suggestion).name;
 
-  const handleEnter = ({key}) => {
-    if (key !== ENTER_KEY || !value) {
-      return;
-    }
-
-    const href = {
-      pathname: router.pathname,
-      query: {s: value},
-    };
-
-    // Go to the new URL.
-    Router.push(href, href, {shallow: true});
-    // Close suggestions.
-    inputEl.current.input.blur();
+  const onSuggestionSelected = (e, {suggestion}) => {
+    const {urlBase, name} = getSuggestionData(suggestion);
+    router.push(
+      urlBase + suggestion._id,
+      urlBase + slugify(name).toLowerCase()
+    );
   };
 
   const inputProps = {
     placeholder: 'game, studio, person…',
     value,
-    onChange: e => setValue(e.target.value),
+    onChange: (e, {newValue}) => setValue(newValue),
     type: 'search',
-    onKeyDown: handleEnter,
   };
 
   return (
@@ -135,6 +124,7 @@ const HeaderSearch = () => {
         onSuggestionsClearRequested={onSuggestionsClearRequested}
         renderSuggestion={renderSuggestion}
         getSuggestionValue={getSuggestionValue}
+        onSuggestionSelected={onSuggestionSelected}
         ref={inputEl}
         inputProps={inputProps}
         // TODO remove this when fixed in react-autosuggestion https://github.com/moroshko/react-autosuggest/issues/738

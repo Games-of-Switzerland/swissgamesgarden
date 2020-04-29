@@ -1,6 +1,6 @@
-import React from "react";
-import slugify from "slugify";
+import React from 'react';
 import PropTypes from 'prop-types';
+import slugify from '../utilities/slugify';
 
 const CheckboxListItem = ({highlighted, onMouseOver, onChange, item}) => (
   <div
@@ -14,10 +14,7 @@ const CheckboxListItem = ({highlighted, onMouseOver, onChange, item}) => (
       checked={!!item.selected}
       id={slugify(item.key)}
     />
-    <label
-      className="dropdown-option-label"
-      htmlFor={slugify(item.key)}
-    >
+    <label className="dropdown-option-label" htmlFor={slugify(item.key)}>
       {item.key} ({item.doc_count})
     </label>
   </div>
@@ -31,7 +28,7 @@ CheckboxListItem.propTypes = {
     key: PropTypes.string.isRequired,
     selected: PropTypes.bool,
     doc_count: PropTypes.number.isRequired,
-  })
+  }),
 };
 
 export default CheckboxListItem;

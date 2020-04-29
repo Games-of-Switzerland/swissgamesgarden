@@ -14,7 +14,6 @@ const Dropdown = props => {
 
   const [referenceElement, setReferenceElement] = useState(null);
   const [popperElement, setPopperElement] = useState(null);
-  const [arrowElement, setArrowElement] = useState(null);
   const {styles, attributes} = usePopper(referenceElement, popperElement, {
     placement: 'bottom-start',
     modifiers: [

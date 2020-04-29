@@ -1,7 +1,7 @@
 import React from 'react';
 import {PageSizeAccessor, renderComponent, SearchkitComponent} from 'searchkit';
 import fetch from 'isomorphic-unfetch';
-import get from 'lodash/get';
+import config from '../config';
 
 const LoadMoreDisplay = ({label, fn}) => (
   <button className="btn btn-outline" onClick={fn}>
@@ -10,8 +10,6 @@ const LoadMoreDisplay = ({label, fn}) => (
 );
 
 class LoadMore extends SearchkitComponent {
-  accessor;
-
   constructor(props) {
     super(props);
 
@@ -19,32 +17,31 @@ class LoadMore extends SearchkitComponent {
       count: 0,
       totalCount: 0,
     };
-
-    this.accessor = new PageSizeAccessor();
-    this.increaseSize = this.increaseSize.bind(this);
   }
 
-  getCurrentSize() {
-    return Number(this.accessor.getSize()) || 1;
+  defineAccessor() {
+    return new PageSizeAccessor(config.PAGE_SIZE);
   }
 
   componentDidMount() {
-    fetch('http://localhost:9200/gos_node_game/_count')
+    super.componentDidMount();
+
+    fetch(`${config.QUERY_GAMES_URL}/_count`)
       .then(response => response.json())
       .then(data => this.setState({totalCount: data.count}));
-  }
-
-  increaseSize() {
-    this.accessor.setSize(this.getCurrentSize() * 2);
-    this.searchkit.performSearch();
   }
 
   render() {
     const props = {
       label: 'Load more',
-      fn: () => this.increaseSize(),
+      fn: () => {
+        this.accessor.setSize(this.accessor.getSize() + config.PAGE_SIZE);
+        this.searchkit.performSearch();
+      },
     };
 
+    if (!this.accessor || this.accessor.getSize() >= this.state.totalCount)
+      return null;
     return renderComponent(LoadMoreDisplay, props);
   }
 }

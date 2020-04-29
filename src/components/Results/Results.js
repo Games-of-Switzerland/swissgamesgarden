@@ -6,11 +6,10 @@ import GameTeaser from '../GameTeaser/GameTeaser';
 import './Results.scss';
 
 const Results = ({hits}) => (
-  <div>
-    <div className="grid-results">
-      {hits &&
-        hits.map(({_source: game}) => <GameTeaser key={game.id} {...game} />)}
-    </div>
+  <div className="grid-results">
+    {hits.map(({_source: game}) => (
+      <GameTeaser key={game.id} {...game} />
+    ))}
   </div>
 );
 
