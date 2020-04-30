@@ -145,6 +145,10 @@ a {
   }
 }
 
+.text-center {
+  text-align: center;
+}
+
 // Link
 .link {
   display: inline-block;
@@ -243,6 +247,19 @@ a {
     height: 2px;
     width: 100%;
     background-image: linear-gradient(to right, var(--color-magenta) 0%, var(--color-orange) 100%);
+  }
+}
+
+.btn-outline {
+  padding: $padding-btn-y ($padding-btn-x * 4);
+  background: none;
+  border: 1px solid var(--color-dim);
+  color: var(--color-white);
+  font-weight: 500;
+  transition: border 0.2s ease;
+
+  &:hover {
+    border-color: var(--color-white);
   }
 }
 

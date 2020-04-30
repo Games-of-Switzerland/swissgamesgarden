@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../containers/Layout';
 import Results from '../components/Results';
-import {Hits, NoHits, SortingSelector} from 'searchkit';
+import {Hits, InitialLoader, NoHits, SortingSelector} from 'searchkit';
 import config from '../config';
 import Stats from '../components/ElasticSearch/Stats';
 import ResultsFilters from '../components/Results/ResultsFilters';
@@ -30,6 +30,7 @@ const Home = () => (
 
     <Hits listComponent={Results} hitsPerPage={config.PAGE_SIZE} />
     <NoHits suggestionsField="title" />
+    <InitialLoader />
 
     <LoadMore />
   </Layout>

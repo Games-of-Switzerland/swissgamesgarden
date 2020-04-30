@@ -1,48 +1,46 @@
 import React from 'react';
 import {PageSizeAccessor, renderComponent, SearchkitComponent} from 'searchkit';
-import fetch from 'isomorphic-unfetch';
 import config from '../config';
 
-const LoadMoreDisplay = ({label, fn}) => (
-  <button className="btn btn-outline" onClick={fn}>
-    {label}
-  </button>
+const Stats = ({count}) => <div className="text-center mb-spacer">{count}</div>;
+
+const LoadMoreDisplay = ({label, count, onClick}) => (
+  <>
+    <Stats count={count} />
+    <div className="text-center mb-spacer">
+      <button className="btn btn-outline" onClick={onClick}>
+        {label}
+      </button>
+    </div>
+  </>
 );
 
 class LoadMore extends SearchkitComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      count: 0,
-      totalCount: 0,
-    };
-  }
-
   defineAccessor() {
-    return new PageSizeAccessor(config.PAGE_SIZE);
-  }
-
-  componentDidMount() {
-    super.componentDidMount();
-
-    fetch(`${config.QUERY_GAMES_URL}/_count`)
-      .then(response => response.json())
-      .then(data => this.setState({totalCount: data.count}));
+    return this.searchkit.getAccessorByType(PageSizeAccessor);
   }
 
   render() {
+    if (!this.accessor) return null;
+    if (!this.hasHits()) return null;
+
+    const hitsCount = this.searchkit.getHitsCount();
+    let pageSize = Math.min(this.accessor.getSize(), hitsCount);
+
+    const disabled = this.getHitsCount() <= pageSize;
+
     const props = {
       label: 'Load more',
-      fn: () => {
-        this.accessor.setSize(this.accessor.getSize() + config.PAGE_SIZE);
+      count: `${pageSize} of ${hitsCount}`,
+      onClick: () => {
+        this.accessor.setSize(Number(pageSize) + Number(config.PAGE_SIZE));
         this.searchkit.performSearch();
       },
     };
 
-    if (!this.accessor || this.accessor.getSize() >= this.state.totalCount)
-      return null;
-    return renderComponent(LoadMoreDisplay, props);
+    return !disabled
+      ? renderComponent(LoadMoreDisplay, props)
+      : renderComponent(Stats, props);
   }
 }
 
