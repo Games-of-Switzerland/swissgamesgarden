@@ -4,9 +4,10 @@ import '../styles/base.scss';
 import Header from '../components/Header';
 import {StateProvider} from '../context/store';
 import {SearchkitManager, SearchkitProvider} from 'searchkit';
-import config from '../config';
 
-const searchkit = new SearchkitManager(`${config.QUERY_GAMES_URL}`);
+const searchkit = new SearchkitManager(`${process.env.ELASTIC_URL}`, {
+  searchUrlPath: '',
+});
 
 const Layout = props => (
   <StateProvider>
