@@ -3,26 +3,21 @@ import fetch from 'isomorphic-unfetch';
 import {debounce} from 'throttle-debounce';
 import Autosuggest from 'react-autosuggest';
 import {useRouter} from 'next/router';
-import config from '../../config';
 import slugify from '../../utilities/slugify';
 
 import './HeaderSearch.scss';
 
 const queryParams = {
-  mode: 'cors',
-  method: 'POST',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
+  method: 'GET',
 };
 
 const getSuggestionData = suggestion => {
   switch (suggestion._index) {
     case 'gos_node_game':
+    case 'development_gos_node_game_en':
       return {
         emoji: '🎮',
-        highlight: suggestion.highlight.title,
+        highlight: suggestion.highlight.title || suggestion._source.title,
         name: suggestion._source.title,
         kind: 'Game',
         urlBase: '/games/',
@@ -56,29 +51,8 @@ const HeaderSearch = () => {
   const inputEl = useRef(null);
 
   const onSuggestionsFetchRequested = async ({value}) => {
-    const query = {
-      query: {
-        multi_match: {
-          query: value,
-          type: 'phrase_prefix',
-          fields: ['title^3', 'fullname', 'name'],
-        },
-      },
-      sort: ['_score'],
-      highlight: {
-        fields: {
-          title: {},
-          fullname: {},
-          name: {},
-        },
-      },
-    };
-
     try {
-      const response = await fetch(config.QUERY_SEARCH, {
-        ...queryParams,
-        body: JSON.stringify(query),
-      });
+      const response = await fetch(process.env.ELASTIC_URL, queryParams);
       const results = await response.json();
       setSuggestions(results.hits.hits);
     } catch (error) {
@@ -127,7 +101,7 @@ const HeaderSearch = () => {
         onSuggestionSelected={onSuggestionSelected}
         ref={inputEl}
         inputProps={inputProps}
-        // TODO remove this when fixed in react-autosuggestion https://github.com/moroshko/react-autosuggest/issues/738
+        // // TODO remove this when fixed in react-autosuggestion https://github.com/moroshko/react-autosuggest/issues/738
         renderSectionTitle={() => {}}
         getSectionSuggestions={() => {}}
       />
