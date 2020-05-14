@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import GameTeaser from '../GameTeaser/GameTeaser';
 
-import './Results.scss';
-
 const Results = ({hits}) => (
   <div className="grid-results">
     {hits.map(({_source: game}) => (

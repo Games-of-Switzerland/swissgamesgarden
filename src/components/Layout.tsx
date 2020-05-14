@@ -1,9 +1,8 @@
 import React from 'react';
 
-import '../styles/base.scss';
-import Header from '../components/Header';
+import Header from './Header';
 
-const Layout = props => (
+const Layout = (props: any) => (
   <div>
     <div className="container">
       <Header />

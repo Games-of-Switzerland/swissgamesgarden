@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './GameTeaser.scss';
 import Link from "next/link";
 
 const GameTeaser = game => {

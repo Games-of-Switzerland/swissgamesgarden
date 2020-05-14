@@ -1,17 +1,10 @@
 import React from 'react';
-import Layout from '../containers/Layout';
-import Results from '../components/Results';
-import {Hits, InitialLoader, NoHits, SortingSelector} from 'searchkit';
-import config from '../config';
-import Stats from '../components/ElasticSearch/Stats';
-import ResultsFilters from '../components/Results/ResultsFilters';
-import LoadMore from '../components/LoadMore';
+import Layout from '../components/Layout';
 
 const Home = () => (
   <Layout>
     <div className="d-flex d-flex-gap">
       {/*  <Stats />*/}
-
       {/*  <SortingSelector*/}
       {/*    className="form-select"*/}
       {/*    options={[*/}

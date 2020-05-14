@@ -5,8 +5,6 @@ import Autosuggest from 'react-autosuggest';
 import {useRouter} from 'next/router';
 import slugify from '../../utilities/slugify';
 
-import './HeaderSearch.scss';
-
 const queryParams = {
   method: 'GET',
 };

@@ -1,17 +1,16 @@
 import React from 'react';
-import Layout from '../../containers/Layout';
-import fetch from 'isomorphic-unfetch';
+import Layout from 'components/Layout';
 import Link from 'next/link';
+import {GetServerSideProps} from 'next';
+import {GameProps} from './[id]';
 
-const Game = ({data}) => {
+const GameListItem = (props: GameProps) => {
   const {
-    id,
     attributes: {
       title,
       path: {alias},
     },
-  } = data;
-  console.log(alias);
+  } = props;
 
   return (
     <li>
@@ -22,26 +21,30 @@ const Game = ({data}) => {
   );
 };
 
-const Games = ({games}) => {
+interface Props {
+  games: GameProps[];
+}
+
+const Games = ({games}: Props) => {
   if (!games) return null;
   return (
     <Layout>
       <ul>
         {games.map(game => (
-          <Game key={game.id} data={game} />
+          <GameListItem key={game.id} {...game} />
         ))}
       </ul>
     </Layout>
   );
 };
 
-export async function getServerSideProps() {
-  const res = await fetch(`${process.env.JSONAPI_URL}/node/game`);
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_JSONAPI_URL}/node/game`);
   const games = await res.json();
 
   return {
     props: {games: games.data},
   };
-}
+};
 
 export default Games;
