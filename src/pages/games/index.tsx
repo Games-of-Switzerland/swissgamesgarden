@@ -3,35 +3,23 @@ import Layout from 'components/Layout';
 import Link from 'next/link';
 import {GetServerSideProps} from 'next';
 import {GameProps} from './[id]';
-
-const GameListItem = (props: GameProps) => {
-  const {
-    attributes: {
-      title,
-      path: {alias},
-    },
-  } = props;
-
-  return (
-    <li>
-      <Link href="/games/[id]" as={alias}>
-        <a>{title}</a>
-      </Link>
-    </li>
-  );
-};
+import {getGames} from 'lib/games';
 
 interface Props {
   games: GameProps[];
 }
 
 const Games = ({games}: Props) => {
-  if (!games) return null;
+  if (!games) return <div>No games to show</div>;
   return (
     <Layout>
       <ul>
         {games.map(game => (
-          <GameListItem key={game.id} {...game} />
+          <li key={game.id}>
+            <Link href="/games/[id]" as={`/games/${game.id}`}>
+              <a>{game.attributes.title}</a>
+            </Link>
+          </li>
         ))}
       </ul>
     </Layout>
@@ -39,8 +27,7 @@ const Games = ({games}: Props) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_JSONAPI_URL}/node/game`);
-  const games = await res.json();
+  const games = await getGames();
 
   return {
     props: {games: games.data},

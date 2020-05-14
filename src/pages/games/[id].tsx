@@ -1,6 +1,7 @@
 import React from 'react';
-import Layout from '../../components/Layout';
-import {GetServerSideProps} from 'next';
+import Layout from 'components/Layout';
+import {GetStaticPaths, GetStaticProps} from 'next';
+import {getGames, getGame} from 'lib/games';
 
 export interface GameProps {
   id: number;
@@ -22,13 +23,18 @@ const Game = ({attributes: {title, body}}: GameProps) => (
   </Layout>
 );
 
-export const getServerSideProps: GetServerSideProps = async context => {
-  const id = 'a0b7c853-c891-487f-84f9-74dfbce9fa63';
-  const res = await fetch(`${process.env.JSONAPI_URL}/node/game/${id}`);
-  const game = await res.json();
-  return {
-    props: game.data,
-  };
+export const getStaticPaths: GetStaticPaths = async () => {
+  const games = await getGames();
+  const paths = games.data.map((game: GameProps) => ({
+    params: {id: game.id},
+  }));
+
+  return {paths, fallback: false};
+};
+
+export const getStaticProps: GetStaticProps = async ({params = {}}) => {
+  const game = await getGame(params.id);
+  return {props: game.data};
 };
 
 export default Game;
