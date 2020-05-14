@@ -1,0 +1,21 @@
+.game-container {
+  display: grid;
+  width: 100%;
+  grid-template:
+    '.   .      main       .    .' auto
+    '. images  images    images .' auto
+    '.   .    secondary    .    .' auto
+    / 1fr 3rem var(--max-content-width) 3rem 1fr;
+}
+
+.game-content {
+  grid-area: main;
+}
+
+.game-images {
+  grid-area: images;
+}
+
+.game-info {
+  grid-area: secondary;
+}

@@ -1,5 +1,5 @@
-@import "reset";
-@import "functions";
+@import 'reset';
+@import 'functions';
 
 @font-face {
   font-family: 'Natural Without';
@@ -31,7 +31,9 @@
 
 $padding-btn-y: 0.8em;
 $padding-btn-x: 0.6em;
-$font-family-base: 'Natural Without', -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+$font-family-base: 'Natural Without', -apple-system, BlinkMacSystemFont,
+  'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
 $darkest: #121212;
 $darker: #1d1d1d;
@@ -45,8 +47,8 @@ $lighter: #adadad;
 $white: #fff;
 $red: #e05340;
 
-$orange: #FF9F29;
-$magenta: #EF015B;
+$orange: #ff9f29;
+$magenta: #ef015b;
 
 $icon-search: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13.5 13.5' width='13'><circle cx='5.5' cy='5.5' r='5' fill='none' stroke='#{$light}'/><path d='M9.1 9.1L13 13' fill='none' stroke='#{$light}' stroke-linecap='round'/></svg>";
 $icon-triangle: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9.4 7.1' width='8'><path fill='#{$dimmest}' d='M0 0h9.4L4.7 7.1z'/></svg>";
@@ -70,9 +72,11 @@ $icon-triangle: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9.4 7.1' w
   --spacer-sm: 5px;
 
   --font-size-lg: 1.2666666667rem;
+
+  --max-content-width: 675px;
 }
 
-@import "mixins";
+@import 'mixins';
 
 html {
   font-size: 0.9375rem;
@@ -160,9 +164,7 @@ a {
   font-weight: inherit;
   line-height: inherit;
   cursor: pointer;
-  transition:
-    color 0.1s ease-out,
-    border-color 0.1s ease-out;
+  transition: color 0.1s ease-out, border-color 0.1s ease-out;
 
   &:hover {
     color: var(--color-white);
@@ -246,7 +248,11 @@ a {
     display: block;
     height: 2px;
     width: 100%;
-    background-image: linear-gradient(to right, var(--color-magenta) 0%, var(--color-orange) 100%);
+    background-image: linear-gradient(
+      to right,
+      var(--color-magenta) 0%,
+      var(--color-orange) 100%
+    );
   }
 }
 
@@ -263,7 +269,8 @@ a {
   }
 }
 
-@import "layout";
-@import "form";
+@import 'layout';
+@import 'form';
 @import 'dropdown';
-@import "tag";
+@import 'tag';
+@import 'game';
