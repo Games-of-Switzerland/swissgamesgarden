@@ -11,22 +11,24 @@ interface StudioProps {
 }
 
 export interface GameProps {
-  data: {
-    id: number;
-    attributes: {
-      title: string;
-      body: {
-        processed: string;
-      };
-      path: {
-        alias: string;
-      };
+  id: number;
+  attributes: {
+    title: string;
+    body: {
+      processed: string;
+    };
+    path: {
+      alias: string;
     };
   };
+}
+
+export interface GameDataProps {
+  data: GameProps;
   included: StudioProps[];
 }
 
-const Game = (props: GameProps) => {
+const Game = (props: GameDataProps) => {
   const {
     data: {
       attributes: {title, body},

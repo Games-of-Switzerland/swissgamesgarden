@@ -3,7 +3,7 @@ export const getGames = async () => {
   return await res.json();
 };
 
-export const getGame = async (id: string) => {
+export const getGame = async (id: string | string[] | undefined) => {
   const gameFields = ['title', 'body'];
   const studioFields = ['title'];
 
