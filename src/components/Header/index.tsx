@@ -1,11 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 
-import styles from './header.module.scss';
-
 const Header = () => (
-  <header className={styles.header}>
-    <h1 className={styles.headerTitle}>
+  <header className="header">
+    <h1 className="header-title">
       <Link href="/">
         <a>
           Swiss Games <br />
@@ -16,7 +14,7 @@ const Header = () => (
     {/*<HeaderSearch />*/}
 
     {/* Menu */}
-    <div className={styles.headerMenu}>
+    <div className="header-menu">
       <Link href="/about">
         <a>
           <span>About</span>

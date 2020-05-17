@@ -5,11 +5,19 @@
     '.   .      main       .    .' auto
     '. images  images    images .' auto
     '.   .    secondary    .    .' auto
-    / 1fr 3rem var(--max-content-width) 3rem 1fr;
+    / auto minmax(min-content, 5rem) minmax(auto, 675px) minmax(auto, 5rem);
+  justify-content: center auto;
 }
 
 .game-content {
   grid-area: main;
+  padding-top: 4.1rem;
+  font-size: var(--font-size-lg);
+  font-weight: 200;
+}
+
+.game-intro {
+  margin-bottom: 2.7rem;
 }
 
 .game-images {
@@ -18,4 +26,35 @@
 
 .game-info {
   grid-area: secondary;
+
+  h2 {
+    margin-bottom: 2em;
+    padding-bottom: 0.8em;
+    border-bottom: 1px solid var(--color-dark);
+  }
+}
+
+.game-info-item {
+  margin-bottom: 2.75rem;
+  font-size: var(--font-size-lg);
+  font-weight: 200;
+  color: var(--color-white);
+
+  h3 {
+    margin-bottom: 0.4em;
+    font-size: 1rem;
+    color: var(--color-light);
+    line-height: 1.3333333333;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+
+    li {
+      margin: 0;
+      padding-left: 6ch;
+      text-indent: -6ch;
+    }
+  }
 }

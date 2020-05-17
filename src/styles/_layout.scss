@@ -1,3 +1,28 @@
+// Layout
+.container {
+  padding: 0 var(--spacer);
+  max-width: 1465px;
+  margin: 0 auto;
+
+  @media screen and (min-width: 1200px) {
+    padding: 0 var(--spacer-lg);
+  }
+}
+
+// Spacing
+.mb-spacer {
+  margin-bottom: var(--spacer);
+}
+
+.mb-spacer-lg {
+  margin-bottom: var(--spacer-lg);
+}
+
+// Display
+.d-none {
+  display: none;
+}
+
 .d-flex {
   display: flex;
   align-items: baseline;
@@ -6,5 +31,19 @@
 .d-flex-gap {
   > * {
     margin-right: 1ch;
+  }
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+// Columns
+.two-cols {
+  columns: 2;
+  column-gap: var(--spacer);
+
+  div {
+    break-inside: avoid;
   }
 }

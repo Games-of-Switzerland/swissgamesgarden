@@ -1,16 +1,14 @@
-$hor-spacer: 3rem;
-
 .header {
   display: grid;
-  grid-template: "title search menu button" auto / auto 1fr auto auto;
-  grid-gap: 1rem $hor-spacer;
+  grid-template: 'title search menu button' auto / auto 1fr auto auto;
+  grid-gap: 1rem var(--spacer-lg);
   align-items: center;
   padding: 18px 0;
 
   @media screen and (max-width: 900px) {
     grid-template:
-      "title search search" auto
-      "menu menu button" auto
+      'title search search' auto
+      'menu menu button' auto
       / auto 1fr auto;
   }
 
@@ -57,7 +55,7 @@ $hor-spacer: 3rem;
     padding: 0.1em 0.2em;
 
     &:not(:last-child) {
-      margin-right: ($hor-spacer / 2);
+      margin-right: (var(--spacer-lg) / 2);
     }
 
     span {
@@ -77,7 +75,6 @@ $hor-spacer: 3rem;
       opacity: 0;
       background-color: var(--color-white);
       pointer-events: none;
-
     }
 
     &:hover {

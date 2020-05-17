@@ -2,11 +2,10 @@ import React from 'react';
 import Layout from 'components/Layout';
 import Link from 'next/link';
 import {GetServerSideProps} from 'next';
-import {GameProps} from './[id]';
-import {getGames} from 'lib/games';
+import {GameInterface, getGames} from '../../lib/games';
 
 interface Props {
-  games: GameProps[];
+  games: GameInterface[];
 }
 
 const Games = ({games}: Props) => {
@@ -16,7 +15,7 @@ const Games = ({games}: Props) => {
       <ul>
         {games.map(game => (
           <li key={game.id}>
-            <Link href="/games/[id]" as={`/games/${game.id}`}>
+            <Link href="/games/[path]" as={game.attributes.field_path}>
               <a>{game.attributes.title}</a>
             </Link>
           </li>

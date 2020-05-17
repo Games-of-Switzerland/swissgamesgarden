@@ -1,0 +1,73 @@
+// Base
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  font-size: 2.5333333333rem;
+  margin-bottom: 0.35em;
+  line-height: 1.5;
+}
+
+h2 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 200;
+  color: var(--color-light);
+  letter-spacing: 1px;
+}
+
+p {
+  margin-top: 0;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.2631578947;
+  margin-bottom: 1em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  margin-top: 0;
+}
+
+// Font weights
+.font-weight-semibold {
+  font-weight: 500;
+}
+
+.font-weight-light {
+  font-weight: 200;
+}
+
+// Alignment
+.text-center {
+  text-align: center;
+}
+
+// Font size
+.font-size-lg {
+  font-size: var(--font-size-lg);
+  line-height: 1.2666666667;
+}
+
+// Colors
+.text-color-light {
+  color: var(--color-light);
+}
+
+// Presets
+.lead {
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+}
