@@ -3,7 +3,7 @@ import Layout from 'components/Layout';
 import {GetStaticPaths, GetStaticProps} from 'next';
 import {GameInterface, getGame, getGames} from 'lib/games';
 import GameInfo from 'components/GameInfo';
-import ReleasesInfo from '../../components/game/info/ReleasesInfo';
+import ReleasesInfo from '../../components/Game/Info/ReleasesInfo';
 
 const Game = ({title, body, studios, releases, genres}: GameInterface) => {
   // TODO indicate in backend that we display the first release as the main one.
