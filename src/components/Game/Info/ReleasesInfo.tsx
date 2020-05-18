@@ -21,7 +21,7 @@ const ReleasesInfo = ({releases}: Props) => {
             <li key={`release-${year}`} data-testid="release-info-item">
               <span title={date.toDateString()}>{year}</span>
 
-              {releasesByDate.length > 1 && (
+              {(releasesByDate.length > 1 || releasesGroup.length > 1) && (
                 <small className="text-color-light">
                   {' '}
                   — {releasesGroup.map((r: Release) => r.platform).join(', ')}
