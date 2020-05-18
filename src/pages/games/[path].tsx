@@ -1,9 +1,9 @@
 import React from 'react';
 import Layout from 'components/Layout';
 import {GetStaticPaths, GetStaticProps} from 'next';
-import {GameInterface, getGame, getGames} from 'lib/games';
-import GameInfo from 'components/GameInfo';
-import ReleasesInfo from '../../components/Game/Info/ReleasesInfo';
+import {GameInterface, getGame, getGames} from '../../lib/games';
+import GeneralInfo from 'components/Game/Info/GeneralInfo';
+import ReleasesInfo from 'components/Game/Info/ReleasesInfo';
 
 const Game = ({title, body, studios, releases, genres}: GameInterface) => {
   // TODO indicate in backend that we display the first release as the main one.
@@ -49,12 +49,12 @@ const Game = ({title, body, studios, releases, genres}: GameInterface) => {
           <h2>Information</h2>
 
           <div className="two-cols">
-            <GameInfo title="Studio">
+            <GeneralInfo title="Studio">
               {/* TODO make this into a link to studio page*/}
               {studios.map(studio => (
                 <span key={studio.id}>{studio.title}</span>
               ))}
-            </GameInfo>
+            </GeneralInfo>
 
             <ReleasesInfo releases={releases} />
 

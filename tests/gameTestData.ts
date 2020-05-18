@@ -190,11 +190,13 @@ export const normalizedGameTestData: GameInterface = {
       date: '2020-04-14T02:00:00+02:00',
       id: '9e1f8365-4bf3-4189-bf33-c9ac6862dca7',
       platform: 'Mac',
+      year: 2020,
     },
     {
       date: '2020-04-14T22:00:00+02:00',
       id: 'fake-id',
       platform: 'PC',
+      year: 2020,
     },
   ],
   genres: [{id: 'bd393d21-9d32-430d-9561-f39ae4239aa4', name: 'simulator'}],

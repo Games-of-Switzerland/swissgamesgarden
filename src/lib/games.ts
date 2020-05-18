@@ -18,6 +18,7 @@ export interface Release {
   id: string;
   date: string;
   platform: string;
+  year: number;
 }
 
 export interface Genre {
@@ -79,6 +80,7 @@ const normalizeGameData = (data: any): GameInterface => {
             id: item.id,
             platform: item.attributes.name,
             date: meta.date_value,
+            year: new Date(meta.date_value).getFullYear(),
           });
           break;
       }
@@ -99,8 +101,7 @@ const normalizeGameData = (data: any): GameInterface => {
 
 export const getSimpleReleases = (releases: Release[]) => {
   const obj = releases.reduce((sr: any, r) => {
-    const year = new Date(r.date).getFullYear();
-    sr[year] = (sr[year] || []).concat({...r, year});
+    sr[r.year] = (sr[r.year] || []).concat({...r, year: r.year});
     return sr;
   }, {});
   return Object.values(obj);

@@ -1,5 +1,5 @@
 import React from 'react';
-import GameInfo from '../../GameInfo';
+import GeneralInfo from './GeneralInfo';
 import {getSimpleReleases, Release} from '../../../lib/games';
 
 interface Props {
@@ -11,14 +11,14 @@ const ReleasesInfo = ({releases}: Props) => {
   const title = 'Release(s)';
 
   return (
-    <GameInfo title={title}>
+    <GeneralInfo title={title}>
       <ul>
         {releasesByDate.map((releasesGroup: any) => {
           const date = new Date(releasesGroup[0].date);
-          const year = date.getFullYear();
+          const year = releasesGroup[0].year;
 
           return (
-            <li key={`release-${year}`}>
+            <li key={`release-${year}`} data-testid="release-info-item">
               <span title={date.toDateString()}>{year}</span>
 
               {releasesByDate.length > 1 && (
@@ -31,7 +31,7 @@ const ReleasesInfo = ({releases}: Props) => {
           );
         })}
       </ul>
-    </GameInfo>
+    </GeneralInfo>
   );
 };
 
