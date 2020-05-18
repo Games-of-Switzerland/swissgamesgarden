@@ -1,6 +1,12 @@
 export const getGames = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_JSONAPI_URL}/node/game`);
-  return await res.json();
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_JSONAPI_URL}/node/game?fields[node--game]=title,field_path`
+    );
+    return await res.json();
+  } catch (e) {
+    return null;
+  }
 };
 
 export interface Studio {
@@ -20,7 +26,7 @@ export interface Genre {
 }
 
 export interface GameInterface {
-  id: number;
+  id: string;
   title: string;
   body: string;
   path: string;
@@ -94,7 +100,7 @@ const normalizeGameData = (data: any): GameInterface => {
 export const getSimpleReleases = (releases: Release[]) => {
   const obj = releases.reduce((sr: any, r) => {
     const year = new Date(r.date).getFullYear();
-    sr[year] = (sr[year] || []).concat(r);
+    sr[year] = (sr[year] || []).concat({...r, year});
     return sr;
   }, {});
   return Object.values(obj);
@@ -119,8 +125,13 @@ export const getGame = async (path: string | undefined) => {
     ','
   )}${fieldsToURLString(fields)}`;
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_JSONAPI_URL}${queryUrl}`);
-  const data = await res.json();
-
-  return normalizeGameData(data);
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_JSONAPI_URL}${queryUrl}`
+    );
+    const data = await res.json();
+    return normalizeGameData(data);
+  } catch (e) {
+    return null;
+  }
 };

@@ -8,13 +8,12 @@ interface Props {
   games: GameInterface[];
 }
 
-const Games = ({games}: Props) => {
-  if (!games) return <div>No games to show</div>;
-  return (
+const Games = ({games}: Props) =>
+  games ? (
     <Layout>
       <ul>
         {games.map(game => (
-          <li key={game.id}>
+          <li data-testid="game-teaser" key={game.id}>
             <Link href="/games/[path]" as={game.attributes.field_path}>
               <a>{game.attributes.title}</a>
             </Link>
@@ -22,9 +21,13 @@ const Games = ({games}: Props) => {
         ))}
       </ul>
     </Layout>
+  ) : (
+    <Layout>
+      <p>No games to show</p>
+    </Layout>
   );
-};
 
+/* istanbul ignore next */
 export const getServerSideProps: GetServerSideProps = async () => {
   const games = await getGames();
 

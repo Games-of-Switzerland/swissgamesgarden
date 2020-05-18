@@ -6,11 +6,15 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "test": "jest --watch",
+    "test:ci": "jest --ci"
   },
   "dependencies": {
     "@popperjs/core": "^2.4.0",
+    "@testing-library/jest-dom": "^5.7.0",
     "autoprefixer": "^9.7.6",
+    "babel-jest": "^26.0.1",
     "next": "^9.4.0",
     "react": "16.13.1",
     "react-autosuggest": "^10.0.2",
@@ -20,9 +24,14 @@
     "sass": "^1.26.5"
   },
   "devDependencies": {
+    "@testing-library/react": "^10.0.4",
+    "@types/jest": "^25.2.2",
     "@types/node": "^13.13.5",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "jest": "^26.0.1",
+    "jest-fetch-mock": "^3.0.3",
     "prettier": "^2.0.5",
     "typescript": "^3.8.3"
   },
@@ -37,5 +46,52 @@
     "jsxBracketSameLine": false,
     "singleQuote": true,
     "arrowParens": "avoid"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts",
+      "!**/node_modules/**"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setupTests.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/.next/"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/",
+      "^.+\\.module\\.(css|sass|scss)$"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+    }
+  },
+  "babel": {
+    "presets": [
+      "next/babel"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          [
+            "module-resolver",
+            {
+              "root": [
+                "./"
+              ],
+              "alias": {
+                "components": "./src/components"
+              }
+            }
+          ]
+        ]
+      }
+    }
   }
 }
