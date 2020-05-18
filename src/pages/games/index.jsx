@@ -1,14 +1,9 @@
 import React from 'react';
 import Layout from 'components/Layout';
 import Link from 'next/link';
-import {GetServerSideProps} from 'next';
-import {GameInterface, getGames} from '../../lib/games';
+import {getGames} from '../../lib/games';
 
-interface Props {
-  games: GameInterface[];
-}
-
-const Games = ({games}: Props) =>
+const Games = ({games}) =>
   games ? (
     <Layout>
       <ul>
@@ -27,8 +22,7 @@ const Games = ({games}: Props) =>
     </Layout>
   );
 
-/* istanbul ignore next */
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps = async () => {
   const games = await getGames();
 
   return {

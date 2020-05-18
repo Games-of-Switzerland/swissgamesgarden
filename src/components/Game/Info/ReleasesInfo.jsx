@@ -1,19 +1,15 @@
 import React from 'react';
 import GeneralInfo from './GeneralInfo';
-import {getSimpleReleases, Release} from '../../../lib/games';
+import {getSimpleReleases} from '../../../lib/games';
 
-interface Props {
-  releases: Release[];
-}
-
-const ReleasesInfo = ({releases}: Props) => {
+const ReleasesInfo = ({releases}) => {
   const releasesByDate = getSimpleReleases(releases);
   const title = 'Release(s)';
 
   return (
     <GeneralInfo title={title}>
       <ul>
-        {releasesByDate.map((releasesGroup: any) => {
+        {releasesByDate.map(releasesGroup => {
           const date = new Date(releasesGroup[0].date);
           const year = releasesGroup[0].year;
 
@@ -24,7 +20,7 @@ const ReleasesInfo = ({releases}: Props) => {
               {(releasesByDate.length > 1 || releasesGroup.length > 1) && (
                 <small className="text-color-light">
                   {' '}
-                  — {releasesGroup.map((r: Release) => r.platform).join(', ')}
+                  — {releasesGroup.map(r => r.platform).join(', ')}
                 </small>
               )}
             </li>

@@ -1,11 +1,10 @@
 import React from 'react';
 import Layout from 'components/Layout';
-import {GetStaticPaths, GetStaticProps} from 'next';
-import {GameInterface, getGame, getGames} from '../../lib/games';
+import {getGame, getGames} from '../../lib/games';
 import GeneralInfo from 'components/Game/Info/GeneralInfo';
 import ReleasesInfo from 'components/Game/Info/ReleasesInfo';
 
-const Game = ({title, body, studios, releases, genres}: GameInterface) => {
+const Game = ({title, body, studios, releases, genres}) => {
   // TODO indicate in backend that we display the first release as the main one.
   const releaseDate = new Date(releases[0].date);
 
@@ -75,7 +74,7 @@ const Game = ({title, body, studios, releases, genres}: GameInterface) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths = async () => {
   const games = await getGames();
   const paths = games.data.map(game => ({
     params: {path: game.attributes.field_path.replace('/games/', '')},
@@ -84,7 +83,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {paths, fallback: false};
 };
 
-export const getStaticProps: GetStaticProps = async ({params}: any) => {
+export const getStaticProps = async ({params}) => {
   const game = await getGame(params.path);
   return {props: game};
 };

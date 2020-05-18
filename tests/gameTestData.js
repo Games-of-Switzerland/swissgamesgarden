@@ -1,7 +1,5 @@
 // @ts-check
 
-import {GameInterface} from '../src/lib/games';
-
 export default {
   jsonapi: {
     version: '1.0',
@@ -173,7 +171,7 @@ export default {
   },
 };
 
-export const normalizedGameTestData: GameInterface = {
+export const normalizedGameTestData = {
   id: '9bb9538f-5b75-4dc0-99b1-ff11d4e2abdd',
   title: "Don't kill Her",
   body:

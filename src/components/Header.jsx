@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import AutoSuggest from './AutoSuggest';
 
 const Header = () => (
   <header className="header">
@@ -11,7 +12,7 @@ const Header = () => (
         </a>
       </Link>
     </h1>
-    {/*<HeaderSearch />*/}
+    <AutoSuggest />
 
     {/* Menu */}
     <div className="header-menu">

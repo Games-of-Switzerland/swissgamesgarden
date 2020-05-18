@@ -1,13 +1,8 @@
 import React, {useRef, useState} from 'react';
-import fetch from 'isomorphic-unfetch';
 import {debounce} from 'throttle-debounce';
 import Autosuggest from 'react-autosuggest';
 import {useRouter} from 'next/router';
-import slugify from '../../utilities/slugify';
-
-const queryParams = {
-  method: 'GET',
-};
+import slugify from '../utilities/slugify';
 
 const getSuggestionData = suggestion => {
   switch (suggestion._index) {
@@ -41,7 +36,7 @@ const getSuggestionData = suggestion => {
   }
 };
 
-const HeaderSearch = () => {
+const AutoSuggest = () => {
   const initialSuggestions = [];
   const [suggestions, setSuggestions] = useState(initialSuggestions);
   const [value, setValue] = useState('');
@@ -50,9 +45,12 @@ const HeaderSearch = () => {
 
   const onSuggestionsFetchRequested = async ({value}) => {
     try {
-      const response = await fetch(process.env.ELASTIC_URL, queryParams);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_AUTOCOMPLETE_URL}?q=${value}`
+      );
       const results = await response.json();
-      setSuggestions(results.hits.hits);
+      console.log(results.aggregations.bundles.bundle.buckets);
+      setSuggestions(results.aggregations.bundles.bundle.buckets);
     } catch (error) {
       console.trace(error.message);
     }
@@ -61,7 +59,8 @@ const HeaderSearch = () => {
   const onSuggestionsClearRequested = () => setSuggestions(initialSuggestions);
 
   const renderSuggestion = suggestion => {
-    const {highlight, emoji, kind} = getSuggestionData(suggestion);
+    const entities = suggestion.top.hits.hits;
+    const {highlight, emoji, kind} = getSuggestionData(entities);
     return (
       <>
         <span className="suggestion-icon">{emoji}</span>
@@ -99,12 +98,9 @@ const HeaderSearch = () => {
         onSuggestionSelected={onSuggestionSelected}
         ref={inputEl}
         inputProps={inputProps}
-        // // TODO remove this when fixed in react-autosuggestion https://github.com/moroshko/react-autosuggest/issues/738
-        renderSectionTitle={() => {}}
-        getSectionSuggestions={() => {}}
       />
     </div>
   );
 };
 
-export default HeaderSearch;
+export default AutoSuggest;

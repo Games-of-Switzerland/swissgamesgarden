@@ -1,5 +1,5 @@
 import React from 'react';
-import Games from '../games/index';
+import Games from '../games';
 import {render} from '@testing-library/react';
 import games from '../../../tests/gamesTestData';
 

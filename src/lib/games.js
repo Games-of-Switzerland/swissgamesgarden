@@ -9,34 +9,7 @@ export const getGames = async () => {
   }
 };
 
-export interface Studio {
-  id: string;
-  title: string;
-}
-
-export interface Release {
-  id: string;
-  date: string;
-  platform: string;
-  year: number;
-}
-
-export interface Genre {
-  id: string;
-  name: string;
-}
-
-export interface GameInterface {
-  id: string;
-  title: string;
-  body: string;
-  path: string;
-  studios: Studio[];
-  releases: Release[];
-  genres: Genre[];
-}
-
-const normalizeGameData = (data: any): GameInterface => {
+const normalizeGameData = data => {
   // Take the first result only.
   const result = data.data[0];
   const {
@@ -49,10 +22,7 @@ const normalizeGameData = (data: any): GameInterface => {
   } = result;
 
   const relationships = data.included.reduce(
-    (
-      out: {studios: Studio[]; releases: Release[]; genres: Genre[]},
-      item: any
-    ) => {
+    (out, item) => {
       switch (item.type) {
         case 'taxonomy_term--genre':
           // GENRES
@@ -74,7 +44,7 @@ const normalizeGameData = (data: any): GameInterface => {
           // RELEASES
           // Fetch corresponding date value in relationships
           const meta = result.relationships.releases.data.find(
-            (r: any) => r.id === item.id
+            r => r.id === item.id
           ).meta;
           out.releases.push({
             id: item.id,
@@ -99,15 +69,15 @@ const normalizeGameData = (data: any): GameInterface => {
   };
 };
 
-export const getSimpleReleases = (releases: Release[]) => {
-  const obj = releases.reduce((sr: any, r) => {
+export const getSimpleReleases = releases => {
+  const obj = releases.reduce((sr, r) => {
     sr[r.year] = (sr[r.year] || []).concat({...r, year: r.year});
     return sr;
   }, {});
   return Object.values(obj);
 };
 
-export const getGame = async (path: string | undefined) => {
+export const getGame = async path => {
   path = `/games/${path}`;
   const includes = ['studios', 'genres', 'releases'];
   const fields = {
@@ -116,7 +86,7 @@ export const getGame = async (path: string | undefined) => {
     'taxonomy_term--platform': ['name'],
   };
 
-  const fieldsToURLString = (fields: any) => {
+  const fieldsToURLString = fields => {
     return Object.keys(fields).reduce(
       (out, field) => `${out}&fields[${field}]=${fields[field].join(',')}`,
       ''
