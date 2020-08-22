@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import AutoSuggest from './AutoSuggest';
+import AutoSuggest from '../AutoSuggest';
 
 const Header = () => (
   <header className="header">
