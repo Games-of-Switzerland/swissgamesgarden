@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../styles/base.scss';
+import '../styles/index.css';
 
 export default function App({Component, pageProps}) {
   return <Component {...pageProps} />;
