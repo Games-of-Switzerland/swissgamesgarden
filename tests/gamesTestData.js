@@ -270,7 +270,7 @@ export default {
             {
               type: 'node--people',
               id: 'c2c1d560-d9f4-4878-8105-7f63ec09e7ef',
-              meta: {role: 'Game Designer'},
+              meta: {role: 'GameInfo Designer'},
             },
             {
               type: 'node--people',

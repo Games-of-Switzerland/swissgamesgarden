@@ -1,22 +1,16 @@
-import React from 'react';
-import { configure, addParameters, addDecorator } from '@storybook/react';
+import {configure, addParameters} from '@storybook/react';
+import theme from './theme';
 
-// Mock NextJS Router
-import Router from './mockNextRouter';
-
-import gosTheme from './gos-theme';
-import { withA11y } from '@storybook/addon-a11y';
-
-import '../src/styles/base.scss';
-
+// import env from '../env';
+// import {setConfig} from 'next/config';
+// setConfig(env);
 
 addParameters({
   options: {
-    theme: gosTheme,
+    theme,
   },
+  backgrounds: [{name: 'blue', value: '#0C2340'}],
 });
 
-addDecorator(withA11y);
-
-configure(require.context('../src', true, /\.stories\.js$/), module);
-
+// automatically import all files ending in *.stories.js
+configure(require.context('../src/components', true, /\.stories\.js$/), module);

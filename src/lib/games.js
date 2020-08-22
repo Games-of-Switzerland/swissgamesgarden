@@ -70,7 +70,7 @@ const normalizeGameData = data => {
 };
 
 export const getSimpleReleases = releases => {
-  const obj = releases.reduce((sr, r) => {
+  const obj = releases.data.reduce((sr, r) => {
     sr[r.year] = (sr[r.year] || []).concat({...r, year: r.year});
     return sr;
   }, {});

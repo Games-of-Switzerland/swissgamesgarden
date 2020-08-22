@@ -1,13 +1,15 @@
 import React from 'react';
-import GeneralInfo from './GeneralInfo';
-import {getSimpleReleases} from '../../../lib/games';
+import GameInfo from 'components/GameInfo';
+import {getSimpleReleases} from 'lib/games';
+import PropTypes from 'prop-types';
+import {ReleasePropType} from 'types/game-types';
 
 const ReleasesInfo = ({releases}) => {
   const releasesByDate = getSimpleReleases(releases);
   const title = 'Release(s)';
 
   return (
-    <GeneralInfo title={title}>
+    <GameInfo title={title}>
       <ul>
         {releasesByDate.map(releasesGroup => {
           const date = new Date(releasesGroup[0].date);
@@ -27,8 +29,12 @@ const ReleasesInfo = ({releases}) => {
           );
         })}
       </ul>
-    </GeneralInfo>
+    </GameInfo>
   );
+};
+
+ReleasesInfo.propTypes = {
+  releases: PropTypes.arrayOf(ReleasePropType),
 };
 
 export default ReleasesInfo;

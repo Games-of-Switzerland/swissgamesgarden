@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from '@testing-library/react';
-import ReleasesInfo from '../Game/Info/ReleasesInfo';
+import ReleasesInfo from '../GameInfo/ReleasesInfo';
 import {normalizedGameTestData} from '../../../tests/gameTestData';
 
 test('renders general info', () => {

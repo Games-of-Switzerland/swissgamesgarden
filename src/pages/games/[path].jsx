@@ -1,12 +1,13 @@
 import React from 'react';
-import Layout from 'components/Layout';
+import Layout from 'components/Layout/Layout';
 import {getGame, getGames} from '../../lib/games';
-import GeneralInfo from 'components/Game/Info/GeneralInfo';
-import ReleasesInfo from 'components/Game/Info/ReleasesInfo';
+import GameInfo from 'components/GameInfo/GameInfo';
+import ReleasesInfo from 'components/GameInfo/ReleasesInfo';
+import {fetchGame} from '../../lib/api';
 
 const Game = ({title, body, studios, releases, genres}) => {
   // TODO indicate in backend that we display the first release as the main one.
-  const releaseDate = new Date(releases[0].date);
+  const releaseDate = new Date(releases.data[0].meta.date_value);
 
   return (
     <Layout>
@@ -14,26 +15,29 @@ const Game = ({title, body, studios, releases, genres}) => {
         <div className="game-content">
           <div className="game-intro">
             <div className="text-color-light d-flex flex-between">
-              {studios.map(studio => (
-                <span key={studio.id}>{studio.title}</span>
-              ))}
+              {studios &&
+                studios.data.map(studio => (
+                  <span key={studio.id}>{studio.title}</span>
+                ))}
               <span>{releaseDate.getFullYear()}</span>
             </div>
 
             <h1>{title}</h1>
 
             <div className="badges">
-              {releases.map(release => (
-                <span className="badge" key={release.id}>
-                  {release.platform}
-                </span>
-              ))}
+              {releases &&
+                releases.data.map(release => (
+                  <span className="badge" key={release.id}>
+                    {release.platform}
+                  </span>
+                ))}
             </div>
 
             <div>
-              {genres.map(genre => (
-                <span key={genre.id}>{genre.name}</span>
-              ))}
+              {genres &&
+                genres.data.map(genre => (
+                  <span key={genre.id}>{genre.name}</span>
+                ))}
             </div>
           </div>
 
@@ -48,12 +52,13 @@ const Game = ({title, body, studios, releases, genres}) => {
           <h2>Information</h2>
 
           <div className="two-cols">
-            <GeneralInfo title="Studio">
+            <GameInfo title="Studio">
               {/* TODO make this into a link to studio page*/}
-              {studios.map(studio => (
-                <span key={studio.id}>{studio.title}</span>
-              ))}
-            </GeneralInfo>
+              {studios &&
+                studios.data.map(studio => (
+                  <span key={studio.id}>{studio.title}</span>
+                ))}
+            </GameInfo>
 
             <ReleasesInfo releases={releases} />
 
@@ -84,7 +89,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({params}) => {
-  const game = await getGame(params.path);
+  const game = await fetchGame(params.path);
   return {props: game};
 };
 

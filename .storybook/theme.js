@@ -5,6 +5,6 @@ export default create({
   appBg: '#1A1A1A',
   appContentBg: '#111',
   appBorderColor: '#444',
-
   brandTitle: 'SWISS GAMES GARDEN',
+  brandImage: '',
 });
