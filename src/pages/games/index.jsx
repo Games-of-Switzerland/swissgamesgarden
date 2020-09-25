@@ -1,16 +1,16 @@
 import React from 'react';
-import Layout from 'components/Layout/Layout';
+import {fetchGames} from 'lib/api';
+import Layout from 'components/Layout';
 import Link from 'next/link';
-import {getGames} from '../../lib/games';
 
 const Games = ({games}) =>
   games ? (
     <Layout>
       <ul>
-        {games.map(game => (
-          <li data-testid="game-teaser" key={game.id}>
-            <Link href="/games/[path]" as={game.attributes.field_path}>
-              <a>{game.attributes.title}</a>
+        {games.map(({title, id, field_path}) => (
+          <li data-testid="game-teaser" key={id}>
+            <Link href="/games/[path]" as={field_path}>
+              <a>{title}</a>
             </Link>
           </li>
         ))}
@@ -23,11 +23,8 @@ const Games = ({games}) =>
   );
 
 export const getServerSideProps = async () => {
-  const games = await getGames();
-
-  return {
-    props: {games: games.data},
-  };
+  const games = await fetchGames();
+  return {props: {games}};
 };
 
 export default Games;

@@ -1,12 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import AutoSuggest from '../AutoSuggest';
+import {AutoSuggest} from 'components/Search';
 
 const Header = () => (
-  <header className="header">
-    <h1 className="header-title">
+  <header className="header grid gap-4 mx-4 mt-1">
+    <h1 className="header-title leading-none tracking-wider text-lg">
       <Link href="/">
-        <a>
+        <a className="text-white uppercase">
           Swiss Games <br />
           Garden
         </a>
@@ -24,6 +24,11 @@ const Header = () => (
       <Link href="/contact">
         <a>
           <span>Contact</span>
+        </a>
+      </Link>
+      <Link href="/games">
+        <a>
+          <span>Games</span>
         </a>
       </Link>
     </div>

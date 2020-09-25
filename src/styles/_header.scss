@@ -1,9 +1,6 @@
 .header {
-  display: grid;
   grid-template: 'title search menu button' auto / auto 1fr auto auto;
-  grid-gap: 1rem var(--spacer-lg);
   align-items: center;
-  padding: 18px 0;
 
   @media screen and (max-width: 900px) {
     grid-template:

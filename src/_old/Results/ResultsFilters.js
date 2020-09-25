@@ -1,14 +1,14 @@
 import React from 'react';
-import SelectFilter from '../SelectFilter';
+import SelectFilter from 'SelectFilter';
 import {
   RefinementListFilter,
   renderComponent,
   ResetFilters,
   SelectedFilters,
 } from 'searchkit';
-import Dropdown from '../Dropdown';
-import SelectedTag from '../SelectedTag';
-import Reset from '../Reset';
+import Dropdown from 'Dropdown';
+import SelectedTag from 'SelectedTag';
+import Reset from 'Reset';
 import {map} from 'lodash';
 
 class GOSRefinementListFilter extends RefinementListFilter {

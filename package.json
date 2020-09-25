@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
@@ -26,6 +26,7 @@
     "react": "16.13.1",
     "react-autosuggest": "^10.0.2",
     "react-dom": "16.13.1",
+    "react-i18next": "^11.7.3",
     "react-popper-2": "npm:react-popper@^2.2.3",
     "react-use": "^14.2.0",
     "sass": "^1.26.5",
@@ -49,6 +50,7 @@
     "babel-plugin-module-resolver": "^4.0.0",
     "jest": "^26.0.1",
     "jest-fetch-mock": "^3.0.3",
+    "postcss-nested": "^5.0.0",
     "prettier": "^2.0.5",
     "typescript": "^3.8.3"
   },
@@ -109,5 +111,24 @@
         ]
       }
     }
+  },
+  "postcss": {
+    "plugins": [
+      "postcss-flexbugs-fixes",
+      "tailwindcss",
+      "postcss-nested",
+      [
+        "postcss-preset-env",
+        {
+          "autoprefixer": {
+            "flexbox": "no-2009"
+          },
+          "stage": 3,
+          "features": {
+            "custom-properties": false
+          }
+        }
+      ]
+    ]
   }
 }

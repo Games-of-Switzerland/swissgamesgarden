@@ -7,6 +7,10 @@ export default {
   component: Header,
 };
 
-const Template = args => <Header {...args} />;
+const Template = args => (
+  <div className="max-w-screen-xl mx-auto">
+    <Header {...args} />
+  </div>
+);
 
 export const Story = Template.bind({});

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import useComponentVisible from 'utilities/useComponentVisible';
+import useComponentVisible from 'utils/useComponentVisible';
 import classNames from 'classnames';
 import {usePopper} from 'react-popper-2';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {PageSizeAccessor, renderComponent, SearchkitComponent} from 'searchkit';
-import config from '../config';
+import config from 'config';
 
 const Stats = ({count}) => <div className="text-center mb-spacer">{count}</div>;
 

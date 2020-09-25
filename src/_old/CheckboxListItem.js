@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import slugify from '../utilities/slugify';
+import slugify from 'utils/slugify';
 
 const CheckboxListItem = ({highlighted, onMouseOver, onChange, item}) => (
   <div

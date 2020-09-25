@@ -1,3 +1,52 @@
+@import '_autocomplete.css';
+
 @tailwind base;
+
+@font-face {
+  font-family: 'Natural Without';
+  src: url('/fonts/NaturalWithout-Bold.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Natural Without';
+  src: url('/fonts/NaturalWithout-SemiBold.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Natural Without';
+  src: url('/fonts/NaturalWithout-Regular.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Natural Without';
+  src: url('/fonts/NaturalWithout-Light.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 200;
+}
+
 @tailwind components;
+
+.container {
+  @apply max-w-6xl mx-auto;
+}
+
+.header {
+  grid-template: 'title search menu button' auto / auto 1fr auto auto;
+}
+
+@screen md {
+  .header {
+    grid-template:
+      'title search search' auto
+      'menu menu button' auto
+      / auto 1fr auto;
+  }
+}
+
 @tailwind utilities;

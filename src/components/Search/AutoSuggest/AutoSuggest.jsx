@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 import {debounce} from 'throttle-debounce';
 import Autosuggest from 'react-autosuggest';
 import {useRouter} from 'next/router';
-import slugify from '../utilities/slugify';
+import slugify from 'utils/slugify';
 
 const getSuggestionData = suggestion => {
   switch (suggestion._index) {

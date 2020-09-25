@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import GameTeaser from '../GameTeaser/GameTeaser';
+import GameTeaser from 'GameTeaser/GameTeaser';
 
 const Results = ({hits}) => (
   <div className="grid-results">

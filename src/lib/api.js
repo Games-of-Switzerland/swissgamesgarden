@@ -1,26 +1,24 @@
-import {query, deserialise, deattribute} from 'kitsu-core';
+import {deserialise, query} from 'kitsu-core';
 import config from 'config';
 
 const request = async (queryUrl, model, type = 'node') => {
   const res = await fetch(
-    `${config.host}${config.api}/${type}/${model}?${queryUrl}`
+    `${config.host}${config.api}/${type}/${model}${queryUrl && `?${queryUrl}`}`
   );
   return await res.json();
 };
 
-const normalizeData = data => {
-  let cleanData = deserialise(data);
-  console.log(deattribute(cleanData));
-  cleanData.releases.data.map(release => {
-    console.log(release);
-    return release;
-  });
-  return cleanData.data[0];
+export const fetchGames = async () => {
+  const queryUrl = query({});
+  const data = await request(queryUrl, 'game');
+  return await deserialise(data).data;
 };
 
 export const fetchGame = async field_path => {
   const queryUrl = query({
-    filter: {field_path: `/games/${field_path}`},
+    filter: {
+      field_path: `/games/${field_path}`,
+    },
     fields: {
       'node--game': 'title,field_path,body,releases,genres',
       studios: 'title',
@@ -30,5 +28,6 @@ export const fetchGame = async field_path => {
     include: 'releases',
   });
 
-  return normalizeData(await request(queryUrl, 'game'));
+  const data = await request(queryUrl, 'game');
+  return await deserialise(data).data;
 };

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import useFocus from '../utilities/useFocus';
+import useFocus from 'utils/useFocus';
 import CheckboxListItem from './CheckboxListItem';
-import {useKeyboardNavigation} from '../utilities/useKeyboardNavigation';
+import {useKeyboardNavigation} from 'utils/useKeyboardNavigation';
 
 const SelectFilter = props => {
   const {items, toggleItem} = props;
