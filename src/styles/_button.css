@@ -1,0 +1,11 @@
+.btn {
+  @apply inline-flex py-2 px-5 items-center leading-none tracking-wider text-sm uppercase font-medium transition duration-300;
+}
+
+.btn-white {
+  @apply bg-white text-black;
+
+  &:hover {
+    @apply bg-opacity-75;
+  }
+}

@@ -20,7 +20,7 @@
     "kitsu": "^9.0.6",
     "kitsu-core": "^9.0.6",
     "next": "^9.4.0",
-    "postcss-cli": "^7.1.1",
+    "postcss-cli": "^7.1.2",
     "postcss-preset-env": "^6.7.0",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
@@ -50,7 +50,8 @@
     "babel-plugin-module-resolver": "^4.0.0",
     "jest": "^26.0.1",
     "jest-fetch-mock": "^3.0.3",
-    "postcss-nested": "^5.0.0",
+    "postcss-inline-svg": "^4.1.0",
+    "postcss-nested": "^4.2.3",
     "prettier": "^2.0.5",
     "typescript": "^3.8.3"
   },
@@ -116,6 +117,7 @@
     "plugins": [
       "postcss-flexbugs-fixes",
       "tailwindcss",
+      "postcss-inline-svg",
       "postcss-nested",
       [
         "postcss-preset-env",

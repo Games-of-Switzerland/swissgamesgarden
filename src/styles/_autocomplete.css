@@ -1,70 +1,46 @@
-/*.react-autosuggest__container {*/
-/*  position: relative;*/
-/*  display: flex;*/
-/*  flex: 1 1 100%;*/
-/*  background-color: var(--color-dark);*/
-/*}*/
+.react-autosuggest__container {
+  @apply relative flex bg-gray-900;
+}
 
-/*.react-autosuggest__input {*/
-/*  display: block;*/
-/*  flex: 1 1 auto;*/
-/*  max-width: 100%;*/
-/*  padding: 0.7rem 2rem 0.7rem 3.6rem;*/
-/*  border: 1px solid transparent;*/
-/*  color: var(--color-white);*/
-/*  font-size: var(--font-size-lg);*/
-/*  font-weight: 100;*/
-/*  background: svg-data-url('') transparent no-repeat left 1.33rem center;*/
+.react-autosuggest__input {
+  @apply block flex-grow max-w-full border border-transparent text-white text-lg font-thin py-2 pr-8 pl-14;
+  background: svg-load('svg/search.svg', fill=#000, stroke=#fff) transparent
+    no-repeat left 1.33rem center;
 
-/*  &::placeholder {*/
-/*    color: var(--color-light);*/
-/*  }*/
+  &::placeholder {
+    @apply text-white text-opacity-75;
+  }
 
-/*  &:focus {*/
-/*    outline: none;*/
-/*    border-color: var(--color-dim);*/
-/*  }*/
-/*}*/
+  &:focus {
+    @apply outline-none bg-gray-800 border-gray-500;
+  }
+}
 
-/*.react-autosuggest__suggestions-container {*/
-/*  position: absolute;*/
-/*  display: none;*/
-/*  top: 100%;*/
-/*  width: 100%;*/
-/*}*/
+.react-autosuggest__suggestions-container {
+  @apply absolute hidden w-full;
+  top: 100%;
+}
 
-/*.react-autosuggest__suggestions-container--open {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  border: 1px solid var(--color-dim);*/
-/*  border-top: none;*/
-/*  color: var(--color-light);*/
-/*  font-weight: 100;*/
-/*  background-color: var(--color-darkest);*/
-/*}*/
+.react-autosuggest__suggestions-container--open {
+  @apply flex flex-col border border-gray-500 border-t-0 text-white font-thin bg-gray-900;
+}
 
-/*.react-autosuggest__suggestions-list {*/
-/*  list-style-type: none;*/
-/*  margin: 0;*/
-/*  padding: 0;*/
-/*}*/
+.react-autosuggest__suggestions-list {
+  @apply list-none m-0 p-0;
+}
 
-/*.react-autosuggest__suggestion {*/
-/*  display: flex;*/
-/*  align-items: baseline;*/
-/*  padding: 0.8rem 1.33rem;*/
-/*  cursor: pointer;*/
+.react-autosuggest__suggestion {
+  @apply flex items-baseline px-3 py-5 text-white;
 
-/*  em {*/
-/*    color: var(--color-white);*/
-/*    font-style: normal;*/
-/*  }*/
-/*}*/
+  em {
+    @apply text-white not-italic;
+  }
+}
 
-/*.react-autosuggest__suggestion--highlighted {*/
-/*  background-color: var(--color-darker);*/
-/*}*/
+.react-autosuggest__suggestion--highlighted {
+  @apply bg-gray-700;
+}
 
-/*.suggestion-icon {*/
-/*  width: 2.27rem;*/
-/*}*/
+.suggestion-icon {
+  @apply w-10;
+}

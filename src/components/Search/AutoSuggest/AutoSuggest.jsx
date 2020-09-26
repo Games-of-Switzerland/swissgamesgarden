@@ -1,94 +1,99 @@
-import React, {useRef, useState} from 'react';
+import React, {Fragment, useEffect, useRef, useState} from 'react';
 import {debounce} from 'throttle-debounce';
 import Autosuggest from 'react-autosuggest';
 import {useRouter} from 'next/router';
 import slugify from 'utils/slugify';
 
-const getSuggestionData = suggestion => {
-  switch (suggestion._index) {
-    case 'gos_node_game':
-    case 'development_gos_node_game_en':
+const getSuggestionData = hit => {
+  switch (hit._source.bundle) {
+    case 'game':
       return {
         emoji: '🎮',
-        highlight: suggestion.highlight.title || suggestion._source.title,
-        name: suggestion._source.title,
+        text: hit._source.title,
         kind: 'Game',
-        urlBase: '/games/',
+        path: hit._source.path,
       };
-    case 'gos_node_people':
+    case 'people':
       return {
         emoji: '🤓',
-        highlight: suggestion.highlight.fullname,
-        name: suggestion._source.fullname,
+        text: hit._source.fullname,
         kind: 'People',
-        urlBase: '/people/',
+        path: hit._source.path,
       };
-    case 'gos_node_studio':
+    case 'studio':
       return {
         emoji: '🏢',
-        highlight: suggestion.highlight.name,
-        name: suggestion._source.name,
+        text: hit._source.name,
         kind: 'Studio',
-        urlBase: '/studios/',
+        path: hit._source.path,
       };
     default:
       return {};
   }
 };
 
-const AutoSuggest = () => {
+const AutoSuggest = props => {
   const initialSuggestions = [];
   const [suggestions, setSuggestions] = useState(initialSuggestions);
   const [value, setValue] = useState('');
   const router = useRouter();
   const inputEl = useRef(null);
 
+  useEffect(() => {
+    console.log('suggestions', suggestions);
+  }, [suggestions]);
+
+  // Autosuggest will call this function every time you need to update suggestions.
   const onSuggestionsFetchRequested = async ({value}) => {
+    if (value.length === 0) return initialSuggestions;
+
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_AUTOCOMPLETE_URL}?q=${value}`
       );
       const results = await response.json();
-      console.log(results.aggregations.bundles.bundle.buckets);
-      setSuggestions(results.aggregations.bundles.bundle.buckets);
+      const suggestionsResults = results.aggregations.bundles.bundle.buckets
+        .reduce((acc, bucket) => [...acc, ...bucket.top.hits.hits], [])
+        .sort((a, b) => a._score > b._score);
+      setSuggestions(suggestionsResults);
     } catch (error) {
       console.trace(error.message);
     }
   };
 
+  // Autosuggest will call this function every time you need to clear suggestions.
   const onSuggestionsClearRequested = () => setSuggestions(initialSuggestions);
 
-  const renderSuggestion = suggestion => {
-    const entities = suggestion.top.hits.hits;
-    const {highlight, emoji, kind} = getSuggestionData(entities);
+  // Render result
+  const renderSuggestion = hit => {
+    const {text, emoji, kind} = getSuggestionData(hit);
     return (
       <>
         <span className="suggestion-icon">{emoji}</span>
-        <span dangerouslySetInnerHTML={{__html: highlight}} />
+        <span>{text}</span>
         <span style={{marginLeft: 'auto'}}>{kind}</span>
       </>
     );
   };
 
-  const getSuggestionValue = suggestion => getSuggestionData(suggestion).name;
+  const getSuggestionValue = hit => getSuggestionData(hit).text;
 
   const onSuggestionSelected = (e, {suggestion}) => {
-    const {urlBase, name} = getSuggestionData(suggestion);
-    router.push(
-      urlBase + suggestion._id,
-      urlBase + slugify(name).toLowerCase()
-    );
+    const {path} = getSuggestionData(suggestion);
+    router.push(path);
   };
+
+  const handleChange = (e, {newValue}) => setValue(newValue);
 
   const inputProps = {
     placeholder: 'game, studio, person…',
     value,
-    onChange: (e, {newValue}) => setValue(newValue),
+    onChange: handleChange,
     type: 'search',
   };
 
   return (
-    <div className="header-search">
+    <div {...props}>
       <Autosuggest
         suggestions={suggestions}
         onSuggestionsFetchRequested={debounce(200, onSuggestionsFetchRequested)}

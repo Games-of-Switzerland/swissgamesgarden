@@ -1,0 +1,8 @@
+body {
+  @apply bg-black;
+}
+
+header {
+  @apply grid gap-6;
+  grid-template: 'title search menu' auto / auto 1fr auto;
+}

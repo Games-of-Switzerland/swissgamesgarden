@@ -1,4 +1,6 @@
+@import '_layout.css';
 @import '_autocomplete.css';
+@import '_button.css';
 
 @tailwind base;
 
@@ -31,22 +33,5 @@
 }
 
 @tailwind components;
-
-.container {
-  @apply max-w-6xl mx-auto;
-}
-
-.header {
-  grid-template: 'title search menu button' auto / auto 1fr auto auto;
-}
-
-@screen md {
-  .header {
-    grid-template:
-      'title search search' auto
-      'menu menu button' auto
-      / auto 1fr auto;
-  }
-}
 
 @tailwind utilities;

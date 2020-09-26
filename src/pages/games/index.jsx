@@ -2,19 +2,14 @@ import React from 'react';
 import {fetchGames} from 'lib/api';
 import Layout from 'components/Layout';
 import Link from 'next/link';
+import {GameTeaser} from 'components/Game';
 
 const Games = ({games}) =>
   games ? (
     <Layout>
-      <ul>
-        {games.map(({title, id, field_path}) => (
-          <li data-testid="game-teaser" key={id}>
-            <Link href="/games/[path]" as={field_path}>
-              <a>{title}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {games.map(game => (
+        <GameTeaser game={game} key={game.id} />
+      ))}
     </Layout>
   ) : (
     <Layout>
