@@ -1,17 +1,13 @@
 import {deserialise, query} from 'kitsu-core';
 import config from 'config';
 
-const request = async (queryUrl, model, type = 'node') => {
-  const res = await fetch(
-    `${config.host}${config.api}/${type}/${model}${queryUrl && `?${queryUrl}`}`
-  );
-  return await res.json();
-};
-
 export const fetchGames = async () => {
-  const queryUrl = query({});
-  const data = await request(queryUrl, 'game');
-  return await deserialise(data).data;
+  const queryUrl = query({page: 0});
+  const res = await fetch(
+    `${config.host}${config.elasticsearch}/games?${queryUrl}`
+  );
+  const data = await res.json();
+  return deserialise(data).hits.hits;
 };
 
 export const fetchGame = async field_path => {
@@ -28,6 +24,8 @@ export const fetchGame = async field_path => {
     include: 'releases',
   });
 
-  const data = await request(queryUrl, 'game');
+  const res = await fetch(`${config.host}${config.api}/node/game?${queryUrl}`);
+  const data = await res.json();
+
   return await deserialise(data).data;
 };

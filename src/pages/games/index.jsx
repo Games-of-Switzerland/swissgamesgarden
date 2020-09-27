@@ -1,13 +1,12 @@
 import React from 'react';
 import {fetchGames} from 'lib/api';
 import Layout from 'components/Layout';
-import Link from 'next/link';
 import {GameTeaser} from 'components/Game';
 
-const Games = ({games}) =>
-  games ? (
+const Games = ({games}) => {
+  return games ? (
     <Layout>
-      {games.map(game => (
+      {games.map(({_source: game}) => (
         <GameTeaser game={game} key={game.id} />
       ))}
     </Layout>
@@ -16,6 +15,7 @@ const Games = ({games}) =>
       <p>No games to show</p>
     </Layout>
   );
+};
 
 export const getServerSideProps = async () => {
   const games = await fetchGames();

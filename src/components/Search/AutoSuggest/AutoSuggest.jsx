@@ -39,10 +39,6 @@ const AutoSuggest = props => {
   const router = useRouter();
   const inputEl = useRef(null);
 
-  useEffect(() => {
-    console.log('suggestions', suggestions);
-  }, [suggestions]);
-
   // Autosuggest will call this function every time you need to update suggestions.
   const onSuggestionsFetchRequested = async ({value}) => {
     if (value.length === 0) return initialSuggestions;
