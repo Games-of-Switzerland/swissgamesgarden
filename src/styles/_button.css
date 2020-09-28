@@ -1,5 +1,5 @@
 .btn {
-  @apply inline-flex py-2 px-5 items-center leading-none tracking-wider text-sm uppercase font-medium transition duration-300;
+  @apply inline-flex py-2 px-5 items-center leading-none tracking-wider text-sm uppercase font-medium transition duration-300 whitespace-no-wrap;
 }
 
 .btn-white {

@@ -1,6 +1,7 @@
 @import '_layout.css';
 @import '_autocomplete.css';
 @import '_button.css';
+@import '_helpers.css';
 
 @tailwind base;
 
@@ -33,5 +34,4 @@
 }
 
 @tailwind components;
-
 @tailwind utilities;
