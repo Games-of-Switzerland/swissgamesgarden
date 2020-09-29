@@ -1,13 +1,14 @@
 import {deserialise, query} from 'kitsu-core';
 import config from 'config';
 
-export const fetchGames = async () => {
-  const queryUrl = query({page: 0});
+export const getGames = async (key, {page = 0}) => {
+  const queryUrl = query({page});
+  console.log(queryUrl);
   const res = await fetch(
     `${config.host}${config.elasticsearch}/games?${queryUrl}`
   );
   const data = await res.json();
-  return deserialise(data).hits.hits;
+  return deserialise(data);
 };
 
 export const fetchGame = async field_path => {

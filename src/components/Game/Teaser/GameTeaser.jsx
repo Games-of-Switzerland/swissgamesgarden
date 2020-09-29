@@ -32,16 +32,11 @@ const GameTeaser = ({game}) => {
           </Link>
         </h3>
 
-        <div
-          className={classNames(
-            `-mr-1 relative z-10`,
-            genres.length > 0 && 'mb-1'
-          )}
-        >
+        <div className={classNames(`-mr-1`, genres.length > 0 && 'mb-1')}>
           {releases.map(({platform_slug}) => (
             <a
               href={platform_slug}
-              className="inline-block leading-none p-1 border border-gray-850 text-gray-500 font-light mr-1 mb-1 hover:border-gray-550 hover:text-white"
+              className="inline-block leading-none p-1 border border-gray-850 text-gray-500 font-light mr-1 mb-1 hover:border-gray-550 hover:text-white relative z-10"
               key={platform_slug}
             >
               {platform_slug}
@@ -49,11 +44,11 @@ const GameTeaser = ({game}) => {
           ))}
         </div>
 
-        <div className="relative z-10">
+        <div>
           {genres.map(({slug}) => (
             <a
               href={slug}
-              className="border-b border-dotted border-gray-700 text-gray-500 hover:text-white hover:border-gray-450 mr-2"
+              className="border-b border-dotted border-gray-700 text-gray-500 hover:text-white hover:border-gray-450 mr-2 relative z-10"
               key={slug}
             >
               {slug}

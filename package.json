@@ -12,7 +12,7 @@
     "storybook:start": "start-storybook -s ./public -p 6006"
   },
   "dependencies": {
-    "@popperjs/core": "^2.4.1",
+    "@popperjs/core": "^2.5.2",
     "@tailwindcss/custom-forms": "^0.2.1",
     "@testing-library/jest-dom": "^5.7.0",
     "babel-jest": "^26.0.1",
@@ -27,7 +27,9 @@
     "react-autosuggest": "^10.0.2",
     "react-dom": "16.13.1",
     "react-i18next": "^11.7.3",
-    "react-popper-2": "npm:react-popper@^2.2.3",
+    "react-popper": "^2.2.3",
+    "react-query": "^2.23.0",
+    "react-query-devtools": "^2.5.1",
     "react-use": "^14.2.0",
     "sass": "^1.26.5",
     "tailwindcss": "^1.7.3",
