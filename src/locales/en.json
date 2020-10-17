@@ -1,0 +1,39 @@
+{
+  "platform": {
+    "pc": "Windows",
+    "mac": "MacOS",
+    "ios": "iOS",
+    "android": "Android",
+    "playstation_vita": "PS Vita",
+    "nintendo_3ds": "3DS"
+  },
+  "genres": {
+    "simulation": "Simulation"
+  },
+  "contact_us": "Contact us",
+  "game": {
+    "completeness": "Data Quality",
+    "completeness_help": "Game information completion rate.",
+    "completeness_description": "You have information to complete the sheet of this game?",
+    "credits": "Full Credits",
+    "awards": "Awards",
+    "languages": "Language",
+    "languages_plural": "Languages",
+    "information": "Information",
+    "studios": "Studio",
+    "studios_plural": "Studios",
+    "locations": "Location",
+    "locations_plural": "Locations",
+    "members": "Member",
+    "members_plural": "Members",
+    "releases": "Release",
+    "releases_plural": "Releases",
+    "website": "Website",
+    "publishers": "Publisher",
+    "publishers_plural": "Publishers",
+    "sponsors": "Sponsor",
+    "sponsors_plural": "Sponsors",
+    "social_networks": "Social Network",
+    "social_networks_plural": "Social Networks"
+  }
+}

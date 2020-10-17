@@ -3,8 +3,10 @@ import {GameInfo} from './Info';
 import classNames from 'classnames';
 import {cleanURL} from 'utils/url';
 import config from 'config';
+import {useTranslation} from 'react-i18next';
 
 const GameDetail = ({game}) => {
+  const {t} = useTranslation();
   const {
     title,
     studios,
@@ -31,14 +33,17 @@ const GameDetail = ({game}) => {
     {
       title: 'game.studios',
       content: studios?.data.map(({title}) => title).join(', '),
+      count: studios?.data.length,
     },
     {
       title: 'game.members',
       content: members?.data.map(({title}) => title).join(', '),
+      count: members?.data.length,
     },
     {
       title: 'game.locations',
       content: locations?.data.map(({name}) => name).join(', '),
+      count: locations?.data.length,
     },
     {
       title: 'game.releases',
@@ -60,10 +65,12 @@ const GameDetail = ({game}) => {
           ))}
         </ul>
       ),
+      count: releases.length,
     },
     {
       title: 'game.publishers',
       content: publishers?.data.map(({name}) => name).join(', '),
+      count: publishers?.data.length,
     },
     {
       title: 'game.website',
@@ -79,6 +86,7 @@ const GameDetail = ({game}) => {
     {
       title: 'game.sponsors',
       content: sponsors?.data.map(({name}) => name).join(', '),
+      count: sponsors?.data.length,
     },
     {
       title: 'game.social_networks',
@@ -98,6 +106,7 @@ const GameDetail = ({game}) => {
           ))}
         </ul>
       ),
+      count: social_networks?.length,
     },
   ];
 
@@ -126,7 +135,7 @@ const GameDetail = ({game}) => {
                 className="inline-block leading-none p-1 border border-gray-850 text-white font-light mr-1 mb-1 hover:border-gray-550 hover:text-white relative z-10 text-lg"
                 key={id}
               >
-                {slug}
+                {t(`platform.${slug}`)}
               </a>
             ))}
           </div>
@@ -138,7 +147,7 @@ const GameDetail = ({game}) => {
                 className="border-b border-dotted border-gray-700 text-gray-500 hover:text-white hover:border-gray-450 mr-2 relative z-10"
                 key={id}
               >
-                {slug}
+                {t(`genres.${slug}`)}
               </a>
             ))}
           </div>
@@ -154,11 +163,11 @@ const GameDetail = ({game}) => {
       </div>
 
       <div style={{gridArea: 'secondary'}}>
-        <h2 className="section-title">game.information</h2>
+        <h2 className="section-title">{t('game.information')}</h2>
 
         <div className="grid grid-cols-2 mb-5">
           {gameInfos.map(({title, content}, i) => (
-            <GameInfo key={i} title={title}>
+            <GameInfo key={i} title={t(title)}>
               {content}
             </GameInfo>
           ))}
@@ -168,9 +177,11 @@ const GameDetail = ({game}) => {
 
         {languages && (
           <div className="mb-16">
-            <h2 className="section-title">game.languages</h2>
+            <h2 className="section-title">
+              {t('game.languages', {count: languages.data.length})}
+            </h2>
             <div className="text-lg">
-              {languages?.data.map(({name}) => name).join(', ')}
+              {languages.data.map(({name}) => name).join(', ')}
             </div>
           </div>
         )}
@@ -179,7 +190,7 @@ const GameDetail = ({game}) => {
         {/*TODO add award location*/}
         {awards && (
           <div className="mb-16">
-            <h2 className="section-title">game.awards</h2>
+            <h2 className="section-title">{t('game.awards')}</h2>
             <ul className="text-lg">
               {awards?.map((award, i) => (
                 <li key={i}>
@@ -193,7 +204,7 @@ const GameDetail = ({game}) => {
 
         {credits && (
           <div className="mb-16">
-            <h2 className="section-title">game.credits</h2>
+            <h2 className="section-title">{t('game.credits')}</h2>
             <div
               className="formatted"
               dangerouslySetInnerHTML={{__html: credits.processed}}
@@ -209,23 +220,23 @@ const GameDetail = ({game}) => {
                 '--percentage': `${completeness_percent}%`,
               }}
             >
-              game.completeness*
+              {t('game.completeness')}*
             </h2>
             <div className="text-2xl font-semibold">
               {completeness_percent}%
             </div>
-            <p className="text-lg max-w-1/2 mb-8">
-              game.compleness_description
+            <p className="text-lg w-1/2 mb-8">
+              {t('game.completeness_description')}
             </p>
             {/*TODO find a correct email*/}
             <a
               href="mailto:email@example.org"
               className="btn border text-md py-3 font-semibold border-gray-850 hover:border-gray-500"
             >
-              contact_us
+              {t('contact_us')}
             </a>
             <div className="mt-8 text-md text-gray-700">
-              * game.completeness_help
+              * {t('game.completeness_help')}
             </div>
           </div>
         )}
