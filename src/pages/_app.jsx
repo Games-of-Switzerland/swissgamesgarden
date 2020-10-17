@@ -2,7 +2,6 @@ import {QueryCache, ReactQueryCacheProvider} from 'react-query';
 import {Hydrate} from 'react-query/hydration';
 import 'styles/index.css';
 import {ReactQueryDevtools} from 'react-query-devtools';
-import Layout from 'components/Layout';
 
 const queryCache = new QueryCache();
 

@@ -10,10 +10,18 @@ const GameTeaser = ({game}) => {
     releases_years: [firstReleaseYear] = [],
     releases = [],
     genres = [],
+    img,
   } = game;
 
   return (
     <div className="bg-gray-900 hover:bg-gray-850 relative transition duration-200">
+      {img && (
+        <picture>
+          <source srcSet={img.sm} media="(max-width: 720px)" />
+          <source srcSet={img.lg} media="(min-width: 1200px)" />
+          <img src={img.md} alt={title} />
+        </picture>
+      )}
       <div className="p-4 min-h-20 flex flex-col">
         <div className="text-gray-500 font-light flex justify-between">
           <span>
@@ -25,14 +33,17 @@ const GameTeaser = ({game}) => {
         </div>
 
         <h3 className="mb-auto pb-3">
-          <Link href={path} as={path}>
-            <a className="font-medium text-white text-lg stretched-link">
-              {title}
-            </a>
+          <Link href={'/games/[path]'} as={path}>
+            <a className="text-white text-lg stretched-link">{title}</a>
           </Link>
         </h3>
 
-        <div className={classNames(`-mr-1`, genres.length > 0 && 'mb-1')}>
+        <div
+          className={classNames(
+            'flex flex-wrap -mr-1',
+            genres.length > 0 && 'mb-1'
+          )}
+        >
           {releases.map(({platform_slug}) => (
             <a
               href={platform_slug}

@@ -4,8 +4,21 @@ import {GameTeaser} from 'components/Game';
 import GamesFilters from 'components/GamesFilters';
 import {QueryCache, useInfiniteQuery} from 'react-query';
 import {dehydrate} from 'react-query/hydration';
+import {useReducer} from 'react';
+import {FILTERS} from 'config';
 
-const useGamesData = (params = {}) => {
+const filtersReducer = (state, action) => {
+  switch (action.type) {
+    case FILTERS.PLATFORMS:
+      return {...state, platforms: action.payload};
+    default:
+      return state;
+  }
+};
+
+const useGamesData = () => {
+  const [params, dispatch] = useReducer(filtersReducer, {});
+
   // Query all the games with infinite query with all passed params
   const {
     isLoading,
@@ -22,9 +35,12 @@ const useGamesData = (params = {}) => {
     getFetchMore: lastGroup => lastGroup.nextPage,
   });
 
+  const setFacet = (filterName, payload) =>
+    dispatch({type: filterName, payload});
+
   return {
     games: data?.reduce((games, {hits}) => [...games, ...hits.hits], []) || [],
-    filters: (data && data[0].aggregations.aggs_all) || {},
+    facets: (data && data[0].aggregations.aggs_all) || {},
     fetchMore: () => fetchMore(), // Must not send any params (like click event)
     isLoading,
     isFetching,
@@ -33,13 +49,15 @@ const useGamesData = (params = {}) => {
     error,
     isFetchingMore,
     canFetchMore,
+    params,
+    setFacet,
   };
 };
 
 const Games = () => {
   const {
     games,
-    filters,
+    facets,
     fetchMore,
     isLoading,
     isError,
@@ -54,7 +72,7 @@ const Games = () => {
       <>
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-4">
           {games.map(game => (
-            <GameTeaser game={game._source} key={game.id} />
+            <GameTeaser game={game._source} key={game._source.id} />
           ))}
         </div>
         <div>
@@ -77,7 +95,7 @@ const Games = () => {
 
   return (
     <Layout>
-      <GamesFilters filters={filters} />
+      {/*<GamesFilters filters={facets} setFilter={setFacet} />*/}
 
       {isLoading && <span className="text-white">Loading...</span>}
       {isError && <span className="text-white">Error: {error.message}</span>}

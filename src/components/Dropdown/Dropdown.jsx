@@ -28,7 +28,7 @@ const Dropdown = props => {
   });
 
   const classes = classNames(
-    'dropdown',
+    'relative',
     isComponentVisible && 'open',
     selectedItems && selectedItems.length > 0 && 'border-nice'
   );
@@ -49,7 +49,7 @@ const Dropdown = props => {
 
       {isComponentVisible && (
         <div
-          className="dropdown-content"
+          className="absolute z-30 bg-gray-900"
           aria-labelledby={className}
           ref={setPopperElement}
           style={styles.popper}

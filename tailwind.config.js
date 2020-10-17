@@ -3,6 +3,19 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
   purge: ['./src/components/**/*.tsx', './src/pages/**/*.tsx'],
   theme: {
+    fontSize: {
+      xs: '.75rem',
+      sm: '.875rem',
+      md: '.9375rem',
+      base: '1rem',
+      lg: '1.1875rem',
+      xl: '1.25rem',
+      '2xl': '1.5rem',
+      '3xl': '1.875rem',
+      '4xl': '2.375rem',
+      '5xl': '3rem',
+      '6xl': '4rem',
+    },
     fontFamily: {
       sans: [
         '"Natural Without"',
@@ -46,6 +59,31 @@ module.exports = {
           800: '#535353',
           850: '#3b3b3b',
           900: '#282828',
+          1000: '#121212',
+        },
+        pink: {
+          50: '#fef2f7',
+          100: '#fde6ef',
+          200: '#fbc0d6',
+          300: '#f999bd',
+          400: '#f44d8c',
+          500: '#ef015b',
+          600: '#d70152',
+          700: '#8f0137',
+          800: '#6c0029',
+          900: '#48001b',
+        },
+        orange: {
+          50: '#fffaf4',
+          100: '#fff5ea',
+          200: '#ffe7ca',
+          300: '#ffd9a9',
+          400: '#ffbc69',
+          500: '#ff9f29',
+          600: '#e68f25',
+          700: '#995f19',
+          800: '#734812',
+          900: '#4d300c',
         },
       },
       minHeight: {

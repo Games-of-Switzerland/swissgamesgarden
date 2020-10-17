@@ -2,6 +2,8 @@
 @import '_autocomplete.css';
 @import '_button.css';
 @import '_helpers.css';
+@import '_game.css';
+@import '_type.css';
 
 @tailwind base;
 
@@ -9,14 +11,14 @@
   font-family: 'Natural Without';
   src: url('/fonts/NaturalWithout-Bold.woff2') format('woff2');
   font-display: swap;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 @font-face {
   font-family: 'Natural Without';
   src: url('/fonts/NaturalWithout-SemiBold.woff2') format('woff2');
   font-display: swap;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 @font-face {
@@ -30,7 +32,11 @@
   font-family: 'Natural Without';
   src: url('/fonts/NaturalWithout-Light.woff2') format('woff2');
   font-display: swap;
-  font-weight: 200;
+  font-weight: 300;
+}
+
+body {
+  @apply bg-gray-1000;
 }
 
 @tailwind components;

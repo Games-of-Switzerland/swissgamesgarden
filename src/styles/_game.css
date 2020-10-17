@@ -1,0 +1,11 @@
+.game-container {
+  @screen md {
+    @apply grid w-full justify-center;
+
+    grid-template:
+      '.   .      main       .    .' auto
+      '. images  images    images .' auto
+      '.   .    secondary    .    .' auto
+      / auto minmax(min-content, 5rem) minmax(auto, 675px) minmax(auto, 5rem);
+  }
+}

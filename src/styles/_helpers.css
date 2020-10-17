@@ -20,3 +20,14 @@
     background-color: rgba(0, 0, 0, 0);
   }
 }
+
+.border-gradient {
+  @apply relative;
+
+  &:after {
+    content: '';
+    @apply block h-px absolute bg-gradient-to-r from-pink-500 to-orange-500;
+    bottom: -1px;
+    width: var(--percentage, 0);
+  }
+}
