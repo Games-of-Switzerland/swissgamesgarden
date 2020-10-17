@@ -26,7 +26,7 @@ export const getGame = async (key, field_path) => {
     },
     fields: {
       'node--game':
-        'title,body,genres,studios,genres,releases_normalized,release_platforms,website,locations,publishers,sponsors,social_networks,languages,awards,credits,completeness,members',
+        'title,body,genres,studios,genres,releases_normalized,release_platforms,website,locations,publishers,sponsors,social_networks,languages,awards,credits,completeness,members,images',
       studios: 'title',
       'node--studio': 'title',
       'taxonomy_term--genre': 'slug',

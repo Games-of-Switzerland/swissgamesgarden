@@ -24,7 +24,9 @@ const GameDetail = ({game}) => {
     credits,
     completeness,
     members,
+    images,
   } = game;
+  console.log(images);
 
   const releaseYear = releases[0].year;
   const completeness_percent =
@@ -112,7 +114,10 @@ const GameDetail = ({game}) => {
 
   return (
     <div className="game-container text-white mb-16">
-      <div style={{gridArea: 'main'}} className="pt-14 text-lg font-light">
+      <div
+        style={{gridArea: 'main'}}
+        className="pt-14 text-lg font-light mb-10"
+      >
         <div className="mb-12">
           <div className="text-gray-500 flex justify-between">
             {studios?.data.map(({id, title}) => (
@@ -158,9 +163,19 @@ const GameDetail = ({game}) => {
         {/* TODO add links to download game */}
       </div>
 
-      <div style={{gridArea: 'images'}} className="mb-12">
-        {/* TODO add images */}
-      </div>
+      {images && (
+        <div style={{gridArea: 'images'}} className="mb-16">
+          {images.data.map(({meta}) => {
+            const {large, medium} = meta.imageDerivatives.links;
+            return (
+              <picture>
+                <source srcSet={large.href} media="(min-width: 720px)" />
+                <img src={medium.href} alt={meta.alt} />
+              </picture>
+            );
+          })}
+        </div>
+      )}
 
       <div style={{gridArea: 'secondary'}}>
         <h2 className="section-title">{t('game.information')}</h2>
