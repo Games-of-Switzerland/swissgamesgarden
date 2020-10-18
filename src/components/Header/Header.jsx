@@ -1,12 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
 import {AutoSuggest} from 'components/Search';
+import {useTranslation} from 'react-i18next';
 
 const Header = () => {
   const linkProps = {
     className:
       'text-white px-3 py-2 uppercase leading-relaxed hover:text-opacity-75 transition transition:opacity duration-200',
   };
+  const {t} = useTranslation();
+
   return (
     <header className="mb-6">
       <h1
@@ -26,15 +29,13 @@ const Header = () => {
       {/* Menu */}
       <div className="flex" style={{gridArea: 'menu'}}>
         <Link href="/about">
-          <a {...linkProps}>About</a>
+          <a {...linkProps}>{t('pages.about')}</a>
         </Link>
         <Link href="/contact">
-          <a {...linkProps}>
-            <span>Contact</span>
-          </a>
+          <a {...linkProps}>{t('pages.contact')}</a>
         </Link>
         <Link href="/add">
-          <a className="btn btn-white ml-6">Add a game</a>
+          <a className="btn btn-white ml-6">{t('gos.add_game')}</a>
         </Link>
       </div>
     </header>

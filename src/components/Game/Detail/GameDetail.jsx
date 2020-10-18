@@ -165,7 +165,7 @@ const GameDetail = ({game}) => {
               href="mailto:email@example.org"
               className="btn border text-md py-3 font-semibold border-gray-850 hover:border-gray-500"
             >
-              {t('contact_us')}
+              {t('gos.contact_us')}
             </a>
             <div className="mt-8 text-md text-gray-700">
               * {t('game.completeness_help')}

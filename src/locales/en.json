@@ -23,7 +23,6 @@
     "canceled": "Canceled",
     "pre_release": "Pre-Release"
   },
-  "contact_us": "Contact us",
   "game": {
     "no_description": "This game has no description yet.",
     "not_found": "This game was not found.",
@@ -60,5 +59,14 @@
     "load_more_end": "Nothing more to load",
     "no_games": "No games to show.",
     "pager": "{{start}} to {{end}} of {{total}}"
+  },
+  "gos": {
+    "copyright": "Copyright © {{year}}",
+    "contact_us": "Contact us",
+    "add_game": "Add a game"
+  },
+  "pages": {
+    "about": "About",
+    "contact": "Contact"
   }
 }
