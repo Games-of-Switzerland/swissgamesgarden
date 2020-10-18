@@ -27,6 +27,7 @@
     "react": "16.13.1",
     "react-autosuggest": "^10.0.2",
     "react-dom": "16.13.1",
+    "react-error-boundary": "^3.0.2",
     "react-i18next": "^11.7.3",
     "react-popper": "^2.2.3",
     "react-query": "^2.23.1",

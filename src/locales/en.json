@@ -1,20 +1,35 @@
 {
   "platform": {
-    "pc": "Windows",
+    "windows": "Windows",
+    "xbox_one": "X Box One",
     "mac": "MacOS",
     "ios": "iOS",
     "android": "Android",
-    "playstation_vita": "PS Vita",
-    "nintendo_3ds": "3DS"
+    "ps_vita": "PS Vita",
+    "3ds": "3DS",
+    "ps4": "PlayStation 4",
+    "smartphone": "Smartphone",
+    "airconsole": "Air Console",
+    "smaky": "Smaky"
   },
   "genres": {
-    "simulation": "Simulation"
+    "simulation": "Simulation",
+    "platformer": "Platformer",
+    "adventure": "Adventure"
+  },
+  "state": {
+    "development": "In Development",
+    "released": "Released",
+    "canceled": "Canceled",
+    "pre_release": "Pre-Release"
   },
   "contact_us": "Contact us",
   "game": {
+    "no_description": "This game has no description yet.",
+    "not_found": "This game was not found.",
     "completeness": "Data Quality",
     "completeness_help": "Game information completion rate.",
-    "completeness_description": "You have information to complete the sheet of this game?",
+    "completeness_description": "Do you have information that might help completing this page?",
     "credits": "Full Credits",
     "awards": "Awards",
     "languages": "Language",
@@ -28,6 +43,8 @@
     "members_plural": "Members",
     "releases": "Release",
     "releases_plural": "Releases",
+    "release_TBA": "TBA",
+    "unreleased": "Unreleased",
     "website": "Website",
     "publishers": "Publisher",
     "publishers_plural": "Publishers",

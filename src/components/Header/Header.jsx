@@ -33,11 +33,6 @@ const Header = () => {
             <span>Contact</span>
           </a>
         </Link>
-        <Link href="/games">
-          <a {...linkProps}>
-            <span>Games</span>
-          </a>
-        </Link>
         <Link href="/add">
           <a className="btn btn-white ml-6">Add a game</a>
         </Link>

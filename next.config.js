@@ -15,4 +15,13 @@ module.exports = {
     });
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: '/games',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
 };

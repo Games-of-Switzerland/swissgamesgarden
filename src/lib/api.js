@@ -43,8 +43,12 @@ export const getGame = async (key, field_path) => {
 
   console.log(`%cnode query: /node/game?${queryUrl}`, 'font-weight:bold;');
 
-  const res = await fetch(`${config.host}${config.api}/node/game?${queryUrl}`);
+  const res = await fetch(
+    `${config.host}${config.api}/node/game?${queryUrl}`
+  ).catch(err => {
+    console.log(err);
+  });
   const data = await res.json();
 
-  return await deserialise(data).data[0];
+  return (await deserialise(data).data[0]) || null;
 };

@@ -31,3 +31,11 @@
     width: var(--percentage, 0);
   }
 }
+
+.link-dotted {
+  @apply border-b border-dotted border-gray-700;
+
+  &:hover {
+    @apply border-white;
+  }
+}
