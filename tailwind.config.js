@@ -41,6 +41,9 @@ module.exports = {
       xl: '1400px',
     },
     extend: {
+      screens: {
+        xs: '480px',
+      },
       padding: {
         ...defaultTheme.padding,
         14: '3.6rem',

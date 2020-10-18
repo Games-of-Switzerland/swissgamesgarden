@@ -4,12 +4,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-header {
+.header {
   @apply grid gap-6;
   grid-template:
-    'title search' auto
-    'menu menu' auto
-    / auto 1fr auto;
+    'title' auto
+    'search' auto
+    'menu' auto
+    / auto;
+
+  @screen xs {
+    grid-template:
+      'title menu' auto
+      'search search' auto
+      / auto 1fr;
+  }
 
   @screen lg {
     grid-template: 'title search menu' auto / auto 1fr auto;
