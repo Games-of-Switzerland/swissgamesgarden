@@ -28,7 +28,7 @@ const Header = () => {
 
       {/* Menu */}
       <div
-        className="flex space-x-5 place-self-end overflow-x-auto max-w-full"
+        className="flex space-x-5 lg:space-x-8 place-self-end overflow-x-auto max-w-full"
         style={{gridArea: 'menu'}}
       >
         <Link href="/about">
