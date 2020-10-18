@@ -39,7 +39,6 @@ const useGamesData = () => {
   const setFacet = (filterName, payload) =>
     dispatch({type: filterName, payload});
 
-  console.log(data);
   return {
     games: data?.reduce((games, {hits}) => [...games, ...hits.hits], []) || [],
     total: data && data[0].hits.total,

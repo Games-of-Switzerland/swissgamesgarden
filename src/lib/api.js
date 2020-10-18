@@ -7,7 +7,7 @@ export const getGames = async (key, params = {}, page = 0) => {
 
   // Get games from server
   const res = await fetch(
-    `${config.host}${config.elasticsearch}/games?${queryUrl}`
+    `${process.env.NEXT_PUBLIC_ELASTICSEARCH}/games?${queryUrl}`
   );
   const data = await res.json();
 
@@ -44,7 +44,7 @@ export const getGame = async (key, field_path) => {
   console.log(`%cnode query: /node/game?${queryUrl}`, 'font-weight:bold;');
 
   const res = await fetch(
-    `${config.host}${config.api}/node/game?${queryUrl}`
+    `${process.env.NEXT_PUBLIC_JSONAPI}/node/game?${queryUrl}`
   ).catch(err => {
     console.log(err);
   });
