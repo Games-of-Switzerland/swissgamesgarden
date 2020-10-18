@@ -52,5 +52,13 @@
     "sponsors_plural": "Sponsors",
     "social_networks": "Social Network",
     "social_networks_plural": "Social Networks"
+  },
+  "games": {
+    "loading": "Loading...",
+    "load_more": "Load more",
+    "loading_more": "Loading more...",
+    "load_more_end": "Nothing more to load",
+    "no_games": "No games to show.",
+    "pager": "{{start}} to {{end}} of {{total}}"
   }
 }

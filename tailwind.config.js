@@ -89,6 +89,9 @@ module.exports = {
       minHeight: {
         20: '10.5rem',
       },
+      gridTemplateColumns: {
+        games: 'repeat(auto-fit, 330px)',
+      },
     },
   },
   variants: {},
