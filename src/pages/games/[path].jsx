@@ -1,33 +1,17 @@
 import React from 'react';
-import {getGame} from 'lib/api';
-import Layout from 'components/Layout';
 import {GameDetail} from 'components/Game';
-import {QueryCache, useQuery} from 'react-query';
-import {dehydrate} from 'react-query/hydration';
 import NotFound from 'components/NotFound';
+import {prefetchGame, useGame} from 'api/game';
 
 const Game = ({path}) => {
-  const {data, isLoading, isError, error} = useQuery(['game', path], getGame);
+  const {data, isLoading, isError, error} = useGame(path);
 
   if (isLoading) return <p>Loading</p>;
   if (isError) return <p>{error}</p>;
 
-  return <Layout>{data ? <GameDetail game={data} /> : <NotFound />}</Layout>;
+  return data ? <GameDetail game={data} /> : <NotFound />;
 };
 
-export const getServerSideProps = async ({query}) => {
-  const queryCache = new QueryCache();
-
-  await queryCache.prefetchQuery(['game', query.path], getGame);
-
-  return (
-    queryCache && {
-      props: {
-        path: query.path,
-        dehydratedState: dehydrate(queryCache),
-      },
-    }
-  );
-};
+export const getServerSideProps = prefetchGame;
 
 export default Game;

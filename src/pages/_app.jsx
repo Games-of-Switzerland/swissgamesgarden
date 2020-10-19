@@ -3,6 +3,7 @@ import {Hydrate} from 'react-query/hydration';
 import 'styles/index.css';
 import {ReactQueryDevtools} from 'react-query-devtools';
 import 'locales/i18n';
+import Layout from 'components/Layout';
 
 const queryCache = new QueryCache();
 
@@ -10,7 +11,9 @@ export default function App({Component, pageProps}) {
   return (
     <ReactQueryCacheProvider queryCache={queryCache}>
       <Hydrate state={pageProps.dehydratedState}>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
         <ReactQueryDevtools initialIsOpen />
       </Hydrate>
     </ReactQueryCacheProvider>

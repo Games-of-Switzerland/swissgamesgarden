@@ -1,23 +1,6 @@
 import {deserialise, query} from 'kitsu-core';
-import config from 'config';
-
-export const getGames = async (key, params = {}, page = 0) => {
-  const queryUrl = query({...params, page});
-  console.log(`%csearch query: ${queryUrl}`, 'font-weight:bold;');
-
-  // Get games from server
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_ELASTICSEARCH}/games?${queryUrl}`
-  );
-  const data = await res.json();
-
-  // Set next page index for next call
-  const hasNextPage = data.hits.total > data.hits.hits.length * (page + 1);
-  data.page = page;
-  data.nextPage = hasNextPage ? page + 1 : false;
-
-  return deserialise(data);
-};
+import {QueryCache, useQuery} from 'react-query';
+import {dehydrate} from 'react-query/hydration';
 
 export const getGame = async (key, field_path) => {
   const queryUrl = query({
@@ -51,4 +34,22 @@ export const getGame = async (key, field_path) => {
   const data = await res.json();
 
   return (await deserialise(data).data[0]) || null;
+};
+
+export const useGame = path => {
+  return useQuery(['game', path], getGame);
+};
+
+export const prefetchGame = async ({query}) => {
+  const queryCache = new QueryCache();
+  await queryCache.prefetchQuery(['game', query.path], getGame);
+
+  return (
+    queryCache && {
+      props: {
+        path: query.path,
+        dehydratedState: dehydrate(queryCache),
+      },
+    }
+  );
 };

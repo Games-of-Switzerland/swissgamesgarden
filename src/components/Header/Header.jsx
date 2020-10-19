@@ -2,13 +2,23 @@ import React from 'react';
 import Link from 'next/link';
 import {AutoSuggest} from 'components/Search';
 import {useTranslation} from 'react-i18next';
+import {useRouter} from 'next/router';
+import classNames from 'classnames';
 
 const Header = () => {
-  const linkProps = {
-    className:
-      'text-white py-2 uppercase leading-relaxed hover:text-opacity-75 transition transition:opacity duration-200',
-  };
   const {t} = useTranslation();
+  const {pathname} = useRouter();
+
+  const links = [
+    {
+      href: '/about',
+      label: 'pages.about',
+    },
+    {
+      href: '/contact',
+      label: 'pages.contact',
+    },
+  ];
 
   return (
     <header className="mb-6 header">
@@ -31,12 +41,18 @@ const Header = () => {
         className="flex space-x-5 lg:space-x-8 place-self-end overflow-x-auto max-w-full"
         style={{gridArea: 'menu'}}
       >
-        <Link href="/about">
-          <a {...linkProps}>{t('pages.about')}</a>
-        </Link>
-        <Link href="/contact">
-          <a {...linkProps}>{t('pages.contact')}</a>
-        </Link>
+        {links.map(({label, href}) => (
+          <Link href={href} key={label}>
+            <a
+              className={classNames(
+                'border-b border-transparent text-white py-2 uppercase leading-relaxed hover:text-opacity-75 transition transition:opacity duration-200',
+                {'text-gradient': pathname === href}
+              )}
+            >
+              {t(label)}
+            </a>
+          </Link>
+        ))}
         <Link href="/add">
           <a className="btn btn-white">{t('gos.add_game')}</a>
         </Link>

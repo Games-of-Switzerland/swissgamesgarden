@@ -39,3 +39,9 @@
     @apply border-white;
   }
 }
+
+.text-gradient {
+  @apply bg-gradient-to-r from-pink-500 to-orange-500;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

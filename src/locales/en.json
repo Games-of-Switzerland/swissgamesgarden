@@ -68,5 +68,14 @@
   "pages": {
     "about": "About",
     "contact": "Contact"
+  },
+  "content_type": {
+    "game": "Game",
+    "people": "People",
+    "studio": "Studio"
+  },
+  "autocomplete": {
+    "label": "Search for a game, person or studio",
+    "placeholder": "game, studio, person…"
   }
 }

@@ -48,6 +48,9 @@ module.exports = {
         ...defaultTheme.padding,
         14: '3.6rem',
       },
+      width: {
+        14: '3.6rem',
+      },
       colors: {
         gray: {
           100: '#f5f5f5',
@@ -62,6 +65,7 @@ module.exports = {
           800: '#535353',
           850: '#3b3b3b',
           900: '#282828',
+          950: '#1d1d1d',
           1000: '#121212',
         },
         pink: {
@@ -94,6 +98,9 @@ module.exports = {
       },
       gridTemplateColumns: {
         games: 'repeat(auto-fit, 330px)',
+      },
+      inset: {
+        full: '100%',
       },
     },
   },

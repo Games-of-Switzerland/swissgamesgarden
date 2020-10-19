@@ -1,46 +1,9 @@
-.react-autosuggest__container {
-  @apply relative flex bg-gray-900;
-}
-
-.react-autosuggest__input {
-  @apply block flex-grow max-w-full border border-transparent text-white text-lg font-thin py-2 pr-8 pl-14;
-  background: svg-load('svg/search.svg', fill=#000, stroke=#fff) transparent
-    no-repeat left 1.33rem center;
-
-  &::placeholder {
-    @apply text-white text-opacity-75;
-  }
+.autosuggest-input {
+  background: svg-load('svg/search.svg', stroke=#a1a1a1) transparent no-repeat
+    left 1.33rem center;
 
   &:focus {
-    @apply outline-none bg-gray-800 border-gray-500;
+    background: svg-load('svg/search.svg', stroke=#fff) transparent no-repeat
+      left 1.33rem center;
   }
-}
-
-.react-autosuggest__suggestions-container {
-  @apply absolute hidden w-full;
-  top: 100%;
-}
-
-.react-autosuggest__suggestions-container--open {
-  @apply flex flex-col border border-gray-500 border-t-0 text-white font-thin bg-gray-900;
-}
-
-.react-autosuggest__suggestions-list {
-  @apply list-none m-0 p-0;
-}
-
-.react-autosuggest__suggestion {
-  @apply flex items-baseline px-3 py-5 text-white;
-
-  em {
-    @apply text-white not-italic;
-  }
-}
-
-.react-autosuggest__suggestion--highlighted {
-  @apply bg-gray-700;
-}
-
-.suggestion-icon {
-  @apply w-10;
 }
