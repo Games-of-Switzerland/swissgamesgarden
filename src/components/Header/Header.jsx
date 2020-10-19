@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import {AutoSuggest} from 'components/Search';
 import {useTranslation} from 'react-i18next';
 import {useRouter} from 'next/router';
 import classNames from 'classnames';
+import AutoSuggest from 'components/Games/AutoSuggest';
 
 const Header = () => {
   const {t} = useTranslation();

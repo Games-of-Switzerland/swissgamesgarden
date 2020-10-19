@@ -5,7 +5,7 @@ import {useAutocomplete} from 'api/autocomplete';
 import classNames from 'classnames';
 import {useTranslation} from 'react-i18next';
 
-const AutoSuggest = () => {
+const AutoSuggest = props => {
   const {t} = useTranslation();
   const [inputValue, setInputValue] = useState('');
   const items = useAutocomplete(inputValue);
@@ -32,7 +32,7 @@ const AutoSuggest = () => {
   });
 
   return (
-    <>
+    <div {...props}>
       <label {...getLabelProps({className: 'sr-only'})}>
         {t('autocomplete.label')}
       </label>
@@ -75,7 +75,7 @@ const AutoSuggest = () => {
             })}
         </ul>
       </div>
-    </>
+    </div>
   );
 };
 

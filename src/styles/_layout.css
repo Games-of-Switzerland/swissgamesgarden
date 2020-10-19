@@ -19,7 +19,7 @@ body {
       / auto 1fr;
   }
 
-  @screen lg {
+  @screen md {
     grid-template: 'title search menu' auto / auto 1fr auto;
   }
 }
