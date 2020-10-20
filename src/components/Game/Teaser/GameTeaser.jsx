@@ -10,17 +10,48 @@ const GameTeaser = ({game}) => {
     releases_years: [firstReleaseYear] = [],
     releases = [],
     genres = [],
-    img,
+    medias,
   } = game;
+
+  const teaserPicture = medias.length > 0 && medias[0];
+
+  const Source = ({links, srcSet = []}) => {
+    const srcSetString = srcSet
+      .map((src, i) => `${links[src].href} ${i + 1}x`)
+      .join(', ');
+
+    const webpSrcSetString = srcSetString.replace(/\.png\?/gi, '.webp?');
+    console.log(webpSrcSetString);
+
+    return (
+      <>
+        <source srcSet={webpSrcSetString} type="image/webp" />
+        <source srcSet={srcSetString} type="image/png" />
+      </>
+    );
+  };
+
+  const TeaserImage = ({image, alt, sources = []}) => {
+    const imageType = image.href.match(/\.(\w+)\??^/i);
+    console.log(imageType);
+    return (
+      <picture>
+        {sources.map(srcSet => (
+          <Source links={image.links} srcSet={srcSet} />
+        ))}
+        <img src={image.href} alt={alt} />
+      </picture>
+    );
+  };
 
   return (
     <div className="bg-gray-900 hover:bg-gray-850 relative transition duration-200">
-      {img && (
-        <picture>
-          <source srcSet={img.sm} media="(max-width: 720px)" />
-          <source srcSet={img.lg} media="(min-width: 1200px)" />
-          <img src={img.md} alt={title} />
-        </picture>
+      {teaserPicture && (
+        <TeaserImage
+          image={teaserPicture}
+          alt={title}
+          sources={[['3x2_330x220', '3x2_660x440']]}
+        />
       )}
       <div className="p-4 min-h-20 flex flex-col">
         <div className="text-gray-500 font-light flex justify-between">

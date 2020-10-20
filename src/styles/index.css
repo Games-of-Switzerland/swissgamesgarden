@@ -1,11 +1,15 @@
-@import '_layout.css';
-@import '_autocomplete.css';
-@import '_button.css';
-@import '_helpers.css';
-@import '_game.css';
-@import '_type.css';
-
 @tailwind base;
+
+/* Start purging... */
+@tailwind components;
+/* Stop purging. */
+
+/*@import '_layout.css';*/
+/*@import '_autocomplete.css';*/
+/*@import '_button.css';*/
+/*@import '_helpers.css';*/
+/*@import '_game.css';*/
+/*@import '_type.css';*/
 
 @font-face {
   font-family: 'Natural Without';
@@ -39,5 +43,6 @@ body {
   @apply bg-gray-1000;
 }
 
-@tailwind components;
+/* Start purging... */
 @tailwind utilities;
+/* Stop purging. */

@@ -8,55 +8,46 @@
     "start": "next start",
     "type-check": "tsc",
     "test": "jest --watch",
-    "test:ci": "jest --ci",
-    "storybook:start": "start-storybook -s ./public -p 6006"
+    "test:ci": "jest --ci"
   },
   "dependencies": {
     "@popperjs/core": "^2.5.2",
     "@tailwindcss/custom-forms": "^0.2.1",
-    "babel-jest": "^26.0.1",
     "classnames": "^2.2.6",
     "downshift": "^6.0.6",
     "i18next": "^19.8.2",
     "kitsu": "^9.0.6",
     "kitsu-core": "^9.0.6",
     "next": "^9.4.0",
-    "postcss-cli": "^7.1.2",
-    "postcss-preset-env": "^6.7.0",
     "prop-types": "^15.7.2",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-i18next": "^11.7.3",
     "react-popper": "^2.2.3",
     "react-query": "^2.23.1",
     "react-query-devtools": "^2.5.1",
-    "react-use": "^14.2.0",
-    "sass": "^1.26.5",
-    "tailwindcss": "^1.7.3"
+    "react-use": "^15.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
-    "@storybook/addon-a11y": "^6.0.16",
-    "@storybook/addon-actions": "^6.0.16",
-    "@storybook/addon-backgrounds": "^6.0.16",
-    "@storybook/addon-docs": "^6.0.16",
-    "@storybook/addon-knobs": "^6.0.16",
-    "@storybook/addon-links": "^6.0.16",
-    "@storybook/react": "^6.0.22",
     "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^10.0.4",
-    "@types/jest": "^25.2.2",
-    "@types/node": "^13.13.5",
+    "@testing-library/react": "^11.1.0",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^14.14.0",
     "@types/react": "^16.9.35",
-    "@types/react-autosuggest": "^9.3.14",
     "@types/react-dom": "^16.9.8",
+    "babel-jest": "^26.0.1",
     "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "jest": "^26.0.1",
     "jest-fetch-mock": "^3.0.3",
+    "postcss-cli": "^7.1.2",
+    "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-inline-svg": "^4.1.0",
     "postcss-nested": "^4.2.3",
-    "prettier": "^2.0.5"
+    "postcss-preset-env": "^6.7.0",
+    "prettier": "^2.0.5",
+    "tailwindcss": "^1.9.5"
   },
   "browserslist": [
     "> 1%",
@@ -115,53 +106,5 @@
         ]
       }
     }
-  },
-  "postcss": {
-    "plugins": [
-      "postcss-flexbugs-fixes",
-      "tailwindcss",
-      "postcss-inline-svg",
-      "postcss-nested",
-      [
-        "postcss-preset-env",
-        {
-          "autoprefixer": {
-            "flexbox": "no-2009"
-          },
-          "stage": 3,
-          "features": {
-            "custom-properties": false
-          }
-        }
-      ]
-    ]
-  },
-  "storybook": {
-    "compilerOptions": {
-      "target": "es5",
-      "lib": [
-        "dom",
-        "dom.iterable",
-        "esnext"
-      ],
-      "allowJs": true,
-      "skipLibCheck": true,
-      "strict": false,
-      "forceConsistentCasingInFileNames": true,
-      "noEmit": true,
-      "esModuleInterop": true,
-      "module": "esnext",
-      "moduleResolution": "node",
-      "resolveJsonModule": true,
-      "isolatedModules": true,
-      "jsx": "react"
-    },
-    "exclude": [
-      "node_modules"
-    ],
-    "include": [
-      "../**/*.stories.js",
-      "../**/*.stories.jsx"
-    ]
   }
 }
