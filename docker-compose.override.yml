@@ -1,0 +1,8 @@
+version: '3.6'
+
+services:
+  # Next app server
+  app:
+    hostname: app
+    ports:
+      - "8083:3000"
