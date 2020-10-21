@@ -1,0 +1,12 @@
+.picture {
+  @apply relative h-0 overflow-hidden;
+  padding-top: var(--ratio, calc(100% * 2 / 3));
+
+  picture {
+    @apply absolute inset-0 h-full w-full;
+  }
+}
+
+.picture-placeholder {
+  @apply absolute inset-0 w-full h-full;
+}
