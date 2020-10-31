@@ -1,8 +1,6 @@
 import {GameTeaser} from 'components/Game';
 import {useTranslation} from 'react-i18next';
 import {useGames} from 'api/games';
-import Layout from 'components/Layout';
-import {HeaderTitle} from 'components/Header';
 
 const PAGE_SIZE = 24;
 
@@ -59,8 +57,8 @@ const Games = props => {
     );
 
   return (
-    <Layout>
-      <div className="text-5xl my-20 font-semibold items-center flex flex-col leading-none">
+    <>
+      <div className="text-5xl my-20 font-semibold items-center flex flex-col leading-none text-center">
         <span className="text-white tracking-tight">Find and discover</span>
         <span className="text-gradient">video games from Switzerland</span>
       </div>
@@ -76,7 +74,7 @@ const Games = props => {
       {isLoading && <span className="text-white">{t('games.loading')}</span>}
       {isError && <span className="text-white">{error.message}</span>}
       {isSuccess && renderGames()}
-    </Layout>
+    </>
   );
 };
 

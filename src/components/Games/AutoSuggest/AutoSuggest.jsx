@@ -1,14 +1,24 @@
 import React, {useState} from 'react';
 import {useRouter} from 'next/router';
 import {useCombobox} from 'downshift';
-import {useAutocomplete} from 'api/autocomplete';
+import {getAutocomplete} from 'api/autocomplete';
 import classNames from 'classnames';
 import {useTranslation} from 'react-i18next';
+import {useQuery} from 'react-query';
 
 const AutoSuggest = props => {
   const {t} = useTranslation();
   const [inputValue, setInputValue] = useState('');
-  const items = useAutocomplete(inputValue);
+  const {data: items = []} = useQuery(
+    ['autocomplete', inputValue],
+    getAutocomplete,
+    {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      enabled: !!inputValue,
+      keepPreviousData: true,
+    }
+  );
   const router = useRouter();
 
   const {
@@ -25,8 +35,9 @@ const AutoSuggest = props => {
     onInputValueChange: ({inputValue}) => {
       setInputValue(inputValue);
     },
-    itemToString: item => item?.value,
+    itemToString: item => item?.value || '',
     onSelectedItemChange: ({selectedItem}) => {
+      console.log(selectedItem);
       router.push(selectedItem.path);
     },
   });
@@ -49,7 +60,7 @@ const AutoSuggest = props => {
           {...getMenuProps({
             className: classNames('absolute w-full top-full z-40', {
               hidden: !isOpen,
-              'flex flex-col border border-gray-850 border-t-0 text-white font-thin bg-gray-1000': isOpen,
+              'flex flex-col border border-gray-850 border-t-0 text-white bg-gray-1000': isOpen,
             }),
           })}
         >
@@ -67,7 +78,9 @@ const AutoSuggest = props => {
                     ),
                   })}
                 >
-                  <span className="w-14 text-center">{icon}</span>
+                  <span className="w-14 flex justify-center text-center self-center">
+                    {icon}
+                  </span>
                   <span>{text}</span>
                   <span className="ml-auto text-gray-500 text-md">{kind}</span>
                 </li>
