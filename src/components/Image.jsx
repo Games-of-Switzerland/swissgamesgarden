@@ -34,7 +34,7 @@ const getImageType = image => {
   const fromFileMIME = image.filemime?.replace('image/', '');
   const fromHref = image.href?.match(/\.(png|jpe?g|gif)/i);
 
-  return fromFileMIME || fromHref[1];
+  return fromFileMIME || (fromHref && fromHref[1]) || 'jpg';
 };
 
 const Image = ({
