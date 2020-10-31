@@ -1,11 +1,9 @@
 import {useTranslation} from 'react-i18next';
-import GameTeaser from 'components/Game/Teaser';
 import Link from 'next/link';
 
 const StudioDetail = ({studio, games}) => {
   const {t} = useTranslation();
   const {title, members, body} = studio;
-  console.log(games);
 
   return (
     <>
@@ -22,7 +20,7 @@ const StudioDetail = ({studio, games}) => {
           )}
         </div>
         <div style={{gridArea: 'secondary'}}>
-          {members && (
+          {members.length > 0 && (
             <div className="mb-16">
               <h2 className="section-title">{t('studio.members')}</h2>
               <p className="text-lg">
@@ -30,12 +28,12 @@ const StudioDetail = ({studio, games}) => {
               </p>
             </div>
           )}
-          {members && (
+          {games.length > 0 && (
             <div className="mb-16">
               <h2 className="section-title">{t('studio.games')}</h2>
               <div className="text-lg">
-                {games?.map(({title, field_path}) => (
-                  <div>
+                {games?.map(({title, field_path, id}) => (
+                  <div key={id}>
                     <Link href={field_path}>
                       <a className="text-white hover:text-opacity-75 transition transition:opacity duration-200">
                         {title}
