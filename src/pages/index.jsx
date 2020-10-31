@@ -61,7 +61,7 @@ const Games = props => {
   return (
     <Layout>
       <div className="text-5xl my-20 font-semibold items-center flex flex-col leading-none">
-        <span className="text-white">Find and discover</span>
+        <span className="text-white tracking-tight">Find and discover</span>
         <span className="text-gradient">video games from Switzerland</span>
       </div>
 

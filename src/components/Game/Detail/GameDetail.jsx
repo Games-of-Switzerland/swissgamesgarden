@@ -21,7 +21,10 @@ const GameDetail = ({game}) => {
     credits,
     completeness,
     images,
+    members,
+    ...rest
   } = game;
+  console.log(rest);
 
   const releaseYear = releases[0]?.year || t('game.release_TBA');
   const completeness_percent = Math.round(
@@ -65,17 +68,16 @@ const GameDetail = ({game}) => {
     <div className="game-container text-white">
       <div style={{gridArea: 'main'}} className="pt-14 text-lg font-light">
         <div className="mb-10">
-          {(studios || releaseYear) && (
-            <div className="text-gray-500 flex justify-between">
-              {/* STUDIOS */}
-              {studios?.data.map(({id, title}) => (
-                <span key={id}>{title}</span>
-              ))}
+          <div className="text-gray-500 flex justify-between">
+            {/* STUDIOS / PEOPLE */}
+            <span>
+              {studios?.data.map(s => s.title).join(', ') ||
+                members?.data.map(p => p.title).join(', ')}
+            </span>
 
-              {/* FIRST RELEASE YEAR */}
-              {releaseYear && <span className="ml-auto">{releaseYear}</span>}
-            </div>
-          )}
+            {/* FIRST RELEASE YEAR */}
+            {releaseYear && <span className="ml-auto">{releaseYear}</span>}
+          </div>
 
           {/* GAME TITLE */}
           <h1 className="text-4xl font-semibold mb-4">{title}</h1>
