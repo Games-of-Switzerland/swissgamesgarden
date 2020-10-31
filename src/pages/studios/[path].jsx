@@ -3,7 +3,7 @@ import NotFound from 'components/NotFound';
 import {StudioDetail} from 'components/Studio';
 import {useStudio, prefetchStudio} from 'api/studio';
 
-const Game = ({path}) => {
+const Studio = ({path}) => {
   const {data, isLoading, isError, error} = useStudio(path);
 
   if (isLoading) return <p>Loading</p>;
@@ -14,4 +14,4 @@ const Game = ({path}) => {
 
 export const getServerSideProps = prefetchStudio;
 
-export default Game;
+export default Studio;
