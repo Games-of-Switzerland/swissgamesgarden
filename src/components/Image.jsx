@@ -26,6 +26,7 @@ const Source = ({links, srcSet = [], type}) => {
 };
 
 const IMG_MIN_WIDTH = 330;
+const IMG_MAX_HEIGHT = 500;
 
 const getImageType = image => {
   if (!image) return null;
@@ -55,11 +56,15 @@ const Image = ({
     '--ratio': `${(ratio || imgRatio) * 100}%`,
   };
 
+  style = {
+    ...style,
+    minWidth: `min(100%, ${IMG_MIN_WIDTH}px)`,
+    maxWidth: `min(100%, ${width}px)`,
+    maxHeight: `min(${IMG_MAX_HEIGHT}px, ${height}px)`,
+  };
+
   return (
-    <div
-      className={className}
-      style={{minWidth: `min(100%, ${IMG_MIN_WIDTH}px)`}}
-    >
+    <div className={className} style={style}>
       {image ? (
         <div className="picture picture-ratio" style={wrapperStyle}>
           {!loaded && (
@@ -84,7 +89,7 @@ const Image = ({
               src={image.links[defaultSize].href || image.href}
               alt={alt}
               loading="lazy"
-              style={{...style, minWidth: `min(100%, ${IMG_MIN_WIDTH}px)`}}
+              style={style}
               onLoad={() => setLoaded(true)}
             />
           </picture>
