@@ -95,5 +95,17 @@
   "studio": {
     "members": "Members",
     "games": "Games"
+  },
+  "about": {
+    "subtitle": "Origin",
+    "description": "asdf askjdfk ajsfk jak ",
+    "team_title": "Team",
+    "team": {
+      "toni": {
+        "name": "Toni Fisler",
+        "job": "Developer",
+        "twitter": "https://twitter.com/tonifisler"
+      }
+    }
   }
 }
