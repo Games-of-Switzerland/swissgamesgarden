@@ -1,6 +1,5 @@
 .picture {
-  @apply relative h-0 overflow-hidden;
-  padding-top: var(--ratio, calc(100% * 2 / 3));
+  @apply relative overflow-hidden;
 
   picture {
     @apply absolute inset-0 h-full w-full;
@@ -8,5 +7,14 @@
 }
 
 .picture-placeholder {
-  @apply absolute inset-0 w-full h-full;
+  @apply w-full h-full;
+}
+
+.picture-ratio {
+  @apply h-0;
+  padding-top: var(--ratio, 0);
+
+  .picture-placeholder {
+    @apply absolute inset-0;
+  }
 }

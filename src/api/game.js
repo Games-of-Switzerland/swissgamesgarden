@@ -21,7 +21,7 @@ export const getGame = async (key, field_path) => {
       'taxonomy_term--member': 'name',
     },
     include:
-      'studios,release_platforms,genres,locations,publishers,sponsors,languages,members',
+      'studios,release_platforms,genres,locations,publishers,sponsors,languages,members,images',
   });
 
   console.log(`%cnode query: /node/game?${queryUrl}`, 'font-weight:bold;');

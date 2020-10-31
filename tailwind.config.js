@@ -41,15 +41,13 @@ module.exports = {
       xl: '1400px',
     },
     extend: {
+      spacing: {
+        4: '0.9375rem',
+        8: '1.875rem',
+        14: '3.6rem',
+      },
       screens: {
         xs: '480px',
-      },
-      padding: {
-        ...defaultTheme.padding,
-        14: '3.6rem',
-      },
-      width: {
-        14: '3.6rem',
       },
       colors: {
         gray: {

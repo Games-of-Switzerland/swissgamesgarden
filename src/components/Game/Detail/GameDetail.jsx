@@ -3,6 +3,9 @@ import config from 'config';
 import {useTranslation} from 'react-i18next';
 import {GameInfos} from 'components/Game';
 import Category from './Category';
+import Image from 'components/Image';
+import classNames from 'classnames';
+import {useMedia} from 'react-use';
 
 const GameDetail = ({game}) => {
   const {t} = useTranslation();
@@ -24,6 +27,39 @@ const GameDetail = ({game}) => {
   const completeness_percent = Math.round(
     ((completeness ?? 0) / config.MAX_COMPLETENESS) * 100
   );
+
+  const has2Images = images.data.length === 2;
+  const hasManyImages = images.data.length > 2;
+
+  const sources =
+    has2Images || hasManyImages
+      ? [['downscale_330x660']]
+      : [['downscale_675x500', 'downscale_1350x1000']];
+
+  const renderImages = (imgs = images.data, className) =>
+    imgs.map(image => (
+      <Image
+        className={className}
+        alt={title}
+        sources={sources}
+        image={image}
+        key={image.id}
+      />
+    ));
+
+  const ManyImages = () => {
+    const isMobile = useMedia('(max-width: 767px)');
+
+    if (isMobile) return renderImages(undefined, 'mb-4');
+
+    const output = images.data.reduce((acc, img, i) => {
+      const colIndex = i % 3;
+      acc[colIndex] = acc[colIndex] ? [...acc[colIndex], img] : [img];
+      return acc;
+    }, []);
+
+    return output.map(col => <div>{renderImages(col, 'mb-4')}</div>);
+  };
 
   return (
     <div className="game-container text-white">
@@ -91,20 +127,20 @@ const GameDetail = ({game}) => {
       </div>
 
       {/* IMAGES */}
-      {images && (
-        <div style={{gridArea: 'images'}} className="mb-8">
-          {images.data.map(({meta, id}) => {
-            if (!meta.imageDerivatives) return;
-            const {large, medium} = meta.imageDerivatives.links;
-            return (
-              <picture key={id}>
-                <source srcSet={large.href} media="(min-width: 720px)" />
-                <img src={medium.href} alt={meta.alt} />
-              </picture>
-            );
-          })}
-        </div>
-      )}
+      <div
+        style={{gridArea: hasManyImages ? 'images-lg' : 'images'}}
+        className="mb-8"
+      >
+        {has2Images ? (
+          <div className="grid gap-4 grid-cols-2">{renderImages()}</div>
+        ) : hasManyImages ? (
+          <div className="grid gap-4 grid-cols-2 md:grid-cols-3 grid-images">
+            <ManyImages />
+          </div>
+        ) : (
+          renderImages()
+        )}
+      </div>
 
       <div style={{gridArea: 'secondary'}}>
         {/* GAME INFO */}

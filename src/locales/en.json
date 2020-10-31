@@ -9,13 +9,22 @@
     "3ds": "3DS",
     "ps4": "PlayStation 4",
     "smartphone": "Smartphone",
-    "airconsole": "Air Console",
-    "smaky": "Smaky"
+    "airconsole": "Air Console",
+    "smaky": "Smaky",
+    "iphone": "iPhone",
+    "amiga": "Amiga",
+    "xbox360": "XBox 360",
+    "ps3": "Playstation 3",
+    "custom_hardware": "Custom Hardware"
   },
   "genres": {
     "simulation": "Simulation",
     "platformer": "Platformer",
-    "adventure": "Adventure"
+    "adventure": "Adventure",
+    "shooter": "Shooter",
+    "sport": "Sport",
+    "boardgame": "Boardgame",
+    "real-time_strategy": "Real Time Strategy"
   },
   "state": {
     "development": "In Development",
