@@ -8,6 +8,7 @@
 @import '_game.css';
 @import '_type.css';
 @import '_img.css';
+@import '_header.css';
 
 @font-face {
   font-family: 'Natural Without';
