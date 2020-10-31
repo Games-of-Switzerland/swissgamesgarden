@@ -1,8 +1,5 @@
-import Placeholder1 from 'svg/placeholders/placeholder1.svg';
-import Placeholder2 from 'svg/placeholders/placeholder2.svg';
-import Placeholder3 from 'svg/placeholders/placeholder3.svg';
-import Placeholder4 from 'svg/placeholders/placeholder4.svg';
 import {useState} from 'react';
+import Placeholder from './Placeholder';
 
 const Source = ({links, srcSet = [], type}) => {
   // Handle jpeg/jpg
@@ -16,9 +13,9 @@ const Source = ({links, srcSet = [], type}) => {
       ? srcSet.map((src, i) => `${links[src].href} ${i + 1}x`).join(', ')
       : links[srcSet[0]].href;
 
-  const regex = new RegExp(`\.${type}\?`, 'gi');
+  const regex = new RegExp(`\.${type}`, 'gi');
 
-  const webpSrcSetString = srcSetString.replace(regex, '.webp?');
+  const webpSrcSetString = srcSetString.replace(regex, '.webp');
 
   return (
     <>
@@ -28,30 +25,30 @@ const Source = ({links, srcSet = [], type}) => {
   );
 };
 
-const Placeholder = props => {
-  const placeholders = [Placeholder1, Placeholder2, Placeholder3, Placeholder4];
-  const rand = Math.floor(Math.random() * 4);
-  const Component = placeholders[rand];
-  return <Component {...props} />;
-};
-
 const IMG_MIN_WIDTH = 330;
 
 const getImageType = image => {
   if (!image) return null;
 
-  let fromFileMIME = image.filemime?.replace('image/', '');
-  const fromHref = image.href?.match(/\.(\w+)\??^/i);
+  const fromFileMIME = image.filemime?.replace('image/', '');
+  const fromHref = image.href?.match(/\.(png|jpe?g|gif)/i);
 
-  return fromFileMIME || fromHref;
+  return fromFileMIME || fromHref[1];
 };
 
-const Image = ({image, alt, style, sources = [], ratio, className}) => {
-  console.log(image);
+const Image = ({
+  image,
+  alt,
+  style,
+  sources = [],
+  ratio,
+  className,
+  defaultSize = 'downscale_675x500',
+}) => {
   const [loaded, setLoaded] = useState(false);
   const imageType = getImageType(image);
 
-  const {width, height} = image.meta;
+  const {width, height} = image.meta || image;
   const imgRatio = height / width;
 
   const wrapperStyle = {
@@ -84,7 +81,7 @@ const Image = ({image, alt, style, sources = [], ratio, className}) => {
               />
             ))}
             <img
-              src={image.links.downscale_675x500.href || image.href}
+              src={image.links[defaultSize].href || image.href}
               alt={alt}
               loading="lazy"
               style={{...style, minWidth: `min(100%, ${IMG_MIN_WIDTH}px)`}}

@@ -23,6 +23,7 @@ const GameTeaser = ({game}) => {
         alt={title}
         sources={[['3x2_330x220', '3x2_660x440']]}
         ratio={2 / 3}
+        defaultSize="3x2_330x220"
       />
       <div className="p-4 min-h-20 flex flex-col">
         <div className="text-gray-500 font-light flex justify-between">
