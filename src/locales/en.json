@@ -70,7 +70,9 @@
     "loading_more": "Loading more...",
     "load_more_end": "Nothing more to load",
     "no_games": "No games to show.",
-    "pager": "{{start}} to {{end}} of {{total}}"
+    "pager": "{{start}} to {{end}} of {{total}}",
+    "results": "{{count}} game",
+    "results_plural": "{{count}} games"
   },
   "gos": {
     "copyright": "Copyright © {{year}}",

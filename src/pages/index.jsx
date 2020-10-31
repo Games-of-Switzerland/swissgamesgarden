@@ -1,8 +1,7 @@
 import {GameTeaser} from 'components/Game';
 import {useTranslation} from 'react-i18next';
-import {prefetchGames, useGames} from 'api/games';
-import Layout from '../components/Layout';
-import {Fragment} from 'react';
+import {useGames} from 'api/games';
+import Layout from 'components/Layout';
 
 const PAGE_SIZE = 24;
 
@@ -19,7 +18,8 @@ const Games = props => {
     isFetchingMore,
     canFetchMore,
     total,
-    ...rest
+    facets,
+    setFacet,
   } = useGames();
 
   console.log('pages.length', pages.length);
@@ -59,6 +59,11 @@ const Games = props => {
 
   return (
     <Layout>
+      <div className="mb-5">
+        <span className="font-semibold text-white text-lg">
+          {t('games.results', {count: total})}
+        </span>
+      </div>
       {/*<GamesFilters filters={facets} setFilter={setFacet} />*/}
 
       {isLoading && <span className="text-white">{t('games.loading')}</span>}
