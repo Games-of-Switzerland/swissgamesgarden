@@ -22,6 +22,16 @@ module.exports = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/people',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/studios',
+        destination: '/',
+        permanent: true,
+      },
     ];
   },
 };

@@ -65,7 +65,7 @@ const GameDetail = ({game}) => {
   };
 
   return (
-    <div className="game-container text-white">
+    <div className="content-container text-white">
       <div style={{gridArea: 'main'}} className="pt-14 text-lg font-light">
         <div className="mb-10">
           <div className="text-gray-500 flex justify-between">

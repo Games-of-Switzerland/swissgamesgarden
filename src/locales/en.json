@@ -91,5 +91,9 @@
   "autocomplete": {
     "label": "Search for a game, person or studio",
     "placeholder": "game, studio, person…"
+  },
+  "studio": {
+    "members": "Members",
+    "games": "Games"
   }
 }

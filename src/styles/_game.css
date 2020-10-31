@@ -1,4 +1,4 @@
-.game-container {
+.content-container {
   @screen md {
     @apply grid w-full justify-center;
 
