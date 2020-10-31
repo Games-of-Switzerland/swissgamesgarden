@@ -4,9 +4,8 @@ import {useReducer} from 'react';
 import {FILTERS} from 'config';
 import {dehydrate} from 'react-query/hydration';
 
-export const getGames = async (key, params = {}, page = 0) => {
-  const queryUrl = query({...params, page});
-  console.log(`%csearch query: ${queryUrl}`, 'font-weight:bold;');
+export const getGames = async (key, params = {}, nextPage = 0) => {
+  const queryUrl = query({...params, page: nextPage});
 
   // Get games from server
   const res = await fetch(
@@ -15,9 +14,9 @@ export const getGames = async (key, params = {}, page = 0) => {
   const data = await res.json();
 
   // Set next page index for next call
-  const hasNextPage = data.hits.total > data.hits.hits.length * (page + 1);
-  data.page = page;
-  data.nextPage = hasNextPage ? page + 1 : false;
+  const hasNextPage = data.hits.total > data.hits.hits.length * (nextPage + 1);
+  data.page = nextPage;
+  data.nextPage = hasNextPage ? nextPage + 1 : null;
 
   return deserialise(data);
 };
@@ -46,10 +45,10 @@ export const useGames = () => {
   const {data, fetchMore} = gamesQuery;
 
   return {
-    games: data?.reduce((games, {hits}) => [...games, ...hits.hits], []) || [],
+    ...gamesQuery,
+    pages: data || [],
     total: data && data[0].hits.total,
     facets: (data && data[0].aggregations.aggs_all) || {},
-    ...gamesQuery,
     fetchMore: () => fetchMore(), // Must not send any params (like click event)
     params,
     setFacet,

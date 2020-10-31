@@ -1,5 +1,5 @@
 {
-  "platform": {
+  "platforms": {
     "windows": "Windows",
     "xbox_one": "X Box One",
     "mac": "MacOS",
@@ -24,7 +24,10 @@
     "shooter": "Shooter",
     "sport": "Sport",
     "boardgame": "Boardgame",
-    "real-time_strategy": "Real Time Strategy"
+    "real-time_strategy": "Real Time Strategy",
+    "action": "Action",
+    "arcade": "Arcade",
+    "strategy": "Strategy"
   },
   "state": {
     "development": "In Development",

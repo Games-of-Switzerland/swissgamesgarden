@@ -89,7 +89,7 @@ const GameDetail = ({game}) => {
                   className="inline-block leading-none p-1 border border-gray-850 text-white font-light mr-1 mb-1 hover:border-gray-550 hover:text-white relative z-10 text-lg"
                   key={id}
                 >
-                  {t(`platform.${slug}`)}
+                  {t(`platforms.${slug}`)}
                 </a>
               ))}
             </div>

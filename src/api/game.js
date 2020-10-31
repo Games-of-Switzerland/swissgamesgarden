@@ -24,7 +24,7 @@ export const getGame = async (key, field_path) => {
       'studios,release_platforms,genres,locations,publishers,sponsors,languages,members,images',
   });
 
-  console.log(`%cnode query: /node/game?${queryUrl}`, 'font-weight:bold;');
+  // console.log(`%cnode query: /node/game?${queryUrl}`, 'font-weight:bold;');
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_JSONAPI}/node/game?${queryUrl}`
