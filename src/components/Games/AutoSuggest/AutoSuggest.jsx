@@ -9,16 +9,13 @@ import {useQuery} from 'react-query';
 const AutoSuggest = props => {
   const {t} = useTranslation();
   const [inputValue, setInputValue] = useState('');
-  const {data: items = []} = useQuery(
-    ['autocomplete', inputValue],
-    getAutocomplete,
-    {
-      refetchOnWindowFocus: false,
-      refetchOnMount: false,
-      enabled: !!inputValue,
-      keepPreviousData: true,
-    }
-  );
+
+  const {data = []} = useQuery(['autocomplete', inputValue], getAutocomplete, {
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    enabled: !!inputValue,
+    keepPreviousData: true,
+  });
   const router = useRouter();
 
   const {
@@ -29,15 +26,15 @@ const AutoSuggest = props => {
     getComboboxProps,
     highlightedIndex,
     getItemProps,
+    selectedItem,
   } = useCombobox({
     id: 'search-field',
-    items,
+    items: data,
     onInputValueChange: ({inputValue}) => {
       setInputValue(inputValue);
     },
     itemToString: item => item?.value || '',
     onSelectedItemChange: ({selectedItem}) => {
-      console.log(selectedItem);
       router.push(selectedItem.path);
     },
   });
@@ -58,31 +55,35 @@ const AutoSuggest = props => {
         />
         <ul
           {...getMenuProps({
-            className: classNames('absolute w-full top-full z-40', {
+            className: classNames('absolute w-full top-full z-50', {
               hidden: !isOpen,
               'flex flex-col border border-gray-850 border-t-0 text-white bg-gray-1000': isOpen,
             }),
           })}
         >
           {isOpen &&
-            items.map((item, index) => {
-              const {text, icon, kind, path} = item;
+            data.map((item, index) => {
+              const {text, icon, kind} = item;
               return (
-                <li
-                  {...getItemProps({
-                    key: index,
-                    item,
-                    className: classNames(
-                      'flex items-baseline pr-5 py-2 leading-7 text-gray-500 cursor-pointer hover:bg-gray-950',
-                      {'bg-gray-950': highlightedIndex === index}
-                    ),
-                  })}
-                >
-                  <span className="w-14 flex justify-center text-center self-center">
-                    {icon}
-                  </span>
-                  <span>{text}</span>
-                  <span className="ml-auto text-gray-500 text-md">{kind}</span>
+                <li key={`${item}${index}`}>
+                  <a
+                    {...getItemProps({
+                      index,
+                      item,
+                      className: classNames(
+                        'flex items-baseline pr-5 py-2 leading-7 text-gray-500 cursor-pointer hover:bg-gray-950',
+                        {'bg-gray-950': highlightedIndex === index}
+                      ),
+                    })}
+                  >
+                    <span className="w-14 flex justify-center text-center self-center">
+                      {icon}
+                    </span>
+                    <span>{text}</span>
+                    <span className="ml-auto text-gray-500 text-md">
+                      {kind}
+                    </span>
+                  </a>
                 </li>
               );
             })}
