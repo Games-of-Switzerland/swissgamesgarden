@@ -107,6 +107,26 @@
         "name": "Toni Fisler",
         "job": "Developer",
         "twitter": "https://twitter.com/tonifisler"
+      },
+      "david": {
+        "name": "David Javet",
+        "job": "Initiator",
+        "twitter": "https://twitter.com/david_javet"
+      },
+      "kevin": {
+        "name": "Kevin Wenger",
+        "job": "Developer",
+        "twitter": "https://twitter.com/wengerk"
+      },
+      "camille": {
+        "name": "Camille Létang",
+        "job": "UX Design",
+        "twitter": "https://twitter.com/Hagaroyh"
+      },
+      "pierre": {
+        "name": "Kevin Wenger",
+        "job": "Developer",
+        "twitter": "https://twitter.com/wengerk"
       }
     },
     "title_1": "About",

@@ -1,42 +1,11 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import Placeholder from '../components/Placeholder';
+import Placeholder from 'components/Placeholder';
 
 const About = () => {
   const {t} = useTranslation();
 
-  const team = [
-    {
-      job: t('team.david.job'),
-      name: t('team.david.name'),
-      twitter: t('team.david.twitter'),
-      img: t('team.david.img'),
-    },
-    {
-      job: t('team.toni.job'),
-      name: t('team.toni.name'),
-      twitter: t('team.toni.twitter'),
-      img: t('team.toni.img'),
-    },
-    {
-      job: t('team.kevin.job'),
-      name: t('team.kevin.name'),
-      twitter: t('team.kevin.twitter'),
-      img: t('team.kevin.img'),
-    },
-    {
-      job: t('team.camille.job'),
-      name: t('team.camille.name'),
-      twitter: t('team.camille.twitter'),
-      img: t('team.camille.img'),
-    },
-    {
-      job: t('team.pierre.job'),
-      name: t('team.pierre.name'),
-      twitter: t('team.pierre.twitter'),
-      img: t('team.pierre.img'),
-    },
-  ];
+  const team = t('about.team', {returnObjects: true});
 
   return (
     <>
@@ -66,7 +35,7 @@ const About = () => {
               {t('about.team_title')}
             </h2>
             <div className="grid grid-cols-3 gap-x-4 gap-y-10">
-              {team.map(({job, name, twitter, img}) => {
+              {Object.values(team).map(({job, name, twitter}) => {
                 return (
                   <div>
                     <Placeholder className="mb-3" />
