@@ -122,5 +122,8 @@
   "add": {
     "title_1": "Are we missing",
     "title_2": "your game?"
+  },
+  "error": {
+    "message": "Oops! An error occurred. Try reloading!"
   }
 }

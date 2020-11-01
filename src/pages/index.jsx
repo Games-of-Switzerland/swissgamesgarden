@@ -1,11 +1,12 @@
 import {GameTeaser} from 'components/Game';
 import {useTranslation} from 'react-i18next';
 import {useGames} from 'api/games';
+import Loading from 'components/Loading';
+import Error from 'components/Error';
 
 const PAGE_SIZE = 24;
 
-const Games = props => {
-  console.log(props);
+const Games = () => {
   const {t} = useTranslation();
   const {
     pages,
@@ -20,8 +21,6 @@ const Games = props => {
     facets,
     setFacet,
   } = useGames();
-
-  console.log('pages.length', pages.length);
 
   const renderGames = () =>
     pages.length > 0 ? (
@@ -71,8 +70,8 @@ const Games = props => {
 
       {/*<GamesFilters filters={facets} setFilter={setFacet} />*/}
 
-      {isLoading && <span className="text-white">{t('games.loading')}</span>}
-      {isError && <span className="text-white">{error.message}</span>}
+      {isLoading && <Loading />}
+      {isError && <Error message={error?.message} />}
       {isSuccess && renderGames()}
     </>
   );
