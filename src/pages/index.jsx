@@ -3,15 +3,19 @@ import {useTranslation} from 'react-i18next';
 import {useGames} from 'api/games';
 import Loading from 'components/Loading';
 import Error from 'components/Error';
+import GamesFilters from 'components/Games/Filters';
+import {FilterContextProvider} from 'components/Games/context';
+import {LoadingSVG} from '../components/Loading/Loading';
 
 const PAGE_SIZE = 24;
 
-const Games = () => {
+const GamesListing = () => {
   const {t} = useTranslation();
   const {
     pages,
     fetchMore,
     isLoading,
+    isFetching,
     isError,
     isSuccess,
     error,
@@ -19,7 +23,6 @@ const Games = () => {
     canFetchMore,
     total,
     facets,
-    setFacet,
   } = useGames();
 
   const renderGames = () =>
@@ -62,13 +65,19 @@ const Games = () => {
         <span className="text-gradient">{t('games.title_2')}</span>
       </div>
 
-      <div className="mb-5">
+      <div className="mb-5 flex space-x-4 items-baseline">
         <span className="font-semibold text-white text-lg">
-          {t('games.results', {count: total})}
+          {t('games.results', {count: total})}{' '}
         </span>
+        {isFetching && (
+          <span className="text-gray-700 inline-flex items-baseline">
+            <LoadingSVG className="mr-2 h-4 w-4 text-white self-center" />
+            {t('games.fetching')}
+          </span>
+        )}
       </div>
 
-      {/*<GamesFilters filters={facets} setFilter={setFacet} />*/}
+      <GamesFilters filters={facets} />
 
       {isLoading && <Loading />}
       {isError && <Error message={error?.message} />}
@@ -77,6 +86,10 @@ const Games = () => {
   );
 };
 
-// export const getServerSideProps = prefetchGames;
+const Games = () => (
+  <FilterContextProvider>
+    <GamesListing />
+  </FilterContextProvider>
+);
 
 export default Games;

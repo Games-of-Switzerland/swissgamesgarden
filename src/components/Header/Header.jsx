@@ -54,7 +54,9 @@ const Header = () => {
           </Link>
         ))}
         <Link href="/add">
-          <a className="btn btn-white">{t('gos.add_game')}</a>
+          <a className="btn btn-white inline-flex items-center">
+            {t('gos.add_game')}
+          </a>
         </Link>
       </div>
     </header>

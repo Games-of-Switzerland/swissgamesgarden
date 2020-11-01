@@ -1,10 +1,8 @@
-import React, {useState} from 'react';
-import Dropdown from 'components/Dropdown';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {FILTERS} from 'config';
+import PlatformsFilter from './PlatformsFilter';
 
-const GamesFilters = ({filters, setFilter}) => {
-  // TODO improve this mess...
+const GamesFilters = ({filters}) => {
   const platforms =
     filters.all_filtered_platforms?.all_nested_platforms.platforms_name_keyword
       .buckets || [];
@@ -21,62 +19,9 @@ const GamesFilters = ({filters, setFilter}) => {
   //   filters.all_filtered_genres?.all_nested_genres.genres_name_keyword
   //     .buckets || [];
 
-  const [selectedPlatforms, setSelectedPlatforms] = useState(platforms);
-
-  const handleClick = key => {
-    setSelectedPlatforms(prev => [...prev, key]);
-    setFilter(FILTERS.PLATFORMS, [key]);
-  };
-
   return (
-    <div className="text-white">
-      <div>{selectedPlatforms.map(({key}) => key)}</div>
-
-      <Dropdown title="Platforms">
-        {platforms.map(({key, doc_count}) => (
-          <div
-            key={key}
-            onClick={() => handleClick(key)}
-            className={
-              selectedPlatforms.find(p => p.key === key) ? 'bg-red-500' : null
-            }
-          >
-            {key} ({doc_count})
-          </div>
-        ))}
-      </Dropdown>
-
-      {/*<Dropdown title="Genres">*/}
-      {/*  {genres.map(({key, doc_count}) => (*/}
-      {/*    <div key={key}>*/}
-      {/*      {key} ({doc_count})*/}
-      {/*    </div>*/}
-      {/*  ))}*/}
-      {/*</Dropdown>*/}
-
-      {/*<Dropdown title="Locations">*/}
-      {/*  {locations.map(({key, doc_count}) => (*/}
-      {/*    <div key={key}>*/}
-      {/*      {key} ({doc_count})*/}
-      {/*    </div>*/}
-      {/*  ))}*/}
-      {/*</Dropdown>*/}
-
-      {/*<Dropdown title="Stores">*/}
-      {/*  {stores.map(({key, doc_count}) => (*/}
-      {/*    <div key={key}>*/}
-      {/*      {key} ({doc_count})*/}
-      {/*    </div>*/}
-      {/*  ))}*/}
-      {/*</Dropdown>*/}
-
-      {/*<Dropdown title="Releases">*/}
-      {/*  {releases.map(({key_as_string, key, doc_count}) => (*/}
-      {/*    <div key={key}>*/}
-      {/*      {key_as_string} ({doc_count})*/}
-      {/*    </div>*/}
-      {/*  ))}*/}
-      {/*</Dropdown>*/}
+    <div className="text-white flex space-x-3">
+      <PlatformsFilter data={platforms} />
     </div>
   );
 };

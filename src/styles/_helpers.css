@@ -32,6 +32,15 @@
   }
 }
 
+.border-gradient-full {
+  --percentage: 100%;
+
+  &:after {
+    @apply bottom-0 z-10;
+    height: 2px;
+  }
+}
+
 .link-dotted {
   @apply border-b border-dotted border-gray-700;
 

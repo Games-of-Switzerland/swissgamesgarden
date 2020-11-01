@@ -1,8 +1,7 @@
 import {deserialise, query} from 'kitsu-core';
 import {QueryCache, useInfiniteQuery} from 'react-query';
-import {useReducer} from 'react';
-import {FILTERS} from 'config';
 import {dehydrate} from 'react-query/hydration';
+import {useRouter} from 'next/router';
 
 export const getGames = async (key, params = {}, nextPage = 0) => {
   const queryUrl = query({...params, page: nextPage});
@@ -21,26 +20,15 @@ export const getGames = async (key, params = {}, nextPage = 0) => {
   return deserialise(data);
 };
 
-const filtersReducer = (state, action) => {
-  switch (action.type) {
-    case FILTERS.PLATFORMS:
-      return {...state, platforms: action.payload};
-    default:
-      return state;
-  }
-};
-
 export const useGames = () => {
-  const [params, dispatch] = useReducer(filtersReducer, {});
+  const {query} = useRouter();
 
   // Query all the games with infinite query with all passed params
-  const gamesQuery = useInfiniteQuery(['games', params], getGames, {
+  const gamesQuery = useInfiniteQuery(['games', query], getGames, {
     refetchOnWindowFocus: false,
     getFetchMore: lastGroup => lastGroup.nextPage,
+    keepPreviousData: true,
   });
-
-  const setFacet = (filterName, payload) =>
-    dispatch({type: filterName, payload});
 
   const {data, fetchMore} = gamesQuery;
 
@@ -50,8 +38,6 @@ export const useGames = () => {
     total: data && data[0].hits.total,
     facets: (data && data[0].aggregations.aggs_all) || {},
     fetchMore: () => fetchMore(), // Must not send any params (like click event)
-    params,
-    setFacet,
   };
 };
 

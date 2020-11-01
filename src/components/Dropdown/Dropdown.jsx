@@ -2,16 +2,16 @@ import React, {useState} from 'react';
 import useComponentVisible from 'utils/useComponentVisible';
 import classNames from 'classnames';
 import {usePopper} from 'react-popper';
-import PropTypes from 'prop-types';
 
-const Dropdown = props => {
-  const {title, children, disabled, className, selectedItems} = props;
-
-  if (disabled) return null;
-
+const Dropdown = ({title, content, children, disabled, isSelected}) => {
   const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(
     false
   );
+
+  const toggle = () => {
+    const newState = !isComponentVisible;
+    setIsComponentVisible(newState);
+  };
 
   const [referenceElement, setReferenceElement] = useState(null);
   const [popperElement, setPopperElement] = useState(null);
@@ -27,20 +27,27 @@ const Dropdown = props => {
     ],
   });
 
-  const classes = classNames(
-    'relative',
-    isComponentVisible && 'open',
-    selectedItems && selectedItems.length > 0 && 'border-nice'
+  if (disabled) return null;
+
+  const wrapperClasses = classNames('relative mb-12 z-50', {
+    'border-gradient border-gradient-full': !isComponentVisible && isSelected,
+  });
+
+  const btnClasses = classNames(
+    'z-10 inline-flex items-center dropdown-toggle border py-2 px-4 text-white text-md focus:outline-none',
+    {
+      'open bg-gray-1000 border-gray-850 text-white': isComponentVisible,
+      'bg-gray-900 hover:bg-gray-850 border-gray-900 hover:border-gray-850': !isComponentVisible,
+    }
   );
 
   return (
-    <div className={classes} ref={ref}>
+    <div className={wrapperClasses} ref={ref}>
       <button
-        className="dropdown-toggle"
-        onClick={() => setIsComponentVisible(prevState => !prevState)}
+        className={btnClasses}
+        onClick={toggle}
         aria-haspopup="true"
         aria-expanded={isComponentVisible}
-        id={className}
         ref={setReferenceElement}
         {...attributes.popper}
       >
@@ -49,21 +56,16 @@ const Dropdown = props => {
 
       {isComponentVisible && (
         <div
-          className="absolute z-30 bg-gray-900"
-          aria-labelledby={className}
+          className="absolute z-0 bg-gray-1000 p-4 border border-gray-850 min-w-20"
           ref={setPopperElement}
           style={styles.popper}
         >
           {children}
+          {content && content(toggle)}
         </div>
       )}
     </div>
   );
-};
-
-Dropdown.propTypes = {
-  title: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
 };
 
 export default Dropdown;

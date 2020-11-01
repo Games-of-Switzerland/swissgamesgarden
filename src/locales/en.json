@@ -1,5 +1,6 @@
 {
   "platforms": {
+    "title": "Platforms",
     "windows": "Windows",
     "xbox_one": "X Box One",
     "mac": "MacOS",
@@ -65,6 +66,7 @@
     "social_networks_plural": "Social Networks"
   },
   "games": {
+    "fetching": "Fetching...",
     "title_1": "Find and discover",
     "title_2": "video games from Switzerland",
     "loading": "Loading...",
@@ -74,8 +76,11 @@
     "no_games": "No games to show.",
     "pager": "{{start}} to {{end}} of {{total}}",
     "results": "{{count}} game",
-    "results_plural": "{{count}} games"
+    "results_plural": "{{count}} games",
+    "filter_placeholder": "Filter...",
+    "filter_no_results": "Aucun résultat."
   },
+  "reset": "Reset",
   "gos": {
     "copyright": "Copyright © {{year}}",
     "contact_us": "Contact us",
