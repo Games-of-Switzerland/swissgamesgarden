@@ -1,0 +1,13 @@
+.content-container {
+  @screen md {
+    @apply grid w-full justify-center;
+
+    grid-template:
+      '. . main . .' auto
+      '. images-lg images-lg images-lg .' auto
+      '. . images . .' auto
+      '. . secondary . .' auto
+      / auto minmax(min-content, 173px) 675px minmax(min-content, 173px)
+      auto;
+  }
+}

@@ -6,47 +6,51 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "type-check": "tsc",
+    "test": "jest --watch",
+    "test:ci": "jest --ci"
   },
   "dependencies": {
-    "@appbaseio/reactivesearch": "^3.1.1",
-    "@popperjs/core": "^2.4.0",
-    "@zeit/next-sass": "^1.0.1",
+    "@popperjs/core": "^2.5.2",
+    "@svgr/webpack": "^5.4.0",
+    "@tailwindcss/custom-forms": "^0.2.1",
     "classnames": "^2.2.6",
-    "isomorphic-unfetch": "^3.0.0",
-    "konva": "^5.0.2",
-    "lodash": "^4.17.15",
-    "next": "^9.3.6",
-    "node-sass": "^4.13.0",
+    "downshift": "^6.0.6",
+    "i18next": "^19.8.2",
+    "kitsu": "^9.0.6",
+    "kitsu-core": "^9.0.6",
+    "konva": "^7.1.4",
+    "next": "^9.4.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
-    "react-autosuggest": "^10.0.1",
     "react-dom": "^16.13.1",
-    "react-konva": "^16.13.0-0",
+    "react-i18next": "^11.7.3",
+    "react-konva": "^17.0.0-0",
     "react-popper": "^2.2.3",
-    "react-simple-dropdown": "^3.2.3",
-    "react-use": "^14.2.0",
-    "searchkit": "^2.4.0",
-    "shortid": "^2.2.15",
-    "slugify": "^1.3.6",
-    "throttle-debounce": "^2.1.0"
+    "react-query": "^2.23.1",
+    "react-query-devtools": "^2.5.1",
+    "react-use": "^15.3.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.4",
-    "@storybook/addon-a11y": "^5.2.8",
-    "@storybook/addon-actions": "^5.2.8",
-    "@storybook/addon-links": "^5.2.8",
-    "@storybook/addon-storysource": "^5.2.8",
-    "@storybook/addons": "^5.2.8",
-    "@storybook/react": "^5.2.8",
-    "@storybook/theming": "^5.2.8",
-    "autoprefixer": "^9.7.3",
-    "babel-loader": "^8.0.6",
-    "css-loader": "^3.2.1",
+    "@babel/core": "^7.11.6",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^14.14.0",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "babel-jest": "^26.0.1",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "jest": "^26.0.1",
+    "jest-fetch-mock": "^3.0.3",
+    "postcss-cli": "^7.1.2",
+    "postcss-flexbugs-fixes": "^4.2.1",
+    "postcss-inline-svg": "^4.1.0",
+    "postcss-nested": "^4.2.3",
+    "postcss-preset-env": "^6.7.0",
     "prettier": "^2.0.5",
-    "sass-loader": "^8.0.0",
-    "style-loader": "^1.0.1"
+    "tailwindcss": "^1.9.5"
   },
   "browserslist": [
     "> 1%",
@@ -59,5 +63,51 @@
     "jsxBracketSameLine": false,
     "singleQuote": true,
     "arrowParens": "avoid"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts",
+      "!**/node_modules/**"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setupTests.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/.next/"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/",
+      "^.+\\.module\\.(css|sass|scss)$"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+    }
+  },
+  "babel": {
+    "presets": [
+      "next/babel"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          [
+            "module-resolver",
+            {
+              "root": [
+                "./"
+              ],
+              "alias": {
+                "components": "./src/components"
+              }
+            }
+          ]
+        ]
+      }
+    }
   }
 }

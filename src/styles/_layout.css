@@ -1,0 +1,25 @@
+body {
+  @apply bg-black;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.header {
+  @apply grid gap-6;
+  grid-template:
+    'title' auto
+    'search' auto
+    'menu' auto
+    / auto;
+
+  @screen xs {
+    grid-template:
+      'title menu' auto
+      'search search' auto
+      / auto 1fr;
+  }
+
+  @screen md {
+    grid-template: 'title search menu' auto / auto 1fr auto;
+  }
+}

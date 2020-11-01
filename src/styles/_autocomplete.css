@@ -1,0 +1,9 @@
+.autosuggest-input {
+  background: svg-load('svg/search.svg', stroke=#a1a1a1) transparent no-repeat
+    left 1.33rem center;
+
+  &:focus {
+    background: svg-load('svg/search.svg', stroke=#fff) transparent no-repeat
+      left 1.33rem center;
+  }
+}

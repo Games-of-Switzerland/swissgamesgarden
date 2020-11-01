@@ -1,0 +1,154 @@
+{
+  "platforms": {
+    "title": "Platforms",
+    "windows": "Windows",
+    "xbox_one": "X Box One",
+    "mac": "MacOS",
+    "ios": "iOS",
+    "android": "Android",
+    "ps_vita": "PS Vita",
+    "3ds": "3DS",
+    "ps4": "PlayStation 4",
+    "smartphone": "Smartphone",
+    "airconsole": "Air Console",
+    "smaky": "Smaky",
+    "iphone": "iPhone",
+    "amiga": "Amiga",
+    "xbox360": "XBox 360",
+    "ps3": "Playstation 3",
+    "custom_hardware": "Custom Hardware"
+  },
+  "genres": {
+    "simulation": "Simulation",
+    "platformer": "Platformer",
+    "adventure": "Adventure",
+    "shooter": "Shooter",
+    "sport": "Sport",
+    "boardgame": "Boardgame",
+    "real-time_strategy": "Real Time Strategy",
+    "action": "Action",
+    "arcade": "Arcade",
+    "strategy": "Strategy"
+  },
+  "state": {
+    "development": "In Development",
+    "released": "Released",
+    "canceled": "Canceled",
+    "pre_release": "Pre-Release"
+  },
+  "game": {
+    "no_description": "This game has no description yet.",
+    "not_found": "This game was not found.",
+    "completeness": "Data Quality",
+    "completeness_help": "Game information completion rate.",
+    "completeness_description": "Do you have information that might help completing this page?",
+    "credits": "Full Credits",
+    "awards": "Awards",
+    "languages": "Language",
+    "languages_plural": "Languages",
+    "information": "Information",
+    "studios": "Studio",
+    "studios_plural": "Studios",
+    "locations": "Location",
+    "locations_plural": "Locations",
+    "members": "Member",
+    "members_plural": "Members",
+    "releases": "Release",
+    "releases_plural": "Releases",
+    "release_TBA": "TBA",
+    "unreleased": "Unreleased",
+    "website": "Website",
+    "publishers": "Publisher",
+    "publishers_plural": "Publishers",
+    "sponsors": "Sponsor",
+    "sponsors_plural": "Sponsors",
+    "social_networks": "Social Network",
+    "social_networks_plural": "Social Networks"
+  },
+  "games": {
+    "fetching": "Fetching...",
+    "title_1": "Find and discover",
+    "title_2": "video games from Switzerland",
+    "loading": "Loading...",
+    "load_more": "Load more",
+    "loading_more": "Loading more...",
+    "load_more_end": "Nothing more to load",
+    "no_games": "No games to show.",
+    "pager": "{{start}} to {{end}} of {{total}}",
+    "results": "{{count}} game",
+    "results_plural": "{{count}} games",
+    "filter_placeholder": "Filter...",
+    "filter_no_results": "Aucun résultat."
+  },
+  "reset": "Reset",
+  "gos": {
+    "copyright": "Copyright © {{year}}",
+    "contact_us": "Contact us",
+    "add_game": "Add a game"
+  },
+  "pages": {
+    "about": "About",
+    "contact": "Contact"
+  },
+  "content_type": {
+    "game": "Game",
+    "people": "People",
+    "studio": "Studio"
+  },
+  "autocomplete": {
+    "label": "Search for a game, person or studio",
+    "placeholder": "game, studio, person…"
+  },
+  "studio": {
+    "members": "Members",
+    "games": "Games"
+  },
+  "about": {
+    "subtitle": "Origin",
+    "description": "asdf askjdfk ajsfk jak ",
+    "team_title": "Team",
+    "team": {
+      "toni": {
+        "name": "Toni Fisler",
+        "job": "Developer",
+        "twitter": "https://twitter.com/tonifisler"
+      },
+      "david": {
+        "name": "David Javet",
+        "job": "Initiator",
+        "twitter": "https://twitter.com/david_javet"
+      },
+      "kevin": {
+        "name": "Kevin Wenger",
+        "job": "Developer",
+        "twitter": "https://twitter.com/wengerk"
+      },
+      "camille": {
+        "name": "Camille Létang",
+        "job": "UX Design",
+        "twitter": "https://twitter.com/Hagaroyh"
+      },
+      "pierre": {
+        "name": "Kevin Wenger",
+        "job": "Developer",
+        "twitter": "https://twitter.com/wengerk"
+      }
+    },
+    "title_1": "About",
+    "title_2": "the project"
+  },
+  "contact": {
+    "title_1": "Do you wish to",
+    "title_2": "contact us?",
+    "email": "mail@toni.io",
+    "send_mail": "email us",
+    "description": "send nudes plz"
+  },
+  "add": {
+    "title_1": "Are we missing",
+    "title_2": "your game?"
+  },
+  "error": {
+    "message": "Oops! An error occurred. Try reloading!"
+  }
+}

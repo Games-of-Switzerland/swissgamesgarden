@@ -1,0 +1,56 @@
+/* Teaser that will change the color of some items inside it on hover */
+.hover\:bg-gray-850:hover {
+  @apply bg-gray-850;
+
+  .border-gray-850:not(:hover) {
+    @apply border-gray-800;
+  }
+}
+
+.stretched-link {
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: auto;
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+.border-gradient {
+  @apply relative;
+
+  &:after {
+    content: '';
+    @apply block h-px absolute bg-gradient-to-r from-pink-500 to-orange-500;
+    bottom: -1px;
+    width: var(--percentage, 0);
+  }
+}
+
+.border-gradient-full {
+  --percentage: 100%;
+
+  &:after {
+    @apply bottom-0 z-10;
+    height: 2px;
+  }
+}
+
+.link-dotted {
+  @apply border-b border-dotted border-gray-700;
+
+  &:hover {
+    @apply border-white;
+  }
+}
+
+.text-gradient {
+  @apply bg-gradient-to-r from-pink-500 to-orange-500;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

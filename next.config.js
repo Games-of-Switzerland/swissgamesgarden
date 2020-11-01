@@ -1,20 +1,37 @@
-const withSass = require('@zeit/next-sass');
+const path = require('path');
 
-module.exports = withSass({
-  webpack(config, { buildId, dev, isServer, defaultLoaders, webpack }) {
-
-    // Handle storybook source.
+module.exports = {
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'src', 'styles')],
+  },
+  webpack(config) {
+    config.resolve = {
+      ...config.resolve,
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    };
     config.module.rules.push({
-      test: /\.stories\.jsx?$/,
-      loaders: [require.resolve('@storybook/source-loader')],
-      enforce: 'pre',
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
     });
-
-    return config
+    return config;
   },
-  webpackDevMiddleware: config => {
-    // Perform customizations to webpack dev middleware config
-    // Important: return the modified config
-    return config
+  async redirects() {
+    return [
+      {
+        source: '/games',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/people',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/studios',
+        destination: '/',
+        permanent: true,
+      },
+    ];
   },
-});
+};

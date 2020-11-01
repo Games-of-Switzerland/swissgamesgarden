@@ -2,5 +2,5 @@ import Router from 'next/router';
 
 Router.router = {
   push: () => {},
-  prefetch: () => {},
+  prefetch: () => new Promise((resolve, reject) => {}),
 };
