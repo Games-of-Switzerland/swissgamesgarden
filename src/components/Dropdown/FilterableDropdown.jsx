@@ -1,32 +1,91 @@
 import {useTranslation} from 'react-i18next';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import Dropdown, {CheckboxFilterItem} from './index';
+import {useCombobox} from 'downshift';
 
-const FilterableDropdown = ({
-  items,
-  title,
-  selectedItems,
-  onClick,
-  onReset,
-}) => {
+const stateReducer = (state, {type, changes}) => {
+  switch (type) {
+    case useCombobox.stateChangeTypes.ItemClick:
+    case useCombobox.stateChangeTypes.InputKeyDownEnter:
+      return {
+        ...changes,
+        inputValue: state.inputValue,
+      };
+    default:
+      return changes;
+  }
+};
+
+const FilterableContent = ({items, selectedItems, onClick}) => {
   const {t} = useTranslation();
-  const [filteredItems, setFilteredItems] = useState(items);
+  const [inputItems, setInputItems] = useState(items);
 
-  const handleChange = e => {
-    const newValue = e.target.value;
-    const newFilteredItems = items.filter(({title}) =>
-      title
-        .toLowerCase()
-        .replace(/\s/, '')
-        .includes(newValue.toLowerCase().replace(/\s/, ''))
-    );
+  const {
+    getMenuProps,
+    getInputProps,
+    getComboboxProps,
+    highlightedIndex,
+    getItemProps,
+  } = useCombobox({
+    stateReducer,
+    items: inputItems,
+    itemToString: ({title}) => title,
+    onInputValueChange: ({inputValue}) => {
+      setInputItems(
+        items.filter(({title}) =>
+          title
+            .toLowerCase()
+            .replace(/\s/, '')
+            .includes(inputValue.toLowerCase().replace(/\s/, ''))
+        )
+      );
+    },
+    onSelectedItemChange: ({selectedItem, inputValue}) => {
+      onClick(selectedItem.key);
+    },
+  });
 
-    setFilteredItems(newFilteredItems);
-  };
+  return (
+    <>
+      <div {...getComboboxProps()}>
+        <input
+          {...getInputProps({
+            className:
+              'autosuggest-input w-full appearance-none bg-gray-900 block flex-grow max-w-full border border-transparent text-white text-lg font-thin py-2 pr-8 pl-14 placeholder-gray-500 focus:outline-none focus:bg-gray-900 focus:border-gray-850 mb-3',
+            type: 'search',
+            placeholder: t('games.filter_placeholder'),
+            autoFocus: true,
+          })}
+        />
+      </div>
+      <div
+        {...getMenuProps({
+          className: 'max-h-24 overflow-y-auto big-scrollbar mb-3',
+        })}
+      >
+        {inputItems.map((item, index) => {
+          return (
+            <CheckboxFilterItem
+              key={item.key}
+              {...getItemProps({
+                isHighlighted: highlightedIndex === index,
+                item,
+                index,
+                result: item,
+                isSelected: selectedItems.length > 0,
+                isActive: selectedItems.includes(item.key),
+              })}
+            />
+          );
+        })}
+        {inputItems.length === 0 && <div>{t('games.filter_no_results')}</div>}
+      </div>
+    </>
+  );
+};
 
-  useEffect(() => {
-    setFilteredItems(items);
-  }, [items]);
+const FilterableDropdown = ({title, selectedItems, onReset, ...rest}) => {
+  const {t} = useTranslation();
 
   const resetBtn = close => (
     <button
@@ -47,28 +106,7 @@ const FilterableDropdown = ({
       isSelected={selectedItems.length > 0}
       content={resetBtn}
     >
-      <input
-        className="autosuggest-input w-full appearance-none bg-gray-900 block flex-grow max-w-full border border-transparent text-white text-lg font-thin py-2 pr-8 pl-14 placeholder-gray-500 focus:outline-none focus:bg-gray-900 focus:border-gray-850 mb-3"
-        type="search"
-        placeholder={t('games.filter_placeholder')}
-        onChange={handleChange}
-        autoFocus={true}
-      />
-      <div className="max-h-24 overflow-y-auto big-scrollbar">
-        {filteredItems.length > 0 ? (
-          filteredItems.map(item => (
-            <CheckboxFilterItem
-              key={item.title}
-              item={item}
-              isSelected={selectedItems.length > 0}
-              isActive={selectedItems.includes(item.key)}
-              onClick={() => onClick(item.key)}
-            />
-          ))
-        ) : (
-          <div>{t('games.filter_no_results')}</div>
-        )}
-      </div>
+      <FilterableContent {...rest} selectedItems={selectedItems} />
     </Dropdown>
   );
 };
