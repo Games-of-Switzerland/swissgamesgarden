@@ -10,36 +10,38 @@
 @import '_img.css';
 @import '_header.css';
 
-@font-face {
-  font-family: 'Natural Without';
-  src: url('/fonts/NaturalWithout-Bold.woff2') format('woff2');
-  font-display: swap;
-  font-weight: 700;
-}
+@layer base {
+  @font-face {
+    font-family: 'Natural Without';
+    src: url('/fonts/NaturalWithout-Bold.woff2') format('woff2');
+    font-display: swap;
+    font-weight: 700;
+  }
 
-@font-face {
-  font-family: 'Natural Without';
-  src: url('/fonts/NaturalWithout-SemiBold.woff2') format('woff2');
-  font-display: swap;
-  font-weight: 600;
-}
+  @font-face {
+    font-family: 'Natural Without';
+    src: url('/fonts/NaturalWithout-SemiBold.woff2') format('woff2');
+    font-display: swap;
+    font-weight: 600;
+  }
 
-@font-face {
-  font-family: 'Natural Without';
-  src: url('/fonts/NaturalWithout-Regular.woff2') format('woff2');
-  font-display: swap;
-  font-weight: 400;
-}
+  @font-face {
+    font-family: 'Natural Without';
+    src: url('/fonts/NaturalWithout-Regular.woff2') format('woff2');
+    font-display: swap;
+    font-weight: 400;
+  }
 
-@font-face {
-  font-family: 'Natural Without';
-  src: url('/fonts/NaturalWithout-Light.woff2') format('woff2');
-  font-display: swap;
-  font-weight: 300;
-}
+  @font-face {
+    font-family: 'Natural Without';
+    src: url('/fonts/NaturalWithout-Light.woff2') format('woff2');
+    font-display: swap;
+    font-weight: 300;
+  }
 
-body {
-  @apply bg-gray-1000;
+  body {
+    @apply bg-gray-1000;
+  }
 }
 
 @tailwind utilities;
