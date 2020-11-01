@@ -20,7 +20,10 @@ const GameTeaser = ({game}) => {
   const teaserPicture = medias.length > 0 && medias[0];
 
   return (
-    <div className="bg-gray-900 hover:bg-gray-850 relative transition duration-200 flex flex-col">
+    <div
+      className="bg-gray-900 hover:bg-gray-850 relative transition duration-200 flex flex-col"
+      style={{maxWidth: 330}}
+    >
       <Image
         image={teaserPicture}
         alt={title}

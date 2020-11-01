@@ -65,6 +65,8 @@
     "social_networks_plural": "Social Networks"
   },
   "games": {
+    "title_1": "Find and discover",
+    "title_2": "video games from Switzerland",
     "loading": "Loading...",
     "load_more": "Load more",
     "loading_more": "Loading more...",
@@ -106,6 +108,19 @@
         "job": "Developer",
         "twitter": "https://twitter.com/tonifisler"
       }
-    }
+    },
+    "title_1": "About",
+    "title_2": "the project"
+  },
+  "contact": {
+    "title_1": "Do you wish to",
+    "title_2": "contact us?",
+    "email": "mail@toni.io",
+    "send_mail": "email us",
+    "description": "send nudes plz"
+  },
+  "add": {
+    "title_1": "Are we missing",
+    "title_2": "your game?"
   }
 }

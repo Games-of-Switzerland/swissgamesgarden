@@ -59,8 +59,8 @@ const Games = props => {
   return (
     <>
       <div className="text-5xl my-20 font-semibold items-center flex flex-col leading-none text-center">
-        <span className="text-white tracking-tight">Find and discover</span>
-        <span className="text-gradient">video games from Switzerland</span>
+        <span className="text-white tracking-tight">{t('games.title_1')}</span>
+        <span className="text-gradient">{t('games.title_2')}</span>
       </div>
 
       <div className="mb-5">

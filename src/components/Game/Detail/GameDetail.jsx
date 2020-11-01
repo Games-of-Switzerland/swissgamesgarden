@@ -24,7 +24,6 @@ const GameDetail = ({game}) => {
     members,
     ...rest
   } = game;
-  console.log(rest);
 
   const releaseYear = releases[0]?.year || t('game.release_TBA');
   const completeness_percent = Math.round(

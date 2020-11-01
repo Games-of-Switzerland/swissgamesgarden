@@ -131,7 +131,7 @@ module.exports = {
         20: '10.5rem',
       },
       gridTemplateColumns: {
-        games: 'repeat(auto-fill, 330px)',
+        games: 'repeat(auto-fill, minmax(250px, 1fr))',
       },
       inset: {
         full: '100%',

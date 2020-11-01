@@ -23,8 +23,6 @@ const GamesFilters = ({filters, setFilter}) => {
 
   const [selectedPlatforms, setSelectedPlatforms] = useState(platforms);
 
-  console.log(selectedPlatforms);
-
   const handleClick = key => {
     setSelectedPlatforms(prev => [...prev, key]);
     setFilter(FILTERS.PLATFORMS, [key]);
