@@ -2,13 +2,17 @@ import {useQuery} from 'react-query';
 import i18next from 'i18next';
 import useDebounce from 'hooks/useDebounce';
 
+import GamePadIcon from 'svg/gamepad.svg';
+import PersonIcon from 'svg/person.svg';
+import StudioIcon from 'svg/studio.svg';
+
 const Highlight = ({text, highlight}) => {
   const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
   return (
     <>
       {parts.map((part, i) =>
         part.toLowerCase() === highlight.toLowerCase() ? (
-          <span key={i} className="text-white">
+          <span key={i} className="text-white font-semibold">
             {part}
           </span>
         ) : (
@@ -24,7 +28,7 @@ const getSuggestionData = (hit, value) => {
   switch (hit._source.bundle) {
     case 'game':
       data = {
-        icon: '🎮',
+        icon: <GamePadIcon width="1.5rem" className="text-red-500" />,
         text: <Highlight text={hit._source.title} highlight={value} />,
         value: hit._source.title,
         kind: i18next.t('content_type.game'),
@@ -32,7 +36,7 @@ const getSuggestionData = (hit, value) => {
       break;
     case 'people':
       data = {
-        icon: '🤓',
+        icon: <PersonIcon width="1.5rem" className="text-green-500" />,
         text: <Highlight text={hit._source.fullname} highlight={value} />,
         value: hit._source.fullname,
         kind: i18next.t('content_type.people'),
@@ -40,7 +44,7 @@ const getSuggestionData = (hit, value) => {
       break;
     case 'studio':
       data = {
-        icon: '🏢',
+        icon: <StudioIcon width="1.5rem" className="text-purple-500" />,
         text: <Highlight text={hit._source.name} highlight={value} />,
         value: hit._source.name,
         kind: i18next.t('content_type.studio'),
@@ -55,7 +59,7 @@ const getSuggestionData = (hit, value) => {
   };
 };
 
-const getAutocomplete = async (key, value) => {
+export const getAutocomplete = async (key, value) => {
   if (!value) return [];
 
   const response = await fetch(
@@ -70,9 +74,6 @@ const getAutocomplete = async (key, value) => {
 
 export const useAutocomplete = value => {
   const debouncedAutocomplete = useDebounce(getAutocomplete, 300);
-  const {data} = useQuery(['autocomplete', value], debouncedAutocomplete, {
-    refetchOnWindowFocus: false,
-    enabled: !!value,
-  });
+
   return data || [];
 };

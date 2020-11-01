@@ -12,6 +12,7 @@ export const getGame = async (key, field_path) => {
         'title,body,genres,studios,genres,releases_normalized,release_platforms,website,locations,publishers,sponsors,social_networks,languages,awards,credits,completeness,members,images',
       studios: 'title',
       'node--studio': 'title',
+      'node--people': 'title',
       'taxonomy_term--genre': 'slug',
       'taxonomy_term--platform': 'slug',
       'taxonomy_term--location': 'name',
@@ -21,10 +22,10 @@ export const getGame = async (key, field_path) => {
       'taxonomy_term--member': 'name',
     },
     include:
-      'studios,release_platforms,genres,locations,publishers,sponsors,languages,members',
+      'studios,release_platforms,genres,locations,publishers,sponsors,languages,members,images',
   });
 
-  console.log(`%cnode query: /node/game?${queryUrl}`, 'font-weight:bold;');
+  // console.log(`%cnode query: /node/game?${queryUrl}`, 'font-weight:bold;');
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_JSONAPI}/node/game?${queryUrl}`

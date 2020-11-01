@@ -19,7 +19,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="flex flex-wrap text-gray-500 text-md">
+    <footer className="flex flex-wrap text-gray-500 text-md mt-auto">
       <div className="mb-4">
         {t('gos.copyright', {year: new Date().getFullYear()})}
       </div>

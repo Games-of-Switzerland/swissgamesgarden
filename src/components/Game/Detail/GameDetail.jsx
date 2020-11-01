@@ -3,6 +3,9 @@ import config from 'config';
 import {useTranslation} from 'react-i18next';
 import {GameInfos} from 'components/Game';
 import Category from './Category';
+import Image from 'components/Image';
+import classNames from 'classnames';
+import {useMedia} from 'react-use';
 
 const GameDetail = ({game}) => {
   const {t} = useTranslation();
@@ -18,6 +21,8 @@ const GameDetail = ({game}) => {
     credits,
     completeness,
     images,
+    members,
+    ...rest
   } = game;
 
   const releaseYear = releases[0]?.year || t('game.release_TBA');
@@ -25,21 +30,53 @@ const GameDetail = ({game}) => {
     ((completeness ?? 0) / config.MAX_COMPLETENESS) * 100
   );
 
+  const has2Images = images.data.length === 2;
+  const hasManyImages = images.data.length > 2;
+
+  const sources =
+    has2Images || hasManyImages
+      ? [['downscale_330x660']]
+      : [['downscale_675x500', 'downscale_1350x1000']];
+
+  const renderImages = (imgs = images.data, className) =>
+    imgs.map(image => (
+      <Image
+        className={className}
+        alt={title}
+        sources={sources}
+        image={image}
+        key={image.id}
+      />
+    ));
+
+  const ManyImages = () => {
+    const isMobile = useMedia('(max-width: 767px)');
+
+    if (isMobile) return renderImages(undefined, 'mb-4');
+
+    const output = images.data.reduce((acc, img, i) => {
+      const colIndex = i % 3;
+      acc[colIndex] = acc[colIndex] ? [...acc[colIndex], img] : [img];
+      return acc;
+    }, []);
+
+    return output.map(col => <div>{renderImages(col, 'mb-4')}</div>);
+  };
+
   return (
-    <div className="game-container text-white">
+    <div className="content-container text-white">
       <div style={{gridArea: 'main'}} className="pt-14 text-lg font-light">
         <div className="mb-10">
-          {(studios || releaseYear) && (
-            <div className="text-gray-500 flex justify-between">
-              {/* STUDIOS */}
-              {studios?.data.map(({id, title}) => (
-                <span key={id}>{title}</span>
-              ))}
+          <div className="text-gray-500 flex justify-between">
+            {/* STUDIOS / PEOPLE */}
+            <span>
+              {studios?.data.map(s => s.title).join(', ') ||
+                members?.data.map(p => p.title).join(', ')}
+            </span>
 
-              {/* FIRST RELEASE YEAR */}
-              {releaseYear && <span className="ml-auto">{releaseYear}</span>}
-            </div>
-          )}
+            {/* FIRST RELEASE YEAR */}
+            {releaseYear && <span className="ml-auto">{releaseYear}</span>}
+          </div>
 
           {/* GAME TITLE */}
           <h1 className="text-4xl font-semibold mb-4">{title}</h1>
@@ -53,7 +90,7 @@ const GameDetail = ({game}) => {
                   className="inline-block leading-none p-1 border border-gray-850 text-white font-light mr-1 mb-1 hover:border-gray-550 hover:text-white relative z-10 text-lg"
                   key={id}
                 >
-                  {t(`platform.${slug}`)}
+                  {t(`platforms.${slug}`)}
                 </a>
               ))}
             </div>
@@ -91,20 +128,20 @@ const GameDetail = ({game}) => {
       </div>
 
       {/* IMAGES */}
-      {images && (
-        <div style={{gridArea: 'images'}} className="mb-8">
-          {images.data.map(({meta, id}) => {
-            if (!meta.imageDerivatives) return;
-            const {large, medium} = meta.imageDerivatives.links;
-            return (
-              <picture key={id}>
-                <source srcSet={large.href} media="(min-width: 720px)" />
-                <img src={medium.href} alt={meta.alt} />
-              </picture>
-            );
-          })}
-        </div>
-      )}
+      <div
+        style={{gridArea: hasManyImages ? 'images-lg' : 'images'}}
+        className="mb-8"
+      >
+        {has2Images ? (
+          <div className="grid gap-4 grid-cols-2">{renderImages()}</div>
+        ) : hasManyImages ? (
+          <div className="grid gap-4 grid-cols-2 md:grid-cols-3 grid-images">
+            <ManyImages />
+          </div>
+        ) : (
+          renderImages()
+        )}
+      </div>
 
       <div style={{gridArea: 'secondary'}}>
         {/* GAME INFO */}

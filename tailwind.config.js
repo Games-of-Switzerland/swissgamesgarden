@@ -1,7 +1,12 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const flattenColorPalette = require('tailwindcss/lib/util/flattenColorPalette')
+  .default;
 
 module.exports = {
-  purge: ['./src/components/**/*.tsx', './src/pages/**/*.tsx'],
+  purge: [
+    './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/pages/**/*.{js,ts,jsx,tsx}',
+  ],
   theme: {
     fontSize: {
       xs: '.75rem',
@@ -40,16 +45,27 @@ module.exports = {
       lg: '1024px',
       xl: '1400px',
     },
+    customForms: theme => ({
+      default: {
+        checkbox: {
+          borderRadius: theme('borderRadius.none'),
+          borderColor: theme('colors.gray.850'),
+          backgroundColor: theme('colors.transparent'),
+          width: theme('spacing.5'),
+          height: theme('spacing.5'),
+          icon:
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="#E05340" d="M0 0h20v20H0z"/><path stroke="#FFF" fill="none"  d="M4 10l4 4 8-8"/></svg>',
+        },
+      },
+    }),
     extend: {
+      spacing: {
+        4: '0.9375rem',
+        8: '1.875rem',
+        14: '3.6rem',
+      },
       screens: {
         xs: '480px',
-      },
-      padding: {
-        ...defaultTheme.padding,
-        14: '3.6rem',
-      },
-      width: {
-        14: '3.6rem',
       },
       colors: {
         gray: {
@@ -92,20 +108,80 @@ module.exports = {
           800: '#734812',
           900: '#4d300c',
         },
+        purple: {
+          50: '#F9F6FD',
+          100: '#F3EDFC',
+          200: '#E0D2F7',
+          300: '#CEB7F3',
+          400: '#A980E9',
+          500: '#844AE0',
+          600: '#7743CA',
+          700: '#4F2C86',
+          800: '#3B2165',
+          900: '#281643',
+        },
+        green: {
+          50: '#F4FDF8',
+          100: '#E8FBF0',
+          200: '#C6F4DA',
+          300: '#A4EDC3',
+          400: '#5FE097',
+          500: '#1BD26A',
+          600: '#18BD5F',
+          700: '#107E40',
+          800: '#0C5F30',
+          900: '#083F20',
+        },
+        red: {
+          50: '#FEF7F5',
+          100: '#FDEEEA',
+          200: '#FBD5CB',
+          300: '#F9BBAC',
+          400: '#F4886E',
+          500: '#EF5530',
+          600: '#D74D2B',
+          700: '#8F331D',
+          800: '#6C2616',
+          900: '#481A0E',
+        },
+      },
+      minWidth: {
+        20: '20rem',
       },
       minHeight: {
         20: '10.5rem',
       },
+      maxHeight: {
+        24: '15rem',
+      },
       gridTemplateColumns: {
-        games: 'repeat(auto-fill, 330px)',
+        games: 'repeat(auto-fill, minmax(250px, 1fr))',
       },
       inset: {
         full: '100%',
       },
     },
   },
-  variants: {},
-  plugins: [require('@tailwindcss/custom-forms')],
+  variants: {
+    borderColor: ['responsive', 'hover', 'focus', 'group-hover'],
+  },
+  plugins: [
+    require('@tailwindcss/custom-forms'),
+    ({addUtilities, theme, variants}) => {
+      const colors = flattenColorPalette(theme('borderColor'));
+      delete colors['default'];
+
+      const colorMap = Object.keys(colors).map(color => ({
+        [`.border-t-${color}`]: {borderTopColor: colors[color]},
+        [`.border-r-${color}`]: {borderRightColor: colors[color]},
+        [`.border-b-${color}`]: {borderBottomColor: colors[color]},
+        [`.border-l-${color}`]: {borderLeftColor: colors[color]},
+      }));
+      const utilities = Object.assign({}, ...colorMap);
+
+      addUtilities(utilities, variants('borderColor'));
+    },
+  ],
   future: {
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,

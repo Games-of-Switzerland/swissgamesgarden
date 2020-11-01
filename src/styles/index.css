@@ -8,37 +8,105 @@
 @import '_game.css';
 @import '_type.css';
 @import '_img.css';
+@import '_header.css';
 
-@font-face {
-  font-family: 'Natural Without';
-  src: url('/fonts/NaturalWithout-Bold.woff2') format('woff2');
-  font-display: swap;
-  font-weight: 700;
+@layer base {
+  @font-face {
+    font-family: 'Natural Without';
+    src: url('/fonts/NaturalWithout-Bold.woff2') format('woff2');
+    font-display: swap;
+    font-weight: 700;
+  }
+
+  @font-face {
+    font-family: 'Natural Without';
+    src: url('/fonts/NaturalWithout-SemiBold.woff2') format('woff2');
+    font-display: swap;
+    font-weight: 600;
+  }
+
+  @font-face {
+    font-family: 'Natural Without';
+    src: url('/fonts/NaturalWithout-Regular.woff2') format('woff2');
+    font-display: swap;
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: 'Natural Without';
+    src: url('/fonts/NaturalWithout-Light.woff2') format('woff2');
+    font-display: swap;
+    font-weight: 300;
+  }
+
+  body {
+    @apply bg-gray-1000;
+  }
 }
 
-@font-face {
-  font-family: 'Natural Without';
-  src: url('/fonts/NaturalWithout-SemiBold.woff2') format('woff2');
-  font-display: swap;
-  font-weight: 600;
-}
+@layer utilities {
+  .dropdown-toggle {
+    @apply relative;
 
-@font-face {
-  font-family: 'Natural Without';
-  src: url('/fonts/NaturalWithout-Regular.woff2') format('woff2');
-  font-display: swap;
-  font-weight: 400;
-}
+    &.open {
+      @apply border-b-transparent;
+    }
 
-@font-face {
-  font-family: 'Natural Without';
-  src: url('/fonts/NaturalWithout-Light.woff2') format('woff2');
-  font-display: swap;
-  font-weight: 300;
-}
+    &:after {
+      content: '';
+      @apply inline-block ml-3;
+      border-top: 5px theme('colors.gray.700') solid;
+      border-left: 4px transparent solid;
+      border-right: 4px transparent solid;
+    }
 
-body {
-  @apply bg-gray-1000;
+    &.open:before {
+      content: '';
+      @apply block absolute bg-gray-1000 border-l border-r border-gray-850 w-full;
+      top: 100%;
+      left: -1px;
+      box-sizing: content-box;
+      height: 7px;
+    }
+
+    &[data-popper-placement='top-start'].open {
+      @apply border-b-gray-850;
+
+      &:after {
+        border-top: 0;
+        border-bottom: 5px theme('colors.gray.700') solid;
+      }
+
+      &:before {
+        top: auto;
+        bottom: 100%;
+      }
+    }
+  }
+
+  .big-scrollbar {
+    &::-webkit-scrollbar-track {
+      background: none;
+    }
+
+    &::-webkit-scrollbar {
+      @apply w-4;
+      background: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply bg-gray-850 border-l-8 border-gray-1000;
+    }
+  }
+
+  .border-gradient2 {
+    border-image: linear-gradient(
+        to right,
+        theme('colors.pink.500'),
+        theme('colors.orange.500')
+      )
+      1;
+  }
 }
 
 @tailwind utilities;

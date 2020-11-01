@@ -3,10 +3,10 @@ import Header from 'components/Header';
 import PropTypes from 'prop-types';
 import Footer from 'components/Footer';
 
-const Layout = props => (
-  <div className="max-w-screen-xl mx-auto p-4">
+const Layout = ({children}) => (
+  <div className="max-w-screen-xl mx-auto p-4 min-h-screen flex flex-col">
     <Header />
-    {props.children}
+    {children}
     <Footer />
   </div>
 );

@@ -1,50 +1,81 @@
-import Placeholder1 from 'svg/placeholders/placeholder1.svg';
-import Placeholder2 from 'svg/placeholders/placeholder2.svg';
-import Placeholder3 from 'svg/placeholders/placeholder3.svg';
-import Placeholder4 from 'svg/placeholders/placeholder4.svg';
+import {useState} from 'react';
+import Placeholder from './Placeholder';
 
 const Source = ({links, srcSet = [], type}) => {
-  const srcSetString = srcSet
-    .map((src, i) => `${links[src].href} ${i + 1}x`)
-    .join(', ');
+  // Handle jpeg/jpg
+  const typeOriginal = type;
+  if (type === 'jpeg') {
+    type = 'jpg';
+  }
 
-  const regex = new RegExp(`/\.${type}\?/gi`);
+  const srcSetString =
+    srcSet.length > 1
+      ? srcSet.map((src, i) => `${links[src].href} ${i + 1}x`).join(', ')
+      : links[srcSet[0]].href;
 
-  const webpSrcSetString = srcSetString.replace(regex, '.webp?');
+  const regex = new RegExp(`\.${type}`, 'gi');
+
+  const webpSrcSetString = srcSetString.replace(regex, '.webp');
 
   return (
     <>
       <source srcSet={webpSrcSetString} type="image/webp" />
-      <source srcSet={srcSetString} type="image/png" />
+      <source srcSet={srcSetString} type={`image/${typeOriginal}`} />
     </>
   );
 };
 
-const Placeholder = props => {
-  const placeholders = [Placeholder1, Placeholder2, Placeholder3, Placeholder4];
-  const rand = Math.floor(Math.random() * 4);
-  const Component = placeholders[rand];
-  return <Component {...props} />;
+const IMG_MIN_WIDTH = 330;
+const IMG_MAX_HEIGHT = 500;
+
+const getImageType = image => {
+  if (!image) return null;
+
+  const fromFileMIME = image.filemime?.replace('image/', '');
+  const fromHref = image.href?.match(/\.(png|jpe?g|gif)/i);
+
+  return fromFileMIME || (fromHref && fromHref[1]) || 'jpg';
 };
 
-const Image = ({image, alt, sources = [], ratio}) => {
-  const imageType = image && image.href.match(/\.(\w+)\??^/i);
+const Image = ({
+  image,
+  alt,
+  style,
+  sources = [],
+  ratio,
+  className,
+  defaultSize = 'downscale_675x500',
+}) => {
+  const [loaded, setLoaded] = useState(false);
+  const imageType = getImageType(image);
 
-  const styles = {};
-  if (ratio) {
-    styles['--ratio'] = `${ratio * 100}%`;
-  }
+  const {width, height} = image.meta || image;
+  const imgRatio = height / width;
+
+  const wrapperStyle = {
+    '--ratio': `${(ratio || imgRatio) * 100}%`,
+  };
+
+  style = {
+    ...style,
+    minWidth: `min(100%, ${IMG_MIN_WIDTH}px)`,
+    maxWidth: `min(100%, ${width}px)`,
+    maxHeight: `min(${IMG_MAX_HEIGHT}px, ${height}px)`,
+  };
 
   return (
-    <>
+    <div className={className} style={style}>
       {image ? (
-        <div className="picture" style={styles}>
-          <img
-            className="picture-placeholder"
-            alt=""
-            src={image.links.placeholder_30x30.href}
-            aria-hidden="true"
-          />
+        <div className="picture picture-ratio" style={wrapperStyle}>
+          {!loaded && (
+            <img
+              className="picture-placeholder"
+              alt=""
+              src={image.links.placeholder_30x30.href}
+              aria-hidden="true"
+              style={style}
+            />
+          )}
           <picture>
             {sources.map((srcSet, i) => (
               <Source
@@ -54,13 +85,19 @@ const Image = ({image, alt, sources = [], ratio}) => {
                 type={imageType}
               />
             ))}
-            <img src={image.href} alt={alt} loading="lazy" />
+            <img
+              src={image.links[defaultSize].href || image.href}
+              alt={alt}
+              loading="lazy"
+              style={style}
+              onLoad={() => setLoaded(true)}
+            />
           </picture>
         </div>
       ) : (
         <Placeholder width="100%" />
       )}
-    </>
+    </div>
   );
 };
 
