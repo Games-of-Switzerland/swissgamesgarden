@@ -1,7 +1,8 @@
 import classNames from 'classnames';
+import {forwardRef} from 'react';
 
-const CheckboxFilterItem = ({isActive, result, onClick, isHighlighted}) => {
-  return (
+const CheckboxFilterItem = forwardRef(
+  ({isActive, result, onClick, isHighlighted, ...rest}, ref) => (
     <label
       className={classNames(
         'flex items-center p-2 hover:bg-gray-950 cursor-pointer group',
@@ -11,6 +12,8 @@ const CheckboxFilterItem = ({isActive, result, onClick, isHighlighted}) => {
           'bg-gray-950 text-white': isHighlighted,
         }
       )}
+      {...rest}
+      ref={ref}
     >
       <input
         type="checkbox"
@@ -30,7 +33,7 @@ const CheckboxFilterItem = ({isActive, result, onClick, isHighlighted}) => {
         <span className="text-gray-700 font-light">{result.doc_count}</span>
       </span>
     </label>
-  );
-};
+  )
+);
 
 export default CheckboxFilterItem;

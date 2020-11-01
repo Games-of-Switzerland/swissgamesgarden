@@ -40,8 +40,8 @@ const FilterableContent = ({items, selectedItems, onClick}) => {
         )
       );
     },
-    onSelectedItemChange: ({selectedItem, inputValue}) => {
-      onClick(selectedItem.key);
+    onSelectedItemChange: ({selectedItem}) => {
+      selectedItem && onClick(selectedItem.key);
     },
   });
 
@@ -72,7 +72,6 @@ const FilterableContent = ({items, selectedItems, onClick}) => {
                 item,
                 index,
                 result: item,
-                isSelected: selectedItems.length > 0,
                 isActive: selectedItems.includes(item.key),
               })}
             />
