@@ -1,0 +1,30 @@
+language: ruby
+
+services:
+  - docker
+
+env:
+  - DOCKER_COMPOSE_VERSION=1.25.5
+
+before_install:
+  # Upgrade docker-compose to 1.25.5
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
+before_script:
+  - docker-compose build --pull
+  - docker-compose up --build -d
+
+deploy:
+  # deploy develop to the staging environment
+  - provider: script
+    script: bash scripts/travis/deploy.sh staging
+    on:
+      branch: dev
+  # deploy master to production
+  - provider: script
+    script: bash scripts/travis/deploy.sh production
+    on:
+      branch: master
