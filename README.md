@@ -15,8 +15,8 @@ Update any values as needed, example when you already use the 8083 port:
 ```yml
 services:
   # Next app server
-  app:
-    hostname: app
+  next_app:
+    hostname: next_app
     ports:
       - "8083:3000"
 ```

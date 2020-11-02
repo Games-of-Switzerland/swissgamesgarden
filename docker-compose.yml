@@ -2,8 +2,8 @@ version: '3.6'
 
 services:
 
-  # Drupal app server
-  app:
+  # Next app server
+  next_app:
     build:
       context: .
     restart: "always"
