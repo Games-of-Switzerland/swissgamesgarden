@@ -64,6 +64,24 @@ Start the Storybook server:
 yarn storybook
 ```
 
+## 🚀 Deploy
+
+### First time
+
+```bash
+# You need to have ruby & bundler installed
+$ bundle install
+```
+
+### Each times
+
+We use Capistrano to deploy:
+
+```bash
+bundle exec cap -T
+bundle exec cap staging deploy
+```
+
 ## 🤷 Authors
 
 👨‍💻 **Toni Fisler**
