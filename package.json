@@ -12,8 +12,13 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.5.2",
+    "@sentry/node": "^5.27.2",
+    "@sentry/react": "^5.27.2",
+    "@sentry/tracing": "^5.27.2",
+    "@sentry/webpack-plugin": "^1.13.0",
     "@svgr/webpack": "^5.4.0",
     "@tailwindcss/custom-forms": "^0.2.1",
+    "@zeit/next-source-maps": "0.0.4-canary.1",
     "classnames": "^2.2.6",
     "downshift": "^6.0.6",
     "i18next": "^19.8.2",
