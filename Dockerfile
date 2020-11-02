@@ -14,6 +14,8 @@ RUN yarn install
 # Copy everything excepted things excluded from .dockerignore.
 COPY . ./
 
+ENV NODE_ENV=production
+
 # Building app
 RUN yarn build
 
