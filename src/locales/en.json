@@ -32,7 +32,20 @@
     "strategy": "Strategy"
   },
   "stores": {
-    "title": "Stores"
+    "title": "Stores",
+    "apple_store": "Apple Store",
+    "google_play_store": "Google Play Store",
+    "steam": "Steam",
+    "custom": "Custom",
+    "itchio": "Itch.io",
+    "microsoft_store": "Microsoft Store",
+    "oculus": "Oculus",
+    "nintendo": "Nintendo",
+    "xbox": "XBox",
+    "amazon": "Amazon",
+    "playstation": "Playstation Store",
+    "facebook": "Facebook",
+    "gog": "GOG"
   },
   "releases": {
     "title": "Releases"

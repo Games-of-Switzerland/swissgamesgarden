@@ -12,7 +12,7 @@ const GamesFilters = ({filters}) => {
   const releases =
     filters.all_filtered_release_years_histogram?.all_nested_release_years
       .releases_over_time.buckets || [];
-  console.log(filters.all_filtered_stores);
+  console.log(platforms);
   // const locations =
   //   filters.all_filtered_locations?.all_nested_locations.locations_name_keyword
   //     .buckets || [];
@@ -22,8 +22,8 @@ const GamesFilters = ({filters}) => {
 
   return (
     <div className="text-white flex space-x-3">
-      <BaseFilter filterName="platforms" data={platforms} />
       <BaseFilter filterName="stores" data={stores} />
+      <BaseFilter filterName="platforms" data={platforms} />
       {/*<BaseFilter filterName="releases" data={releases} />*/}
     </div>
   );
