@@ -15,8 +15,8 @@ Update any values as needed, example when you already use the 8083 port:
 ```yml
 services:
   # Next app server
-  app:
-    hostname: app
+  next_app:
+    hostname: next_app
     ports:
       - "8083:3000"
 ```
@@ -62,6 +62,24 @@ Start the Storybook server:
 
 ```bash
 yarn storybook
+```
+
+## 🚀 Deploy
+
+### First time
+
+```bash
+# You need to have ruby & bundler installed
+$ bundle install
+```
+
+### Each times
+
+We use Capistrano to deploy:
+
+```bash
+bundle exec cap -T
+bundle exec cap staging deploy
 ```
 
 ## 🤷 Authors
