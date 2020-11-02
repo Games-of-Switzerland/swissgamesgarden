@@ -18,7 +18,6 @@ services:
       # Next/React
       - ./next.config.js:/usr/src/app/next.config.js:cached
       - ./jsconfig.json:/usr/src/app/jsconfig.json:cached
-      - ./.env:/usr/src/app/.env:cached
       # App
       - ./src:/usr/src/app/src:cached
       - ./tests:/usr/src/app/tests:cached
