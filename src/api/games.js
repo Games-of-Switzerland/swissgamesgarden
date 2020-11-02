@@ -1,10 +1,18 @@
-import {deserialise, query} from 'kitsu-core';
+import {deserialise} from 'kitsu-core';
 import {QueryCache, useInfiniteQuery} from 'react-query';
 import {dehydrate} from 'react-query/hydration';
-import {useRouter} from 'next/router';
+import queryString from 'query-string';
+import {useGosRouter} from 'hooks';
 
 export const getGames = async (key, params = {}, nextPage = 0) => {
-  const queryUrl = query({...params, page: nextPage});
+  const queryUrl = queryString.stringify(
+    {...params, page: nextPage},
+    {
+      arrayFormat: 'bracket',
+    }
+  );
+
+  console.log('GAMES===============', decodeURI(queryUrl));
 
   // Get games from server
   const res = await fetch(
@@ -21,7 +29,7 @@ export const getGames = async (key, params = {}, nextPage = 0) => {
 };
 
 export const useGames = () => {
-  const {query} = useRouter();
+  const {query} = useGosRouter();
 
   // Query all the games with infinite query with all passed params
   const gamesQuery = useInfiniteQuery(['games', query], getGames, {

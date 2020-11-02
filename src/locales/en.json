@@ -19,6 +19,7 @@
     "custom_hardware": "Custom Hardware"
   },
   "genres": {
+    "title": "Genres",
     "simulation": "Simulation",
     "platformer": "Platformer",
     "adventure": "Adventure",
@@ -29,6 +30,12 @@
     "action": "Action",
     "arcade": "Arcade",
     "strategy": "Strategy"
+  },
+  "stores": {
+    "title": "Stores"
+  },
+  "releases": {
+    "title": "Releases"
   },
   "state": {
     "development": "In Development",
