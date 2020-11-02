@@ -94,7 +94,7 @@
     "loading_more": "Loading more...",
     "load_more_end": "Nothing more to load",
     "no_games": "No games to show.",
-    "pager": "{{start}} to {{end}} of {{total}}",
+    "pager": "{{end}} of {{total}}",
     "results": "{{count}} game",
     "results_plural": "{{count}} games",
     "filter_placeholder": "Filter...",

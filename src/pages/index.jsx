@@ -37,7 +37,7 @@ const GamesListing = () => {
         </div>
         {total && (
           <div className="text-center text-gray-500 mb-5">
-            {t('games.pager', {start: 1, end: pages.length * PAGE_SIZE, total})}
+            {t('games.pager', {end: pages.length * PAGE_SIZE, total})}
           </div>
         )}
         <div className="text-center mb-16">

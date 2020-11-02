@@ -1,12 +1,16 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
 const flattenColorPalette = require('tailwindcss/lib/util/flattenColorPalette')
   .default;
 
 module.exports = {
-  purge: [
-    './src/components/**/*.{js,ts,jsx,tsx}',
-    './src/pages/**/*.{js,ts,jsx,tsx}',
-  ],
+  purge: {
+    content: [
+      './src/components/**/*.{js,ts,jsx,tsx}',
+      './src/pages/**/*.{js,ts,jsx,tsx}',
+    ],
+    options: {
+      whitelist: ['text-red-500', 'text-green-500', 'text-purple-500'],
+    },
+  },
   theme: {
     fontSize: {
       xs: '.75rem',
