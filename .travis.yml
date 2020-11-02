@@ -4,7 +4,11 @@ services:
   - docker
 
 env:
-  - DOCKER_COMPOSE_VERSION=1.25.5
+  global:
+    - DOCKER_COMPOSE_VERSION=1.25.5
+    - NEXT_PUBLIC_ELASTICSEARCH=https://staging-api-gos.museebolo.ch/search
+    - NEXT_PUBLIC_JSONAPI=https://staging-api-gos.museebolo.ch/G70VW4Y9sP/jsonapi
+    - NEXT_PUBLIC_AUTOCOMPLETE=https://staging-api-gos.museebolo.ch/autocomplete
 
 before_install:
   # Upgrade docker-compose to 1.25.5
@@ -12,6 +16,8 @@ before_install:
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
+  # Create a fake .env necessary for bootstraping the app.
+  - touch .env
 
 before_script:
   - docker-compose build --pull
