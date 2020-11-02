@@ -64,8 +64,29 @@ Start the Storybook server:
 yarn storybook
 ```
 
-## Contribute
+## 🤷 Authors
 
-Don't hesitate to do so, PRs are open.
+👨‍💻 **Toni Fisler**
 
+* Twitter: [@tonifisler](https://twitter.com/tonifisler)
+* Github: [@tonifisler](https://github.com/tonifisler)
+
+👨‍💻 **Kevin Wenger**
+
+* Twitter: [@wengerk](https://twitter.com/wengerk)
+* Github: [@wengerk](https://github.com/wengerk)
+
+👩‍💻 **Camille Létang**
+
+* Github: [@CamilleLetang](https://github.com/CamilleLetang)
+
+👨‍💻 **Pierre Georges**
+
+* Github: [@pierre-georges](https://github.com/pierre-georges)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+
+Feel free to check [issues page](https://github.com/Games-of-Switzerland/gos-website/issues).
 
