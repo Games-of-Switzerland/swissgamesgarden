@@ -34,8 +34,3 @@ deploy:
     script: bash scripts/travis/deploy.sh production
     on:
       branch: master
-  # deploy develop to the staging environment
-  - provider: script
-    script: bash scripts/travis/deploy.sh staging
-    on:
-      branch: feature/deploy-travis
