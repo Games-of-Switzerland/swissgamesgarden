@@ -1,12 +1,10 @@
 import {useTranslation} from 'react-i18next';
-import 'react-vis/dist/style.css';
 import classNames from 'classnames';
 import {useRanger} from 'react-ranger';
-import Dropdown from '../../Dropdown';
-import Tooltip from '../../Tooltip';
+import Dropdown from 'components/Dropdown';
+import Tooltip from 'components/Tooltip';
 import {useState} from 'react';
-import {useGosRouter} from '../../../hooks';
-import addOrRemove from '../../../utils/addOrRemove';
+import {useGosRouter} from 'hooks';
 import queryString from 'query-string';
 
 const getMaxCount = (array, key, min = 0) => {

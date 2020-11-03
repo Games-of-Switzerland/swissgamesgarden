@@ -21,7 +21,7 @@ const GamesFilters = ({filters}) => {
   //     .buckets || [];
 
   return (
-    <div className="text-white flex space-x-3">
+    <div className="text-white flex space-x-1">
       <BaseFilter filterName="stores" data={stores} />
       <BaseFilter filterName="platforms" data={platforms} />
       {releases?.length > 0 && (
