@@ -169,7 +169,8 @@
     "title_2": "your game?"
   },
   "error": {
-    "message": "Oops! An error occurred. Try reloading!"
+    "message": "Oops! An error occurred. Try reloading!",
+    "with_message": "An error occured: {{message}}"
   },
   "save": "Save"
 }

@@ -38,7 +38,7 @@ const ReleasesFilter = ({data, filterName}) => {
         pathname: '/',
         query: newQuery,
       },
-      `?${queryString.stringify(newQuery)}`
+      `?${queryString.stringify(newQuery, {arrayFormat: 'bracket'})}`
     );
   };
 

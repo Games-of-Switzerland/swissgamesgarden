@@ -56,7 +56,7 @@ const GameTeaser = ({game}) => {
           {releases.map(({platform_slug}) => (
             <a
               href={platform_slug}
-              className="inline-block leading-none p-1 border border-gray-850 text-gray-500 font-light mb-1 hover:border-gray-550 hover:text-white relative z-10"
+              className="inline-block leading-none p-1 border border-gray-850 text-gray-500 font-light mb-1 hover:border-gray-550 hover:text-white relative z-10 mr-1"
               key={platform_slug}
             >
               {t(`platforms.${platform_slug}`)}

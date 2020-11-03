@@ -67,13 +67,19 @@ const GamesListing = () => {
 
       <div className="mb-5 flex space-x-4 items-baseline">
         <span className="font-semibold text-white text-lg">
-          {t('games.results', {count: total})}{' '}
+          {t('games.results', {count: total || 0})}
         </span>
-        {isFetching && (
+        {isFetching ? (
           <span className="text-gray-700 inline-flex items-baseline">
             <LoadingSVG className="mr-2 h-4 w-4 text-white self-center" />
             {t('games.fetching')}
           </span>
+        ) : (
+          error && (
+            <span className="text-red-500">
+              {t('error.with_message', {message: error.message})}
+            </span>
+          )
         )}
       </div>
 
