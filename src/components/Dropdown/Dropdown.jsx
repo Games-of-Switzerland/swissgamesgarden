@@ -29,7 +29,7 @@ const Dropdown = ({title, content, children, disabled, isSelected}) => {
 
   if (disabled) return null;
 
-  const wrapperClasses = classNames('relative mb-12 z-20', {
+  const wrapperClasses = classNames('relative z-20', {
     'border-gradient border-gradient-full': !isComponentVisible && isSelected,
   });
 

@@ -18,7 +18,7 @@ const useGosFilter = ({filterName, isArray = false, isNumber = false}) => {
     await replace(
       {
         pathname: '/',
-        query,
+        newQuery,
       },
       `?${queryString.stringify(newQuery, {arrayFormat: 'bracket'})}`
     );

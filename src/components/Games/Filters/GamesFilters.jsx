@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BaseFilter from './BaseFilter';
 import ReleasesFilter from './ReleasesFilter';
+import FiltersList from './FiltersList';
 
 const GamesFilters = ({filters}) => {
   const platforms =
@@ -21,10 +22,15 @@ const GamesFilters = ({filters}) => {
   //     .buckets || [];
 
   return (
-    <div className="text-white flex space-x-1">
-      <BaseFilter filterName="stores" data={stores} />
-      <BaseFilter filterName="platforms" data={platforms} />
-      {releases && <ReleasesFilter data={releases} filterName="release_year" />}
+    <div className="mb-10">
+      <div className="text-white flex space-x-1 mb-4">
+        <BaseFilter filterName="stores" data={stores} />
+        <BaseFilter filterName="platforms" data={platforms} />
+        {releases && (
+          <ReleasesFilter data={releases} filterName="release_year" />
+        )}
+      </div>
+      <FiltersList />
     </div>
   );
 };

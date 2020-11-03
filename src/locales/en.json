@@ -172,5 +172,6 @@
     "message": "Oops! An error occurred. Try reloading!",
     "with_message": "An error occured: {{message}}"
   },
-  "save": "Save"
+  "save": "Save",
+  "reset_filters": "Reset all filters "
 }
