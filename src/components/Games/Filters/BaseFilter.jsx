@@ -1,47 +1,11 @@
-import addOrRemove from 'utils/addOrRemove';
 import {FilterableDropdown} from 'components/Dropdown';
 import {useTranslation} from 'react-i18next';
 import PropTypes from 'prop-types';
-import queryString from 'query-string';
-import {useGosRouter} from 'hooks';
+import {useGosFilter} from 'hooks';
 
 const BaseFilter = ({data, filterName}) => {
   const {t} = useTranslation();
-  const {query, replace} = useGosRouter();
-
-  let filter = query[filterName] || [];
-
-  if (typeof filter === 'string') {
-    filter = [filter];
-  }
-
-  const handleClick = async key => {
-    const newFilter = addOrRemove(filter, key);
-    const newQuery = {
-      ...query,
-      [filterName]: newFilter,
-    };
-
-    await replace(
-      {
-        pathname: '/',
-        query: newQuery,
-      },
-      `?${queryString.stringify(newQuery, {arrayFormat: 'bracket'})}`
-    );
-  };
-
-  const handleReset = async () => {
-    const newQuery = query;
-    delete newQuery[filterName];
-    await replace(
-      {
-        pathname: '/',
-        query,
-      },
-      `?${queryString.stringify(newQuery, {arrayFormat: 'bracket'})}`
-    );
-  };
+  const {save, reset, filter} = useGosFilter({filterName, isArray: true});
 
   data = data.map(item => ({
     ...item,
@@ -53,8 +17,8 @@ const BaseFilter = ({data, filterName}) => {
       items={data}
       selectedItems={filter}
       title={t(`${filterName}.title`)}
-      onClick={handleClick}
-      onReset={handleReset}
+      onClick={save}
+      onReset={reset}
     />
   );
 };

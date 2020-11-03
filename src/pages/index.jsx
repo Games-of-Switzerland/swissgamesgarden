@@ -37,12 +37,15 @@ const GamesListing = () => {
         </div>
         {total && (
           <div className="text-center text-gray-500 mb-5">
-            {t('games.pager', {end: pages.length * PAGE_SIZE, total})}
+            {t('games.pager', {
+              end: Math.min(pages.length * PAGE_SIZE, total),
+              total,
+            })}
           </div>
         )}
         <div className="text-center mb-16">
           <button
-            className="btn border text-white text-md py-3 font-semibold border-gray-850 hover:border-gray-500"
+            className="btn btn-border"
             onClick={fetchMore}
             disabled={!canFetchMore || isFetchingMore}
           >

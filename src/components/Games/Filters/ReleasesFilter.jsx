@@ -4,7 +4,7 @@ import {useRanger} from 'react-ranger';
 import Dropdown from 'components/Dropdown';
 import Tooltip from 'components/Tooltip';
 import {useState} from 'react';
-import {useGosRouter} from 'hooks';
+import {useGosFilter} from 'hooks';
 import queryString from 'query-string';
 
 const getMaxCount = (array, key, min = 0) => {
@@ -17,9 +17,9 @@ const getMaxCount = (array, key, min = 0) => {
 
 const ReleasesFilter = ({data, filterName}) => {
   const {t} = useTranslation();
-  const {query, replace} = useGosRouter();
+  const {save, reset, filter} = useGosFilter({filterName, isNumber: true});
 
-  const filter = query[filterName] ? Number(query[filterName]) : null;
+  // const filter = query[filterName] ? Number(query[filterName]) : null;
 
   const min = Number(data[0].key_as_string);
   const max = Number(data[data.length - 1].key_as_string);
@@ -28,31 +28,12 @@ const ReleasesFilter = ({data, filterName}) => {
   const [values, setValues] = React.useState([min, max]);
 
   const handleSave = async () => {
-    const newQuery = {
-      ...query,
-      [filterName]: values[1],
-    };
-
-    await replace(
-      {
-        pathname: '/',
-        query: newQuery,
-      },
-      `?${queryString.stringify(newQuery, {arrayFormat: 'bracket'})}`
-    );
+    await save(values[1]);
   };
 
   const handleReset = async () => {
     setValues([min, max]);
-    const newQuery = query;
-    delete newQuery[filterName];
-    await replace(
-      {
-        pathname: '/',
-        query,
-      },
-      `?${queryString.stringify(newQuery, {arrayFormat: 'bracket'})}`
-    );
+    await reset();
   };
 
   const handleChangeValues = ([newMin, newMax]) => {
@@ -163,9 +144,8 @@ const ReleasesFilter = ({data, filterName}) => {
           {data.map(({key_as_string, key, doc_count}) => {
             const numberKey = Number(key_as_string);
             return (
-              <Tooltip content={`${key_as_string} (${doc_count})`}>
+              <Tooltip key={key} content={`${key_as_string} (${doc_count})`}>
                 <div
-                  key={key}
                   className={classNames(
                     'flex-grow border-l border-gray-1000',
                     numberKey >= values[0] && numberKey <= values[1]
@@ -199,7 +179,7 @@ const ReleasesFilter = ({data, filterName}) => {
           </div>
           <div className="flex justify-between text-gray-500">
             {ticks.map(({value}) => (
-              <div>{value}</div>
+              <div key={`tick-${value}`}>{value}</div>
             ))}
           </div>
         </div>

@@ -33,3 +33,11 @@
     @apply bg-opacity-75;
   }
 }
+
+.btn-border {
+  @apply border text-white text-md py-3 font-semibold border-gray-850;
+
+  &:hover:not(:disabled) {
+    @apply border-gray-500;
+  }
+}
