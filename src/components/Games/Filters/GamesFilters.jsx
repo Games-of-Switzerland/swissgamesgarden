@@ -26,7 +26,7 @@ const GamesFilters = ({filters}) => {
 
   return (
     <div className="mb-10">
-      <div className="text-white flex space-x-1 mb-4">
+      <div className="text-white flex -mr-1 flex-wrap mb-4">
         <BaseFilter filterName="stores" data={stores} />
         <BaseFilter filterName="platforms" data={platforms} />
         <BaseFilter filterName="locations" data={locations} />

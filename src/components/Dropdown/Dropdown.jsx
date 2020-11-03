@@ -3,7 +3,15 @@ import useComponentVisible from 'utils/useComponentVisible';
 import classNames from 'classnames';
 import {usePopper} from 'react-popper';
 
-const Dropdown = ({title, content, children, disabled, isSelected}) => {
+const Dropdown = ({
+  title,
+  content,
+  children,
+  disabled,
+  isSelected,
+  className,
+  ...rest
+}) => {
   const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(
     false
   );
@@ -29,20 +37,21 @@ const Dropdown = ({title, content, children, disabled, isSelected}) => {
 
   if (disabled) return null;
 
-  const wrapperClasses = classNames('relative z-20', {
+  const wrapperClasses = classNames('relative', className, {
     'border-gradient border-gradient-full': !isComponentVisible && isSelected,
+    'z-20': isComponentVisible,
   });
 
   const btnClasses = classNames(
     'z-10 inline-flex items-center dropdown-toggle border py-2 px-4 text-white text-md focus:outline-none',
     {
-      'open bg-gray-1000 border-gray-850 text-white': isComponentVisible,
+      'open bg-gray-1000 border-gray-850 text-white z-20': isComponentVisible,
       'bg-gray-900 hover:bg-gray-850 border-gray-900 hover:border-gray-850': !isComponentVisible,
     }
   );
 
   return (
-    <div className={wrapperClasses} ref={ref}>
+    <div className={wrapperClasses} ref={ref} {...rest}>
       <button
         className={btnClasses}
         onClick={toggle}

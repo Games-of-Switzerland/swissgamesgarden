@@ -106,6 +106,7 @@ const FilterableDropdown = ({title, selectedItems, onReset, ...rest}) => {
       title={title}
       isSelected={selectedItems.length > 0}
       content={resetBtn}
+      className="mb-1 mr-1"
     >
       <FilterableContent {...rest} selectedItems={selectedItems} />
     </Dropdown>

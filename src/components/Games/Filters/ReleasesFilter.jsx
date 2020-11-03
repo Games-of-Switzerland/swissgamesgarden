@@ -99,6 +99,7 @@ const ReleasesFilter = ({data, filterName}) => {
       title={t(`${filterName}.title`)}
       isSelected={filter}
       content={actions}
+      className="mb-1 mr-1"
     >
       <>
         <div className="flex space-x-2 mb-3">
