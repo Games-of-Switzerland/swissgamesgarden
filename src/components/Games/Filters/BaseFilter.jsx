@@ -32,9 +32,15 @@ const BaseFilter = ({data, filterName}) => {
   };
 
   const handleReset = async () => {
-    await replace({
-      pathname: '/',
-    });
+    const newQuery = query;
+    delete newQuery[filterName];
+    await replace(
+      {
+        pathname: '/',
+        query,
+      },
+      `?${queryString.stringify(newQuery, {arrayFormat: 'bracket'})}`
+    );
   };
 
   data = data.map(item => ({

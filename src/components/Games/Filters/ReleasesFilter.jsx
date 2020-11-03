@@ -44,9 +44,15 @@ const ReleasesFilter = ({data, filterName}) => {
 
   const handleReset = async () => {
     setValues([min, max]);
-    await replace({
-      pathname: '/',
-    });
+    const newQuery = query;
+    delete newQuery[filterName];
+    await replace(
+      {
+        pathname: '/',
+        query,
+      },
+      `?${queryString.stringify(newQuery, {arrayFormat: 'bracket'})}`
+    );
   };
 
   const handleChangeValues = ([newMin, newMax]) => {
