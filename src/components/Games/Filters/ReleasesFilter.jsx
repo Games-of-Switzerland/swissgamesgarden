@@ -19,8 +19,6 @@ const ReleasesFilter = ({data, filterName}) => {
   const {t} = useTranslation();
   const {save, reset, filter} = useGosFilter({filterName, isNumber: true});
 
-  // const filter = query[filterName] ? Number(query[filterName]) : null;
-
   const min = Number(data[0].key_as_string);
   const max = Number(data[data.length - 1].key_as_string);
 
