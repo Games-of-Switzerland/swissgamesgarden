@@ -24,6 +24,10 @@ Start the Storybook server:
 yarn storybook
 ```
 
+## ENV
+
+Don't forget to set the env variables, especially `NEXT_PUBLIC_ENV`, which will allow the site to be indexed when set to `production`.
+
 ## Contribute
 
 Don't hesitate to do so, PRs are open.
