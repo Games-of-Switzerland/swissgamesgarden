@@ -1,0 +1,26 @@
+version: '3.6'
+
+services:
+
+  # Next app server
+  next_app:
+    build:
+      context: .
+    restart: "always"
+    volumes:
+      - backups:/var/backups
+      # Packages
+      - ./package.json:/usr/src/app/package.json:cached
+      - ./yarn.lock:/usr/src/app/yarn.lock:cached
+      # Styleguide
+      - ./postcss.config.js:/usr/src/app/postcss.config.js:cached
+      - ./tailwind.config.js:/usr/src/app/tailwind.config.js:cached
+      # Next/React
+      - ./next.config.js:/usr/src/app/next.config.js:cached
+      - ./jsconfig.json:/usr/src/app/jsconfig.json:cached
+      # App
+      - ./src:/usr/src/app/src:cached
+      - ./tests:/usr/src/app/tests:cached
+
+volumes:
+  backups:
