@@ -18,6 +18,14 @@
   }
 }
 
+.btn-red {
+  @apply bg-red-500 text-white font-semibold;
+
+  &:hover:not(:disabled) {
+    @apply bg-red-600;
+  }
+}
+
 .btn-white {
   @apply bg-white text-black;
 

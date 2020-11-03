@@ -47,7 +47,7 @@
     "facebook": "Facebook",
     "gog": "GOG"
   },
-  "releases": {
+  "release_year": {
     "title": "Releases"
   },
   "state": {
@@ -170,5 +170,6 @@
   },
   "error": {
     "message": "Oops! An error occurred. Try reloading!"
-  }
+  },
+  "save": "Save"
 }

@@ -3,6 +3,7 @@ import {QueryCache, useInfiniteQuery} from 'react-query';
 import {dehydrate} from 'react-query/hydration';
 import queryString from 'query-string';
 import {useGosRouter} from 'hooks';
+import {useMemo} from 'react';
 
 export const getGames = async (key, params = {}, nextPage = 0) => {
   const queryUrl = queryString.stringify(
@@ -44,7 +45,9 @@ export const useGames = () => {
     ...gamesQuery,
     pages: data || [],
     total: data && data[0].hits.total,
-    facets: (data && data[0].aggregations.aggs_all) || {},
+    facets: useMemo(() => (data && data[0].aggregations.aggs_all) || {}, [
+      data,
+    ]),
     fetchMore: () => fetchMore(), // Must not send any params (like click event)
   };
 };

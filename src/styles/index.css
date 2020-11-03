@@ -12,6 +12,7 @@
 @import '_type.css';
 @import '_img.css';
 @import '_header.css';
+@import '_tippy.css';
 
 @layer base {
   @font-face {

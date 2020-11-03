@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseFilter from './BaseFilter';
+import ReleasesFilter from './ReleasesFilter';
 
 const GamesFilters = ({filters}) => {
   const platforms =
@@ -12,7 +13,6 @@ const GamesFilters = ({filters}) => {
   const releases =
     filters.all_filtered_release_years_histogram?.all_nested_release_years
       .releases_over_time.buckets || [];
-  console.log(platforms);
   // const locations =
   //   filters.all_filtered_locations?.all_nested_locations.locations_name_keyword
   //     .buckets || [];
@@ -24,7 +24,9 @@ const GamesFilters = ({filters}) => {
     <div className="text-white flex space-x-3">
       <BaseFilter filterName="stores" data={stores} />
       <BaseFilter filterName="platforms" data={platforms} />
-      {/*<BaseFilter filterName="releases" data={releases} />*/}
+      {releases?.length > 0 && (
+        <ReleasesFilter data={releases} filterName="release_year" />
+      )}
     </div>
   );
 };
