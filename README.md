@@ -73,7 +73,7 @@ yarn storybook
 $ bundle install
 ```
 
-### Each times
+### Each time
 
 We use Capistrano to deploy:
 
@@ -81,6 +81,10 @@ We use Capistrano to deploy:
 bundle exec cap -T
 bundle exec cap staging deploy
 ```
+
+## ENV
+
+Don't forget to set the env variables, especially `NEXT_PUBLIC_ENV`, which will allow the site to be indexed when set to `production`.
 
 ## 🤷 Authors
 

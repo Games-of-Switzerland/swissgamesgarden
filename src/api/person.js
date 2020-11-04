@@ -34,10 +34,8 @@ export const prefetchPerson = async ({query}) => {
 
   return (
     queryCache && {
-      props: {
-        path: query.path,
-        dehydratedState: dehydrate(queryCache),
-      },
+      path: query.path,
+      dehydratedState: dehydrate(queryCache),
     }
   );
 };

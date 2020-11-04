@@ -1,6 +1,6 @@
 import {GameTeaser} from 'components/Game';
 import {useTranslation} from 'react-i18next';
-import {useGames} from 'api/games';
+import {prefetchGames, useGames} from 'api/games';
 import Loading from 'components/Loading';
 import Error from 'components/Error';
 import GamesFilters from 'components/Games/Filters';
@@ -37,12 +37,15 @@ const GamesListing = () => {
         </div>
         {total && (
           <div className="text-center text-gray-500 mb-5">
-            {t('games.pager', {start: 1, end: pages.length * PAGE_SIZE, total})}
+            {t('games.pager', {
+              end: Math.min(pages.length * PAGE_SIZE, total),
+              total,
+            })}
           </div>
         )}
         <div className="text-center mb-16">
           <button
-            className="btn border text-white text-md py-3 font-semibold border-gray-850 hover:border-gray-500"
+            className="btn btn-border"
             onClick={fetchMore}
             disabled={!canFetchMore || isFetchingMore}
           >
@@ -67,13 +70,19 @@ const GamesListing = () => {
 
       <div className="mb-5 flex space-x-4 items-baseline">
         <span className="font-semibold text-white text-lg">
-          {t('games.results', {count: total})}{' '}
+          {t('games.results', {count: total || 0})}
         </span>
-        {isFetching && (
+        {isFetching ? (
           <span className="text-gray-700 inline-flex items-baseline">
             <LoadingSVG className="mr-2 h-4 w-4 text-white self-center" />
             {t('games.fetching')}
           </span>
+        ) : (
+          error && (
+            <span className="text-red-500">
+              {t('error.with_message', {message: error.message})}
+            </span>
+          )
         )}
       </div>
 
@@ -91,5 +100,7 @@ const Games = () => (
     <GamesListing />
   </FilterContextProvider>
 );
+
+Games.getInitialProps = prefetchGames;
 
 export default Games;

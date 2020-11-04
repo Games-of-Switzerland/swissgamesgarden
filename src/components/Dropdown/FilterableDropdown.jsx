@@ -26,10 +26,10 @@ const FilterableContent = ({items, selectedItems, onClick}) => {
     getComboboxProps,
     highlightedIndex,
     getItemProps,
+    selectItem,
   } = useCombobox({
     stateReducer,
     items: inputItems,
-    itemToString: ({title}) => title,
     onInputValueChange: ({inputValue}) => {
       setInputItems(
         items.filter(({title}) =>
@@ -42,6 +42,8 @@ const FilterableContent = ({items, selectedItems, onClick}) => {
     },
     onSelectedItemChange: ({selectedItem}) => {
       selectedItem && onClick(selectedItem.key);
+      // Deselect the item afterwards, to make sure you can
+      selectItem(null);
     },
   });
 
@@ -104,6 +106,7 @@ const FilterableDropdown = ({title, selectedItems, onReset, ...rest}) => {
       title={title}
       isSelected={selectedItems.length > 0}
       content={resetBtn}
+      className="mb-1 mr-1"
     >
       <FilterableContent {...rest} selectedItems={selectedItems} />
     </Dropdown>

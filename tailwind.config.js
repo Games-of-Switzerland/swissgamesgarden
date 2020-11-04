@@ -1,12 +1,16 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
 const flattenColorPalette = require('tailwindcss/lib/util/flattenColorPalette')
   .default;
 
 module.exports = {
-  purge: [
-    './src/components/**/*.{js,ts,jsx,tsx}',
-    './src/pages/**/*.{js,ts,jsx,tsx}',
-  ],
+  purge: {
+    content: [
+      './src/components/**/*.{js,ts,jsx,tsx}',
+      './src/pages/**/*.{js,ts,jsx,tsx}',
+    ],
+    options: {
+      whitelist: ['text-red-500', 'text-green-500', 'text-purple-500'],
+    },
+  },
   theme: {
     fontSize: {
       xs: '.75rem',
@@ -56,10 +60,20 @@ module.exports = {
           icon:
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="#E05340" d="M0 0h20v20H0z"/><path stroke="#FFF" fill="none"  d="M4 10l4 4 8-8"/></svg>',
         },
+        select: {
+          backgroundColor: theme('colors.gray.900'),
+          borderWidth: 0,
+          '&:hover': {
+            backgroundColor: theme('colors.gray.850'),
+          },
+          icon:
+            '<svg fill="#e2e8f0" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>',
+        },
       },
     }),
     extend: {
       spacing: {
+        1: '0.3125rem',
         4: '0.9375rem',
         8: '1.875rem',
         14: '3.6rem',
