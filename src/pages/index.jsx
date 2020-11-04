@@ -1,6 +1,6 @@
 import {GameTeaser} from 'components/Game';
 import {useTranslation} from 'react-i18next';
-import {useGames} from 'api/games';
+import {prefetchGames, useGames} from 'api/games';
 import Loading from 'components/Loading';
 import Error from 'components/Error';
 import GamesFilters from 'components/Games/Filters';
@@ -100,5 +100,7 @@ const Games = () => (
     <GamesListing />
   </FilterContextProvider>
 );
+
+Games.getInitialProps = prefetchGames;
 
 export default Games;
