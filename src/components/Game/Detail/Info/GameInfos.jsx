@@ -44,7 +44,7 @@ const GameInfos = ({game}) => {
                 {Object.values(platforms)
                   .map(
                     ({name, state}) =>
-                      t(`platform.${name}`) +
+                      t(`platforms.${name}`) +
                       (state && state !== 'released'
                         ? ` (${t(`state.${state}`)})`
                         : '')
