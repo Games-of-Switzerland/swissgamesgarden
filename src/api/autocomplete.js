@@ -1,6 +1,5 @@
-import {useQuery} from 'react-query';
 import i18next from 'i18next';
-import useDebounce from 'hooks/useDebounce';
+import {useDebounce} from 'hooks';
 
 import GamePadIcon from 'svg/gamepad.svg';
 import PersonIcon from 'svg/person.svg';
