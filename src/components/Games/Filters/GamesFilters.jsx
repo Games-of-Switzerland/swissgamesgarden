@@ -25,8 +25,8 @@ const GamesFilters = ({filters}) => {
       .buckets || [];
 
   return (
-    <div className="mb-10">
-      <div className="text-white flex -mr-1 flex-wrap mb-4">
+    <div className="mb-3">
+      <div className="text-white flex -mr-1 flex-wrap mb-3">
         <BaseFilter filterName="stores" data={stores} />
         <BaseFilter filterName="platforms" data={platforms} />
         <BaseFilter filterName="locations" data={locations} />
