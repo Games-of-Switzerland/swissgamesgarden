@@ -6,6 +6,7 @@ import Category from './Category';
 import Image from 'components/Image';
 import classNames from 'classnames';
 import {useMedia} from 'react-use';
+import TrophyIcon from 'svg/award.svg';
 
 const GameDetail = ({game}) => {
   const {t} = useTranslation();
@@ -157,15 +158,17 @@ const GameDetail = ({game}) => {
         )}
 
         {/* AWARDS */}
-        {/*TODO add award picto*/}
         {/*TODO add award location*/}
         {awards.length > 0 && (
           <Category title="game.awards">
             <ul className="text-lg">
               {awards?.map((award, i) => (
-                <li key={i}>
-                  <div>{award}</div>
-                  {/*<div className="text-gray-500 text-md">location</div>*/}
+                <li key={i} className="flex space-x-3 mb-4">
+                  <TrophyIcon width="1em" />
+                  <div>
+                    <div className="font-light">{award}</div>
+                    {/*<div className="text-gray-500 text-md">location</div>*/}
+                  </div>
                 </li>
               ))}
             </ul>
