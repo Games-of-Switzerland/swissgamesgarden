@@ -15,6 +15,7 @@ const GameInfos = ({game}) => {
     social_networks,
     members,
     sources,
+    article_links,
   } = game;
 
   const gameInfos = [
@@ -118,6 +119,26 @@ const GameInfos = ({game}) => {
         </ul>
       ),
       count: sources?.length,
+    },
+    {
+      title: 'game.article_links',
+      content: article_links && (
+        <ul>
+          {article_links.map(({title, uri}, i) => (
+            <li key={i}>
+              <a
+                className="link-dotted truncate inline-block max-w-full"
+                href={uri}
+                target="_blank"
+                rel="noreferrer nofollow"
+              >
+                {title || cleanURL(uri)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      ),
+      count: article_links?.length,
     },
   ];
 
