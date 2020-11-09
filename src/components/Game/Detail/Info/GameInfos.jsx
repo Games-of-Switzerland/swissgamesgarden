@@ -14,6 +14,7 @@ const GameInfos = ({game}) => {
     sponsors,
     social_networks,
     members,
+    sources,
   } = game;
 
   const gameInfos = [
@@ -80,9 +81,9 @@ const GameInfos = ({game}) => {
     },
     {
       title: 'game.social_networks',
-      content: social_networks && (
+      content: (
         <ul>
-          {social_networks?.map(({social_network, link}, i) => (
+          {social_networks.map(({social_network, link}, i) => (
             <li key={i}>
               <a
                 className="link-dotted"
@@ -97,6 +98,26 @@ const GameInfos = ({game}) => {
         </ul>
       ),
       count: social_networks?.length,
+    },
+    {
+      title: 'game.sources',
+      content: sources && (
+        <ul>
+          {sources.map(({title, uri}, i) => (
+            <li key={i}>
+              <a
+                className="link-dotted truncate inline-block max-w-full"
+                href={uri}
+                target="_blank"
+                rel="noreferrer nofollow"
+              >
+                {title || cleanURL(uri)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      ),
+      count: sources?.length,
     },
   ];
 
