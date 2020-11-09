@@ -65,7 +65,10 @@ const GameInfos = ({game}) => {
     {
       title: 'game.website',
       content: website && (
-        <a className="link-dotted" href={website.uri}>
+        <a
+          className="truncate link-dotted max-w-full inline-block leading-6"
+          href={website.uri}
+        >
           {cleanURL(website.uri)}
         </a>
       ),

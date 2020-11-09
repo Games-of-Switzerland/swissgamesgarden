@@ -9,7 +9,7 @@ export const getGame = async (key, field_path) => {
     },
     fields: {
       'node--game':
-        'title,body,genres,studios,genres,releases_normalized,release_platforms,website,locations,publishers,sponsors,social_networks,languages,awards,credits,completeness,members,images',
+        'title,body,genres,studios,genres,releases_normalized,release_platforms,website,locations,publishers,sponsors,social_networks,languages,awards,credits,completeness,members,images,contextual_links',
       studios: 'title',
       'node--studio': 'title',
       'node--people': 'title',

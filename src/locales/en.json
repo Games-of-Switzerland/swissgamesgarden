@@ -134,6 +134,14 @@
     "pre_release": "Pre-Release"
   },
   "game": {
+    "contextual_link": {
+      "online_play": "Play online",
+      "download_page": "Download",
+      "devlog": "Devlog",
+      "direct_download": "Direct Download",
+      "presskit": "Press Kit",
+      "box_art": "Box Art"
+    },
     "no_description": "This game has no description yet.",
     "not_found": "This game was not found.",
     "completeness": "Data Quality",
