@@ -1,12 +1,16 @@
 import {useState} from 'react';
 import Placeholder from './Placeholder';
 
+const skipFormats = ['gif'];
+
 const Source = ({links, srcSet = [], type}) => {
   // Handle jpeg/jpg
   const typeOriginal = type;
   if (type === 'jpeg') {
     type = 'jpg';
   }
+
+  const shouldRenderWebp = !skipFormats.includes(type);
 
   const srcSetString =
     srcSet.length > 1
@@ -19,7 +23,9 @@ const Source = ({links, srcSet = [], type}) => {
 
   return (
     <>
-      <source srcSet={webpSrcSetString} type="image/webp" />
+      {shouldRenderWebp && (
+        <source srcSet={webpSrcSetString} type="image/webp" />
+      )}
       <source srcSet={srcSetString} type={`image/${typeOriginal}`} />
     </>
   );
