@@ -6,6 +6,7 @@ const GameInfos = ({game}) => {
   const {t} = useTranslation();
 
   const {
+    contextual_links,
     studios,
     releases_normalized: releases = [],
     website,
@@ -19,6 +20,19 @@ const GameInfos = ({game}) => {
   } = game;
 
   const gameInfos = [
+    {
+      title: 'game.contextual_links',
+      content: contextual_links?.length > 0 && (
+        <div className="flex flex-wrap -mr-2">
+          {contextual_links.map(({type, url}, i) => (
+            <a key={i} className="btn btn-white mr-2 mb-2" href={url}>
+              {t(`game.contextual_link.${type}`)}
+            </a>
+          ))}
+        </div>
+      ),
+      count: contextual_links?.length,
+    },
     {
       title: 'game.studios',
       content: studios?.data.map(({title}) => title).join(', '),

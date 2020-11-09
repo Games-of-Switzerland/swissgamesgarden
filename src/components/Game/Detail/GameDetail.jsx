@@ -4,7 +4,6 @@ import {useTranslation} from 'react-i18next';
 import {GameInfos} from 'components/Game';
 import Category from './Category';
 import Image from 'components/Image';
-import classNames from 'classnames';
 import {useMedia} from 'react-use';
 import TrophyIcon from 'svg/award.svg';
 
@@ -23,7 +22,6 @@ const GameDetail = ({game}) => {
     completeness,
     images,
     members,
-    contextual_links,
     ...rest
   } = game;
 
@@ -148,16 +146,6 @@ const GameDetail = ({game}) => {
       <div style={{gridArea: 'secondary'}}>
         {/* GAME INFO */}
         <GameInfos game={game} />
-
-        {contextual_links?.length > 0 && (
-          <div className="flex space-x-2 mb-10">
-            {contextual_links.map(({type, url}, i) => (
-              <a key={i} className="btn btn-white" href={url}>
-                {t(`game.contextual_link.${type}`)}
-              </a>
-            ))}
-          </div>
-        )}
 
         {/* LANGUAGES */}
         {languages.data.length > 0 && (
