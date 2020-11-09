@@ -2,6 +2,24 @@ import {useTranslation} from 'react-i18next';
 import {cleanURL} from 'utils/url';
 import {GameInfo} from './index';
 
+const StandardLinksList = ({links}) =>
+  links && (
+    <ul>
+      {links.map(({title, uri}, i) => (
+        <li key={i}>
+          <a
+            className="link-dotted truncate inline-block max-w-truncated-link"
+            href={uri}
+            target="_blank"
+            rel="noreferrer nofollow"
+          >
+            {title || cleanURL(uri)}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+
 const GameInfos = ({game}) => {
   const {t} = useTranslation();
 
@@ -25,7 +43,13 @@ const GameInfos = ({game}) => {
       content: contextual_links?.length > 0 && (
         <div className="flex flex-wrap -mr-2">
           {contextual_links.map(({type, url}, i) => (
-            <a key={i} className="btn btn-white mr-2 mb-2" href={url}>
+            <a
+              key={i}
+              className="btn btn-white mr-2 mb-2"
+              href={url}
+              target="_blank"
+              rel="noreferrer nofollow"
+            >
               {t(`game.contextual_link.${type}`)}
             </a>
           ))}
@@ -84,6 +108,8 @@ const GameInfos = ({game}) => {
         <a
           className="truncate link-dotted max-w-full inline-block leading-6"
           href={website.uri}
+          target="_blank"
+          rel="noreferrer nofollow"
         >
           {cleanURL(website.uri)}
         </a>
@@ -96,62 +122,17 @@ const GameInfos = ({game}) => {
     },
     {
       title: 'game.social_networks',
-      content: (
-        <ul>
-          {social_networks.map(({social_network, link}, i) => (
-            <li key={i}>
-              <a
-                className="link-dotted"
-                href={link}
-                target="_blank"
-                rel="noreferrer nofollow"
-              >
-                {social_network}
-              </a>
-            </li>
-          ))}
-        </ul>
-      ),
+      content: <StandardLinksList links={social_networks} />,
       count: social_networks?.length,
     },
     {
       title: 'game.sources',
-      content: sources && (
-        <ul>
-          {sources.map(({title, uri}, i) => (
-            <li key={i}>
-              <a
-                className="link-dotted truncate inline-block max-w-full"
-                href={uri}
-                target="_blank"
-                rel="noreferrer nofollow"
-              >
-                {title || cleanURL(uri)}
-              </a>
-            </li>
-          ))}
-        </ul>
-      ),
+      content: <StandardLinksList links={sources} />,
       count: sources?.length,
     },
     {
       title: 'game.article_links',
-      content: article_links && (
-        <ul>
-          {article_links.map(({title, uri}, i) => (
-            <li key={i}>
-              <a
-                className="link-dotted truncate inline-block max-w-full"
-                href={uri}
-                target="_blank"
-                rel="noreferrer nofollow"
-              >
-                {title || cleanURL(uri)}
-              </a>
-            </li>
-          ))}
-        </ul>
-      ),
+      content: <StandardLinksList links={article_links} />,
       count: article_links?.length,
     },
   ];

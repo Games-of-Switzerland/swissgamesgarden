@@ -165,6 +165,9 @@ module.exports = {
       minHeight: {
         20: '10.5rem',
       },
+      maxWidth: {
+        'truncated-link': 'calc(100% - 9px)',
+      },
       maxHeight: {
         24: '15rem',
       },

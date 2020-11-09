@@ -24,3 +24,10 @@
     }
   }
 }
+
+a[target='_blank']:not(.btn) {
+  &:after {
+    content: svg-load('svg/external.svg', fill=#848484);
+    @apply absolute ml-1 -mt-1 text-gray-500;
+  }
+}
