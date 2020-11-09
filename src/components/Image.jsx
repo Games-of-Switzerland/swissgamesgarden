@@ -17,7 +17,7 @@ const Source = ({links, srcSet = [], type}) => {
       ? srcSet.map((src, i) => `${links[src].href} ${i + 1}x`).join(', ')
       : links[srcSet[0]].href;
 
-  const regex = new RegExp(`\.${type}`, 'gi');
+  const regex = new RegExp(`\.${type}(?:(?:\\?.*)$|$)`, 'gi');
 
   const webpSrcSetString = srcSetString.replace(regex, '.webp');
 
