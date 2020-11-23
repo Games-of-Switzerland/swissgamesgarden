@@ -71,6 +71,15 @@ namespace :deploy do
     end
   end
 
+  desc 'Run the Hosts scripts on container'
+  task :hosts do
+    on roles(:app) do
+      within current_path do
+        execute :docker_compose, 'exec', '-T', fetch(:docker_app_service), './docker/setup_hosts.sh'
+      end
+    end
+  end
+
   desc 'Cleanup docker storage (container, imaged, ...)'
   task :cleanup do
     on roles(:app) do
@@ -110,6 +119,7 @@ namespace :deploy do
   before 'deploy:symlink:shared', 'deploy:copy_files'
 
   after :publishing, 'deploy:restart'
+  after 'deploy:restart', 'deploy:hosts'
 
   # Cleanup old release.
   before :cleanup, "deploy:permissions:cleanup"
