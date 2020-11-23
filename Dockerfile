@@ -4,8 +4,10 @@ FROM node:14-alpine
 WORKDIR /usr/src/app
 
 # Install additional dependencies.
-RUN apk add --update vim
-RUN apk add --update bind-tools
+RUN apk add --update \
+  bash \
+  vim \
+  bind-tools;
 
 # Add the dependencies files to install dependencies before copying (cache installed node_modules as a separate layer).
 ADD ./.env ./package.json ./yarn.lock ./
