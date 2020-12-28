@@ -14,6 +14,6 @@ const Studio = ({path}) => {
   return data ? <StudioDetail {...data} /> : <NotFound />;
 };
 
-Studio.getInitialProps = prefetchStudio;
+export const getServerSideProps = prefetchStudio;
 
 export default Studio;

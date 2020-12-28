@@ -54,8 +54,10 @@ export const prefetchStudio = async ({query}) => {
 
   return (
     queryCache && {
-      path: query.path,
-      dehydratedState: dehydrate(queryCache),
+      props: {
+        path: query.path,
+        dehydratedState: dehydrate(queryCache),
+      },
     }
   );
 };

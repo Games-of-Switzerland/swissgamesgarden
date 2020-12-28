@@ -14,6 +14,6 @@ const Game = ({path}) => {
   return data ? <GameDetail game={data} /> : <NotFound />;
 };
 
-Game.getInitialProps = prefetchGame;
+export const getServerSideProps = prefetchGame;
 
 export default Game;

@@ -14,6 +14,6 @@ const People = ({path}) => {
   return data ? <PersonDetail {...data} /> : <NotFound />;
 };
 
-People.getInitialProps = prefetchPerson;
+export const getServerSideProps = prefetchPerson;
 
 export default People;
