@@ -86,7 +86,7 @@ const GameDetail = ({game}) => {
             <div className="flex flex-wrap -mr-1 mb-3">
               {platforms.data.map(({slug, id}) => (
                 <a
-                  href={id}
+                  href={`/?platforms[]=${slug}`}
                   className="inline-block leading-none p-1 border border-gray-850 text-white font-light mr-1 mb-1 hover:border-gray-550 hover:text-white relative z-10 text-lg"
                   key={id}
                 >
@@ -101,7 +101,7 @@ const GameDetail = ({game}) => {
             <div className="mb-3">
               {genres.data.map(({slug, id}) => (
                 <a
-                  href={slug}
+                  href={`/?genres[]=${slug}`}
                   className="border-b border-dotted border-gray-700 text-gray-500 hover:text-white hover:border-gray-450 mr-2 relative z-10"
                   key={id}
                 >
