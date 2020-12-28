@@ -5,18 +5,22 @@ import {GameInfo} from './index';
 const StandardLinksList = ({links}) =>
   links && (
     <ul>
-      {links.map(({title, uri}, i) => (
-        <li key={i}>
-          <a
-            className="link-dotted truncate inline-block max-w-truncated-link"
-            href={uri}
-            target="_blank"
-            rel="noreferrer nofollow"
-          >
-            {title || cleanURL(uri)}
-          </a>
-        </li>
-      ))}
+      {links.map(({title, uri, link, social_network}, i) => {
+        const url = uri || link;
+        const name = title || social_network;
+        return (
+          <li key={i}>
+            <a
+              className="link-dotted truncate inline-block max-w-truncated-link"
+              href={url}
+              target="_blank"
+              rel="noreferrer nofollow"
+            >
+              {name || cleanURL(url)}
+            </a>
+          </li>
+        );
+      })}
     </ul>
   );
 
@@ -104,7 +108,7 @@ const GameInfos = ({game}) => {
     },
     {
       title: 'game.website',
-      content: website && (
+      content: website?.uri && (
         <a
           className="truncate link-dotted max-w-full inline-block leading-6"
           href={website.uri}
