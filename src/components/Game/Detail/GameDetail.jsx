@@ -6,6 +6,7 @@ import Category from './Category';
 import Image from 'components/Image';
 import {useMedia} from 'react-use';
 import TrophyIcon from 'svg/award.svg';
+import Link from 'next/link';
 
 const GameDetail = ({game}) => {
   const {t} = useTranslation();
@@ -85,13 +86,11 @@ const GameDetail = ({game}) => {
           {platforms && (
             <div className="flex flex-wrap -mr-1 mb-3">
               {platforms.data.map(({slug, id}) => (
-                <a
-                  href={`/?platforms[]=${slug}`}
-                  className="inline-block leading-none p-1 border border-gray-850 text-white font-light mr-1 mb-1 hover:border-gray-550 hover:text-white relative z-10 text-lg"
-                  key={id}
-                >
-                  {t(`platforms.${slug}`)}
-                </a>
+                <Link href={`/?platforms[]=${slug}`} key={id}>
+                  <a className="inline-block leading-none p-1 border border-gray-850 text-white font-light mr-1 mb-1 hover:border-gray-550 hover:text-white relative z-10 text-lg">
+                    {t(`platforms.${slug}`)}
+                  </a>
+                </Link>
               ))}
             </div>
           )}
@@ -100,13 +99,11 @@ const GameDetail = ({game}) => {
           {genres && (
             <div className="mb-3">
               {genres.data.map(({slug, id}) => (
-                <a
-                  href={`/?genres[]=${slug}`}
-                  className="border-b border-dotted border-gray-700 text-gray-500 hover:text-white hover:border-gray-450 mr-2 relative z-10"
-                  key={id}
-                >
-                  {t(`genres.${slug}`)}
-                </a>
+                <Link href={`/?genres[]=${slug}`} key={id}>
+                  <a className="border-b border-dotted border-gray-700 text-gray-500 hover:text-white hover:border-gray-450 mr-2 relative z-10">
+                    {t(`genres.${slug}`)}
+                  </a>
+                </Link>
               ))}
             </div>
           )}
