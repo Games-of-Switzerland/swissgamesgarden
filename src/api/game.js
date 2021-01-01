@@ -1,11 +1,11 @@
 import {deserialise, query} from 'kitsu-core';
-import {QueryCache, useQuery} from 'react-query';
+import {QueryCache, QueryClient, useQuery} from 'react-query';
 import {dehydrate} from 'react-query/hydration';
 
-export const getGame = async (key, field_path) => {
+export const getGame = async ({queryKey}) => {
   const queryUrl = query({
     filter: {
-      field_path: `/games/${field_path}`,
+      field_path: `/games/${queryKey[1]}`,
     },
     fields: {
       'node--game':
@@ -42,14 +42,14 @@ export const useGame = path => {
 };
 
 export const prefetchGame = async ({query}) => {
-  const queryCache = new QueryCache();
-  await queryCache.prefetchQuery(['game', query.path], getGame);
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(['game', query.path], getGame, {});
 
   return (
-    queryCache && {
+    queryClient && {
       props: {
         path: query.path,
-        dehydratedState: dehydrate(queryCache),
+        dehydratedState: dehydrate(queryClient),
       },
     }
   );

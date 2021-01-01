@@ -5,25 +5,27 @@ import Loading from 'components/Loading';
 import Error from 'components/Error';
 import GamesFilters from 'components/Games/Filters';
 import {FilterContextProvider} from 'components/Games/context';
-import {LoadingSVG} from '../components/Loading/Loading';
+import {LoadingSVG} from 'components/Loading/Loading';
 
 const PAGE_SIZE = 24;
 
 const GamesListing = () => {
   const {t} = useTranslation();
   const {
-    pages,
-    fetchMore,
+    data,
+    fetchNextPage,
     isLoading,
     isFetching,
     isError,
     isSuccess,
     error,
-    isFetchingMore,
-    canFetchMore,
+    isFetchingNextPage,
+    hasNextPage,
     total,
     facets,
   } = useGames();
+
+  const {pages = []} = data;
 
   const renderGames = () =>
     pages.length > 0 ? (
@@ -46,12 +48,12 @@ const GamesListing = () => {
         <div className="text-center mb-16">
           <button
             className="btn btn-border"
-            onClick={fetchMore}
-            disabled={!canFetchMore || isFetchingMore}
+            onClick={() => fetchNextPage()}
+            disabled={!hasNextPage || isFetchingNextPage}
           >
-            {isFetchingMore
+            {isFetchingNextPage
               ? t('games.loading_more')
-              : canFetchMore
+              : hasNextPage
               ? t('games.load_more')
               : t('games.load_more_end')}
           </button>

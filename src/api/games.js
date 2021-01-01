@@ -1,13 +1,13 @@
 import {deserialise} from 'kitsu-core';
-import {QueryCache, useInfiniteQuery} from 'react-query';
+import {QueryClient, useInfiniteQuery} from 'react-query';
 import {dehydrate} from 'react-query/hydration';
 import queryString from 'query-string';
 import {useGosRouter} from 'hooks';
 import {useMemo} from 'react';
 
-export const getGames = async (key, params = {}, nextPage = 0) => {
+export const fetchGames = async pageIndex => {
   const queryUrl = queryString.stringify(
-    {...params, page: nextPage},
+    {page: pageIndex},
     {
       arrayFormat: 'bracket',
     }
@@ -22,9 +22,9 @@ export const getGames = async (key, params = {}, nextPage = 0) => {
   const data = await res.json();
 
   // Set next page index for next call
-  const hasNextPage = data.hits.total > data.hits.hits.length * (nextPage + 1);
-  data.page = nextPage;
-  data.nextPage = hasNextPage ? nextPage + 1 : null;
+  const hasNextPage = data.hits.total > data.hits.hits.length * (pageIndex + 1);
+  data.page = pageIndex;
+  data.nextPage = hasNextPage ? pageIndex + 1 : false;
 
   return deserialise(data);
 };
@@ -33,34 +33,39 @@ export const useGames = () => {
   const {query} = useGosRouter();
 
   // Query all the games with infinite query with all passed params
-  const gamesQuery = useInfiniteQuery(['games', query], getGames, {
-    refetchOnWindowFocus: false,
-    getFetchMore: lastGroup => lastGroup.nextPage,
-    keepPreviousData: true,
-  });
+  const gamesQuery = useInfiniteQuery(
+    ['games', query],
+    ({pageParam = 0}) => fetchGames(pageParam),
+    {
+      refetchOnWindowFocus: false,
+      getNextPageParam: lastGroup => lastGroup.nextPage,
+      keepPreviousData: true,
+    }
+  );
 
-  const {data, fetchMore} = gamesQuery;
+  const {data} = gamesQuery;
 
   return {
     ...gamesQuery,
-    pages: data || [],
-    total: data && data[0].hits.total,
-    facets: useMemo(() => (data && data[0].aggregations.aggs_all) || {}, [
-      data,
-    ]),
-    fetchMore: () => fetchMore(), // Must not send any params (like click event)
+    total: data.pages?.[0].hits.total,
+    facets: useMemo(() => data.pages?.[0].aggregations.aggs_all || {}, [data]),
   };
 };
 
 export const prefetchGames = async () => {
-  const queryCache = new QueryCache();
-  await queryCache.prefetchQuery(['games', {}], getGames, {
-    infinite: true,
-  });
+  const queryClient = new QueryClient();
+  await queryClient.prefetchInfiniteQuery(
+    ['games', {}],
+    ({pageParam = 0}) => fetchGames(pageParam),
+    {
+      getNextPageParam: lastGroup => lastGroup.nextPage,
+    }
+  );
 
   return {
     props: {
-      dehydratedState: dehydrate(queryCache),
+      // TODO fix once bug is fixed tannerlinsley/react-query/issues/1458
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
   };
 };

@@ -1,19 +1,20 @@
-import {QueryCache, ReactQueryCacheProvider} from 'react-query';
+import {QueryClient, QueryClientProvider} from 'react-query';
 import {Hydrate} from 'react-query/hydration';
 import 'styles/index.css';
-import {ReactQueryDevtools} from 'react-query-devtools';
+import {ReactQueryDevtools} from 'react-query/devtools';
 import 'locales/i18n';
 import Layout from 'components/Layout';
 import React from 'react';
 import {DefaultSeo} from 'next-seo';
 
-const queryCache = new QueryCache();
+const queryClient = new QueryClient();
 
 export default function App({Component, pageProps}) {
   return (
-    <ReactQueryCacheProvider queryCache={queryCache}>
+    <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <DefaultSeo
+          // TODO remove this once released
           dangerouslySetAllPagesToNoFollow={
             process.env.NEXT_PUBLIC_ENV !== 'production'
           }
@@ -31,6 +32,6 @@ export default function App({Component, pageProps}) {
         </Layout>
         <ReactQueryDevtools initialIsOpen />
       </Hydrate>
-    </ReactQueryCacheProvider>
+    </QueryClientProvider>
   );
 }
