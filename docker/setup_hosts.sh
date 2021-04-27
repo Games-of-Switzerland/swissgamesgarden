@@ -17,6 +17,8 @@ done
 
 host gos_staging_app_1 | awk '/has address/ { print  $4 "  staging-api-gos.museebolo.ch" }' >> /etc/hosts
 host gos_production_app_1 | awk '/has address/ { print  $4 "  api-gos.museebolo.ch" }' >> /etc/hosts
+host gos_staging_app_1 | awk '/has address/ { print  $4 "  staging-api.swissgames.garden" }' >> /etc/hosts
+host gos_production_app_1 | awk '/has address/ { print  $4 "  api.swissgames.garden" }' >> /etc/hosts
 
 cat /etc/hosts
 
