@@ -5,7 +5,6 @@ import Dropdown from 'components/Dropdown';
 import Tooltip from 'components/Tooltip';
 import {useState} from 'react';
 import {useGosFilter} from 'hooks';
-import queryString from 'query-string';
 
 const getMaxCount = (array, key, min = 0) => {
   let max = min;
@@ -37,8 +36,8 @@ const ReleasesFilter = ({data, filterName}) => {
   const handleChangeValues = ([newMin, newMax]) => {
     const [stateMin, stateMax] = values;
     const gatedMin = newMin >= stateMax ? stateMax - 1 : newMin;
-    const gatedMax = newMax <= stateMin ? stateMin + 1 : newMax;
-    setValues([gatedMin, gatedMax]);
+    const gatedMax = newMax < stateMin ? stateMin + 1 : newMax;
+    setValues([Number(gatedMin), Number(gatedMax)]);
     setChanged(true);
   };
 
@@ -104,7 +103,7 @@ const ReleasesFilter = ({data, filterName}) => {
       <>
         <div className="flex space-x-2 mb-3">
           <select
-            className="form-select flex-grow"
+            className="form-select flex-1"
             value={values[0]}
             onChange={handleMinChange}
           >
@@ -122,13 +121,13 @@ const ReleasesFilter = ({data, filterName}) => {
           </select>
 
           <select
-            className="form-select flex-grow"
+            className="form-select flex-1"
             value={values[1]}
             onChange={handleMaxChange}
           >
             {data.map(
               ({key_as_string, key, doc_count}) =>
-                Number(key_as_string) > values[0] && (
+                Number(key_as_string) >= values[0] && (
                   <option
                     key={`option-max-${key}`}
                     value={Number(key_as_string)}

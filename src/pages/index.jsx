@@ -12,7 +12,7 @@ const PAGE_SIZE = 24;
 const GamesListing = () => {
   const {t} = useTranslation();
   const {
-    data,
+    data = {},
     fetchNextPage,
     isLoading,
     isFetching,
@@ -21,11 +21,9 @@ const GamesListing = () => {
     error,
     isFetchingNextPage,
     hasNextPage,
-    total,
-    facets,
   } = useGames();
 
-  const {pages = []} = data;
+  const {pages = [], facets, total} = data;
 
   const renderGames = () =>
     pages.length > 0 ? (
@@ -67,7 +65,9 @@ const GamesListing = () => {
     <>
       <div className="text-5xl my-20 font-semibold items-center flex flex-col leading-none text-center">
         <span className="text-white tracking-tight">{t('games.title_1')}</span>
-        <span className="text-gradient">{t('games.title_2')}</span>
+        <span className="text-gradient leading-normal">
+          {t('games.title_2')}
+        </span>
       </div>
 
       <div className="mb-5 flex space-x-4 items-baseline">
@@ -80,11 +80,18 @@ const GamesListing = () => {
             {t('games.fetching')}
           </span>
         ) : (
-          error && (
-            <span className="text-red-500">
-              {t('error.with_message', {message: error.message})}
-            </span>
-          )
+          <>
+            {isError && (
+              <span className="text-red-500">
+                {t('error.with_message', {message: error.message})}
+              </span>
+            )}
+            {isSuccess && (
+              <span className="text-gray-500">{`${
+                data.pages[data.pages.length - 1].took
+              }ms`}</span>
+            )}
+          </>
         )}
       </div>
 
