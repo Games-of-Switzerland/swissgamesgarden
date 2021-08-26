@@ -51,15 +51,6 @@ module.exports = {
     },
     // forms: theme => ({
     //   default: {
-    //     checkbox: {
-    //       borderRadius: theme('borderRadius.none'),
-    //       borderColor: theme('colors.gray.850'),
-    //       backgroundColor: theme('colors.transparent'),
-    //       width: theme('spacing.5'),
-    //       height: theme('spacing.5'),
-    //       icon:
-    //         '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="#E05340" d="M0 0h20v20H0z"/><path stroke="#FFF" fill="none"  d="M4 10l4 4 8-8"/></svg>',
-    //     },
     //     select: {
     //       backgroundColor: theme('colors.gray.900'),
     //       borderWidth: 0,
@@ -197,8 +188,4 @@ module.exports = {
       addUtilities(utilities, variants('borderColor'));
     },
   ],
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
 };

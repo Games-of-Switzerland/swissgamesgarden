@@ -1,7 +1,25 @@
-@layer utilities {
+@layer base {
   [type='checkbox'] {
     &:checked {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23E05340' d='M0 0h20v20H0z'/%3E%3Cpath stroke='%23FFF' fill='none' d='M4 10l4 4 8-8'/%3E%3C/svg%3E") !important;
+      background-image: svg-load('svg/checkbox.svg') !important;
     }
+  }
+
+  select {
+    @apply bg-gray-900 border-0;
+    background-image: svg-load('svg/select.svg', fill=#e2e8f0);
+
+    &:hover {
+      @apply bg-gray-850;
+    }
+
+    &:focus {
+      @apply ring-gray-800;
+    }
+  }
+
+  ::-webkit-search-cancel-button {
+    @apply relative appearance-none rounded-full w-6 h-6;
+    background-image: svg-load('svg/close.svg', stroke=#e2e8f0);
   }
 }

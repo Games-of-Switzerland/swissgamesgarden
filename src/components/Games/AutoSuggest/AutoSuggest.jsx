@@ -48,7 +48,7 @@ const AutoSuggest = props => {
         <input
           {...getInputProps({
             className:
-              'autosuggest-input appearance-none bg-transparent block flex-grow max-w-full border border-transparent text-white text-lg font-thin py-2 pr-8 pl-14 placeholder-gray-500 focus:outline-none focus:bg-gray-900 focus:border-gray-850',
+              'autosuggest-input appearance-none bg-transparent block flex-grow max-w-full border border-transparent text-white text-lg font-thin py-2 pr-4 pl-10 focus:ring-0 ring-0 placeholder-gray-500 focus:outline-none focus:bg-gray-900 focus:border-gray-800',
             placeholder: t('autocomplete.placeholder'),
             type: 'search',
           })}

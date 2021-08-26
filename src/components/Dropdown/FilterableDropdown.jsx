@@ -8,7 +8,7 @@ const FilterableContent = ({items, selectedItems, onClick}) => {
 
   const inputProps = {
     className:
-      'transition transition-spacing transition-background autosuggest-input w-full appearance-none bg-gray-900 block flex-grow max-w-full border border-transparent text-white text-lg font-thin placeholder-gray-500 py-2 pr-8 pl-12 focus:pl-9 focus:ring-0 ring-0 focus:bg-gray-900 focus:border-gray-800 mb-3',
+      'autosuggest-input w-full appearance-none bg-gray-900 block flex-grow max-w-full border border-transparent text-white text-lg font-thin placeholder-gray-500 py-2 pr-8 pl-10 focus:ring-0 ring-0 focus:bg-gray-900 focus:border-gray-800 mb-3',
     type: 'search',
     placeholder: t('games.filter_placeholder'),
     onChange: e => {
@@ -49,16 +49,21 @@ const FilterableDropdown = ({title, selectedItems, onReset, ...rest}) => {
   const {t} = useTranslation();
 
   const resetBtn = close => (
-    <button
-      disabled={selectedItems.length === 0}
-      className="btn btn-gray py-4 w-full"
-      onClick={() => {
-        onReset();
-        close();
-      }}
-    >
-      {t('reset')}
-    </button>
+    <div className="flex space-x-2">
+      <button
+        disabled={selectedItems.length === 0}
+        className="btn btn-gray py-4 flex-grow"
+        onClick={() => {
+          onReset();
+          close();
+        }}
+      >
+        {t('reset')}
+      </button>
+      <button className="btn btn-red py-4 flex-grow" onClick={close}>
+        {t('save')}
+      </button>
+    </div>
   );
 
   return (
