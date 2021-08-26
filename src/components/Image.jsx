@@ -23,9 +23,9 @@ const Source = ({links, srcSet = [], type}) => {
 
   return (
     <>
-      {shouldRenderWebp && (
-        <source srcSet={webpSrcSetString} type="image/webp" />
-      )}
+      {/*{shouldRenderWebp && (*/}
+      {/*  <source srcSet={webpSrcSetString} type="image/webp" />*/}
+      {/*)}*/}
       <source srcSet={srcSetString} type={`image/${typeOriginal}`} />
     </>
   );

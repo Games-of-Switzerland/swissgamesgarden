@@ -16,15 +16,18 @@ const options = {
   }),
 };
 
-export const fetchGames = async pageParam => {
+export const fetchGames = async ({queryKey: [, value], pageParam}) => {
   const queryUrl = queryString.stringify(
-    {page: pageParam || 0},
+    {
+      page: pageParam || 0,
+      ...value,
+    },
     {
       arrayFormat: 'bracket',
     }
   );
 
-  console.log('GAMES===============', decodeURI(queryUrl));
+  console.log('GAMES===============', {page: pageParam || 0, ...value});
 
   // Get games from server
   const data = await fetchApi(queryUrl);
@@ -41,20 +44,12 @@ export const useGames = () => {
   const {query} = useGosRouter();
 
   // Query all the games with infinite query with all passed params
-  return useInfiniteQuery(
-    ['games', query],
-    async ({pageParam}) => await fetchGames(pageParam),
-    options
-  );
+  return useInfiniteQuery(['games', query], fetchGames, options);
 };
 
 export const prefetchGames = async () => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchInfiniteQuery(
-    ['games', {}],
-    async ({pageParam}) => await fetchGames(pageParam),
-    options
-  );
+  await queryClient.prefetchInfiniteQuery(['games', {}], fetchGames, options);
 
   return {
     props: {

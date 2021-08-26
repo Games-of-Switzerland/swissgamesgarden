@@ -23,7 +23,7 @@ const GamesListing = () => {
     hasNextPage,
   } = useGames();
 
-  const {pages = [], facets, total} = data;
+  const {pages = [], facets = {}, total} = data;
 
   const renderGames = () =>
     pages.length > 0 ? (

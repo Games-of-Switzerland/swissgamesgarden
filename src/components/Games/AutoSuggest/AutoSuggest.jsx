@@ -10,12 +10,16 @@ const AutoSuggest = props => {
   const {t} = useTranslation();
   const [inputValue, setInputValue] = useState('');
 
-  const {data = []} = useQuery(['autocomplete', inputValue], getAutocomplete, {
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-    enabled: !!inputValue,
-    keepPreviousData: true,
-  });
+  const {data = [], error} = useQuery(
+    ['autocomplete', inputValue],
+    getAutocomplete,
+    {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      enabled: !!inputValue,
+      keepPreviousData: true,
+    }
+  );
   const router = useRouter();
 
   const {
@@ -26,12 +30,12 @@ const AutoSuggest = props => {
     getComboboxProps,
     highlightedIndex,
     getItemProps,
-    selectedItem,
   } = useCombobox({
     id: 'search-field',
     items: data,
-    onInputValueChange: ({inputValue}) => {
-      setInputValue(inputValue);
+    inputValue,
+    onInputValueChange: ({inputValue: newValue}) => {
+      setInputValue(newValue);
     },
     itemToString: item => item?.value || '',
     onSelectedItemChange: ({selectedItem}) => {
@@ -89,6 +93,9 @@ const AutoSuggest = props => {
             })}
         </ul>
       </div>
+      {error && (
+        <div className="text-red-500 text-xs leading-4">{error?.message}</div>
+      )}
     </div>
   );
 };

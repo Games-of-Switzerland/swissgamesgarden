@@ -58,13 +58,14 @@ const getSuggestionData = (hit, value) => {
   };
 };
 
-export const getAutocomplete = async (key, value) => {
+export const getAutocomplete = async ({queryKey: [, value]}) => {
   if (!value) return [];
 
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_AUTOCOMPLETE}?q=${value}`
   );
   const results = await response.json();
+
   return results.aggregations.bundles.bundle.buckets
     .reduce((acc, bucket) => [...acc, ...bucket.top.hits.hits], [])
     .sort((a, b) => b._score - a._score)
