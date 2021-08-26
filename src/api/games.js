@@ -27,8 +27,6 @@ export const fetchGames = async ({queryKey: [, value], pageParam}) => {
     }
   );
 
-  console.log('GAMES===============', {page: pageParam || 0, ...value});
-
   // Get games from server
   const data = await fetchApi(queryUrl);
 
