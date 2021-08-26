@@ -47,30 +47,29 @@ const GameTeaser = ({game}) => {
           </Link>
         </h3>
 
-        <div
-          className={classNames(
-            'flex flex-wrap -mr-1',
-            genres.length > 0 && 'mb-1'
-          )}
-        >
-          {releases.map(({platform_slug}) => (
-            <Link href={`/?platforms[]=${platform_slug}`} key={platform_slug}>
-              <a className="inline-block leading-none p-1 border border-gray-850 text-gray-500 font-light mb-1 hover:border-gray-550 hover:text-white relative z-10 mr-1">
-                {t(`platforms.${platform_slug}`)}
-              </a>
-            </Link>
-          ))}
-        </div>
+        {releases.length > 0 && (
+          <div className="flex flex-wrap gap-1">
+            {releases.map(({platform_slug}) => (
+              <Link href={`/?platforms[]=${platform_slug}`} key={platform_slug}>
+                <a className="inline-block leading-none p-1 border border-gray-850 text-gray-500 font-light hover:border-gray-550 hover:text-white relative z-10">
+                  {t(`platforms.${platform_slug}`)}
+                </a>
+              </Link>
+            ))}
+          </div>
+        )}
 
-        <div className="flex space-x-1">
-          {genres.map(({slug}) => (
-            <Link href={`/?genres[]=${slug}`} key={slug}>
-              <a className="border-b border-dotted border-gray-700 text-gray-500 hover:text-white hover:border-gray-450 relative z-10 mb-1">
-                {t(`genres.${slug}`)}
-              </a>
-            </Link>
-          ))}
-        </div>
+        {genres.length > 0 && (
+          <div className="flex gap-1 mt-1">
+            {genres.map(({slug}) => (
+              <Link href={`/?genres[]=${slug}`} key={slug}>
+                <a className="border-b border-dotted border-gray-700 text-gray-500 hover:text-white hover:border-gray-450 relative z-10 mb-1">
+                  {t(`genres.${slug}`)}
+                </a>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
