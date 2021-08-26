@@ -22,7 +22,7 @@ const ReleasesFilter = ({data, filterName}) => {
   const max = Number(data[data.length - 1].key_as_string);
 
   const [changed, setChanged] = useState(false);
-  const [values, setValues] = React.useState([min, max]);
+  const [values, setValues] = useState([min, max]);
 
   const handleSave = async () => {
     await save(values[1]);
@@ -103,7 +103,7 @@ const ReleasesFilter = ({data, filterName}) => {
       <>
         <div className="flex space-x-2 mb-3">
           <select
-            className="form-select flex-1"
+            className="flex-1"
             value={values[0]}
             onChange={handleMinChange}
           >

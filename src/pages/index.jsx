@@ -87,9 +87,11 @@ const GamesListing = () => {
               </span>
             )}
             {isSuccess && (
-              <span className="text-gray-500">{`${
-                data.pages[data.pages.length - 1].took
-              }ms`}</span>
+              <span className="text-gray-850">
+                {t('games.fetched_in_ms', {
+                  ms: `${data.pages[data.pages.length - 1].took}ms`,
+                })}
+              </span>
             )}
           </>
         )}

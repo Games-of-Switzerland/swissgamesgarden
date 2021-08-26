@@ -43,7 +43,7 @@ const Dropdown = ({
   });
 
   const btnClasses = classNames(
-    'z-10 inline-flex items-center dropdown-toggle border py-2 px-4 text-white text-md focus:outline-none whitespace-no-wrap',
+    'z-10 inline-flex items-center dropdown-toggle border py-2 px-4 text-white text-md focus:outline-none whitespace-nowrap',
     {
       'open bg-gray-1000 border-gray-850 text-white z-20': isComponentVisible,
       'bg-gray-900 hover:bg-gray-850 border-gray-900 hover:border-gray-850': !isComponentVisible,

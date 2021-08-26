@@ -174,7 +174,8 @@
     "social_networks_plural": "Social Networks"
   },
   "games": {
-    "fetching": "Fetching games...",
+    "fetched_in_ms": "fetched in {{ms}}",
+    "fetching": "fetching games...",
     "title_1": "Find and discover",
     "title_2": "video games from Switzerland",
     "loading": "Loading...",

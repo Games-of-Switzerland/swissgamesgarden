@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import {forwardRef} from 'react';
 
 const CheckboxFilterItem = forwardRef(
-  ({isActive, result, onClick, isHighlighted, ...rest}, ref) => (
+  ({isActive, result, onChange, isHighlighted, ...rest}, ref) => (
     <label
       className={classNames(
         'flex items-center p-2 hover:bg-gray-950 cursor-pointer group',
@@ -19,12 +19,12 @@ const CheckboxFilterItem = forwardRef(
         type="checkbox"
         value={result.key}
         checked={isActive}
-        onChange={onClick}
+        onChange={onChange}
         className={classNames(
-          'form-checkbox focus:shadow-none focus:border-gray-850 mr-2',
+          'border-gray-850 bg-transparent focus:ring-0 focus:ring-offset-0 focus:border-gray-500 mr-2',
           {
             'group-hover:border-gray-500': !isActive,
-            'border-none': isActive,
+            'border-none text-red-500': isActive,
           }
         )}
       />

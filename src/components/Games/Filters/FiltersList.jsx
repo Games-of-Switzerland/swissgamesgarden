@@ -6,7 +6,7 @@ import {useTranslation} from 'react-i18next';
 const FilterItem = ({value, onClick}) => {
   return (
     <button
-      className="mb-1 appearance-none border border-gray-850 text-gray-500 px-1 inline-flex items-center space-x-1 hover:border-gray-800 hover:text-white focus:outline-none focus:shadow-outline"
+      className="mb-1 appearance-none border border-gray-850 text-gray-500 px-1 inline-flex items-center space-x-1 hover:border-gray-800 hover:text-white focus:outline-none focus:ring"
       onClick={onClick}
     >
       <span className="text-md">
@@ -78,7 +78,7 @@ const FiltersList = () => {
         return [...acc, ...component];
       }, [])}
       <button
-        className="appearance-none whitespace-no-wrap text-gray-500 mb-1 hover:text-white px-2"
+        className="appearance-none whitespace-nowrap text-gray-500 mb-1 hover:text-white px-2"
         onClick={resetAll}
       >
         {t('reset_filters')}

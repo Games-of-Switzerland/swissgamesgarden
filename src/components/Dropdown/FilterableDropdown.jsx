@@ -1,84 +1,44 @@
 import {useTranslation} from 'react-i18next';
 import {useState} from 'react';
 import Dropdown, {CheckboxFilterItem} from './index';
-import {useCombobox} from 'downshift';
-
-const stateReducer = (state, {type, changes}) => {
-  switch (type) {
-    case useCombobox.stateChangeTypes.ItemClick:
-    case useCombobox.stateChangeTypes.InputKeyDownEnter:
-      return {
-        ...changes,
-        inputValue: state.inputValue,
-      };
-    default:
-      return changes;
-  }
-};
 
 const FilterableContent = ({items, selectedItems, onClick}) => {
   const {t} = useTranslation();
   const [inputItems, setInputItems] = useState(items);
 
-  const {
-    getMenuProps,
-    getInputProps,
-    getComboboxProps,
-    highlightedIndex,
-    getItemProps,
-    selectItem,
-  } = useCombobox({
-    stateReducer,
-    items: inputItems,
-    onInputValueChange: ({inputValue}) => {
+  const inputProps = {
+    className:
+      'transition transition-spacing transition-background autosuggest-input w-full appearance-none bg-gray-900 block flex-grow max-w-full border border-transparent text-white text-lg font-thin placeholder-gray-500 py-2 pr-8 pl-12 focus:pl-9 focus:ring-0 ring-0 focus:bg-gray-900 focus:border-gray-800 mb-3',
+    type: 'search',
+    placeholder: t('games.filter_placeholder'),
+    onChange: e => {
+      const value = e.target.value;
       setInputItems(
         items.filter(({title}) =>
           title
             .toLowerCase()
             .replace(/\s/, '')
-            .includes(inputValue.toLowerCase().replace(/\s/, ''))
+            .includes(value.toLowerCase().replace(/\s/, ''))
         )
       );
     },
-    onSelectedItemChange: ({selectedItem}) => {
-      selectedItem && onClick(selectedItem.key);
-      // Deselect the item afterwards, to make sure you can
-      selectItem(null);
-    },
-  });
+  };
 
   return (
     <>
-      <div {...getComboboxProps()}>
-        <input
-          {...getInputProps({
-            className:
-              'autosuggest-input w-full appearance-none bg-gray-900 block flex-grow max-w-full border border-transparent text-white text-lg font-thin py-2 pr-8 pl-14 placeholder-gray-500 focus:outline-none focus:bg-gray-900 focus:border-gray-850 mb-3',
-            type: 'search',
-            placeholder: t('games.filter_placeholder'),
-            autoFocus: true,
-          })}
-        />
+      <div>
+        <input {...inputProps} />
       </div>
-      <div
-        {...getMenuProps({
-          className: 'max-h-24 overflow-y-auto big-scrollbar mb-3',
-        })}
-      >
-        {inputItems.map((item, index) => {
-          return (
-            <CheckboxFilterItem
-              key={item.key}
-              {...getItemProps({
-                isHighlighted: highlightedIndex === index,
-                item,
-                index,
-                result: item,
-                isActive: selectedItems.includes(item.key),
-              })}
-            />
-          );
-        })}
+      <div className="max-h-60 overflow-y-auto big-scrollbar mb-3">
+        {inputItems.map((item, index) => (
+          <CheckboxFilterItem
+            key={item.key}
+            isHighlighted={false}
+            result={item}
+            isActive={selectedItems.includes(item.key)}
+            onChange={e => onClick(item.key)}
+          />
+        ))}
         {inputItems.length === 0 && <div>{t('games.filter_no_results')}</div>}
       </div>
     </>
