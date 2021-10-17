@@ -31,7 +31,7 @@ const GamesFilters = ({filters}) => {
         <BaseFilter filterName="platforms" data={platforms} />
         <BaseFilter filterName="locations" data={locations} />
         {releases?.length > 0 && (
-          <ReleasesFilter data={releases} filterName="release_year" />
+          <ReleasesFilter data={releases} filterName="release_year_range" />
         )}
         <BaseFilter filterName="states" data={states} />
         <BaseFilter filterName="genres" data={genres} />

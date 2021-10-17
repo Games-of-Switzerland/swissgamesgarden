@@ -1,5 +1,6 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
+import ReactMarkdown from 'react-markdown';
 
 const Add = () => {
   const {t} = useTranslation();
@@ -12,7 +13,9 @@ const Add = () => {
       <div className="content-container text-white">
         <div className="text-center" style={{gridArea: 'main'}}>
           <div className="text-center">
-            <p className="text-white mb-10">{t('add.description')}</p>
+            <ReactMarkdown className="mb-10 formatted">
+              {t('add.description_markdown')}
+            </ReactMarkdown>
 
             <a className="btn btn-white" href={`mailto:${t('contact.email')}`}>
               {t('contact.send_mail')}

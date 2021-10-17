@@ -1,5 +1,5 @@
-const flattenColorPalette = require('tailwindcss/lib/util/flattenColorPalette')
-  .default;
+const flattenColorPalette =
+  require('tailwindcss/lib/util/flattenColorPalette').default;
 
 module.exports = {
   purge: {

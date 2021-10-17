@@ -53,24 +53,38 @@ const FiltersList = () => {
 
   if (filterEntries.length === 0) return null;
 
+  const getOutput = (filterName, value) => {
+    switch (filterName) {
+      case 'release_year_range[start]':
+        return `>= ${value}`;
+      case 'release_year_range[end]':
+        return `<= ${value}`;
+      default:
+        return t(`${filterName}.${value}`);
+    }
+  };
+
   return (
     <div className="flex space-x-1 overflow-x-auto px-4 -mx-4">
       {filterEntries.reduce((acc, filter) => {
         const [filterName, value] = filter;
+        console.log(filter);
+
+        const output = getOutput(filterName, value);
 
         const component =
           typeof value === 'string'
             ? [
                 <FilterItem
                   key={filter.join('-')}
-                  value={t(`${filterName}.${value}`)}
+                  value={output}
                   onClick={() => handleRemoveFilter(filter)}
                 />,
               ]
             : value.map(val => (
                 <FilterItem
                   key={`${filter[0]}-${val}`}
-                  value={t(`${filterName}.${val}`)}
+                  value={output}
                   onClick={() => handleRemoveFilter([filterName, val])}
                 />
               ));

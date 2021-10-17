@@ -18,6 +18,10 @@ const Header = () => {
       href: '/contact',
       label: 'pages.contact',
     },
+    {
+      href: '/donation',
+      label: 'pages.donate',
+    },
   ];
 
   return (

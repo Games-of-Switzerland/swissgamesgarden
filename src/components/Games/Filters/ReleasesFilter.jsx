@@ -3,8 +3,10 @@ import classNames from 'classnames';
 import {useRanger} from 'react-ranger';
 import Dropdown from 'components/Dropdown';
 import Tooltip from 'components/Tooltip';
-import {useState} from 'react';
-import {useGosFilter} from 'hooks';
+import {useCallback, useState} from 'react';
+import {useGosFilter, useGosRouter} from 'hooks';
+import addOrRemove from '../../../utils/addOrRemove';
+import queryString from 'query-string';
 
 const getMaxCount = (array, key, min = 0) => {
   let max = min;
@@ -16,20 +18,54 @@ const getMaxCount = (array, key, min = 0) => {
 
 const ReleasesFilter = ({data, filterName}) => {
   const {t} = useTranslation();
-  const {save, reset, filter} = useGosFilter({filterName, isNumber: true});
+  const {query, replace} = useGosRouter();
 
-  const min = Number(data[0].key_as_string);
-  const max = Number(data[data.length - 1].key_as_string);
+  const filterStartName = `${filterName}[start]`;
+  const filterEndName = `${filterName}[end]`;
+
+  const isSelected = Object.keys(query).some(k =>
+    [filterStartName, filterEndName].includes(k)
+  );
+
+  const {reset} = useGosFilter({
+    filterName,
+    isArray: true,
+    isNumber: true,
+  });
+
+  const save = useCallback(
+    async ([start, end]) => {
+      const newQuery = {
+        ...query,
+        [filterStartName]: start,
+        [filterEndName]: end,
+      };
+
+      await replace(
+        {
+          pathname: '/',
+          query: newQuery,
+        },
+        `?${queryString.stringify(newQuery, {arrayFormat: 'bracket'})}`
+      );
+
+      // release_year_range[start]=2020&release_year_range[end]=2010
+    },
+    [query]
+  );
+
+  const start = Number(data[0].key_as_string);
+  const end = Number(data[data.length - 1].key_as_string);
 
   const [changed, setChanged] = useState(false);
-  const [values, setValues] = useState([min, max]);
+  const [values, setValues] = useState([start, end]);
 
   const handleSave = async () => {
-    await save(values[1]);
+    await save(values);
   };
 
   const handleReset = async () => {
-    setValues([min, max]);
+    setValues([start, end]);
     await reset();
   };
 
@@ -42,12 +78,12 @@ const ReleasesFilter = ({data, filterName}) => {
   };
 
   const {getTrackProps, handles, ticks} = useRanger({
-    min: min,
-    max: max,
+    min: start,
+    max: end,
     stepSize: 1,
     values,
     onDrag: handleChangeValues,
-    ticks: [min, max],
+    ticks: [start, end],
   });
 
   const actions = close => (
@@ -85,18 +121,20 @@ const ReleasesFilter = ({data, filterName}) => {
     handleChangeValues([values[0], val]);
   };
 
+  const [isFirstClick, setIsFirstClick] = useState(true);
   const handleBarClick = val => {
-    if (val > values[0]) {
-      handleChangeValues([values[0], val]);
-    } else if (val < values[1]) {
+    if (isFirstClick) {
       handleChangeValues([val, values[1]]);
+    } else {
+      handleChangeValues([values[0], val]);
     }
+    setIsFirstClick(p => !p);
   };
 
   return (
     <Dropdown
       title={t(`${filterName}.title`)}
-      isSelected={filter}
+      isSelected={isSelected}
       content={actions}
       className="mb-1 mr-1"
     >

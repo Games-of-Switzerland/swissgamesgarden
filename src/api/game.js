@@ -1,5 +1,5 @@
 import {deserialise, query} from 'kitsu-core';
-import {QueryCache, QueryClient, useQuery} from 'react-query';
+import {QueryClient, useQuery} from 'react-query';
 import {dehydrate} from 'react-query/hydration';
 
 export const getGame = async ({queryKey}) => {

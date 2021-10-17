@@ -1,11 +1,21 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import Placeholder from 'components/Placeholder';
+import {prefetchPage, usePage} from '../api/page';
+import Loading from 'components/Loading';
+import Error from 'components/Error';
+import Image from 'next/image';
 
 const About = () => {
   const {t} = useTranslation();
 
-  const team = t('about.team', {returnObjects: true});
+  const teams = t('about.teams', {returnObjects: true});
+
+  const {data, isLoading, isError, error} = usePage('about');
+
+  if (isLoading) return <Loading />;
+  if (isError) return <Error message={error?.message} />;
+
+  const {title, body} = data;
 
   return (
     <>
@@ -16,29 +26,27 @@ const About = () => {
 
       <div className="content-container text-white">
         <div style={{gridArea: 'main'}}>
-          <div className="mb-12">
-            <h2 className="text-2xl font-semibold mb-4">
-              {t('about.subtitle')}
-            </h2>
-            <p>{t('about.description')}</p>
+          <div className="mb-12 formatted">
+            <div dangerouslySetInnerHTML={{__html: body.processed}} />
           </div>
 
-          <div className="mb-12">
-            <h2 className="text-2xl font-semibold mb-8">
-              {t('about.sponsors')}
-            </h2>
-            ...
-          </div>
-
-          <div className="mb-12">
-            <h2 className="text-2xl font-semibold mb-8">
-              {t('about.team_title')}
-            </h2>
-            <div className="grid grid-cols-3 gap-x-4 gap-y-10">
-              {Object.values(team).map(({job, name, twitter}) => {
-                return (
-                  <div>
-                    <Placeholder className="mb-3" />
+          {Object.entries(teams).map(([key, {team, title}]) => (
+            <div className="mb-12" key={key}>
+              <h2 className="text-2xl font-semibold mb-8">{title}</h2>
+              <div className="grid grid-cols-3 gap-x-4 gap-y-10">
+                {Object.entries(team).map(([key, {job, name, twitter}]) => (
+                  <div key={key}>
+                    <div className="mb-3">
+                      <Image
+                        src={`/team/${key}.jpeg`}
+                        alt={name}
+                        layout="responsive"
+                        objectFit="cover"
+                        width={330}
+                        height={220}
+                      />
+                    </div>
+                    {/*<Placeholder className="mb-3" />*/}
                     <div className="text-gray-500 text-md font-light">
                       {job}
                     </div>
@@ -52,14 +60,17 @@ const About = () => {
                       {twitter.replace(/.*?twitter.com\//i, '@')}
                     </a>
                   </div>
-                );
-              })}
+                ))}
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </>
   );
 };
+
+export const getServerSideProps = async props =>
+  await prefetchPage({path: 'about', ...props});
 
 export default About;

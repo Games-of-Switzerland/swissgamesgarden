@@ -124,7 +124,7 @@
     "pre_release": "Pre-release",
     "development": "Development"
   },
-  "release_year": {
+  "release_year_range": {
     "title": "Release year"
   },
   "state": {
@@ -197,7 +197,8 @@
   },
   "pages": {
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "donate": "Donate"
   },
   "content_type": {
     "game": "Game",
@@ -212,35 +213,83 @@
     "members": "Members",
     "games": "Games"
   },
+  "donation": {
+    "title_1": "Help Swiss Games",
+    "title_2": "to thrive"
+  },
   "about": {
     "subtitle": "Origin",
-    "description": "asdf askjdfk ajsfk jak ",
+    "description_markdown": "## The roots\nSwiss Games Garden’s main objective is to promote Swiss video games while encouraging data saving.\n**This project is free, open source and collaborative. It belongs to everyone.** That’s why we encourage any new game suggestion or update!\n",
     "team_title": "Team",
-    "team": {
-      "toni": {
-        "name": "Toni Fisler",
-        "job": "Developer",
-        "twitter": "https://twitter.com/tonifisler"
+    "teams": {
+      "web": {
+        "title": "Web team",
+        "team": {
+          "toni": {
+            "name": "Toni Fisler",
+            "job": "Developer",
+            "twitter": "https://twitter.com/tonifisler"
+          },
+          "kevin": {
+            "name": "Kevin Wenger",
+            "job": "Developer",
+            "twitter": "https://twitter.com/wengerk"
+          },
+          "pierre": {
+            "name": "Pierre Georges",
+            "job": "UX/UI Designer",
+            "twitter": "https://twitter.com/pierre__georges"
+          },
+          "camille": {
+            "name": "Camille Létang",
+            "job": "UX Designer & QA",
+            "twitter": "https://twitter.com/Hagaroyh"
+          }
+        }
       },
-      "david": {
-        "name": "David Javet",
-        "job": "Initiator",
-        "twitter": "https://twitter.com/david_javet"
+      "project": {
+        "title": "Project initiators",
+        "team": {
+          "david": {
+            "name": "David Javet",
+            "job": "Game Designer",
+            "twitter": "https://twitter.com/david_javet"
+          },
+          "stark": {
+            "name": "David Stark",
+            "job": "Game Designer",
+            "twitter": "https://twitter.com/zarkonnen_com"
+          }
+        }
       },
-      "kevin": {
-        "name": "Kevin Wenger",
-        "job": "Developer",
-        "twitter": "https://twitter.com/wengerk"
+      "hosting": {
+        "title": "Web hosting and system administration",
+        "team": {
+          "bolo": {
+            "name": "The volunteers of the Les Amis du Musée Bolo association",
+            "twitter": "https://twitter.com/museebolo"
+          }
+        }
       },
-      "camille": {
-        "name": "Camille Létang",
-        "job": "UX Design",
-        "twitter": "https://twitter.com/Hagaroyh"
-      },
-      "pierre": {
-        "name": "Kevin Wenger",
-        "job": "Developer",
-        "twitter": "https://twitter.com/wengerk"
+      "gamelab": {
+        "title": "GameLab UNIL-EPFL",
+        "team": {
+          "david": {
+            "name": "David Javet",
+            "job": "Game Designer",
+            "twitter": "https://twitter.com/david_javet"
+          },
+          "selim": {
+            "name": "Selim Krichane",
+            "job": "Scientific Collaborator UNIL-EPFL",
+            "twitter": "https://twitter.com/selimkrichane"
+          },
+          "yannick": {
+            "name": "Yannick Rochat",
+            "job": "Assistant Professor UNIL",
+            "twitter": "https://twitter.com/david_javet"
+          }
+        }
       }
     },
     "title_1": "About",
@@ -287,15 +336,16 @@
     "wollishofen": "wollishofen"
   },
   "contact": {
-    "title_1": "Do you wish to",
-    "title_2": "contact us?",
-    "email": "mail@toni.io",
+    "title_1": "Spread",
+    "title_2": "your voice",
+    "email": "contact@swissgames.garden",
     "send_mail": "email us",
-    "description": "text"
+    "description_markdown": "It would be a pleasure to discuss the project or potential new ones to help the Swiss Video Games community. We are also open to any kind of contribution and partnership. Don’t hesitate to contact us!\n\n Concerning games’ data, you can proceed directly by suggesting a new game here or updating an existing game in our database directly from its own page."
   },
   "add": {
-    "title_1": "Are we missing",
-    "title_2": "your game?"
+    "title_1": "Plant",
+    "title_2": "your seed",
+    "description_markdown": "Take  a place in the Swiss game community and help it grow!\n\nWhether you spot incorrect data, think about a missing game, or are currently working on one, feel free to suggest a new entry or an update! All rays of sunshine are welcomed.\n\n Your data will be reviewed by our team and then published on the website. "
   },
   "error": {
     "message": "Oops! An error occurred. Try reloading!",
