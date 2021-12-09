@@ -22,7 +22,7 @@
     "kitsu": "^9.0.6",
     "kitsu-core": "^9.0.6",
     "konva": "^7.1.4",
-    "next": "^11.1.0",
+    "next": "^11.1.3",
     "next-seo": "^4.15.0",
     "postcss": "^8.3.6",
     "postcss-import": "^14.0.2",
