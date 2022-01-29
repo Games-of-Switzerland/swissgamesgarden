@@ -209,6 +209,10 @@
     "label": "Search for a game, person or studio",
     "placeholder": "game, studio, person…"
   },
+  "people": {
+    "studios": "Studios",
+    "games": "Games"
+  },
   "studio": {
     "members": "Members",
     "games": "Games"

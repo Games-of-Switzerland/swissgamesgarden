@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {useTranslation} from 'react-i18next';
 import {cleanURL} from 'utils/url';
 import {GameInfo} from './index';
@@ -11,10 +12,10 @@ const StandardLinksList = ({links}) =>
         return (
           <li key={i}>
             <a
-              className="link-dotted truncate inline-block max-w-truncated-link"
+              className='link-dotted truncate inline-block max-w-truncated-link'
               href={url}
-              target="_blank"
-              rel="noreferrer nofollow"
+              target='_blank'
+              rel='noreferrer nofollow'
             >
               {name || cleanURL(url)}
             </a>
@@ -41,18 +42,28 @@ const GameInfos = ({game}) => {
     article_links,
   } = game;
 
+  const renderStudioPeople = ({title, field_path, id}) =>
+    (
+      <Link href={field_path} key={id}>
+        <a
+          className='text-white hover:text-opacity-75 transition transition:opacity duration-200'>
+          {title}
+        </a>
+      </Link>
+    );
+
   const gameInfos = [
     {
       title: 'game.contextual_links',
       content: contextual_links?.length > 0 && (
-        <div className="flex flex-wrap -mr-2">
+        <div className='flex flex-wrap -mr-2'>
           {contextual_links.map(({type, url}, i) => (
             <a
               key={i}
-              className="btn btn-white mr-2 mb-2"
+              className='btn btn-white mr-2 mb-2'
               href={url}
-              target="_blank"
-              rel="noreferrer nofollow"
+              target='_blank'
+              rel='noreferrer nofollow'
             >
               {t(`game.contextual_link.${type}`)}
             </a>
@@ -63,12 +74,12 @@ const GameInfos = ({game}) => {
     },
     {
       title: 'game.studios',
-      content: studios?.data.map(({title}) => title).join(', '),
+      content: studios?.data.map(renderStudioPeople),
       count: studios?.data.length,
     },
     {
       title: 'game.members',
-      content: members?.data.map(({title}) => title).join(', '),
+      content: members?.data.map(renderStudioPeople),
       count: members?.data.length,
     },
     {
@@ -81,19 +92,17 @@ const GameInfos = ({game}) => {
       content: releases.length > 0 && (
         <ul>
           {releases.map(({year, platforms}) => (
-            <li key={`release-${year}`} className="leading-none mb-2">
+            <li key={`release-${year}`} className='leading-none mb-2'>
               <span>{year || t('game.unreleased')}</span>{' '}
-              <span className="text-sm text-gray-500">
+              <span className='text-sm text-gray-500'>
                 ·{' '}
-                {Object.values(platforms)
-                  .map(
-                    ({name, state}) =>
-                      t(`platforms.${name}`) +
-                      (state && state !== 'released'
-                        ? ` (${t(`state.${state}`)})`
-                        : '')
-                  )
-                  .join(', ')}
+                {Object.values(platforms).map(
+                  ({name, state}) =>
+                    t(`platforms.${name}`) +
+                    (state && state !== 'released'
+                      ? ` (${t(`state.${state}`)})`
+                      : ''),
+                ).join(', ')}
               </span>
             </li>
           ))}
@@ -110,10 +119,10 @@ const GameInfos = ({game}) => {
       title: 'game.website',
       content: website?.uri && (
         <a
-          className="truncate link-dotted max-w-full inline-block leading-6"
+          className='truncate link-dotted max-w-full inline-block leading-6'
           href={website.uri}
-          target="_blank"
-          rel="noreferrer nofollow"
+          target='_blank'
+          rel='noreferrer nofollow'
         >
           {cleanURL(website.uri)}
         </a>
@@ -145,16 +154,15 @@ const GameInfos = ({game}) => {
   if (gameInfos.every(info => !info.content)) return null;
 
   return (
-    <div className="mb-16">
-      <h2 className="section-title">{t('game.information')}</h2>
-      <div className="grid grid-cols-2 mb-5 gap-x-3 gap-y-8">
-        {gameInfos
-          .filter(({count}) => count === undefined || count > 0)
-          .map(({title, content, count}, i) => (
-            <GameInfo key={i} title={t(title, {count})}>
-              {content}
-            </GameInfo>
-          ))}
+    <div className='mb-16'>
+      <h2 className='section-title'>{t('game.information')}</h2>
+      <div className='grid grid-cols-2 mb-5 gap-x-3 gap-y-8'>
+        {gameInfos.filter(({count}) => count === undefined || count > 0).
+        map(({title, content, count}, i) => (
+          <GameInfo key={i} title={t(title, {count})}>
+            {content}
+          </GameInfo>
+        ))}
       </div>
     </div>
   );

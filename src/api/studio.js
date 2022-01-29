@@ -1,15 +1,16 @@
-import {QueryCache, useQuery} from 'react-query';
+import {QueryCache, QueryClient, useQuery} from 'react-query';
 import {dehydrate} from 'react-query/hydration';
 import {deserialise, query} from 'kitsu-core';
 
-export const getStudio = async (key, field_path) => {
+export const getStudio = async ({queryKey}) => {
   // Get studio
   const studioQueryUrl = query({
     filter: {
-      field_path: `/studios/${field_path}`,
+      field_path: `/studios/${queryKey[1]}`,
     },
     fields: {
       'node--studio': 'title,body,members',
+      'node--people': 'title,field_path'
     },
     include: 'members',
   });
@@ -20,13 +21,13 @@ export const getStudio = async (key, field_path) => {
     console.log(err);
   });
   const dataStudio = await studioRes.json();
-  const studio = await deserialise(dataStudio).data[0];
+  const studio = await deserialise(dataStudio).data[0] || null;
 
   ////////////////////////
   // Get games from studio
   const gamesQueryUrl = query({
     filter: {
-      'field_studios.field_path': `/studios/${field_path}`,
+      'field_studios.field_path': `/studios/${queryKey[1]}`,
     },
     fields: {
       'node--game': 'title,field_path',
@@ -49,14 +50,14 @@ export const useStudio = path => {
 };
 
 export const prefetchStudio = async ({query}) => {
-  const queryCache = new QueryCache();
-  await queryCache.prefetchQuery(['studio', query.path], getStudio);
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(['studio', query.path], getStudio,{});
 
   return (
-    queryCache && {
+    queryClient && {
       props: {
         path: query.path,
-        dehydratedState: dehydrate(queryCache),
+        dehydratedState: dehydrate(queryClient),
       },
     }
   );
