@@ -65,7 +65,7 @@ const Dropdown = ({
 
       {isComponentVisible && (
         <div
-          className="absolute z-0 bg-gray-1000 p-4 border border-gray-850 min-w-20"
+          className="absolute z-0 bg-gray-1000 p-4 border border-gray-850 min-w-20 -mt-px"
           ref={setPopperElement}
           style={styles.popper}
         >
