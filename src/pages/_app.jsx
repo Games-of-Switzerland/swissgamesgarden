@@ -14,13 +14,6 @@ export default function App({Component, pageProps}) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <DefaultSeo
-          // TODO remove this once released
-          dangerouslySetAllPagesToNoFollow={
-            process.env.NEXT_PUBLIC_ENV !== 'production'
-          }
-          dangerouslySetAllPagesToNoIndex={
-            process.env.NEXT_PUBLIC_ENV !== 'production'
-          }
           openGraph={{
             type: 'website',
             locale: 'en_CH',

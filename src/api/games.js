@@ -1,13 +1,14 @@
+import {prepareInfiniteQuery} from 'api/util';
+import {useGosRouter} from 'hooks';
 import {deserialise} from 'kitsu-core';
+import queryString from 'query-string';
 import {QueryClient, useInfiniteQuery} from 'react-query';
 import {dehydrate} from 'react-query/hydration';
-import queryString from 'query-string';
-import {useGosRouter} from 'hooks';
 import {fetchApi} from './api';
 
 const options = {
   refetchOnWindowFocus: false,
-  getNextPageParam: lastGroup => lastGroup.nextPage,
+  getNextPageParam: lastGroup => lastGroup.nextPage ?? false,
   keepPreviousData: true,
   select: data => ({
     ...data,
@@ -24,7 +25,7 @@ export const fetchGames = async ({queryKey: [, value], pageParam}) => {
     },
     {
       arrayFormat: 'bracket',
-    }
+    },
   );
 
   // Get games from server
@@ -49,10 +50,11 @@ export const prefetchGames = async () => {
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery(['games', {}], fetchGames, options);
 
+  queryClient.setQueryData(['games', {}], prepareInfiniteQuery);
+
   return {
     props: {
-      // TODO fix once bug is fixed tannerlinsley/react-query/issues/1458
-      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+      dehydratedState: dehydrate(queryClient),
     },
   };
 };
