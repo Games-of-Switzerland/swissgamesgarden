@@ -68,7 +68,6 @@ const FiltersList = () => {
     <div className="flex space-x-1 overflow-x-auto px-4 -mx-4">
       {filterEntries.reduce((acc, filter) => {
         const [filterName, value] = filter;
-        console.log(filter);
 
         const output = getOutput(filterName, value);
 

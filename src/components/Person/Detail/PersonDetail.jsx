@@ -2,7 +2,6 @@ import {SimpleList} from 'components/SimpleList';
 import {useTranslation} from 'react-i18next';
 
 const PersonDetail = ({person, games, studios}) => {
-  console.log(studios);
   const {t} = useTranslation();
   const {title, body} = person;
 
