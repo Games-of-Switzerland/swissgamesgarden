@@ -1,4 +1,3 @@
-import {prepareInfiniteQuery} from 'api/util';
 import {useGosRouter} from 'hooks';
 import {deserialise} from 'kitsu-core';
 import queryString from 'query-string';
@@ -50,11 +49,9 @@ export const prefetchGames = async () => {
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery(['games', {}], fetchGames, options);
 
-  queryClient.setQueryData(['games', {}], prepareInfiniteQuery);
-
   return {
     props: {
-      dehydratedState: dehydrate(queryClient),
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
   };
 };
