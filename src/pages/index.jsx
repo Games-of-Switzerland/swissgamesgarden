@@ -24,6 +24,7 @@ const GamesListing = () => {
   } = useGames();
 
   const {pages = [], facets = {}, total} = data;
+  console.log('test 2022');
 
   const renderGames = () =>
     pages.length > 0 ? (
