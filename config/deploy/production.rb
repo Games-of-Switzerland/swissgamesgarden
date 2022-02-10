@@ -2,7 +2,7 @@
 set :deploy_to, '/srv/www.gos.ch'
 
 # set a branch for this release
-set :branch, 'dev'
+set :branch, 'master'
 
 # Map docker and docker-compose commands
 # NOTE: If stage have different deploy_to
