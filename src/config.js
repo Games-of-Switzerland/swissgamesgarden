@@ -6,3 +6,8 @@ export default {
 export const FILTERS = {
   PLATFORMS: 'platforms',
 };
+
+export const getJsonApi = () =>
+  typeof window === 'undefined'
+    ? process.env.NEXT_PUBLIC_SERVER_JSONAPI
+    : process.env.NEXT_PUBLIC_JSONAPI;

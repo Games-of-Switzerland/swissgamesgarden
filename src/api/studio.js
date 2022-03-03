@@ -1,6 +1,7 @@
-import {QueryCache, QueryClient, useQuery} from 'react-query';
-import {dehydrate} from 'react-query/hydration';
+import {getJsonApi} from 'config';
 import {deserialise, query} from 'kitsu-core';
+import {QueryClient, useQuery} from 'react-query';
+import {dehydrate} from 'react-query/hydration';
 
 export const getStudio = async ({queryKey}) => {
   // Get studio
@@ -10,13 +11,13 @@ export const getStudio = async ({queryKey}) => {
     },
     fields: {
       'node--studio': 'title,body,members',
-      'node--people': 'title,field_path'
+      'node--people': 'title,field_path',
     },
     include: 'members',
   });
 
   const studioRes = await fetch(
-    `${process.env.NEXT_PUBLIC_JSONAPI}/node/studio?${studioQueryUrl}`
+    `${getJsonApi()}/node/studio?${studioQueryUrl}`,
   ).catch(err => {
     console.log(err);
   });
@@ -35,7 +36,7 @@ export const getStudio = async ({queryKey}) => {
   });
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_JSONAPI}/node/game?${gamesQueryUrl}`
+    `${getJsonApi()}/node/game?${gamesQueryUrl}`,
   ).catch(err => {
     console.log(err);
   });
@@ -51,7 +52,7 @@ export const useStudio = path => {
 
 export const prefetchStudio = async ({query}) => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(['studio', query.path], getStudio,{});
+  await queryClient.prefetchQuery(['studio', query.path], getStudio, {});
 
   return (
     queryClient && {

@@ -1,3 +1,4 @@
+import {getJsonApi} from 'config';
 import {deserialise, query} from 'kitsu-core';
 import {QueryClient, useQuery} from 'react-query';
 import {dehydrate} from 'react-query/hydration';
@@ -13,7 +14,7 @@ export const getPage = async ({queryKey}) => {
   });
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_JSONAPI}/node/page?${queryUrl}`
+    `${getJsonApi()}/node/page?${queryUrl}`
   ).catch(err => {
     console.log(err);
   });

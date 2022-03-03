@@ -1,3 +1,4 @@
+import {getJsonApi} from 'config';
 import {deserialise, query} from 'kitsu-core';
 import {QueryClient, useQuery} from 'react-query';
 import {dehydrate} from 'react-query/hydration';
@@ -9,17 +10,17 @@ export const getPerson = async ({queryKey}) => {
       field_path: `/people/${queryKey[1]}`,
     },
     fields: {
-      'node--people': 'title,body'
+      'node--people': 'title,body',
     },
   });
 
   const personRes = await fetch(
-    `${process.env.NEXT_PUBLIC_JSONAPI}/node/people?${personQueryUrl}`
+    `${getJsonApi()}/node/people?${personQueryUrl}`,
   ).catch(err => {
     console.log(err);
   });
   const dataPerson = await personRes.json();
-  const person = (await deserialise(dataPerson).data[0]) || null
+  const person = (await deserialise(dataPerson).data[0]) || null;
 
   ////////////////////////
   // Get games from person
@@ -29,11 +30,11 @@ export const getPerson = async ({queryKey}) => {
     },
     fields: {
       'node--game': 'title,field_path',
-    }
+    },
   });
 
   const gameRes = await fetch(
-    `${process.env.NEXT_PUBLIC_JSONAPI}/node/game?${gamesQueryUrl}`
+    `${getJsonApi()}/node/game?${gamesQueryUrl}`,
   ).catch(err => {
     console.log(err);
   });
@@ -52,14 +53,14 @@ export const getPerson = async ({queryKey}) => {
   });
 
   const studioRes = await fetch(
-    `${process.env.NEXT_PUBLIC_JSONAPI}/node/studio?${studiosQueryUrl}`
+    `${getJsonApi()}/node/studio?${studiosQueryUrl}`,
   ).catch(err => {
     console.log(err);
   });
   const dataStudios = await studioRes.json();
   const studios = await deserialise(dataStudios).data;
 
-  return {games, person, studios}
+  return {games, person, studios};
 };
 
 export const usePerson = path => {

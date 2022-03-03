@@ -1,3 +1,4 @@
+import {getJsonApi} from 'config';
 import {deserialise, query} from 'kitsu-core';
 import {QueryClient, useQuery} from 'react-query';
 import {dehydrate} from 'react-query/hydration';
@@ -28,7 +29,7 @@ export const getGame = async ({queryKey}) => {
   // console.log(`%cnode query: /node/game?${queryUrl}`, 'font-weight:bold;');
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_JSONAPI}/node/game?${queryUrl}`
+    `${getJsonApi()}/node/game?${queryUrl}`
   ).catch(err => {
     console.log(err);
   });
