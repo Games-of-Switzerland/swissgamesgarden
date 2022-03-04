@@ -29,9 +29,11 @@ Update any values as needed to point on proper backend endpoints:
 
 ```.env
 NEXT_PUBLIC_ELASTICSEARCH=http://localhost:8080/search
+NEXT_PUBLIC_SERVER_ELASTICSEARCH=http://localhost:8080/search
 NEXT_PUBLIC_JSONAPI=http://localhost:8080/G70VW4Y9sP/jsonapi
+NEXT_PUBLIC_SERVER_JSONAPI=http://localhost:8080/G70VW4Y9sP/jsonapi
 NEXT_PUBLIC_AUTOCOMPLETE=http://localhost:8080/autocomplete
-NEXT_PUBLIC_ENV=production
+:NEXT_PUBLIC_ENV=production
 ```
 
 **Don't forget to set `NEXT_PUBLIC_ENV`, which will allow the site to be indexed when set to `production`.**
