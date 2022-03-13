@@ -11,6 +11,7 @@ const PAGE_SIZE = 24;
 
 const GamesListing = () => {
   const {t} = useTranslation();
+  const query = useGames();
   const {
     data = {},
     fetchNextPage,
@@ -21,7 +22,8 @@ const GamesListing = () => {
     error,
     isFetchingNextPage,
     hasNextPage,
-  } = useGames();
+  } = query
+  console.log(query);
 
   const {pages = [], facets = {}, total} = data;
 
