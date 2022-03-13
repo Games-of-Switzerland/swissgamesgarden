@@ -29,7 +29,7 @@ const Dropdown = ({
       {
         name: 'offset',
         options: {
-          offset: [0, 5],
+          offset: [0, 4],
         },
       },
     ],
@@ -65,7 +65,7 @@ const Dropdown = ({
 
       {isComponentVisible && (
         <div
-          className="absolute z-0 bg-gray-1000 p-4 border border-gray-850 min-w-20 -mt-px"
+          className="absolute z-0 bg-gray-1000 p-4 border border-gray-850 min-w-20"
           ref={setPopperElement}
           style={styles.popper}
         >
