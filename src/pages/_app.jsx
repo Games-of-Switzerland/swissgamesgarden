@@ -1,11 +1,11 @@
+import Layout from 'components/Layout';
+import 'locales/i18n';
+import {DefaultSeo} from 'next-seo';
+import React from 'react';
 import {QueryClient, QueryClientProvider} from 'react-query';
+import {ReactQueryDevtools} from 'react-query/devtools';
 import {Hydrate} from 'react-query/hydration';
 import 'styles/index.css';
-import {ReactQueryDevtools} from 'react-query/devtools';
-import 'locales/i18n';
-import Layout from 'components/Layout';
-import React from 'react';
-import {DefaultSeo} from 'next-seo';
 
 const queryClient = new QueryClient();
 
@@ -23,7 +23,8 @@ export default function App({Component, pageProps}) {
         <Layout>
           <Component {...pageProps} />
         </Layout>
-        <ReactQueryDevtools initialIsOpen />
+        {process.env.NODE_ENV !== 'production' &&
+          <ReactQueryDevtools initialIsOpen />}
       </Hydrate>
     </QueryClientProvider>
   );
