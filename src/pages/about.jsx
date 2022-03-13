@@ -27,7 +27,7 @@ const About = () => {
       <div className="content-container text-white">
         <div style={{gridArea: 'main'}}>
           <div className="mb-12 formatted">
-            <div dangerouslySetInnerHTML={{__html: body.processed}} />
+            {body && <div dangerouslySetInnerHTML={{__html: body.processed}} />}
           </div>
 
           {Object.entries(teams).map(([key, {team, title}]) => (

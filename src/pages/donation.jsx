@@ -3,7 +3,6 @@ import {useTranslation} from 'react-i18next';
 import {prefetchPage, usePage} from '../api/page';
 import Loading from 'components/Loading';
 import Error from 'components/Error';
-import Image from 'next/image';
 
 const Donation = () => {
   const {t} = useTranslation();
@@ -27,7 +26,7 @@ const Donation = () => {
       <div className="content-container text-white">
         <div style={{gridArea: 'main'}}>
           <div className="mb-12 formatted">
-            <div dangerouslySetInnerHTML={{__html: body.processed}} />
+            {body && <div dangerouslySetInnerHTML={{__html: body.processed}} />}
           </div>
         </div>
       </div>
