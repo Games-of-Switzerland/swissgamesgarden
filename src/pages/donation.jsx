@@ -8,12 +8,12 @@ import Image from 'next/image';
 const Donation = () => {
   const {t} = useTranslation();
 
-  const {data, isLoading, isError, error} = usePage('donation');
+  const {data = {}, isLoading, isError, error} = usePage('donation');
 
   if (isLoading) return <Loading />;
   if (isError) return <Error message={error?.message} />;
 
-  const {title, body} = data;
+  const {body} = data;
 
   return (
     <>
