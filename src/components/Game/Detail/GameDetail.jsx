@@ -215,7 +215,7 @@ const GameDetail = ({game}) => {
               {t('game.completeness_description')}
             </p>
             <a
-              href='mailto:'
+              href={`mailto:${t('contact.email')}`}
               className='btn border text-md py-3 font-semibold border-gray-850 hover:border-gray-500'
             >
               {t('gos.contact_us')}

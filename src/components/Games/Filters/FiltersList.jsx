@@ -65,7 +65,7 @@ const FiltersList = () => {
   };
 
   return (
-    <div className="flex space-x-1 overflow-x-auto px-4 -mx-4">
+    <div className="flex space-x-1 overflw-x-auto px-4 -mx-4">
       {filterEntries.reduce((acc, filter) => {
         const [filterName, value] = filter;
 
@@ -83,7 +83,7 @@ const FiltersList = () => {
             : value.map(val => (
                 <FilterItem
                   key={`${filter[0]}-${val}`}
-                  value={output}
+                  value={val}
                   onClick={() => handleRemoveFilter([filterName, val])}
                 />
               ));

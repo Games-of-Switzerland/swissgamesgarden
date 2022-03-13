@@ -10,12 +10,12 @@ const About = () => {
 
   const teams = t('about.teams', {returnObjects: true});
 
-  const {data= {}, isLoading, isError, error} = usePage('about');
+  const {data, isLoading, isError, error} = usePage('about');
 
   if (isLoading) return <Loading />;
   if (isError) return <Error message={error?.message} />;
 
-  const {body} = data;
+  const {body} = data || {};
 
   return (
     <>
