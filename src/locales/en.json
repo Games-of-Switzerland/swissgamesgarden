@@ -355,7 +355,8 @@
   },
   "error": {
     "message": "Oops! An error occurred. Try reloading!",
-    "with_message": "An error occured: {{message}}"
+    "with_message": "An error occured: {{message}}",
+    "404": "404 - Page Not Found"
   },
   "save": "Save",
   "reset_filters": "Reset all filters "
