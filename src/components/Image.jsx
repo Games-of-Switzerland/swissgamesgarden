@@ -97,6 +97,7 @@ const Image = ({
               loading="lazy"
               style={style}
               onLoad={() => setLoaded(true)}
+              className="w-full"
             />
           </picture>
         </div>

@@ -73,7 +73,7 @@ const GamesListing = () => {
             // style={{width: 'calc(100% + 0.9375rem * 2)'}}
           />
         </div>
-        <div className="text-5xl my-20 font-semibold items-center flex flex-col leading-none text-center relative z-10">
+        <div className="text-3xl md:text-5xl my-10 md:my-20 font-semibold items-center flex flex-col leading-none text-center relative z-10">
           <span className="text-white tracking-tight">
             {t('games.title_1')}
           </span>

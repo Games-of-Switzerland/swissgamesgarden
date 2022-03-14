@@ -19,7 +19,7 @@ const About = () => {
 
   return (
     <>
-      <div className="text-5xl my-20 font-semibold items-center flex flex-col leading-none text-center">
+      <div className="text-3xl md:text-5xl my-10 md:my-20 font-semibold items-center flex flex-col leading-none text-center">
         <span className="text-white tracking-tight">{t('about.title_1')}</span>
         <span className="text-gradient">{t('about.title_2')}</span>
       </div>

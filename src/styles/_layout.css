@@ -5,22 +5,27 @@ body {
 }
 
 .header {
-  @apply grid gap-6;
+  @apply grid gap-4;
   grid-template:
-    'title' auto
-    'search' auto
-    'menu' auto
-    / auto;
+    'title cta' auto
+    'menu menu' auto
+    'search search' auto
+    / auto auto;
 
-  @screen xs {
+  @screen sm {
     grid-template:
-      'title menu' auto
-      'search search' auto
-      / auto 1fr;
+      'title menu cta' auto
+      'search search search' auto
+      / auto 1fr auto;
   }
 
   @screen md {
-    grid-template: 'title search menu' auto / auto 1fr auto;
+    @apply gap-6;
+  }
+
+  @screen lg {
+    @apply gap-6;
+    grid-template: 'title search menu cta' auto / auto 1fr auto;
   }
 }
 

@@ -57,9 +57,14 @@ const Header = () => {
             </a>
           </Link>
         ))}
+      </div>
+      <div
+        style={{gridArea: 'cta'}}
+        className="flex justify-end min-w-0 w-full"
+      >
         <Link href="/add">
-          <a className="btn btn-white inline-flex items-center">
-            {t('gos.add_game')}
+          <a className="btn btn-white items-center inline-flex">
+            <span className="truncate">{t('gos.add_game')}</span>
           </a>
         </Link>
       </div>

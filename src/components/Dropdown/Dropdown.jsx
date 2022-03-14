@@ -38,7 +38,7 @@ const Dropdown = ({
 
   const wrapperClasses = classNames('relative', className, {
     'border-gradient border-gradient-full': !isComponentVisible && isSelected,
-    'z-20': isComponentVisible,
+    'z-50': isComponentVisible,
   });
 
   const btnClasses = classNames(
