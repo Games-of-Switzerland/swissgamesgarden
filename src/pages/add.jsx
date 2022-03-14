@@ -17,7 +17,12 @@ const Add = () => {
               {t('add.description_markdown')}
             </ReactMarkdown>
 
-            <a className="btn btn-white" href={`mailto:${t('contact.email')}`}>
+            <a
+              className="btn btn-white"
+              href={`mailto:${t('contact.email')}?subject=${t(
+                'add.mail_subject'
+              )}&body=${t('add.mail_body').replace(/\n/gm, '%0D%0A')}`}
+            >
               {t('contact.send_mail')}
             </a>
           </div>
