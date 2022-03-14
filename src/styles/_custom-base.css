@@ -26,8 +26,4 @@
     font-display: swap;
     font-weight: 300;
   }
-
-  body {
-    @apply bg-gray-1000;
-  }
 }

@@ -1,5 +1,5 @@
 body {
-  @apply bg-black;
+  @apply bg-gray-1000;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -21,5 +21,16 @@ body {
 
   @screen md {
     grid-template: 'title search menu' auto / auto 1fr auto;
+  }
+}
+
+.shadows-tb {
+  &:after {
+    content: '';
+    @apply block h-12 bg-gradient-to-t from-gray-1000 absolute inset-x-0 bottom-0;
+  }
+  &:before {
+    content: '';
+    @apply block h-12 bg-gradient-to-b from-gray-1000 absolute inset-x-0 top-0;
   }
 }

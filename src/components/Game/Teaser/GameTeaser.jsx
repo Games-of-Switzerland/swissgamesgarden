@@ -63,7 +63,7 @@ const GameTeaser = ({game}) => {
           <div className="flex gap-1 mt-1">
             {genres.map(({slug}) => (
               <Link href={`/?genres[]=${slug}`} key={slug}>
-                <a className="border-b border-dotted border-gray-700 text-gray-500 hover:text-white hover:border-gray-450 relative z-10 mb-1">
+                <a className="font-light border-b border-dotted border-gray-700 text-gray-500 hover:text-white hover:border-gray-450 relative z-10 mb-1">
                   {t(`genres.${slug}`)}
                 </a>
               </Link>

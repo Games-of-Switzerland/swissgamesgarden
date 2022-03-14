@@ -3,7 +3,7 @@
 }
 
 .tippy-box {
-  @apply outline-none leading-snug text-sm rounded text-white bg-black relative shadow-lg;
+  @apply outline-none leading-snug text-sm rounded text-white bg-gray-1100 relative shadow-lg;
   transition-property: transform, visibility, opacity;
 
   &[data-animation='fade'][data-state='hidden'] {
@@ -64,12 +64,12 @@
 
   /* THEME LIGHT */
   &[data-theme='light'] {
-    @apply text-black bg-white;
+    @apply text-gray-1100 bg-white;
   }
 }
 
 .tippy-arrow {
-  @apply w-4 h-4 text-black;
+  @apply w-4 h-4 text-gray-1100;
 
   &:before {
     content: '';

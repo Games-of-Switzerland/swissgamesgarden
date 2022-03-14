@@ -63,11 +63,24 @@ const GamesListing = () => {
 
   return (
     <>
-      <div className="text-5xl my-20 font-semibold items-center flex flex-col leading-none text-center">
-        <span className="text-white tracking-tight">{t('games.title_1')}</span>
-        <span className="text-gradient leading-normal">
-          {t('games.title_2')}
-        </span>
+      <div className="relative mb-6">
+        {/*<Pattern className="absolute inset-0 z-0 object-cover" />*/}
+        <div className="absolute inset-y-0 -inset-x-4 shadows-tb">
+          <img
+            src="/pattern.svg"
+            alt=""
+            className="h-full object-cover"
+            // style={{width: 'calc(100% + 0.9375rem * 2)'}}
+          />
+        </div>
+        <div className="text-5xl my-20 font-semibold items-center flex flex-col leading-none text-center relative z-10">
+          <span className="text-white tracking-tight">
+            {t('games.title_1')}
+          </span>
+          <span className="text-gradient leading-normal">
+            {t('games.title_2')}
+          </span>
+        </div>
       </div>
 
       <div className="mb-5 flex space-x-4 items-baseline">

@@ -3,10 +3,7 @@ const flattenColorPalette =
 
 module.exports = {
   purge: {
-    content: [
-      './src/components/**/*.{js,ts,jsx,tsx}',
-      './src/pages/**/*.{js,ts,jsx,tsx}',
-    ],
+    content: ['./src/**/*.{js,ts,jsx,tsx}'],
     options: {
       whitelist: ['text-red-500', 'text-green-500', 'text-purple-500'],
     },
@@ -49,19 +46,6 @@ module.exports = {
       lg: '1024px',
       xl: '1400px',
     },
-    // forms: theme => ({
-    //   default: {
-    //     select: {
-    //       backgroundColor: theme('colors.gray.900'),
-    //       borderWidth: 0,
-    //       '&:hover': {
-    //         backgroundColor: theme('colors.gray.850'),
-    //       },
-    //       icon:
-    //         '<svg fill="#e2e8f0" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>',
-    //     },
-    //   },
-    // }),
     extend: {
       spacing: {
         1: '0.3125rem',
@@ -88,6 +72,7 @@ module.exports = {
           900: '#282828',
           950: '#1d1d1d',
           1000: '#121212',
+          1100: '#111',
         },
         pink: {
           50: '#fef2f7',

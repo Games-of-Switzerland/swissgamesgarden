@@ -12,9 +12,8 @@ const Dropdown = ({
   className,
   ...rest
 }) => {
-  const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(
-    false
-  );
+  const {ref, isComponentVisible, setIsComponentVisible} =
+    useComponentVisible(false);
 
   const toggle = () => {
     const newState = !isComponentVisible;
@@ -45,8 +44,9 @@ const Dropdown = ({
   const btnClasses = classNames(
     'z-10 inline-flex items-center dropdown-toggle border py-2 px-4 text-white text-md focus:outline-none whitespace-nowrap',
     {
-      'open bg-gray-1000 border-gray-850 text-white z-20': isComponentVisible,
-      'bg-gray-900 hover:bg-gray-850 border-gray-900 hover:border-gray-850': !isComponentVisible,
+      'open bg-gray-1100 border-gray-850 text-white z-20': isComponentVisible,
+      'bg-gray-900 hover:bg-gray-850 border-gray-900 hover:border-gray-850':
+        !isComponentVisible,
     }
   );
 
@@ -65,7 +65,7 @@ const Dropdown = ({
 
       {isComponentVisible && (
         <div
-          className="absolute z-0 bg-gray-1000 p-4 border border-gray-850 min-w-20"
+          className="absolute z-0 bg-gray-1100 p-4 border border-gray-850 min-w-20"
           ref={setPopperElement}
           style={styles.popper}
         >

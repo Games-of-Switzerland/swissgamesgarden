@@ -183,7 +183,7 @@ const ReleasesFilter = ({data, filterName}) => {
               <Tooltip key={key} content={`${key_as_string} (${doc_count})`}>
                 <div
                   className={classNames(
-                    'flex-grow border-l border-gray-1000',
+                    'flex-grow border-l border-gray-1100',
                     numberKey >= values[0] && numberKey <= values[1]
                       ? 'bg-gray-200 hover:bg-red-600'
                       : 'bg-gray-700 hover:bg-gray-500'
