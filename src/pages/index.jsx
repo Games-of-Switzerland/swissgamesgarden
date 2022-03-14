@@ -1,17 +1,16 @@
-import {GameTeaser} from 'components/Game';
-import {useTranslation} from 'react-i18next';
 import {prefetchGames, useGames} from 'api/games';
-import Loading from 'components/Loading';
 import Error from 'components/Error';
-import GamesFilters from 'components/Games/Filters';
+import {GameTeaser} from 'components/Game';
 import {FilterContextProvider} from 'components/Games/context';
+import GamesFilters from 'components/Games/Filters';
+import Loading from 'components/Loading';
 import {LoadingSVG} from 'components/Loading/Loading';
+import {useTranslation} from 'react-i18next';
 
 const PAGE_SIZE = 24;
 
 const GamesListing = () => {
   const {t} = useTranslation();
-  const query = useGames();
   const {
     data = {},
     fetchNextPage,
@@ -22,8 +21,7 @@ const GamesListing = () => {
     error,
     isFetchingNextPage,
     hasNextPage,
-  } = query
-  console.log(query);
+  } = useGames();
 
   const {pages = [], facets = {}, total} = data;
 
