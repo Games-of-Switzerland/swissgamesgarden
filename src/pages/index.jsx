@@ -6,6 +6,7 @@ import GamesFilters from 'components/Games/Filters';
 import Loading from 'components/Loading';
 import {LoadingSVG} from 'components/Loading/Loading';
 import {useTranslation} from 'react-i18next';
+import GhostIcon from 'svg/ghost.svg';
 
 const PAGE_SIZE = 24;
 
@@ -26,7 +27,7 @@ const GamesListing = () => {
   const {pages = [], facets = {}, total} = data;
 
   const renderGames = () =>
-    pages.length > 0 ? (
+    total > 0 ? (
       <>
         <div className="grid grid-cols-games justify-center gap-4 mb-16">
           {pages.map(page =>
@@ -58,7 +59,13 @@ const GamesListing = () => {
         </div>
       </>
     ) : (
-      <p className="text-white">{t('games.no_games')}</p>
+      <div className="flex justify-center items-center gap-6 my-20 text-white">
+        <GhostIcon className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0" />
+        <div>
+          <h1 className="text-3xl">{t('games.no_games_title')}</h1>
+          <h1 className="text-lg text-gray-600">{t('games.no_games')}</h1>
+        </div>
+      </div>
     );
 
   return (
