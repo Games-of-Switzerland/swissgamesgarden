@@ -171,7 +171,8 @@
     "sponsors": "Sponsor",
     "sponsors_plural": "Sponsors",
     "social_networks": "Social Network",
-    "social_networks_plural": "Social Networks"
+    "social_networks_plural": "Social Networks",
+    "update_mail_subject": "Game update suggestion - [{{game}}]"
   },
   "games": {
     "fetched_in_ms": "fetched in {{ms}}",
@@ -182,7 +183,8 @@
     "load_more": "Load more",
     "loading_more": "Loading more...",
     "load_more_end": "Nothing more to load",
-    "no_games": "No games to show.",
+    "no_games_title": "Oops!",
+    "no_games": "Looks like there aren't any games matching your search.",
     "pager": "{{end}} of {{total}}",
     "results": "{{count}} game",
     "results_plural": "{{count}} games",
@@ -193,7 +195,7 @@
   "gos": {
     "copyright": "Copyright © {{year}}",
     "contact_us": "Contact us",
-    "add_game": "Add a game"
+    "add_game": "Suggest a game"
   },
   "pages": {
     "about": "About",
@@ -349,11 +351,14 @@
   "add": {
     "title_1": "Plant",
     "title_2": "your seed",
-    "description_markdown": "Take  a place in the Swiss game community and help it grow!\n\nWhether you spot incorrect data, think about a missing game, or are currently working on one, feel free to suggest a new entry or an update! All rays of sunshine are welcomed.\n\n Your data will be reviewed by our team and then published on the website. "
+    "description_markdown": "Take  a place in the Swiss game community and help it grow!\n\nWhether you spot incorrect data, think about a missing game, or are currently working on one, feel free to suggest a new entry or an update! All rays of sunshine are welcomed.\n\n Your data will be reviewed by our team and then published on the website. ",
+    "mail_subject": "New game suggestion",
+    "mail_body":"Dear gamer,\nThank you for your participation!\n\nBelow is the information needed to add a new game entry.\nIt doesn't matter if you don't have all the data, we will be very happy with what you managed to send us!\n\nGeneral\nTitle:\nSummary:\nImage URL or add an attached file:\n\nReleases\nPublisher(s):\nRelease 1\nRelease 1 date:\nRelease 1 platform:\nRelease 1 state:\n(You can add several release dates)\n\nAuthors\nMembers\nPerson 1\nRole person 1\n(You can add several team members)\n\nStudio(s)\nStudio 1 name:\n(You can add several studios)\n\nDetailed info about the game\nNumber of players\nMinimum number of players:\nMaximum number of players:\n\nStore(s)\nStore 1:\nLink to the game in the store 1:\n(You can add several stores)\n\nLocation(s)\nWhere the game's team was working:\n(You can add several locations)\n\nLanguage(s)\nGame's available language 1:\n(You can add several languages)\n\nGenre(s)\nGame's genre 1:\n(You can add several genres)\n\nSponsor(s)\nGame's sponsor 1:\n(You can add several sponsors)\n\nReferences\nGame's website:\nArticles about the game:\nGame's sources:\nGame's awards:\nGame's social networks link:\nOther links about the game:\nGame's credit:\n\nOther\nAny comment or other information you would like to share:\n\n\n\n ----"
   },
   "error": {
     "message": "Oops! An error occurred. Try reloading!",
-    "with_message": "An error occured: {{message}}"
+    "with_message": "An error occured: {{message}}",
+    "404": "404 - Page Not Found"
   },
   "save": "Save",
   "reset_filters": "Reset all filters "

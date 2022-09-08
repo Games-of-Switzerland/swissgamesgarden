@@ -111,5 +111,5 @@ bundle exec cap staging deploy
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check [issues page](https://github.com/Games-of-Switzerland/gos-website/issues).
+Feel free to check [issues page](https://github.com/Games-of-Switzerland/swissgamesgarden/issues).
 

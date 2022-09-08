@@ -20,16 +20,14 @@ const GameTeaser = ({game}) => {
   const teaserPicture = medias.length > 0 && medias[0];
 
   return (
-    <div
-      className="bg-gray-900 hover:bg-gray-850 relative transition duration-200 flex flex-col"
-      style={{maxWidth: 330}}
-    >
+    <div className="bg-gray-900 hover:bg-gray-850 relative transition duration-200 flex flex-col">
       <Image
         image={teaserPicture}
         alt={title}
         sources={[['3x2_330x220', '3x2_660x440']]}
         ratio={2 / 3}
         defaultSize="3x2_330x220"
+        className="flex-grow"
       />
       <div className="p-4 min-h-20 flex flex-col flex-grow">
         <div className="text-gray-500 font-light flex justify-between space-x-2">
@@ -63,7 +61,7 @@ const GameTeaser = ({game}) => {
           <div className="flex gap-1 mt-1">
             {genres.map(({slug}) => (
               <Link href={`/?genres[]=${slug}`} key={slug}>
-                <a className="border-b border-dotted border-gray-700 text-gray-500 hover:text-white hover:border-gray-450 relative z-10 mb-1">
+                <a className="font-light border-b border-dotted border-gray-700 text-gray-500 hover:text-white hover:border-gray-450 relative z-10 mb-1">
                   {t(`genres.${slug}`)}
                 </a>
               </Link>

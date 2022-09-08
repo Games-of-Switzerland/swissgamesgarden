@@ -28,7 +28,7 @@ const GameDetail = ({game}) => {
 
   const releaseYear = releases[0]?.year || t('game.release_TBA');
   const completeness_percent = Math.round(
-    ((completeness ?? 0) / config.MAX_COMPLETENESS) * 100,
+    ((completeness ?? 0) / config.MAX_COMPLETENESS) * 100
   );
 
   const has2Images = images.data.length === 2;
@@ -68,43 +68,37 @@ const GameDetail = ({game}) => {
     return output.map(col => <div>{renderImages(col, 'mb-4')}</div>);
   };
 
-  const renderStudioPeople = ({title, field_path, id}) =>
-    (
-      <div key={id}>
-        <Link href={field_path}>
-          <a
-            className='text-white hover:text-opacity-75 transition transition:opacity duration-200'>
-            {title}
-          </a>
-        </Link>
-      </div>
-    );
-
+  const renderStudioPeople = ({title, field_path, id}) => (
+    <div key={id}>
+      <Link href={field_path}>
+        <a className="text-white hover:text-opacity-75 transition transition:opacity duration-200">
+          {title}
+        </a>
+      </Link>
+    </div>
+  );
 
   return (
-    <div className='content-container text-white'>
-      <div style={{gridArea: 'main'}} className='pt-14 text-lg font-light'>
-        <div className='mb-10'>
-          <div className='text-gray-500 flex justify-between'>
+    <div className="content-container text-white">
+      <div style={{gridArea: 'main'}} className="pt-14 text-lg font-light">
+        <div className="mb-10">
+          <div className="text-gray-500 flex justify-between">
             {/* STUDIOS / PEOPLE */}
-            <span>
-              {(studios || members)?.data.map(renderStudioPeople)}
-            </span>
+            <span>{(studios || members)?.data.map(renderStudioPeople)}</span>
 
             {/* FIRST RELEASE YEAR */}
-            {releaseYear && <span className='ml-auto'>{releaseYear}</span>}
+            {releaseYear && <span className="ml-auto">{releaseYear}</span>}
           </div>
 
           {/* GAME TITLE */}
-          <h1 className='text-4xl font-semibold mb-4'>{title}</h1>
+          <h1 className="text-4xl font-semibold mb-4">{title}</h1>
 
           {/* PLATFORMS */}
           {platforms && (
-            <div className='flex flex-wrap -mr-1 mb-3'>
+            <div className="flex flex-wrap -mr-1 mb-3">
               {platforms.data.map(({slug, id}) => (
                 <Link href={`/?platforms[]=${slug}`} key={id}>
-                  <a
-                    className='inline-block leading-none p-1 border border-gray-850 text-white font-light mr-1 mb-1 hover:border-gray-550 hover:text-white relative z-10 text-lg'>
+                  <a className="inline-block leading-none p-1 border border-gray-850 text-white font-light mr-1 mb-1 hover:border-gray-550 hover:text-white relative z-10 text-lg">
                     {t(`platforms.${slug}`)}
                   </a>
                 </Link>
@@ -114,11 +108,10 @@ const GameDetail = ({game}) => {
 
           {/* GENRES */}
           {genres && (
-            <div className='mb-3'>
+            <div className="mb-3">
               {genres.data.map(({slug, id}) => (
                 <Link href={`/?genres[]=${slug}`} key={id}>
-                  <a
-                    className='border-b border-dotted border-gray-700 text-gray-500 hover:text-white hover:border-gray-450 mr-2 relative z-10'>
+                  <a className="border-b border-dotted border-gray-700 text-gray-500 hover:text-white hover:border-gray-450 mr-2 relative z-10">
                     {t(`genres.${slug}`)}
                   </a>
                 </Link>
@@ -130,11 +123,11 @@ const GameDetail = ({game}) => {
         {/* DESCRIPTION */}
         {body ? (
           <div
-            className='mb-10'
+            className="mb-10"
             dangerouslySetInnerHTML={{__html: body.processed}}
           />
         ) : (
-          <div className='text-gray-500 mb-10 italic'>
+          <div className="text-gray-500 mb-10 italic">
             {t('game.no_description')}
           </div>
         )}
@@ -145,12 +138,12 @@ const GameDetail = ({game}) => {
       {/* IMAGES */}
       <div
         style={{gridArea: hasManyImages ? 'images-lg' : 'images'}}
-        className='mb-8'
+        className="mb-8"
       >
         {has2Images ? (
-          <div className='grid gap-4 grid-cols-2'>{renderImages()}</div>
+          <div className="grid gap-4 grid-cols-2">{renderImages()}</div>
         ) : hasManyImages ? (
-          <div className='grid gap-4 grid-cols-2 md:grid-cols-3 grid-images'>
+          <div className="grid gap-4 grid-cols-2 md:grid-cols-3 grid-images">
             <ManyImages />
           </div>
         ) : (
@@ -164,8 +157,8 @@ const GameDetail = ({game}) => {
 
         {/* LANGUAGES */}
         {languages.data.length > 0 && (
-          <Category title='game.languages' count={languages.data.length}>
-            <div className='text-lg'>
+          <Category title="game.languages" count={languages.data.length}>
+            <div className="text-lg">
               {languages.data.map(({name}) => name).join(', ')}
             </div>
           </Category>
@@ -174,13 +167,13 @@ const GameDetail = ({game}) => {
         {/* AWARDS */}
         {/*TODO add award location*/}
         {awards.length > 0 && (
-          <Category title='game.awards'>
-            <ul className='text-lg'>
+          <Category title="game.awards">
+            <ul className="text-lg">
               {awards?.map((award, i) => (
-                <li key={i} className='flex space-x-3 mb-4'>
-                  <TrophyIcon width='1em' />
+                <li key={i} className="flex space-x-3 mb-4">
+                  <TrophyIcon width="1em" />
                   <div>
-                    <div className='font-light'>{award}</div>
+                    <div className="font-light">{award}</div>
                     {/*<div className="text-gray-500 text-md">location</div>*/}
                   </div>
                 </li>
@@ -191,9 +184,9 @@ const GameDetail = ({game}) => {
 
         {/* CREDITS */}
         {credits && (
-          <Category title='game.credits'>
+          <Category title="game.credits">
             <div
-              className='formatted'
+              className="formatted"
               dangerouslySetInnerHTML={{__html: credits.processed}}
             />
           </Category>
@@ -202,25 +195,28 @@ const GameDetail = ({game}) => {
         {/* DATA QUALITY */}
         {completeness && (
           <Category
-            title='game.completeness'
-            className='border-gradient'
+            title="game.completeness"
+            className="border-gradient"
             style={{
               '--percentage': `${completeness_percent}%`,
             }}
           >
-            <div className='text-2xl font-semibold'>
+            <div className="text-2xl font-semibold">
               {completeness_percent}%
             </div>
-            <p className='text-lg w-1/2 mb-8'>
+            <p className="text-lg w-1/2 mb-8">
               {t('game.completeness_description')}
             </p>
             <a
-              href={`mailto:${t('contact.email')}`}
-              className='btn border text-md py-3 font-semibold border-gray-850 hover:border-gray-500'
+              href={`mailto:${t('contact.email')}?subject=${t(
+                'game.update_mail_subject',
+                {game: title}
+              )}`}
+              className="btn border text-md py-3 font-semibold border-gray-850 hover:border-gray-500"
             >
               {t('gos.contact_us')}
             </a>
-            <div className='mt-8 text-md text-gray-700'>
+            <div className="mt-8 text-md text-gray-700">
               * {t('game.completeness_help')}
             </div>
           </Category>

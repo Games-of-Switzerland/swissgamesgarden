@@ -61,7 +61,8 @@ const AutoSuggest = props => {
           {...getMenuProps({
             className: classNames('absolute w-full top-full z-50', {
               hidden: !isOpen,
-              'flex flex-col border border-gray-850 border-t-0 text-white bg-gray-1000': isOpen,
+              'flex flex-col border border-gray-850 border-t-0 text-white bg-gray-1100':
+                isOpen,
             }),
           })}
         >

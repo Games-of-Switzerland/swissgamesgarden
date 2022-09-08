@@ -1,17 +1,17 @@
-import {GameTeaser} from 'components/Game';
-import {useTranslation} from 'react-i18next';
 import {prefetchGames, useGames} from 'api/games';
-import Loading from 'components/Loading';
 import Error from 'components/Error';
-import GamesFilters from 'components/Games/Filters';
+import {GameTeaser} from 'components/Game';
 import {FilterContextProvider} from 'components/Games/context';
+import GamesFilters from 'components/Games/Filters';
+import Loading from 'components/Loading';
 import {LoadingSVG} from 'components/Loading/Loading';
+import {useTranslation} from 'react-i18next';
+import GhostIcon from 'svg/ghost.svg';
 
 const PAGE_SIZE = 24;
 
 const GamesListing = () => {
   const {t} = useTranslation();
-  const query = useGames();
   const {
     data = {},
     fetchNextPage,
@@ -22,13 +22,12 @@ const GamesListing = () => {
     error,
     isFetchingNextPage,
     hasNextPage,
-  } = query
-  console.log(query);
+  } = useGames();
 
   const {pages = [], facets = {}, total} = data;
 
   const renderGames = () =>
-    pages.length > 0 ? (
+    total > 0 ? (
       <>
         <div className="grid grid-cols-games justify-center gap-4 mb-16">
           {pages.map(page =>
@@ -60,16 +59,35 @@ const GamesListing = () => {
         </div>
       </>
     ) : (
-      <p className="text-white">{t('games.no_games')}</p>
+      <div className="flex justify-center items-center gap-6 my-20 text-white">
+        <GhostIcon className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0" />
+        <div>
+          <h1 className="text-3xl">{t('games.no_games_title')}</h1>
+          <h1 className="text-lg text-gray-600">{t('games.no_games')}</h1>
+        </div>
+      </div>
     );
 
   return (
     <>
-      <div className="text-5xl my-20 font-semibold items-center flex flex-col leading-none text-center">
-        <span className="text-white tracking-tight">{t('games.title_1')}</span>
-        <span className="text-gradient leading-normal">
-          {t('games.title_2')}
-        </span>
+      <div className="relative mb-6">
+        {/*<Pattern className="absolute inset-0 z-0 object-cover" />*/}
+        <div className="absolute inset-y-0 -inset-x-4 shadows-tb">
+          <img
+            src="/pattern.svg"
+            alt=""
+            className="h-full object-cover"
+            // style={{width: 'calc(100% + 0.9375rem * 2)'}}
+          />
+        </div>
+        <div className="text-3xl md:text-5xl my-10 md:my-20 font-semibold items-center flex flex-col leading-none text-center relative z-10">
+          <span className="text-white tracking-tight">
+            {t('games.title_1')}
+          </span>
+          <span className="text-gradient leading-normal">
+            {t('games.title_2')}
+          </span>
+        </div>
       </div>
 
       <div className="mb-5 flex space-x-4 items-baseline">

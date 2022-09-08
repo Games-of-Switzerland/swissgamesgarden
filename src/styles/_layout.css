@@ -1,25 +1,41 @@
 body {
-  @apply bg-black;
+  @apply bg-gray-1000;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .header {
-  @apply grid gap-6;
+  @apply grid gap-4;
   grid-template:
-    'title' auto
-    'search' auto
-    'menu' auto
-    / auto;
+    'title cta' auto
+    'menu menu' auto
+    'search search' auto
+    / auto auto;
 
-  @screen xs {
+  @screen sm {
     grid-template:
-      'title menu' auto
-      'search search' auto
-      / auto 1fr;
+      'title menu cta' auto
+      'search search search' auto
+      / auto 1fr auto;
   }
 
   @screen md {
-    grid-template: 'title search menu' auto / auto 1fr auto;
+    @apply gap-6;
+  }
+
+  @screen lg {
+    @apply gap-6;
+    grid-template: 'title search menu cta' auto / auto 1fr auto;
+  }
+}
+
+.shadows-tb {
+  &:after {
+    content: '';
+    @apply block h-12 bg-gradient-to-t from-gray-1000 absolute inset-x-0 bottom-0;
+  }
+  &:before {
+    content: '';
+    @apply block h-12 bg-gradient-to-b from-gray-1000 absolute inset-x-0 top-0;
   }
 }
