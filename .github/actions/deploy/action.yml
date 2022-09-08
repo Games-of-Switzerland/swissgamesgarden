@@ -1,0 +1,23 @@
+inputs:
+  stage:
+    description: 'Deployment stage'
+    default: 'stage'
+  ssh_private_key:
+    description: 'Private SSH key'
+    default: ''
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v2
+    - name: Install SSH key
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ inputs.ssh_private_key }}
+    - name: Install Ruby with Bundle to deploy via Capistrano
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '2.6'
+        bundler-cache: true
+    - name: Execute the deployment
+      run: bundle exec cap ${{ inputs.stage }} deploy
+      shell: bash
