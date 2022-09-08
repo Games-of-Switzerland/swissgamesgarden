@@ -2,36 +2,34 @@ name: Continuous Deployment
 on: [push]
 
 jobs:
-  deploy:
-    name: Deploy
-    if:
-      contains('
-      refs/heads/master
-      refs/heads/dev
-      ', github.ref)
-    runs-on: ubuntu-latest
-    env:
-      PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
-    steps:
-      - name: Set deployment environment variables based on Git branches
-        working-directory: ./
-        id: deploy_target
-        run: |
-          if [[ $GITHUB_REF == 'refs/heads/dev' ]]; then
-              echo "::set-output name=DEPLOY_ENV::staging"
-          fi
-          if [[ $GITHUB_REF == 'refs/heads/master' ]]; then
-              echo "::set-output name=DEPLOY_ENV::production"
-          fi
-      - uses: actions/checkout@v2.3.4
-      - name: Install SSH key
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.PRIVATE_SSH_KEY }}
-      - name: Install Ruby with Bundle to deploy via Capistrano
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '2.6'
-          bundler-cache: true
-      - name: Execute the deployment
-        run: bundle exec cap ${{ steps.deploy_target.outputs.DEPLOY_ENV }} deploy
+  deploy_prod:
+   name: Deploy to Production
+   environment:
+     name: Production
+     url: https://swissgames.garden
+   if: github.ref == 'refs/heads/master'
+   runs-on: ubuntu-latest
+   env:
+     PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
+   steps:
+     - uses: actions/checkout@v3
+     - uses: ./.github/actions/deploy
+       with:
+         stage: production
+         ssh_private_key: ${{ secrets.PRIVATE_SSH_KEY }}
+
+  deploy_staging:
+   name: Deploy to Staging
+   environment:
+     name: Staging
+     url: https://staging.swissgames.garden
+   if: github.ref == 'refs/heads/feature/rework-deployment-env'
+   runs-on: ubuntu-latest
+   env:
+     PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
+   steps:
+     - uses: actions/checkout@v3
+     - uses: ./.github/actions/deploy
+       with:
+         stage: staging
+         ssh_private_key: ${{ secrets.PRIVATE_SSH_KEY }}
