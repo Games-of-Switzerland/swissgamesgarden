@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - add & fix missing translations strings for filters
+- fix footnote link visual glitch - Games-of-Switzerland/swissgamesgarden#9
 
 ## [0.1.0] - 2022-09-08
 ### Changed
