@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - rework the deployment using Github environements
 
+### Added
+- add no-index robots.txt on staging only - #102
+
 ## [0.1.0] - 2022-09-08
 ### Changed
 - update the hosts strategy to be compliante with new Docker container naming architecture
