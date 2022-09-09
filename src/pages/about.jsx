@@ -52,12 +52,12 @@ const About = () => {
                     </div>
                     <div className="text-lg font-semibold">{name}</div>
                     <a
-                      className="text-md font-light text-gradient"
+                      className="text-md font-light text-gradient break-all"
                       href={twitter}
                       target="_blank"
                       rel="noreferrer nofollow"
                     >
-                      {twitter.replace(/.*?twitter.com\//i, '@')}
+                      { twitter.replace(/.*?twitter.com\//i, '@').replace(/.*?linkedin\.com\/in\//i, '@') }
                     </a>
                   </div>
                 ))}
