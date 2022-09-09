@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 - rework the deployment using Github environements
+- remove \[ & ] from the mailto subject of game udpate btn - Games-of-Switzerland/swissgamesgarden#88
 
 ### Added
 - add no-index robots.txt on staging only - #102

@@ -177,7 +177,7 @@
     "sponsors_plural": "Sponsors",
     "social_networks": "Social Network",
     "social_networks_plural": "Social Networks",
-    "update_mail_subject": "Game update suggestion - [{{game}}]"
+    "update_mail_subject": "Game update suggestion - {{game}}"
   },
   "games": {
     "fetched_in_ms": "fetched in {{ms}}",
