@@ -106,7 +106,7 @@ const GamesListing = () => {
                 {t('error.with_message', {message: error.message})}
               </span>
             )}
-            {isSuccess && (
+            {isSuccess && data.pages[data.pages.length - 1].took && (
               <span className="text-gray-850">
                 {t('games.fetched_in_ms', {
                   ms: `${data.pages[data.pages.length - 1].took}ms`,
