@@ -27,7 +27,7 @@ jobs:
    environment:
      name: Staging
      url: https://staging.swissgames.garden
-   if: github.ref == 'refs/heads/feature/rework-deployment-env'
+   if: github.ref == 'refs/heads/dev'
    runs-on: ubuntu-latest
    env:
      PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
