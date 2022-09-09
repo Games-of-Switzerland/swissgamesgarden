@@ -47,6 +47,18 @@
       @apply underline;
     }
   }
+
+  sub, sup {
+    position: initial;
+  }
+
+  sup {
+    vertical-align: super;
+  }
+
+  sub {
+    vertical-align: sub;
+  }
 }
 
 a[target='_blank']:not(.btn) {
