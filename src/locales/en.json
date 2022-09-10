@@ -162,6 +162,8 @@
     "information": "Information",
     "studios": "Studio",
     "studios_plural": "Studios",
+    "cantons": "Canton",
+    "cantons_plural": "Cantons",
     "locations": "Location",
     "locations_plural": "Locations",
     "members": "Member",
@@ -307,7 +309,7 @@
     "title_2": "the project"
   },
   "cantons": {
-    "title": "Location",
+    "title": "Cantons",
     "z_rich": "Zürich",
     "vaud": "Vaud",
     "geneva": "Geneva",

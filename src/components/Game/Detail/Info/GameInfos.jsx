@@ -34,6 +34,7 @@ const GameInfos = ({game}) => {
     releases_normalized: releases = [],
     website,
     locations,
+    cantons,
     publishers,
     sponsors,
     social_networks,
@@ -87,6 +88,11 @@ const GameInfos = ({game}) => {
       title: 'game.locations',
       content: locations?.data.map(({name}) => name).join(', '),
       count: locations?.data.length,
+    },
+    {
+      title: 'game.cantons',
+      content: cantons?.data.map(({name}) => name).join(', '),
+      count: cantons?.data.length,
     },
     {
       title: 'game.releases',
