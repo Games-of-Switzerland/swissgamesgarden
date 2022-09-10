@@ -61,9 +61,20 @@
   }
 }
 
-a[target='_blank']:not(.btn) {
+a[target='_blank'] {
   &:after {
     content: svg-load('svg/external.svg', fill=#848484);
+  }
+}
+
+a[target='_blank']:not(.btn) {
+  &:after {
     @apply absolute ml-1 -mt-1 text-gray-500;
+  }
+}
+
+a.btn[target='_blank'] {
+  &:after {
+    @apply text-gray-500 ml-2;
   }
 }
