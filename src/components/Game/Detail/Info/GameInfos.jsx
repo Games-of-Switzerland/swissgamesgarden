@@ -81,6 +81,7 @@ const GameInfos = ({game}) => {
       title: 'game.members',
       content: members?.data.map(renderStudioPeople),
       count: members?.data.length,
+      childrenClass: 'flex flex-col',
     },
     {
       title: 'game.locations',
@@ -158,8 +159,8 @@ const GameInfos = ({game}) => {
       <h2 className='section-title'>{t('game.information')}</h2>
       <div className='grid grid-cols-2 mb-5 gap-x-3 gap-y-8'>
         {gameInfos.filter(({count}) => count === undefined || count > 0).
-        map(({title, content, count}, i) => (
-          <GameInfo key={i} title={t(title, {count})}>
+        map(({title, content, count, childrenClass}, i) => (
+          <GameInfo key={i} title={t(title, {count})} childrenClass={childrenClass}>
             {content}
           </GameInfo>
         ))}
