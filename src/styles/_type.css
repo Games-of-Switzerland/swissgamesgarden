@@ -48,6 +48,10 @@
     }
   }
 
+  a.btn {
+    @apply inline-block border text-md py-3 font-semibold border-gray-850 hover:border-gray-500 my-4;
+  }
+
   sub, sup {
     position: initial;
   }
