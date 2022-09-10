@@ -47,11 +47,38 @@
       @apply underline;
     }
   }
+
+  a.btn {
+    @apply inline-block border text-md py-3 font-semibold border-gray-850 hover:border-gray-500 my-4;
+  }
+
+  sub, sup {
+    position: initial;
+  }
+
+  sup {
+    vertical-align: super;
+  }
+
+  sub {
+    vertical-align: sub;
+  }
+}
+
+a[target='_blank'] {
+  &:after {
+    content: svg-load('svg/external.svg', fill=#848484);
+  }
 }
 
 a[target='_blank']:not(.btn) {
   &:after {
-    content: svg-load('svg/external.svg', fill=#848484);
     @apply absolute ml-1 -mt-1 text-gray-500;
+  }
+}
+
+a.btn[target='_blank'] {
+  &:after {
+    @apply text-gray-500 ml-2;
   }
 }

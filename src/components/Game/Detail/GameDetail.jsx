@@ -13,6 +13,7 @@ const GameDetail = ({game}) => {
   const {
     title,
     studios,
+    stores,
     genres,
     body,
     releases_normalized: releases,
@@ -132,7 +133,18 @@ const GameDetail = ({game}) => {
           </div>
         )}
 
-        {/* TODO add links to download game */}
+        {/* STORES LINKS */}
+        <ol className="flex mb-10 space-x-2">
+          {stores?.map((store, i) => (
+            <ul>
+              <Link href={store.link} key={i}>
+                <a className="btn border text-md py-3 font-semibold border-gray-850 hover:border-gray-500" target="_blank">
+                  {t(`stores.${store.store}`)}
+                </a>
+              </Link>
+            </ul>
+          ))}
+        </ol>
       </div>
 
       {/* IMAGES */}

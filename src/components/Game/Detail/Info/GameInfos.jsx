@@ -34,6 +34,7 @@ const GameInfos = ({game}) => {
     releases_normalized: releases = [],
     website,
     locations,
+    cantons,
     publishers,
     sponsors,
     social_networks,
@@ -81,11 +82,17 @@ const GameInfos = ({game}) => {
       title: 'game.members',
       content: members?.data.map(renderStudioPeople),
       count: members?.data.length,
+      childrenClass: 'flex flex-col',
     },
     {
       title: 'game.locations',
       content: locations?.data.map(({name}) => name).join(', '),
       count: locations?.data.length,
+    },
+    {
+      title: 'game.cantons',
+      content: cantons?.data.map(({name}) => name).join(', '),
+      count: cantons?.data.length,
     },
     {
       title: 'game.releases',
@@ -158,8 +165,8 @@ const GameInfos = ({game}) => {
       <h2 className='section-title'>{t('game.information')}</h2>
       <div className='grid grid-cols-2 mb-5 gap-x-3 gap-y-8'>
         {gameInfos.filter(({count}) => count === undefined || count > 0).
-        map(({title, content, count}, i) => (
-          <GameInfo key={i} title={t(title, {count})}>
+        map(({title, content, count, childrenClass}, i) => (
+          <GameInfo key={i} title={t(title, {count})} childrenClass={childrenClass}>
             {content}
           </GameInfo>
         ))}
