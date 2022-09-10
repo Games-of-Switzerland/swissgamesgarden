@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix footnote link visual glitch - Games-of-Switzerland/swissgamesgarden#9
 - fix about page links people - Games-of-Switzerland/swissgamesgarden#9
 - fix empty state games - Games-of-Switzerland/swissgamesgarden#28
+- fix the members of games visual - Games-of-Switzerland/swissgamesgarden#98
 
 ## [0.1.0] - 2022-09-08
 ### Changed
