@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add no-index robots.txt on staging only - #102
 - add missing Stores links on Games detail - Games-of-Switzerland/swissgamesgarden#46
 - allow link to be button - Games-of-Switzerland/swissgamesgarden#9
+- add Cantons filters - Games-of-Switzerland/swissgamesgarden#51
+- add filter cantons - Games-of-Switzerland/swissgamesgarden#51
+- add cantons listing on game detail - Games-of-Switzerland/swissgamesgarden#51
 
 ### Fixed
 - add & fix missing translations strings for filters
