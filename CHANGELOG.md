@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Security
+- update library react-query 3.34.14 => 3.39.2
+
 ### Fixed
 - fix the pager - Games-of-Switzerland/swissgamesgarden#82
 
