@@ -35,9 +35,10 @@ export const fetchGames = async ({queryKey: [, value], pageParam}) => {
   }
 
   // Set next page index for next call
-  const hasNextPage = data.hits.total > data.hits.hits.length * (pageParam + 1);
+  const hasNextPage = data.hits.total > (data.hits.hits.length * ((pageParam || 0) + 1));
+
   data.page = pageParam;
-  data.nextPage = hasNextPage ? pageParam + 1 : false;
+  data.nextPage = hasNextPage ? (pageParam || 0) + 1 : false;
 
   return deserialise(data);
 };
