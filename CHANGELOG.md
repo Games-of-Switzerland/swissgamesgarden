@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3] - 2022-10-07
+### Added
+- add Robin François on the consultants section - Games-of-Switzerland/swissgamesgarden#9
+
 ## [0.1.2] - 2022-09-11
 ### Security
 - update library react-query 3.34.14 => 3.39.2
@@ -40,7 +44,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - update changelog following 'keep a changelog'
 
-[Unreleased]: https://github.com/Games-of-Switzerland/gos-website/compare/0.1.2...HEAD
+[Unreleased]: https://github.com/Games-of-Switzerland/gos-website/compare/0.1.3...HEAD
+[0.1.3]: https://github.com/Games-of-Switzerland/gos-website/compare/0.1.2...0.1.3
 [0.1.2]: https://github.com/Games-of-Switzerland/gos-website/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/Games-of-Switzerland/gos-website/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/Games-of-Switzerland/gos-website/releases/tag/0.1.0
