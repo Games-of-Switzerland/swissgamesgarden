@@ -284,6 +284,16 @@
           }
         }
       },
+      "consultants": {
+        "title": "Consultants",
+        "team": {
+          "robin": {
+            "name": "Robin François",
+            "job": "Digital Archivist and president of Mémoires Informatiques",
+            "twitter": "https://www.linkedin.com/in/robinfrancois"
+          }
+        }
+      },
       "gamelab": {
         "title": "GameLab UNIL-EPFL",
         "team": {
