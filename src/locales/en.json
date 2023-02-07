@@ -71,7 +71,8 @@
     "role-playing_game": "Role Playing Game",
     "racing": "Racing",
     "cooperation": "Cooperation",
-    "multiplayer": "m^Multiplayer",
+    "multiplayer": "Multiplayer",
+    "local_multiplayer": "Online Multiplayer",  
     "narrative": "Narrative",
     "point_and_click": "Point & CLick",
     "arena_shooter": "Arena Shooter",
@@ -105,6 +106,7 @@
     "tactical": "Tactical",
     "twin-stick_shooter": "Twin-stick shooter",
     "typing_game": "Typing game"
+    "horror": "Horror"
   },
   "stores": {
     "title": "Stores",
@@ -127,7 +129,8 @@
     "title": "State",
     "released": "Released",
     "pre_release": "Pre-release",
-    "development": "Development"
+    "development": "Development",
+    "canceled": "Canceled"  
   },
   "release_year_range": {
     "title": "Release year"
