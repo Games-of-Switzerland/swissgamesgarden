@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - update job of Robin François - Games-of-Switzerland/swissgamesgarden#122
 
+### Added
+- add missing translations strings - #126
+
 ## [0.1.3] - 2022-10-07
 ### Added
 - add Robin François on the consultants section - Games-of-Switzerland/swissgamesgarden#9
