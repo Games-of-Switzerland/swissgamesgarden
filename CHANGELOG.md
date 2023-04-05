@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - add missing translations strings - Games-of-Switzerland/swissgamesgarden#126
 
+### Fixed
+- fix slow communication (timeout) between NextJS -> Backend - update the hosts strategy to be compliante with new Docker container naming architecture
+
 ## [0.1.3] - 2022-10-07
 ### Added
 - add Robin François on the consultants section - Games-of-Switzerland/swissgamesgarden#9
