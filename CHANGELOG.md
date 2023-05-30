@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 - update all dependencies JavaScript
 
+### Removed
+- remove image aspect --ratio - Games-of-Switzerland/swissgamesgarden#130
+
 ## [0.1.4] - 2023-04-05
 ### Changed
 - update job of Robin François - Games-of-Switzerland/swissgamesgarden#122
