@@ -1,20 +1,7 @@
-.picture {
-  @apply relative overflow-hidden;
-
-  picture {
-    @apply absolute inset-0 h-full w-full;
-  }
+.picture picture {
+  @apply h-full w-full;
 }
 
 .picture-placeholder {
   @apply w-full h-full;
-}
-
-.picture-ratio {
-  @apply h-0;
-  padding-top: var(--ratio, 0);
-
-  .picture-placeholder {
-    @apply absolute inset-0;
-  }
 }
