@@ -46,40 +46,23 @@ const getImageType = image => {
 const Image = ({
   image,
   alt,
-  style,
   sources = [],
-  ratio,
   className,
   defaultSize = 'downscale_675x500',
 }) => {
   const [loaded, setLoaded] = useState(false);
   const imageType = getImageType(image);
 
-  const {width, height} = image.meta || image;
-  const imgRatio = height / width;
-
-  const wrapperStyle = {
-    '--ratio': `${(ratio || imgRatio) * 100}%`,
-  };
-
-  style = {
-    ...style,
-    minWidth: `min(100%, ${IMG_MIN_WIDTH}px)`,
-    maxWidth: `min(100%, ${width}px)`,
-    maxHeight: `min(${IMG_MAX_HEIGHT}px, ${height}px)`,
-  };
-
   return (
-    <div className={className} style={style}>
+    <div className={className}>
       {image ? (
-        <div className="picture picture-ratio" style={wrapperStyle}>
+        <div className="picture">
           {!loaded && (
             <img
               className="picture-placeholder"
               alt=""
               src={image.links.placeholder_30x30.href}
               aria-hidden="true"
-              style={style}
             />
           )}
           <picture>
@@ -95,7 +78,6 @@ const Image = ({
               src={image.links[defaultSize].href || image.href}
               alt={alt}
               loading="lazy"
-              style={style}
               onLoad={() => setLoaded(true)}
               className="w-full"
             />

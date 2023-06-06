@@ -25,7 +25,6 @@ const GameTeaser = ({game}) => {
         image={teaserPicture}
         alt={title}
         sources={[['3x2_330x220', '3x2_660x440']]}
-        ratio={2 / 3}
         defaultSize="3x2_330x220"
         className="flex-grow"
       />

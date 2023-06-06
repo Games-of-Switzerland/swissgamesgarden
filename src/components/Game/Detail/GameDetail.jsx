@@ -40,10 +40,6 @@ const GameDetail = ({game}) => {
       ? [['downscale_330x660']]
       : [['downscale_675x500', 'downscale_1350x1000']];
 
-  // sources={[['3x2_330x220', '3x2_660x440']]}
-  //       ratio={2 / 3}
-  //       defaultSize="3x2_330x220"
-
   const renderImages = (imgs = images.data, className) =>
     imgs.map(image => (
       <Image
