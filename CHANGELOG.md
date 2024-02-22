@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - fix usage of hits.total on Elasticsearch with ES8 upgrade
 
+### Fixed
+- fix filters dropdown missing translations string
+
 ## [0.1.5] - 2023-06-06
 ### Security
 - update all dependencies JavaScript
