@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - add gems ed25519 bcrypt_pbkdf
 
+### Changed
+- improve display of studioes & members on Game detail page - #140
+
 ## [1.0.0] - 2024-02-23
 ### Changed
 - fix usage of hits.total on Elasticsearch with ES8 upgrade
