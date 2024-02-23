@@ -11,7 +11,7 @@ const options = {
   keepPreviousData: true,
   select: data => ({
     ...data,
-    total: data?.pages?.[0].hits?.total || 0,
+    total: data?.pages?.[0].hits?.total?.value || 0,
     facets: data?.pages?.[0].aggregations?.aggs_all || {},
   }),
 };
@@ -35,7 +35,7 @@ export const fetchGames = async ({queryKey: [, value], pageParam}) => {
   }
 
   // Set next page index for next call
-  const hasNextPage = data.hits.total > (data.hits.hits.length * ((pageParam || 0) + 1));
+  const hasNextPage = data.hits.total.value > (data.hits.hits.length * ((pageParam || 0) + 1));
 
   data.page = pageParam;
   data.nextPage = hasNextPage ? (pageParam || 0) + 1 : false;
