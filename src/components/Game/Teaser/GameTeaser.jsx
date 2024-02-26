@@ -57,7 +57,7 @@ const GameTeaser = ({game}) => {
         )}
 
         {genres.length > 0 && (
-          <div className="flex gap-1 mt-1">
+          <div className="flex flex-wrap gap-1 mt-1">
             {genres.map(({slug}) => (
               <Link href={`/?genres[]=${slug}`} key={slug}>
                 <a className="font-light border-b border-dotted border-gray-700 text-gray-500 hover:text-white hover:border-gray-450 relative z-10 mb-1">
