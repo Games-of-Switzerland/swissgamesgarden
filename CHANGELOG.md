@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - add gems ed25519 bcrypt_pbkdf
 
+### Changed
+- improve display of studioes & members on Game detail page - #140
+
 ### Fixed
 - fix placeholder image still visible when images are loaded from Browser cache
 
