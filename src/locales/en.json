@@ -135,6 +135,7 @@
     "released": "Released",
     "pre_release": "Pre-release",
     "development": "Development",
+    "prototype": "Prototype",
     "canceled": "Canceled"
   },
   "release_year_range": {
