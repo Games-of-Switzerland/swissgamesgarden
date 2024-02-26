@@ -7,8 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - add gems ed25519 bcrypt_pbkdf
-- add missing cantons (zug, jura, uri, schwyz, obwald, nidwald & glarus) - #149
+- add missing cantons (zug, jura, uri, schwyz, obwald, nidwald & glarus) translations - #149
 - add missing status 'Prototype' translation - #149
+- add missing platforms (acorn_archimedes, AppleIIGS, CDC1604 & playdate) translations - #149
 
 ### Changed
 - improve display of studioes & members on Game detail page - #140
