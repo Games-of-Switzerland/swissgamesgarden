@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - add gems ed25519 bcrypt_pbkdf
+- add missing status 'Prototype' translation - #149
 
 ### Changed
 - improve display of studioes & members on Game detail page - #140
