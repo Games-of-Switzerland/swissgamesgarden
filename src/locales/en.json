@@ -347,7 +347,14 @@
     "thurgau": "Thurgau",
     "biel": "Biel",
     "bulle": "Bulle",
-    "solothurn": "Solothurn"
+    "solothurn": "Solothurn",
+    "zug": "Zug",
+    "jura": "Jura",
+    "uri": "Uri",
+    "schwyz": "Schwyz",
+    "obwald": "Obwald",
+    "nidwald": "Nidwald",
+    "glarus": "Glarus"
   },
   "locations": {
     "title": "Location",
