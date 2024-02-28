@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - improve display of studioes & members on Game detail page - #140
+- change Game teaser using Popover for multiple genres & platforms - #150
 
 ### Fixed
 - fix placeholder image still visible when images are loaded from Browser cache
