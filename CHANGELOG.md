@@ -7,16 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - add gems ed25519 bcrypt_pbkdf
-- add missing cantons (zug, jura, uri, schwyz, obwald, nidwald & glarus) translations - #149
-- add missing status 'Prototype' translation - #149
-- add missing platforms (acorn_archimedes, AppleIIGS, CDC1604 & playdate) translations - #149
+- add missing cantons (zug, jura, uri, schwyz, obwald, nidwald & glarus) translations - Games-of-Switzerland/swissgamesgarden#149
+- add missing status 'Prototype' translation - Games-of-Switzerland/swissgamesgarden#149
+- add missing platforms (acorn_archimedes, AppleIIGS, CDC1604 & playdate) translations - Games-of-Switzerland/swissgamesgarden#149
 
 ### Changed
-- improve display of studioes & members on Game detail page - #140
+- improve display of studioes & members on Game detail page - Games-of-Switzerland/swissgamesgarden#140
 
 ### Fixed
 - fix placeholder image still visible when images are loaded from Browser cache
-- fix visual glitch of games genres not wrapping - #150
+- fix visual glitch of games genres not wrapping - Games-of-Switzerland/swissgamesgarden#150
 
 ## [1.0.0] - 2024-02-23
 ### Changed
