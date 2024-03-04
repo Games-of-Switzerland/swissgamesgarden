@@ -55,6 +55,10 @@
     "windows_7_touch_table": "Windos 7 Touch Table",
     "windows_dividat_senso": "Windows Dividat Senso",
     "windows_vr": "Windows VR",
+    "acorn_archimedes": "Archimdes",
+    "apple IIGS": "Apple IIGS",
+    "cdc_1604": "CDC 1604",
+    "playdate": "Play Date",
     "custom_hardware": "Custom Hardware"
   },
   "genres": {
@@ -135,6 +139,7 @@
     "released": "Released",
     "pre_release": "Pre-release",
     "development": "Development",
+    "prototype": "Prototype",
     "canceled": "Canceled"
   },
   "release_year_range": {
@@ -347,7 +352,14 @@
     "thurgau": "Thurgau",
     "biel": "Biel",
     "bulle": "Bulle",
-    "solothurn": "Solothurn"
+    "solothurn": "Solothurn",
+    "zug": "Zug",
+    "jura": "Jura",
+    "uri": "Uri",
+    "schwyz": "Schwyz",
+    "obwald": "Obwald",
+    "nidwald": "Nidwald",
+    "glarus": "Glarus"
   },
   "locations": {
     "title": "Location",

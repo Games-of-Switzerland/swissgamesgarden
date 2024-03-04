@@ -6,6 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2024-03-04
+### Added
+- add gems ed25519 bcrypt_pbkdf
+- add missing cantons (zug, jura, uri, schwyz, obwald, nidwald & glarus) translations - Games-of-Switzerland/swissgamesgarden#149
+- add missing status 'Prototype' translation - Games-of-Switzerland/swissgamesgarden#149
+- add missing platforms (acorn_archimedes, AppleIIGS, CDC1604 & playdate) translations - Games-of-Switzerland/swissgamesgarden#149
+
+### Changed
+- improve display of studios & members on Game detail page - Games-of-Switzerland/swissgamesgarden#140
+- change Game teaser using Popover for multiple genres & platforms - Games-of-Switzerland/swissgamesgarden#150
+
+### Fixed
+- fix placeholder image still visible when images are loaded from Browser cache
+- fix visual glitch of games genres not wrapping - Games-of-Switzerland/swissgamesgarden#150
+
 ## [1.0.0] - 2024-02-23
 ### Changed
 - fix usage of hits.total on Elasticsearch with ES8 upgrade
@@ -68,7 +83,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - update changelog following 'keep a changelog'
 
-[Unreleased]: https://github.com/Games-of-Switzerland/swissgamesgarden/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/Games-of-Switzerland/swissgamesgarden/compare/1.0.1...HEAD
+[1.0.1]: https://github.com/Games-of-Switzerland/swissgamesgarden/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/Games-of-Switzerland/swissgamesgarden/compare/0.1.5...1.0.0
 [0.1.5]: https://github.com/Games-of-Switzerland/gos-website/compare/0.1.4...0.1.5
 [0.1.4]: https://github.com/Games-of-Switzerland/gos-website/compare/0.1.3...0.1.4

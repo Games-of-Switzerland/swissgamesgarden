@@ -25,6 +25,24 @@ const StandardLinksList = ({links}) =>
     </ul>
   );
 
+const EntityLinksList = ({items}) =>
+  items && items.length >= 0 && (
+    <ul>
+      {items.map(({title, field_path, id}, i) => {
+        return (
+          <li key={i}>
+            <Link href={field_path} key={id}>
+              <a
+                className='text-white hover:text-opacity-75 transition transition:opacity duration-200'>
+                {title}
+              </a>
+            </Link>
+          </li>
+        );
+      })}
+    </ul>
+  );
+
 const GameInfos = ({game}) => {
   const {t} = useTranslation();
 
@@ -75,12 +93,12 @@ const GameInfos = ({game}) => {
     },
     {
       title: 'game.studios',
-      content: studios?.data.map(renderStudioPeople),
+      content: <EntityLinksList items={studios?.data} />,
       count: studios?.data.length,
     },
     {
       title: 'game.members',
-      content: members?.data.map(renderStudioPeople),
+      content: <EntityLinksList items={members?.data} />,
       count: members?.data.length,
       childrenClass: 'flex flex-col',
     },

@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
 import Image from 'components/Image';
+import Popover from 'components/Popover';
 import {useTranslation} from 'react-i18next';
 
 const GameTeaser = ({game}) => {
@@ -46,25 +47,47 @@ const GameTeaser = ({game}) => {
 
         {releases.length > 0 && (
           <div className="flex flex-wrap gap-1">
-            {releases.map(({platform_slug}) => (
-              <Link href={`/?platforms[]=${platform_slug}`} key={platform_slug}>
-                <a className="inline-block leading-none p-1 border border-gray-850 text-gray-500 font-light hover:border-gray-550 hover:text-white relative z-10">
-                  {t(`platforms.${platform_slug}`)}
-                </a>
-              </Link>
-            ))}
+            <Link href={`/?platforms[]=${releases[0].platform_slug}`} key={releases[0].platform_slug}>
+              <a
+                className="inline-block leading-none p-1 border border-gray-850 text-gray-500 font-light hover:border-gray-550 hover:text-white relative z-10">
+                {t(`platforms.${releases[0].platform_slug}`)}
+              </a>
+            </Link>
+            {releases.length > 1 && (
+              <Popover
+                className="z-20"
+                classNamePopover="-mt-14"
+                trigger="hover"
+                content={
+                  <p>{releases.slice(1).map(release => t(`platforms.${release.platform_slug}`)).join(', ', )}</p>
+                }
+              >
+                <span className="p-1 pl-0 text-sm text-gray-500 z-10">+{releases.length - 1}</span>
+              </Popover>
+            )}
           </div>
         )}
 
         {genres.length > 0 && (
-          <div className="flex gap-1 mt-1">
-            {genres.map(({slug}) => (
-              <Link href={`/?genres[]=${slug}`} key={slug}>
-                <a className="font-light border-b border-dotted border-gray-700 text-gray-500 hover:text-white hover:border-gray-450 relative z-10 mb-1">
-                  {t(`genres.${slug}`)}
-                </a>
-              </Link>
-            ))}
+          <div className="flex flex-wrap gap-1 mt-1">
+            <Link href={`/?genres[]=${genres[0].slug}`} key={genres[0].slug}>
+              <a
+                className="font-light border-b border-dotted border-gray-700 text-gray-500 hover:text-white hover:border-gray-450 relative z-10 mb-1">
+                {t(`genres.${genres[0].slug}`)}
+              </a>
+            </Link>
+            {genres.length > 1 && (
+              <Popover
+                className="z-20"
+                classNamePopover="-mt-14"
+                trigger="hover"
+                content={
+                  <p>{genres.slice(1).map(genre => t(`genres.${genre.slug}`)).join(', ', )}</p>
+                }
+              >
+                <span className="p-1 pl-0 text-sm text-gray-500 z-10">+{genres.length - 1}</span>
+              </Popover>
+            )}
           </div>
         )}
       </div>

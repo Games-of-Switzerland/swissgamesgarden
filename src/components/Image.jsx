@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import Placeholder from './Placeholder';
 
 const skipFormats = ['gif'];
@@ -52,6 +52,15 @@ const Image = ({
 }) => {
   const [loaded, setLoaded] = useState(false);
   const imageType = getImageType(image);
+  const imageRef = useRef();
+
+  useEffect(()=>{
+    if (!imageRef.current) return
+
+    if (imageRef.current.complete === true) {
+      setLoaded(true)
+    }
+  },[imageRef])
 
   return (
     <div className={className}>
@@ -75,10 +84,11 @@ const Image = ({
               />
             ))}
             <img
+              ref={imageRef}
+              onLoad={() => setLoaded(true)}
               src={image.links[defaultSize].href || image.href}
               alt={alt}
               loading="lazy"
-              onLoad={() => setLoaded(true)}
               className="w-full"
             />
           </picture>
