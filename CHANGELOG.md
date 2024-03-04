@@ -12,7 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add missing platforms (acorn_archimedes, AppleIIGS, CDC1604 & playdate) translations - Games-of-Switzerland/swissgamesgarden#149
 
 ### Changed
-- improve display of studioes & members on Game detail page - Games-of-Switzerland/swissgamesgarden#140
+- improve display of studios & members on Game detail page - Games-of-Switzerland/swissgamesgarden#140
+- change Game teaser using Popover for multiple genres & platforms - Games-of-Switzerland/swissgamesgarden#150
 
 ### Fixed
 - fix placeholder image still visible when images are loaded from Browser cache
