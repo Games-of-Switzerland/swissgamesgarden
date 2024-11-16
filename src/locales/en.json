@@ -41,7 +41,6 @@
     "android_real_toys": "Android Real Toys",
     "android_tv": "Android TV",
     "arduboy": "Arduboy",
-    "commodore": "Commodore",
     "exercube": "ExerCube",
     "ipod": "iPod",
     "j2me": "J2ME",
@@ -63,7 +62,7 @@
     "mac_os_classic": "Mac OS Classic",
     "vms_vax_telnet_online": "VMS/Vax - Telnet/Online",
     "ti_99": "Texas Instruments TI-99/4A",
-    "zx_81": "ZX-81"
+    "zx81": "ZX81"
   },
   "genres": {
     "title": "Genres",
