@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.2] - 2024-11-17
+### Changed
+- update translations genres & platforms
+
 ## [1.0.1] - 2024-03-04
 ### Added
 - add gems ed25519 bcrypt_pbkdf
@@ -83,7 +87,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - update changelog following 'keep a changelog'
 
-[Unreleased]: https://github.com/Games-of-Switzerland/swissgamesgarden/compare/1.0.1...HEAD
+[Unreleased]: https://github.com/Games-of-Switzerland/swissgamesgarden/compare/1.0.2...HEAD
+[1.0.2]: https://github.com/Games-of-Switzerland/swissgamesgarden/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/Games-of-Switzerland/swissgamesgarden/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/Games-of-Switzerland/swissgamesgarden/compare/0.1.5...1.0.0
 [0.1.5]: https://github.com/Games-of-Switzerland/gos-website/compare/0.1.4...0.1.5
