@@ -120,12 +120,8 @@
     "typing_game": "Typing Game",
     "horror": "Horror",
     "casual": "Casual",
-    "endless_runner": "Endless Runner",
-    "tower_defense": "Tower Defense",
     "advergame": "Advergame",
-    "citizen_science": "Citizen Science",
-    "hack-n-slash": "Hack 'n' Slash",
-    "run_and_gun": "Run and Gun"
+    "hack-n-slash": "Hack 'n' Slash"
   },
   "stores": {
     "title": "Stores",
