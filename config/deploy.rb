@@ -1,6 +1,3 @@
-# config valid only for current version of Capistrano
-lock '3.5.0'
-
 set :application, 'gos'
 set :repo_url, 'git@github.com:Games-of-Switzerland/gos-website.git'
 
@@ -10,8 +7,6 @@ set :docker_app_name, -> {
 set :docker_app_service, 'next_app'
 set :docker_containers, 'next_app'
 
-server 'gos.museebolo.ch', port: '44144', user: 'deploy', roles: %w{app db web}
-
 # Link environments files
 set :linked_files, fetch(:linked_files, []).push("docker-compose.override.yml")
 
@@ -19,14 +14,8 @@ set :linked_files, fetch(:linked_files, []).push("docker-compose.override.yml")
 # which results to broken file path on symlinks.
 set :copied_files, fetch(:copied_files, []).push(".env")
 
-# Default value for :scm is :git
-set :scm, :git
-
-# Default value for :pty is false
-# set :pty, true
-
-# Default value for :format is :pretty
-# set :format, :pretty
+# Default value for :log_level is :debug
+set :log_level, :debug
 
 # Default value for keep_releases is 5
 # set :keep_releases, 3
@@ -116,10 +105,9 @@ namespace :deploy do
     end
   end
 
-  before 'deploy:symlink:shared', 'deploy:copy_files'
-
+  after :publishing, 'deploy:copy_files'
   after :publishing, 'deploy:restart'
-  after 'deploy:restart', 'deploy:hosts'
+  # after 'deploy:restart', 'deploy:hosts'
 
   # Cleanup old release.
   before :cleanup, "deploy:permissions:cleanup"
