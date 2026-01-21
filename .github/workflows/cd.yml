@@ -11,7 +11,7 @@ jobs:
    environment:
      name: Production
      url: https://swissgames.garden
-   if: github.ref == 'refs/heads/feature/deploy-to-unil'
+   if: github.ref == 'refs/heads/master'
    runs-on: ubuntu-latest
    env:
      PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
@@ -27,7 +27,7 @@ jobs:
    environment:
      name: Staging
      url: https://staging.swissgames.garden
-   if: github.ref == 'refs/heads/feature/deploy-to-unil'
+   if: github.ref == 'refs/heads/dev'
    runs-on: ubuntu-latest
    env:
      PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
