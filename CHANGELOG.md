@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - deploy to unil instead of bolo
 
+### Added
+- implement image blurring for sensitive content
+
 ## [1.0.2] - 2024-11-17
 ### Changed
 - update translations genres & platforms
