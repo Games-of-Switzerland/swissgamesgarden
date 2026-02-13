@@ -49,6 +49,7 @@ const Image = ({
   sources = [],
   className,
   defaultSize = 'downscale_675x500',
+  sensitive = false,
 }) => {
   const [loaded, setLoaded] = useState(false);
   const imageType = getImageType(image);
@@ -65,7 +66,7 @@ const Image = ({
   return (
     <div className={className}>
       {image ? (
-        <div className="picture">
+        <div className="picture relative">
           {!loaded && (
             <img
               className="picture-placeholder"
@@ -92,6 +93,7 @@ const Image = ({
               className="w-full"
             />
           </picture>
+          {sensitive && <div className="picture-sensitive" />}
         </div>
       ) : (
         <Placeholder width="100%" />

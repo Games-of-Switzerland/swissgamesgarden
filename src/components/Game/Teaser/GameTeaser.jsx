@@ -16,6 +16,7 @@ const GameTeaser = ({game}) => {
     genres = [],
     medias,
     people,
+    is_sensitive,
   } = game;
 
   const teaserPicture = medias.length > 0 && medias[0];
@@ -28,6 +29,7 @@ const GameTeaser = ({game}) => {
         sources={[['3x2_330x220', '3x2_660x440']]}
         defaultSize="3x2_330x220"
         className="flex-grow"
+        sensitive={is_sensitive}
       />
       <div className="p-4 min-h-20 flex flex-col flex-grow">
         <div className="text-gray-500 font-light flex justify-between space-x-2">
