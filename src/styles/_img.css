@@ -5,3 +5,9 @@
 .picture-placeholder {
   @apply w-full h-full;
 }
+
+.picture-sensitive {
+  @apply absolute inset-0;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}

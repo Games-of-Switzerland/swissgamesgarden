@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-02-19
+### Security
+- update to Ruby v3 and latest Capistrano
+
+### Changed
+- deploy to unil instead of bolo
+
+### Added
+- implement image blurring for sensitive content
+
 ## [1.0.2] - 2024-11-17
 ### Changed
 - update translations genres & platforms
@@ -87,7 +97,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - update changelog following 'keep a changelog'
 
-[Unreleased]: https://github.com/Games-of-Switzerland/swissgamesgarden/compare/1.0.2...HEAD
+[Unreleased]: https://github.com/Games-of-Switzerland/swissgamesgarden/compare/1.0.3...HEAD
+[1.0.3]: https://github.com/Games-of-Switzerland/swissgamesgarden/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/Games-of-Switzerland/swissgamesgarden/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/Games-of-Switzerland/swissgamesgarden/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/Games-of-Switzerland/swissgamesgarden/compare/0.1.5...1.0.0

@@ -41,8 +41,8 @@ NEXT_PUBLIC_AUTOCOMPLETE=http://localhost:8080/autocomplete
 ### Project bootstrap
 
 ```bash
-docker-compose build --pull
-docker-compose up --build -d
+docker compose build --pull
+docker compose up --build -d
 ```
 
 ### Project setup
